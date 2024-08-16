@@ -1,0 +1,392 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar  (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Productos
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3">
+                                    <a [routerLink]="['/manufactura/productos/ropas']"  class="pe-3">
+                                        Productos
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item pe-3">Importación</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <!--begin::Table Widget 3-->
+                        <div class="card h-xl-100 mb-5 border-r-none">
+                            <!--begin::Card header-->
+                            <div class="card-header py-7">
+                                <!--begin::Tabs-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Reporte de pedidos</span>
+                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                </h3>
+                                <!--end::Tabs-->
+
+                                <!--begin::Create campaign button-->
+                                <div class="card-toolbar d-none d-sm-block">
+                                    
+                                </div>
+                                <!--end::Create campaign button-->
+                            </div>
+                            
+                        </div>
+                        <!--end::Table Widget 3-->
+
+                        <ng-container *ngIf="!load_data">
+                            <div *ngIf="option == 1">
+                                <ng-container *ngIf="data.length >= 1">
+                                    <div class="card mb-5 border-r-none" *ngFor="let item of data;let lst = last;let idx = index">
+                                        <div class="card-body d-flex justify-content-between" style="padding: 1rem 2rem;">
+                                            <table class="w-100 table mb-0">
+                                                <tr>
+                                                    <td style="width: 350px;">
+                                                        <div class="d-flex align-items-center">
+                                                            <!--begin::Thumbnail-->
+                                                            <a class="symbol symbol-50px">
+                                                                <span class="symbol-label" style="background-image:url({{item.producto.portada}});"></span>
+                                                            </a>
+                                                            <!--end::Thumbnail-->
+                                                            <div class="ms-5" style="max-width: 300px !important">
+                                                                <!--begin::Title-->
+                                                                <a class="text-gray-800 fs-6 fw-bold text-1 fw-600 cursor-pointer" style="font-size: 1rem!important;">
+                                                                    
+                                                                    <ng-container  *ngIf="item.producto.minutos_pasados <= min_new_tag ">
+                                                                        <span class="badge badge-warning text-dark" style="font-size: .7rem;">
+                                                                            Nuevo
+                                                                        </span>
+                                                                        &nbsp;
+                                                                    </ng-container>
+                                                                    
+                                                                    <span placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto.titulo}}">
+                                                                        <span class="me-5">{{item.producto.titulo}}</span>
+                                                                        <span [ngClass]="{'bg-success': item.producto.estado == 'Publicado',
+                                                                        'bg-danger': item.producto.estado == 'Borrador'}" 
+                                                                        class="bullet bullet-dot h-6px w-6px translate-middle top-0 start-50">
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                                <code>
+                                                                    {{item.producto.tipo}} - {{item.producto.categoria}}
+                                                                </code>
+                            
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="m-0">                            
+                                                                <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                    OPEN TO SELL
+                                                                </span>
+                                                                <i class="fw-bold fs-7" [ngClass]="{'text-success': item.stock_free_producto >= 1}">
+                                                                    {{item.stock_free_producto.toFixed(2)}}
+                                                                    <span *ngIf="item.producto.tipo == 'Tela'">Mtr</span>
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="m-0">                            
+                                                            <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                TOTAL STOCK
+                                                            </span>
+                                                            <i class="fw-bold fs-7" [ngClass]="{'text-success': item.stock_total_producto >= 1}">
+                                                                {{item.stock_total_producto.toFixed(2)}}
+                                                                <span *ngIf="item.producto.tipo == 'Tela'">Mtr</span>
+                                                            </i>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="m-0">                            
+                                                            <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                FUTERE STOCK
+                                                            </span>
+                                                            <i class="fw-bold fs-7" [ngClass]="{'text-success': item.future_stock_producto >= 1}">
+                                                                {{item.future_stock_producto.toFixed(2)}}
+                                                                <span *ngIf="item.producto.tipo == 'Tela'">Mtr</span>
+                                                            </i>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end" style="min-width: 100px;">
+                                                        <div [ngStyle]="{'background': subitem.color}" 
+                                                            *ngFor="let subitem of item.etiquetas" 
+                                                            class="badge badge-primary mb-1 me-3"
+                                                            style="height: fit-content !important;">
+                                                                {{subitem.etiqueta}}
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end">
+                                                        <button (click)="show_detalles(idx)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                                            <i class="bi bi-plus-lg"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                           
+                                            
+                                        </div>
+                                        <div class="card-footer" *ngIf="item.visible" > 
+                                            <div class="table-responsive">
+                                                <table style="width: 100% !important;" class="table table-bordered mb-0 variaciones-table inner-table">
+                                                    <thead>
+                                                        <tr class="fw-bold fs-6 text-gray-800" style="background-color: #f5f8fa;">
+                                                            <th class="w-250px" style="padding-left: 0.75rem !important;">
+                                                                <code class="text-dark">
+                                                                    COLOR
+                                                                </code>
+                                                            </th>
+                                                            <th class="w-100px text-center">
+                                                                <code class="text-dark" placement="top" ngbTooltip="Metraje disponible para venta.">
+                                                                    OPEN TO SELL
+                                                                </code>
+                                                            </th>
+                                                            <th class="w-100px text-center">
+                                                                <code class="text-dark" placement="top" ngbTooltip="Metraje total en almacen.">
+                                                                    TOTAL STOCK
+                                                                </code>
+                                                            </th>
+                                                            <th class="w-100px text-center">
+                                                                <code class="text-dark" placement="top" ngbTooltip="Metraje en proceso de envío por pedido.">
+                                                                    FUTERE STOCK
+                                                                </code>
+                                                            </th>
+                                                            <th class="text-center w-200px" *ngFor="let ped of item.arr_header" colspan="1" style="background: #2c7be5 !important;">
+                                                                <a (click)="init_pedido(ped._id)" class="cursor-pointer" target="_blank">
+                                                                    <code class="text-white">{{ped.pedido}}</code>
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody *ngIf="item.arr_variaciones.length >= 1">
+                                                        <tr *ngFor="let subitem of item.arr_variaciones">
+                                                            <td class="nowrap" style="padding-left: 0.75rem !important;min-width: 250px !important;">
+                                                                <div class="d-flex align-items-center">
+                                                                    <a class="symbol symbol-30px"  style="cursor: pointer;border: 1px dashed #ccc;">
+                                                                        <span class="symbol-label" [ngStyle]="{'background': subitem.hxd}"></span>
+                                                                    </a>
+                                                                    <div class="d-flex justify-content-start flex-column ms-5">
+                                                                        <a [routerLink]="['/inventario/detail',subitem._id]">
+                                                                            <i class="text-gray-800 text-hover-primary fs-7 fw-600">
+                                                                                {{subitem.variacion_name}}  
+                                                                             </i>
+                                                                        </a>
+                                                                        
+                                                                        <code>
+                                                                            {{subitem.color_name}}
+                                                                            <ng-container *ngIf="subitem.tipo == 'Ropa'">
+                                                                               - {{subitem.talla}}
+                                                                            </ng-container>
+                                                                        </code>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                             
+                                                                <span [ngClass]="{'text-success': subitem.stock_free >= 1}">
+                                                                    {{subitem.stock_free}}
+                                                                    <small>{{subitem.unidad}}</small>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                                <span [ngClass]="{'text-success': subitem.stock_total >= 1}">
+                                                                    {{subitem.stock_total}}
+                                                                    <small>{{subitem.unidad}}</small>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                                <span [ngClass]="{'text-success': subitem.future_stock >= 1}">
+                                                                    {{subitem.future_stock}}
+                                                                    <small>{{subitem.unidad}}</small>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-center" style="vertical-align: middle;min-width: 150px;" *ngFor="let ped of subitem.pedidos">
+                                                                <span [ngClass]="{'text-success': ped.cantidad >= 1}">
+                                                                    {{ped.cantidad}} 
+                                                                    <small>{{subitem.unidad}}</small>
+                                                                </span>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tbody *ngIf="item.arr_variaciones.length == 0">
+                                                        <tr>
+                                                            <td class="text-center" colspan="3">
+                                                                <span class="text-muted">
+                                                                    No se encontraron pedidos del color.
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="data.length == 0">
+                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                        <!--begin::Logo-->
+                                        <a  class="pt-lg-20">
+                                            <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                        </a> 
+                                        <!--begin::Message-->
+                                        <div class="fw-semibold fs-6 text-muted mb-15">
+                                            Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                        </div>      
+                         
+                                
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div class="card pt-5" *ngIf="option == 2">
+                                <div class="card-body">
+                                    <ng-container *ngIf="!load_pedido">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                            
+                                                <div class="d-flex justify-content-start flex-column">
+                                                    <a class="text-gray-800 fw-700 text-hover-primary fs-4">
+                                                        #{{pedido.year}}-{{pedido.serie.toString().padStart(6,'000000')}}
+                                                    </a>
+                                                    <code>
+                                                        {{pedido.createdAt|date:'medium'}}
+                                                    </code>
+                                                </div>
+                                            </div>
+        
+                                            <div class="d-flex">
+                                                <button class="btn btn-primary btn-sm" (click)="setMenu(1)">Regresar</button>
+                                            </div>
+                                        </div>
+        
+                                        <div class="table-responsive mt-7">
+                                            <table class="table table-bordered mb-0">
+                                                <thead>
+                                                    <tr class="fw-bold fs-6 text-gray-800">
+                                                        <th class="w-250px" style="padding-left: 0.75rem !important;">Color</th>
+                                                        <th class="w-200px text-center">OPEN TO SELL</th>
+                                                        <th class="w-200px text-center">TOTAL STOCK</th>
+                                                        <th class="w-200px text-center">VENTA STOCK</th>
+                                                        <th class="text-center w-200px" *ngFor="let item of clientes_pedido" colspan="1" style="background: #2c7be5 !important;">
+                                                            <a class="text-white">
+                                                                <code class="text-white">
+                                                                    {{item.nombres.split(' ')[0]}}
+                                                                    {{item.apellidos.split(' ')[0]}}
+                                                                </code>
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngIf="pedidos.length >= 1">
+                                                    <tr *ngFor="let item of pedidos">
+                                                        <td class="nowrap" style="padding-left: 0.75rem !important;min-width: 250px;">
+                                                            <div class="d-flex align-items-center">
+                                                                <a class="symbol symbol-30px"  style="cursor: pointer;border: 1px dashed #ccc;">
+                                                                    <span class="symbol-label" [ngStyle]="{'background': item.hxd}"></span>
+                                                                </a>
+                                                                <div class="d-flex justify-content-start flex-column ms-5">
+                                                                    <small class="text-muted">{{item.producto}}</small>
+                                                                    <a class="text-gray-800 text-hover-primary fs-7 fw-600">
+                                                                       {{item.variante}}  
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                            {{item.stock_total-item.stock_venta}} 
+                                                            <small>Mtr</small>
+                                                        </td>
+                                                        <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                            {{item.stock_total}}
+                                                            <small>Mtr</small>
+                                                        </td>
+                                                        <td class="text-center nowrap" style="vertical-align: middle;min-width: 150px;">
+                                                            {{item.stock_venta}}
+                                                            <small>Mtr</small>
+                                                        </td>
+                                                        <td class="text-center" style="vertical-align: middle;min-width: 150px;" *ngFor="let subitem of item.clientes">
+                                                            {{subitem.cantidad}} Mtr
+                                                          
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody *ngIf="pedidos.length == 0">
+                                                    <tr>
+                                                        <td class="text-center" colspan="4">
+                                                            <span class="text-muted">
+                                                                No se encontraron pedidos del color.
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                
+                                            </table>
+                                        </div>
+                                    </ng-container>
+                                    <div class="py-20 text-center" *ngIf="load_pedido">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="load_data">
+                            <div class="card-body pt-5">
+                                <div class="py-20 text-center">
+                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

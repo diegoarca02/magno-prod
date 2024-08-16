@@ -1,0 +1,29 @@
+
+.bg_active{
+    background: #0452ff !important;
+}
+
+.color_active{
+    color: #81a8ff !important;
+    font-weight: 600;
+}
+
+
+.bg_select{
+    background: #fffaec !important;
+}
+
+.check-span{
+    fill: #fff !important;
+}
+
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}

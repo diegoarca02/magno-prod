@@ -1,0 +1,286 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+            
+            <!--begin::Post-->
+            <div class="post d-flex flex-column-fluid" id="kt_post">
+                <!--begin::Container-->
+                <div id="kt_content_container" class="container-xxl">
+                    <!--begin::Row-->
+                    <div class="row gy-5 g-xl-8">
+                        <div class="col-12">
+                            <ng-container *ngIf="!load_data">
+                                <ng-container *ngIf="data">
+                                    <div class="card" id="toPDF">
+                                        <!-- begin::Body-->
+                                        <div class="card-body py-20">
+                                            <!-- begin::Wrapper-->
+                                            <div class="mw-lg-950px mx-auto w-100">
+                                                <!-- begin::Header-->
+                                                <div class="d-flex justify-content-between flex-column flex-sm-row mb-19">
+                                                    <h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">Orden de 
+                                                        {{pedido.tipo_pedido}} #{{pedido.year}}-{{pedido.serie.toString().padStart(6,'000000')}}
+                                                        <span *ngIf="pedido.estado == 'Pedido'" class="badge py-3 px-4 fs-7 badge-light-warning">
+                                                            {{pedido.estado}}
+                                                        </span>
+                                                        <span *ngIf="pedido.estado == 'Cancelado'" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                            {{pedido.estado}}
+                                                        </span>
+                                                        <span *ngIf="pedido.estado == 'Aprobado'" class="badge py-3 px-4 fs-7 badge-light-info">
+                                                            {{pedido.estado}}
+                                                        </span>
+                                                        <span *ngIf="pedido.estado == 'Enviado'" class="badge py-3 px-4 fs-7 badge-light-success">
+                                                            {{pedido.estado}}
+                                                        </span>
+                                                        <span *ngIf="pedido.estado == 'Confirmado'" class="badge py-3 px-4 fs-7 badge-light-primary">
+                                                            {{pedido.estado}}
+                                                        </span>
+
+                                                        <ng-container *ngIf="pedido.tipo_pedido == 'Programacion'">
+                                                            <br>
+                                                            <span class="text-muted fs-5">
+                                                                Este pedido es una programación.
+                                                            </span>
+                                                        </ng-container>
+                                                    </h4>
+                                                    <!--end::Logo-->
+                                                    <div class="text-sm-end">
+                                                        <!--begin::Logo-->
+                                                        <a href="#" class="d-block mw-150px ms-sm-auto">
+                                                            <img alt="Logo" src="assets/images/duolingo.svg" class="w-100">
+                                                        </a>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <!--end::Header-->
+                                                <!--begin::Body-->
+                                                <div class="pb-12">
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex flex-column gap-7 gap-md-10">
+                                                        <ng-container *ngIf="pedido.tipo_pedido == 'Pedido'">
+                                                            <!--begin::Message-->
+                                                            <div class="fw-bold fs-2">{{pedido.proveedor.razon_social}}
+                                                                <span class="fs-6">({{pedido.proveedor.email}})</span>,
+                                                                <br>
+                                                                <span class="text-muted fs-5">Aquí están los detalles de su pedido. Le agradecemos su compra.</span>
+                                                            </div>
+                                                            <!--begin::Message-->
+                                                        </ng-container>
+                                                       
+                                                        
+                                                        <div class="separator"></div>
+                                                        <!--begin::Separator-->
+                                                        <!--begin::Order details-->
+                                                        <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold" >
+                                                            <div class="flex-root d-flex flex-column">
+                                                                <span class="text-muted">Orden ID</span>
+                                                                <span class="fs-5">#{{pedido.year}}-{{pedido.serie.toString().padStart(6,'000000')}}</span>
+                                                            </div>
+                                                            <div class="flex-root d-flex flex-column">
+                                                                <span class="text-muted">Fecha</span>
+                                                                <span class="fs-5">{{pedido.fecha_pedido|date:'dd-MM-YYYY'}}</span>
+                                                            </div>
+                                                            <div *ngIf="pedido.tipo_pedido == 'Pedido'" class="flex-root d-flex flex-column no-print">
+                                                                <span class="text-muted">Tipo pago</span>
+                                                                <span class="fs-5">{{pedido.tipo_pago}}</span>
+                                                            </div>
+                                                            <div class="flex-root d-flex flex-column no-print">
+                                                                <span class="text-muted">Moneda</span>
+                                                                <span class="fs-5">{{pedido.moneda}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Order details-->
+                                                        <!--begin::Billing & shipping-->
+                                                        <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold no-print"  *ngIf="pedido.tipo_pedido == 'Pedido'">
+                                                            <div class="flex-root d-flex flex-column">
+                                                                <span class="text-muted">Proveedor</span>
+                                                                <span class="fs-6"><b>Razón social: &nbsp;</b> {{pedido.proveedor.razon_social}}
+                                                                <br>
+                                                                <b>Ubicación: &nbsp;</b>
+                                                                <span *ngIf="pedido.proveedor.estado">{{pedido.proveedor.estado}}</span>
+                                                                <span *ngIf="pedido.proveedor.ciudad"> - {{pedido.proveedor.ciudad}}</span>,
+                                                                {{pedido.proveedor.pais}}
+                                                                <br>
+                                                                <b>Telefono: &nbsp;</b> {{pedido.proveedor.telefono}}
+                                                                <br>
+                                                                <b>Encargado: &nbsp;</b>{{pedido.proveedor.encargado}}.</span>
+                                                            </div>
+                                                            <div class="flex-root d-flex flex-column">
+                                                                <span class="text-muted">Envio</span>
+                                                                <span class="fs-6">
+                                                                    <b>Transporte: &nbsp;</b>
+                                                                    <span *ngIf="pedido.tipo_transporte">{{pedido.tipo_transporte}}</span>
+                                                                    <span *ngIf="!pedido.tipo_transporte">No especificado</span>
+                                                                    <br>
+                                                                    <b>Empresa: &nbsp;</b>
+                                                                    <span *ngIf="pedido.empresa_transporte">{{pedido.empresa_transporte}}</span>
+                                                                    <span *ngIf="!pedido.empresa_transporte">No especificado</span>
+                                                                    <br>
+                                                                    <b>Aduanero: &nbsp;</b>
+                                                                    <span *ngIf="pedido.aduanero_transporte">{{pedido.aduanero_transporte}}</span>
+                                                                    <span *ngIf="!pedido.aduanero_transporte">No especificado</span>
+                                                                    <br>
+                                                                    <b>Entrega: &nbsp;</b>
+                                                                    <span *ngIf="pedido.programacion_transporte">{{pedido.programacion_transporte}}</span>
+                                                                    <span *ngIf="!pedido.programacion_transporte">No especificado</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Billing & shipping-->
+                                                        <!--begin:Order summary-->
+                                                        <div class="d-flex justify-content-between flex-column">
+                                                            <!--begin::Table-->
+                                                            <div class="border-bottom mb-9">
+                                                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                                    <thead>
+                                                                        <tr class="border-bottom fs-6 fw-bold text-muted">
+                                                                            <th class="min-w-175px pb-2">Productoss</th>
+                                                                            <th class="min-w-70px text-end pb-2">SKU</th>
+                                                                            <th class="min-w-80px text-end pb-2">QTY</th>
+                                                                            <th class="min-w-100px text-end pb-2">Subtotal</th>
+                                                                            <th class="min-w-100px text-end pb-2">Total</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="fw-semibold text-gray-600">
+                                                                        <!--begin::Products-->
+                                                                        <tr *ngFor="let item of detalles">
+                                                                            <!--begin::Product-->
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <!--begin::Thumbnail-->
+                                                                                    <a href="/metronic8/demo1/../demo1/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px no-print">
+                                                                                        <span class="symbol-label" style="width: 25px;height: 25px;" [ngStyle]="{'background': item.producto_color.hxd}"></span>
+                                                                                    </a>
+                                                                                    <!--end::Thumbnail-->
+                                                                                    <!--begin::Title-->
+                                                                                    <div class="ms-5">
+                                                                                        <div class="fw-bold">{{item.producto.titulo}}</div>
+                                                                                        <div class="fs-7 text-muted">{{item.producto_color.variante}}</div>
+                                                                                    </div>
+                                                                                    <!--end::Title-->
+                                                                                </div>
+                                                                            </td>
+                                                                            <!--end::Product-->
+                                                                            <!--begin::SKU-->
+                                                                            <td class="text-end">{{item.producto_color.sku}}</td>
+                                                                            <!--end::SKU-->
+                                                                            <!--begin::Quantity-->
+                                                                            <td class="text-end">{{item.cantidad}}</td>
+                                                                            <!--end::Quantity-->
+                                                                            <!--begin::Total-->
+                                                                            <td class="text-end">
+                                                                                <span *ngIf="pedido.moneda == 'USD'">{{item.precio|currency:'USD'}}</span>
+                                                                                <span *ngIf="pedido.moneda == 'MXN'">{{item.precio|currency:'MXN'}}</span>
+                                                                            </td>
+                                                                            <!--end::Total-->
+                                                                            <!--begin::Total-->
+                                                                            <td class="text-end">
+                                                                                <span *ngIf="pedido.moneda == 'USD'">{{item.precio*item.cantidad|currency:'USD'}}</span>
+                                                                                <span *ngIf="pedido.moneda == 'MXN'">{{item.precio*item.cantidad|currency:'MXN'}}</span>
+                                                                            </td>
+                                                                            <!--end::Total-->
+                                                                        </tr>
+                                                                        
+                                                                        <!--end::Products-->
+                                                                        <!--begin::Subtotal-->
+                                                                        <tr>
+                                                                            <td colspan="4" class="text-end">Subtotal</td>
+                                                                            <td class="text-end">
+                                                                                <span *ngIf="pedido.moneda == 'USD'">{{pedido.monto_resultante|currency:'USD'}}</span>
+                                                                                <span *ngIf="pedido.moneda == 'MXN'">{{pedido.monto_resultante|currency:'MXN'}}</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <!--end::Subtotal-->
+                                                                        <!--begin::VAT-->
+                                                                        <tr>
+                                                                            <td colspan="4" class="text-end">Descuento (0%)</td>
+                                                                            <td class="text-end">
+                                                                                <span *ngIf="pedido.moneda == 'USD'">{{0|currency:'USD'}}</span>
+                                                                                <span *ngIf="pedido.moneda == 'MXN'">{{0|currency:'MXN'}}</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <!--end::VAT-->
+                                                                
+                                                                        <!--begin::Grand total-->
+                                                                        <tr>
+                                                                            <td colspan="4" class="fs-3 text-dark fw-bold text-end">Grand Total</td>
+                                                                            <td class="text-dark fs-3 fw-bolder text-end">
+                                                                                <span *ngIf="pedido.moneda == 'USD'">
+                                                                                    {{pedido.monto_resultante+pedido.monto_envio|currency:'USD'}}
+                                                                                </span>
+                                                                                <span *ngIf="pedido.moneda == 'MXN'">
+                                                                                    {{pedido.monto_resultante+pedido.monto_envio|currency:'MXN'}}
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <!--end::Grand total-->
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <!--end::Table-->
+                                                        </div>
+                                                        <!--end:Order summary-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </div>
+                                                <!--end::Body-->
+                                                <!-- begin::Footer-->
+                                                
+                                                <!-- end::Footer-->
+                                            </div>
+                                            <!-- end::Wrapper-->
+                                        </div>
+                                        <!-- end::Body-->
+                                    </div>
+                                    <div class="d-flex flex-stack flex-wrap mt-lg-7 pt-7 no-print" >
+                                        <!-- begin::Actions-->
+                                        <div class="my-1 me-5">
+                                            <!-- begin::Pint-->
+                                            <button type="button" class="btn btn-success my-1 me-12" onclick="window.print();">Imprimir</button>
+                                            <!-- end::Pint-->
+                                            <!-- begin::Download-->
+                                            <button type="button" class="btn btn-light-success my-1" (click)="download()">Descargar orden</button>
+                                            <!-- end::Download-->
+                                        </div>
+                                        <!-- end::Actions-->
+                                       
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="!data">
+                                    <div class="card">
+                                        <div class="card-body pt-15">
+                                            <div class="text-center mt-20 mb-15">
+                                                <!--begin::Title-->
+                                                <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                <!--end::Title-->
+                                                <!--begin::Text-->
+                                                <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                <!--end::Text-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+
+                            <ng-container *ngIf="load_data">
+                                <div class="card">
+                                    <div class="card-body pt-6">
+                                        <div class="py-20 text-center">
+                                            <img src="assets/icons/reloj.gif" style="width: 100px;" class="theme-light-show" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                   
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Post-->
+        </div>
+    </div>
+    <!--end::Page-->
+</div>

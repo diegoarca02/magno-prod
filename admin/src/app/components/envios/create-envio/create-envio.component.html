@@ -1,0 +1,549 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ordenes
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/envios']" >Ordenes</a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Envios</li>
+                              
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8 mb-7">
+                            <div class="col-12">
+                                <div class="card card-flush border-r-none">
+                                    <div class="pb-lg-10" style="padding-top: 5rem !important;">
+                                        <!--begin::Title-->
+                                        <h1 class="fw-bold text-center fw-700">
+                                            <ng-container >
+                                                Realizar Envíos
+                                            </ng-container>
+                                        </h1>
+                                        <!--end::Title-->
+                                        <!--begin::Notice-->
+                                        <div *ngIf="step == 1" class="text-muted fw-semibold fs-6 text-center">
+                                            Detalles de ventas pendientes de envío.
+                                        </div>
+                                        <div *ngIf="step == 2" class="text-muted fw-semibold fs-6 text-center">
+                                            Configuración de envío de venta seleccionada.
+                                        </div>
+                                        <!--end::Notice-->
+                                    </div>
+
+                                    <div [style.display]="step == 1 ? 'block' : 'none'">
+                                        <div class="card-body">
+                                            <div class="text-center py-7" *ngIf="load_data">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                  </div>
+                                            </div>
+                                            <ng-container *ngIf="!load_data">
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Wrapper-->
+                                                    <button *ngIf="permisos.includes('9002')" type="button" class="btn btn-primary" style="margin-right: 1rem;" data-bs-toggle="modal" [attr.data-bs-target]="'#unidadesModal'">
+                                                        <i class="bi bi-archive"></i>
+                                                        Nuevo Rollo
+                                                    </button>
+                                                    <button (click)="set_option(2)" type="button" class="btn btn-dark" *ngIf="ventas_envio.length >= 1">
+                                                        Continuar
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                            <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                    <button type="button" disabled class="btn btn-dark" *ngIf="ventas_envio.length == 0">
+                                                        Continuar
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                            <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                    <!--end::Wrapper-->
+                                                </div>
+
+                                                <div class="table-responsive my-5">
+                                                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                        <tbody class="fw-semibold">
+                                                            <!--begin::Products-->
+                                                            <tr *ngFor="let item of detalles">
+                                                                <td>
+                                                                    <label *ngIf="item.envio" class="form-check form-check-custom form-check-solid align-items-start form-check-unidad">
+                                                                        <input (change)="setCHK($event)" id="unidad-{{item._id}}" class="form-check-input me-2" type="checkbox" [value]="item._id">
+                                                                    </label>
+
+                                                                    <label *ngIf="!item.envio" class="form-check form-check-custom form-check-solid align-items-start form-check-unidad"  style="cursor: not-allowed !important;">
+                                                                        <input class="form-check-input me-2" type="checkbox" [value]="item._id" disabled style="background: #ff9e9e !important;">
+                                                                    </label>
+                                                                </td>
+                                                                <!--begin::Product-->
+                                                                <td class="min-w-200px">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--begin::Thumbnail-->
+                                                                        <a  class="symbol symbol-50px me-5">
+                                                                            <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.producto_variacion.hxd}">
+                                                                            </span>
+                                                                        </a>
+                                                                        <!--end::Thumbnail-->
+                                                                        <!--begin::Title-->
+                                                                        <div class="fw-semibold">
+                                                                            <span class="fs-6 fw-600 text-gray-800 me-2" style="font-weight: 500;
+                                                                            font-size: 1rem !important;">
+                                                                               {{item.producto.titulo.substr(0,30)}} - 
+                                                                               {{item.producto_variacion.variacion_name}}
+                                                                               <ng-container *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                   {{item.producto_variacion.talla}}
+                                                                               </ng-container>
+                                                                            </span>
+                                                                            <br>
+                                                                            <code *ngIf="!item.venta_envio">
+                                                                                <span class="text-muted" *ngIf="item.tipo_detalle =='En almacen'">
+                                                                                    En almacen: &nbsp;
+                                                                                </span>
+                                                                                <span class="text-muted" *ngIf="item.tipo_detalle =='En camino'">
+                                                                                    En camino: &nbsp;
+                                                                                </span>
+                                                                                {{item.fe_inicio}} 
+                                                                                <small class="text-muted">entre</small> 
+                                                                                {{item.fe_fin}}
+                                                                            </code>
+                                                                            <code class="text-success" *ngIf="item.venta_envio">
+                                                                                Unidades enviadas - 
+                                                                                <span class="fw-700 text-gray-700">
+                                                                                    {{item.venta_envio.tracking}}
+                                                                                </span>
+                                                                            </code>
+                                                                        </div>
+                                    
+                                                                        <!--end::Title-->
+                                                                    </div>
+                                                                </td>
+                                                                <!--end::Product-->
+                                                                <td class="text-end min-w-100px">
+                                                                    <div class="m-0">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                           Almacen
+                                                                        </span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                            {{item.ingreso_detalle.ingreso.almacen}}
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end::Quantity-->
+                                                                <!--begin::SKU-->
+                                                                <td class="text-end min-w-100px">
+                                                                    <a [routerLink]="['/inventario/detail',item.producto_variacion._id]" routerLinkActive="router-link-active" >
+                                                                        <code *ngIf="item.tipo_detalle == 'En almacen'">
+                                                                            {{item.ingreso_detalle.codigo}}
+                                                                        </code>
+                                                                        <code class="text-warning" *ngIf="item.tipo_detalle == 'En camino'">
+                                                                            En camino
+                                                                        </code>
+                                                                    </a>
+
+                                                              
+
+                                                                    <ng-container  *ngIf="permisos.includes('9002')">
+                                                                        <ng-container *ngIf="!ventas_envio.includes(item._id)">
+                                                                            <br>
+                                                                            <small class="text-danger" data-bs-toggle="modal" 
+                                                                            [attr.data-bs-target]="'#removeDetalle-'+item._id" style="cursor: pointer;">
+                                                                                Quitar
+                                                                            </small>
+    
+                                                                            <div class="modal fade" id="removeDetalle-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title">Eliminación</h3>
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <p>Confirmación para la eliminación del registro.</p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                            
+                                                                                                Descartar
+                                                                                            </button>
+                                                                            
+                                                                                            <button *ngIf="!load_btn_remove" type="button" class="btn btn-dark" (click)="remove_detalle(item._id)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Confirmar
+                                                                                            </button>
+                                                                                            <button *ngIf="load_btn_remove" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procesando...
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> 
+                                                                        </ng-container>
+                                                                    </ng-container>
+
+                                                                    
+                                                                </td>
+                                                                
+                                                                <td class="text-end min-w-100px">
+                                                                    <div class="m-0" *ngIf="item.tipo_detalle == 'En almacen'">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                           Cantidad
+                                                                        </span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                            {{item.cantidad}}
+                                                                            <small>{{venta_selected.unidad}}</small>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="m-0" *ngIf="item.tipo_detalle == 'En camino'">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                           Cantidad
+                                                                        </span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                            {{item.cantidad}}
+                                                                            <small>{{venta_selected.unidad}}</small>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end::Quantity-->
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                    
+                                               
+                                                <div class="d-flex flex-stack mt-10">
+                                                    <!--begin::Wrapper-->
+                                                    <button *ngIf="permisos.includes('9002')" type="button" class="btn btn-primary" style="margin-right: 1rem;" data-bs-toggle="modal" [attr.data-bs-target]="'#unidadesModal'">
+                                                        <i class="bi bi-archive"></i>
+                                                        Nuevo Rollo
+                                                    </button>
+                                                    <button (click)="set_option(2)" type="button" class="btn btn-dark" *ngIf="ventas_envio.length >= 1">
+                                                        Continuar
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                            <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                    <button type="button" disabled class="btn btn-dark" *ngIf="ventas_envio.length == 0">
+                                                        Continuar
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                            <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                    <!--end::Wrapper-->
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div [style.display]="step == 2 ? 'block' : 'none'">
+                                        <div class="card-body">
+                                            <!--begin::Input group-->
+                                            <div class="row mb-10">
+                                                <!--begin::Col-->
+                                                <div class="col-md-12 fv-row">
+                                        
+                                                    <div class="row fv-row fv-plugins-icon-container">
+                                                        <!--begin::Col-->
+                                                        <div class="col-12">
+                                                            <!--begin::Label-->
+                                                            <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                                                <span class="required">Destinatario</span>
+                                                            </label>
+                                                            <!--end::Label-->
+                                                            <input type="text" class="form-control form-control-solid" placeholder="Destinatario" name="destinatario" [(ngModel)]="doc_venta.destinatario">
+                                                        </div>
+                                                        <!--end::Col-->
+                                                        
+                                                    </div>
+                                                    <!--end::Row-->
+                                                </div>
+                                            
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row fv-plugins-icon-container mb-10">
+                                                <!--begin::Col-->
+                                                <div class="col-6">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                                        <span class="required">Lugar expedición</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Lugar expedición"  name="lugar_expedicion" [(ngModel)]="doc_venta.lugar_expedicion">
+                                                </div>
+                                                <!--end::Col-->
+                                                <!--begin::Col-->
+                                                <div class="col-6">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                                        <span class="">Tracking</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Número de seguimiento"  name="tracking" [(ngModel)]="doc_venta.tracking">
+                                                </div>
+                                                <!--end::Col-->
+                                    
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-10" *ngIf="venta_selected?.cliente_ubicacion">
+                                                <!--begin::Col-->
+                                                <div class="col-12">
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                                        <span class="required">Dirección de envío</span>
+                                                    </label>
+                                    
+                                                    {{venta_selected.cliente_ubicacion.place_name_es}},
+                                                    <br>
+                                                    {{venta_selected.cliente_ubicacion.country}}, {{venta_selected.cliente_ubicacion.region}}
+                                                    <br>
+                                                    {{venta_selected.cliente_ubicacion.place}}
+                                                    <br>
+                                                    {{venta_selected.cliente_ubicacion.postcode}}
+                                                </div>
+                                            
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row fv-plugins-icon-container mb-10">
+                                                <!--begin::Col-->
+                                                <div class="col-6">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                                                        <span class="required">Paquetería</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <select  class="form-select form-select-solid mb-2" name="paqueteria" [(ngModel)]="doc_venta.paqueteria">
+                                                        <option value="" selected disabled>Seleccionar</option>
+                                                        <option [value]="item" *ngFor="let item of envios">{{item}}</option>
+                                                    </select>
+                                                </div>
+                                                <!--end::Col-->
+                                                
+                                    
+                                            </div>
+                                    
+                                    
+                                            <div class="d-flex flex-stack mt-10">
+                                                <!--begin::Wrapper-->
+                                                <button (click)="set_option(1)" type="button" class="btn btn-light" style="margin-right: 1rem;">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Regresar
+                                                </button>
+                                                <button  (click)="create()" *ngIf="ventas_envio.length >= 1" type="button" class="btn btn-dark">
+                                                    Finalizar
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                        <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                                <!--end::Wrapper-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                       
+                       
+
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+
+
+
+<div class="modal fade" id="unidadesModal" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                <!--begin::Heading-->
+                <div class="text-center mb-13">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">
+                        Rollos Disponibles
+                    </h1>
+                    <!--end::Title-->
+
+                    <!--begin::Description-->
+                    <div class="text-muted fs-6">
+                        Puedes agregar rollos disponibles o directamente desde 
+                        <a [routerLink]="['/informes/reporte-pedidos']" class="link-primary fw-bold"> inventario</a>.
+                    </div>
+                    <!--end::Description-->
+                </div>
+                <!--end::Heading-->
+
+                <!--begin::Users-->
+                <div class="mb-15">
+                    <!--begin::List-->
+                    <div class="mh-375px scroll-y me-n7 pe-7">
+                        <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed" *ngFor="let item of unidades">
+                            <!--begin::Details-->
+                            <div class="d-flex align-items-center">
+                                <!--begin::Avatar-->
+                                <a  class="symbol symbol-50px me-5">
+                                    <span class="symbol-label" style="width: 20px;height: 20px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.producto_variacion.hxd}">
+                                    </span>
+                                </a>
+                                <!--end::Avatar-->
+
+                                <!--begin::Details-->
+                                <div >
+                                    <span>{{item.producto_variacion.variacion_name}}</span>
+                                    &nbsp;
+                                    <code>{{item.codigo}}</code>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::Details-->
+
+                            <!--begin::Stats-->
+                            <div class="text-end">
+                                <div class="fs-7 ">{{item.cantidad}} {{item.unidad}}</div>
+                            </div>
+                            <div class="text-end">
+                                <div class="fs-7 ">{{item.cantidad*item.producto_variacion.precio_venta|currency:'MXN'}}</div>
+                            </div>
+                            <!--end::Stats-->
+                            <div class="text-end">
+                                <button (click)="add_detalle(item)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                    <i class="bi bi-check2"></i>                              
+                                </button>
+                            </div>
+                        </div>
+                        <!--end::User-->
+                    </div>
+                    <!--end::List-->
+                </div>
+                <!--end::Users-->
+
+                <!--begin::Notice-->
+                <div class="d-flex justify-content-between">
+                    <!--begin::Label-->                        
+                    <div class="fw-semibold">
+                        <label class="fs-6">Adding Users by Team Members</label>
+
+                        <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+                    </div>
+                    <!--end::Label-->   
+
+                    <!--begin::Switch-->
+                    <label class="form-check form-switch form-check-custom form-check-solid">
+                        <input class="form-check-input" type="checkbox" value="" checked="checked">
+
+                        <span class="form-check-label fw-semibold text-muted">
+                            Allowed
+                        </span>
+                    </label>
+                    <!--end::Switch-->
+                </div>
+                <!--end::Notice-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>

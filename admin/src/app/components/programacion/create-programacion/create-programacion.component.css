@@ -1,0 +1,21 @@
+.bg_selected{
+    background-color: #fffaec !important;
+}
+
+.proveedor_selected{
+    background: #f1f4f7 !important;
+}
+
+
+.producto_selected{
+    background: #f1f4f7 !important;
+}
+
+.bg_dark_table{
+    background: #181c32 !important;
+}
+
+.bg_select{
+    border: 1px dashed #50cd89 !important;
+    background: #f4f9f3 !important;
+}

@@ -1,0 +1,1510 @@
+<div class="app-main flex-column flex-row-fluid">
+    <!--begin::Page-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Manufactura
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/productos']"  class="pe-3">
+                                            Productos
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Editar producto</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <div class="card" >
+                            <!--begin::Card body-->
+                            <div class="card-body" >
+                                <!--begin::Form-->
+                                <div class="mx-auto mw-700px w-100 pt-15 pb-10 fv-plugins-bootstrap5 fv-plugins-framework">
+                                    
+                                    <div class="d-flex justify-content-center mb-20 d-flex gap-6">
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="setMenu(1)" [ngClass]="{'text-primary': option == 1}">
+                                                <span class="svg-icon svg-icon-success" *ngIf="producto.titulo && producto.categoria && producto.subcategoria && producto.estado && producto.descripcion">
+                                                    <svg style="height: 20px!important;width: 20px!important;margin-bottom: 5px;" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                        <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                        <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                General
+                                            </h3>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="setMenu(2)" [ngClass]="{'text-primary': option == 2}">
+                                                <span class="svg-icon svg-icon-success" >
+                                                    <svg style="height: 20px!important;width: 20px!important;margin-bottom: 5px;" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                        <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                        <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                Composiciones
+                                            </h3>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="setMenu(3)" [ngClass]="{'text-primary': option == 3}">
+                                                <span class="svg-icon svg-icon-success" >
+                                                    <svg style="height: 20px!important;width: 20px!important;margin-bottom: 5px;" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                        <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                        <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                Variantes
+                                            </h3>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="setMenu(4)" [ngClass]="{'text-primary': option == 4}">
+                                                <span class="svg-icon svg-icon-success" >
+                                                    <svg style="height: 20px!important;width: 20px!important;margin-bottom: 5px;" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                        <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                        <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                Galería
+                                            </h3>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="setMenu(5)" [ngClass]="{'text-primary': option == 5}">
+                                                <span class="svg-icon svg-icon-success" >
+                                                    <svg style="height: 20px!important;width: 20px!important;margin-bottom: 5px;" class="h-30px w-30px" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                        <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                        <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                    </svg>
+                                                </span>
+                                                Etiquetas
+                                            </h3>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                   
+                                    <!--begin::Step 1-->
+                                    <div [hidden]="option != 1">
+                                        <div class="w-100" >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Producto
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Datos generales del nuevo producto.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            
+                                            <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="fv-row mb-10">
+                                                    <label class="form-label required">Título</label>
+                                                    <input type="text" name="titulo" [(ngModel)]="producto.titulo" class="form-control form-control-solid mb-2" placeholder="Nombre del producto" />
+                                                    <div class="text-muted fs-7">Se requiere un nombre de producto y se recomienda que sea único.</div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label required">Tipo producto</label>
+                                                        <select disabled="" style="cursor: pointer;"  class="form-select form-select-solid mb-2" (change)="set_tipo()" name="tipo" [(ngModel)]="producto.tipo">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="Tela">Tela</option>
+                                                            <option value="Acero">Acero</option>
+                                                            <option value="Ropa">Ropa</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Establezca una categoría para el producto.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label required">Estado</label>
+                                                        <select class="form-select form-select-solid mb-2" name="estado" [(ngModel)]="producto.estado">
+                                                            <option value="">Seleccionar</option>
+                                                            <option value="Publicado">Publicado</option>
+                                                            <option value="Borrador">Borrador</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Establecer el estado del producto.</div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label required">Categoría</label>
+                                                        <select class="form-select form-select-solid mb-2" (change)="set_categoria()" name="categoria" [(ngModel)]="producto.categoria">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="{{item.titulo}}" *ngFor="let item of categorias">{{item.titulo}}</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Establezca una categoría para el producto.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label required">Subcategoría</label>
+                                                        <select class="form-select form-select-solid mb-2" name="subcategoria" [(ngModel)]="producto.subcategoria">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="{{item}}" *ngFor="let item of subcategorias_active">{{item}}</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Establezca una categoría para el producto.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--end::Input group-->
+                                            <div class="row">
+                                                <div class="fv-row mb-10">
+                                                    <label class="form-label">Cantidad por Contenedor</label>
+                                                    <input type="number" placeholder="Cantidad por Contenedor." class="form-control form-control-solid mb-2" name="cantidad_contenedor" [(ngModel)]="producto.cantidad_contenedor">
+                                                    <div class="text-muted fs-7">Cantidad que ocupa el producto en un contenedor.</div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                           <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="fv-row mb-10">
+                                                    <label class="form-label required">Descripción</label>
+                                                    <textarea class="form-control form-control-solid mb-2" name="descripcion" rows="5" [(ngModel)]="producto.descripcion"></textarea>
+                                                    <div class="text-muted fs-7">Establezca una descripción para el producto para una mejor visibilidad.</div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--end::Input group-->
+                                            <div class="row mb-10">
+                                                <div class="col-12 text-center">
+                                                    <!--end::Image input placeholder-->
+                                                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" style="background-image: url({{str_portada}})">
+                                                        <!--begin::Preview existing avatar-->
+                                                        <div class="image-input-wrapper w-150px h-150px"></div>
+                                                        <!--end::Preview existing avatar-->
+                                                        <!--begin::Label-->
+                                                        <label for="input-create-portada" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"  title="Subir portada" style="cursor: pointer;
+                                                        position: absolute;
+                                                        right: -10px;
+                                                        top: -10px;">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" id="input-create-portada" name="avatar" accept=".png, .jpg, .jpeg, .webp" (change)="fileChangeEvent($event)" style="display: none;" />
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Label-->
+                                                    
+                                                        <!--begin::Remove-->
+                                                        <span *ngIf="str_portada != 'assets/images/blank-image.svg'" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" style="display: block;position: absolute;
+                                                        right: -10px;
+                                                        bottom: -5px;" title="Remove avatar" (click)="cancelPortada()">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Remove-->
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">
+                                                        Configure la imagen en miniatura del producto. Solo se aceptan archivos de imagen *.png, *.jpg y *.jpeg
+                                                        <br>
+                                                        Maximo 2MB por imagen
+                                                    </div>
+                                                    <!--end::Description-->
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                    <!--end::Step 1-->
+                                    <div [hidden]="option != 2">
+                                        <div class="w-100" >
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Composiciones
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Aquí encontrarás una amplia variedad de telas y tejidos.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            
+                                            <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Material</label>
+                                                        <select class="form-select form-select-solid" id="select2" data-control="select2" data-placeholder="Select an option">
+                                                            <option></option>
+                                                            <option [value]="item" *ngFor="let item of _composiciones">{{item}}</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Variedad de telas y tejidos.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Porcentaje</label>
+                                                        <input type="number" (keyup.ENTER)="add_composicion()" name="porcentaje" [(ngModel)]="composicion.porcentaje" class="form-control form-control-solid mb-2" placeholder="95%" />
+                                                        <div class="text-muted fs-7">Porcentaje de composición.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-10">
+                                                    <a class="text-primary" style="cursor: pointer;" (click)="add_composicion()">Agregar composición</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="table-responsive">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0 mb-0">
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_composiciones">
+                                                                <tr *ngFor="let item of composiciones;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.composicion}}
+                                                                                </a>
+                                                                                <span class="text-gray-400 fw-semibold d-block fs-7">Composición</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end pe-0">
+                                                                        <!--begin::Label-->
+                                                                        <span class="badge badge-light-success fs-base">
+                                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+                                                                        <span class="svg-icon svg-icon-5 svg-icon-success ms-n1">
+                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"></rect>
+                                                                                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <!--end::Svg Icon-->{{item.porcentaje}}%</span>
+                                                                        <!--end::Label-->
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a style="cursor: pointer;" (click)="remove_composicion(item._id)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <!--end::Table body-->
+                                                            <tbody *ngIf="load_composiciones">
+                                                                <tr>
+                                                                    <td class="text-center" colspan="3">
+                                                                        <div class="pt-15 pb-10 text-center">
+                                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                <span class="sr-only">Loading...</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                        
+                                        </div>
+                                    </div>
+                                    <div [hidden]="option != 3">
+                                        <div class="w-100" >
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Variantes
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Sección donde se adjuntaran las diferentes variaciones del producto base.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            
+                                            <ng-container *ngIf="producto.tipo == 'Tela'">
+                                                <!--begin::Heading-->
+                                                <div class="d-flex justify-content-between align-items-cente">
+                                                    <!--end::Heading-->
+                                                    <div class="d-flex align-items-center position-relative my-1">
+                                                        <i class="position-absolute ms-6">
+                                                            <span class="svg-icon svg-icon-muted svg-icon-4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                        </i>    
+                                                        <input type="text" class="form-control form-control-solid w-350px ps-15" placeholder="Buscar color & hxd" name="filtro_color" [(ngModel)]="filtro_color" (keyup)="filtro_colores()">
+                                                    </div>
+
+                                                    <div class="d-flex align-items-center ">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-icon btn-bg-light w-30px h-30px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <span class="svg-icon svg-icon-muted icon-size-2" style="margin-right: 0px !important;">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="0.3" d="M22.1 11.5V12.6C22.1 13.2 21.7 13.6 21.2 13.7L19.9 13.9C19.7 14.7 19.4 15.5 18.9 16.2L19.7 17.2999C20 17.6999 20 18.3999 19.6 18.7999L18.8 19.6C18.4 20 17.8 20 17.3 19.7L16.2 18.9C15.5 19.3 14.7 19.7 13.9 19.9L13.7 21.2C13.6 21.7 13.1 22.1 12.6 22.1H11.5C10.9 22.1 10.5 21.7 10.4 21.2L10.2 19.9C9.4 19.7 8.6 19.4 7.9 18.9L6.8 19.7C6.4 20 5.7 20 5.3 19.6L4.5 18.7999C4.1 18.3999 4.1 17.7999 4.4 17.2999L5.2 16.2C4.8 15.5 4.4 14.7 4.2 13.9L2.9 13.7C2.4 13.6 2 13.1 2 12.6V11.5C2 10.9 2.4 10.5 2.9 10.4L4.2 10.2C4.4 9.39995 4.7 8.60002 5.2 7.90002L4.4 6.79993C4.1 6.39993 4.1 5.69993 4.5 5.29993L5.3 4.5C5.7 4.1 6.3 4.10002 6.8 4.40002L7.9 5.19995C8.6 4.79995 9.4 4.39995 10.2 4.19995L10.4 2.90002C10.5 2.40002 11 2 11.5 2H12.6C13.2 2 13.6 2.40002 13.7 2.90002L13.9 4.19995C14.7 4.39995 15.5 4.69995 16.2 5.19995L17.3 4.40002C17.7 4.10002 18.4 4.1 18.8 4.5L19.6 5.29993C20 5.69993 20 6.29993 19.7 6.79993L18.9 7.90002C19.3 8.60002 19.7 9.39995 19.9 10.2L21.2 10.4C21.7 10.5 22.1 11 22.1 11.5ZM12.1 8.59998C10.2 8.59998 8.6 10.2 8.6 12.1C8.6 14 10.2 15.6 12.1 15.6C14 15.6 15.6 14 15.6 12.1C15.6 10.2 14 8.59998 12.1 8.59998Z" fill="currentColor"/>
+                                                                    <path d="M17.1 12.1C17.1 14.9 14.9 17.1 12.1 17.1C9.30001 17.1 7.10001 14.9 7.10001 12.1C7.10001 9.29998 9.30001 7.09998 12.1 7.09998C14.9 7.09998 17.1 9.29998 17.1 12.1ZM12.1 10.1C11 10.1 10.1 11 10.1 12.1C10.1 13.2 11 14.1 12.1 14.1C13.2 14.1 14.1 13.2 14.1 12.1C14.1 11 13.2 10.1 12.1 10.1Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>   
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#addColoresPrimarios'">
+                                                                        Agregar primarios
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item cursor-pointer"  data-bs-toggle="modal" [attr.data-bs-target]="'#newColor'">
+                                                                        Nuevo color
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item cursor-pointer"  data-bs-toggle="modal" [attr.data-bs-target]="'#modalPrecioGlobal'">
+                                                                        Precio general
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <ng-container *ngIf="showMsm_add_primarios">
+                                                    <span class="text-danger" *ngIf="msm_add_primarios">
+                                                        {{msm_add_primarios}}
+                                                    </span>
+                                                </ng-container>
+                                                
+                                                <!--begin::Input group-->
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="py-5 mb-7" *ngIf="coloresbase.length >= 1">
+                                                            <small class="text-gray-700">Restaltados: {{coloresbase.length}} colores encontrados</small>
+                                                            <div class="mh-300px scroll-y me-n5 pe-5" style="margin-top: 1rem !important;">
+                                                                <table class="table align-middle table-row-dashed fs-6 gy-2 dataTable no-footer">
+                                                                    <tr *ngFor="let item of coloresbase" [ngClass]="{'color-selected': item.selected}">
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="symbol symbol- symbol-40px me-3"  style="width: 30px !important;
+                                                                                height: 30px !important;" [ngStyle]="{'background-color': item.hxd}">                                                   
+                                                                                </div>
+                                                                                
+  <div class="d-flex justify-content-start flex-column">
+                                                                                    <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{item.color}}</a>
+                                                                                </div>                                                                              
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>{{item.hxd}}</td>
+                                                                        <td class="text-end" style="padding-right: 1rem;">
+                                                                            <code *ngIf="!load_add_variacion" class="cursor-pointer" (click)="select_colorbase(item)">Agregar</code>
+                                                                            <code class="text-muted" *ngIf="load_add_variacion">Agregando...</code>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="table-responsive">
+                                                            <!--begin::Table-->
+                                                            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                            
+                                                                <!--begin::Table body-->
+                                                                <tbody *ngIf="!load_variaciones">
+                                                                    <tr *ngFor="let item of variaciones;let idx = index">
+                                                                        <td>
+                                                                            <b>{{idx+1}}</b>
+                                                                        </td>
+                                                                        <td class="min-w-200px">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <a class="symbol symbol-40px"  style="cursor: pointer;border: 1px dashed #ccc;">
+                                                                                    <span class="symbol-label" [ngStyle]="{'background': item.hxd}"></span>
+                                                                                </a>
+                                                                                <div class="d-flex justify-content-start flex-column ms-5">
+                                                                                    <a class="text-gray-800 fw-bold text-hover-primary fs-6">
+                                                                                        {{item.variacion_name}}
+                                                                                        <span class="badge badge-danger" *ngIf="item.hidden" 
+                                                                                        style="padding: 0.4em 0.6em;
+                                                                                        font-size: .7rem;">Desactivado</span>
+                                                                                    </a>
+                                                                                    <span class="text-primary cursor-pointer fw-bold d-block fs-7" data-bs-toggle="modal" [attr.data-bs-target]="'#modalSKU-'+item._id">
+                                                                                        {{item.sku}}
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="modal fade" id="modalSKU-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title">Generar nuevo SKU</h3>
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <p>Confirmación para generar un nuevo y único SKU para el color.</p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            
+                                                                                            <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                    
+                                                                                                Descartar
+                                                                                            </button>
+        
+                                                                                            <button *ngIf="!load_sku" type="button" class="btn btn-dark"  (click)="update_sku(item._id)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Confirmar
+                                                                                            </button>
+        
+                                                                                            <button *ngIf="load_sku" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procesando...
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> 
+                                                                        </td>
+
+                                                                        <td class="pe-0 min-w-150px">
+                                                                            <ng-container *ngIf="!item.precio_venta">
+                                                                                <a class="text-primary cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id"> 
+                                                                                    Asignar precio
+                                                                                </a>
+                                                                            </ng-container>
+                                                                            <ng-container *ngIf="item.precio_venta">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-7">
+                                                                                    {{item.precio_venta|currency:'MXN'}}
+                                                                                </a>
+                                                                                <span style="cursor: pointer;" class="text-primary fw-semibold d-block fs-7" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id">Precio</span>
+                                                                            </ng-container>
+                                                                            <div class="modal fade" id="precio-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title fw-500">Precio de venta</h3>
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <input type="number" class="form-control" placeholder="Precio por medida" name="precio_venta" [(ngModel)]="precio_venta">
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button data-bs-dismiss="modal" aria-label="Close" class="btn btn-light me-3">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Descartar
+                                                                                            </button>
+                                                                                            <button *ngIf="!load_precio" type="button" class="btn btn-dark"(click)="set_precio(item)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Confirmar
+                                                                                            </button>
+                                                                                            <button *ngIf="load_precio" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procensando...
+                                                                                            </button>
+
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        
+                                                                    
+                                                                    
+                                                                        <td class="text-end min-w-100px">
+                                                                            <ng-container >
+                                                                                <a placement="top" ngbTooltip="Ocultar color" *ngIf="!item.hidden" style="cursor: pointer;margin-right: 1rem;" (click)="set_estado(item._id,item.hidden)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            
+                                                                                    <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                    <!--end::Svg Icon-->
+                                                                                </a>
+
+                                                                                <a placement="top" ngbTooltip="Mostrar color" *ngIf="item.hidden" style="cursor: pointer;;margin-right: 1rem;" (click)="set_estado(item._id,item.hidden)" class="btn btn-sm btn-icon btn-bg-success w-30px h-30px">
+                                                                                    <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </ng-container>
+                                                                            
+
+                                                                            <a placement="top" ngbTooltip="Editar color" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modalColor'" (click)="open_color(item)">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                                                                <span class="svg-icon svg-icon-3">
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"></path>
+                                                                                        <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor"></path>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+
+                                                                            
+                                                                            <a placement="top" ngbTooltip="Eliminar color" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-dark w-30px h-30px" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteVariacion-'+item._id">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                                                                <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"/>
+                                                                                    <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"/>
+                                                                                    <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"/>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+                                                                        
+                                                                            <div class="modal fade" id="deleteVariacion-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title">Eliminación de variación</h3>
+                                                                                
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <p>Confirmación para eliminación de la variación en el producto.</p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Cerrar
+                                                                                            </button>
+                                                                                            <button *ngIf="!load_delete" type="button" class="btn btn-dark" (click)="delete_variacion(item._id)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Eliminar
+                                                                                            </button>
+                                                                            
+                                                                                            <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procesando...
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> 
+                                                                        </td>
+                                                                    </tr>
+                                                                
+                                                                </tbody>
+                                                                <!--end::Table body-->
+                                                                <tbody *ngIf="load_variaciones">
+                                                                    <tr>
+                                                                        <td class="text-center" colspan="4">
+                                                                            <div class="pt-15 pb-10 text-center">
+                                                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                    <span class="sr-only">Loading...</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+                                            </ng-container>
+                                            <ng-container *ngIf="producto.tipo == 'Ropa'">
+                                              
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="fv-row mb-7">
+                                                            <label class="form-label required">Color</label>
+                                                            <select class="form-select mb-2 form-select-solid" id="select-color-variacion" data-control="select2" data-placeholder="Color">
+                                                                <option></option>
+                                                                <option value="{{item._id}}" *ngFor="let item of coloresbase">{{item.color}}</option>
+                                                            </select>
+                                                            <div class="text-muted fs-7">Color hexadecimal de la tela.</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fv-row mb-7">
+                                                            <label class="form-label required">Talla</label>
+                                                            <select class="form-select form-control-select form-select-solid mb-2"  name="talla" [(ngModel)]="variacion.talla">
+                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                <option value="{{item}}" *ngFor="let item of tallas">{{item}}</option>
+                                                            </select>
+                                                            <div class="text-muted fs-7">Talla de la variedad.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label">Dimensiones</label>
+                                                        <textarea placeholder="Dimensiones del producto." class="form-control form-control-solid mb-2" name="dimensiones"  [(ngModel)]="variacion.dimensiones"></textarea>
+                                                        <div class="text-muted fs-7">Dimensiones totales del producto.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 mb-10">
+                                                        <a *ngIf="!load_add_variacion" class="text-primary" style="cursor: pointer;" (click)="validate_variacion()">Agregar variedad</a>
+                                                        <a *ngIf="load_add_variacion" class="text-primary" style="cursor: not-allowed;">Agregando...</a>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="table-responsive" *ngIf="variaciones.length >= 1">
+                                                            <!--begin::Table-->
+                                                            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                                  
+                                                                <!--begin::Table body-->
+                                                                <tbody>
+                                                                    <tr *ngFor="let item of variaciones;let idx = index">
+                                                                        <td class="max-w-100px">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <a class="symbol symbol-45px"  style="cursor: pointer;border: 1px dashed #ccc;">
+                                                                                    <span class="symbol-label" [ngStyle]="{'background': item.hxd}"></span>
+                                                                                </a>
+                                                                                <div class="d-flex justify-content-start flex-column ms-5">
+                                                                                    <a class="text-gray-800 fw-600 text-hover-primary fs-6">
+                                                                                        {{item.color_name}}
+                                                                                    </a>
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Color</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        
+                                                                        <td class="pe-0" style="width: 150px !important;">
+                                                                            <!--begin::Label-->
+                                                                            <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                {{item.talla}}
+                                                                            </a>
+                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">Talla</span>
+                                                                        </td>
+                                                                       
+                                                                        <td class="pe-0" style="width: 150px !important;">
+                                                                            <ng-container *ngIf="!item.precio_venta">
+                                                                                <a class="text-primary cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id"> 
+                                                                                    Asignar precio
+                                                                                </a>
+                                                                                <span class="text-gray-400 fw-semibold d-block fs-7">Precio</span>
+                                                                            </ng-container>
+                                                                            <ng-container *ngIf="item.precio_venta">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-7">
+                                                                                    {{item.precio_venta|currency:'MXN'}}
+                                                                                </a>
+                                                                                <span style="cursor: pointer;" class="text-primary fw-semibold d-block fs-7" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id">
+                                                                                    Precio
+                                                                                </span>
+                                                                            </ng-container>
+                                                                            <div class="modal fade" id="precio-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title fw-500">Precio de venta</h3>
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <input type="number" class="form-control" placeholder="Precio por medida" name="precio_venta" [(ngModel)]="precio_venta">
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button data-bs-dismiss="modal" aria-label="Close" class="btn btn-light me-3">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Descartar
+                                                                                            </button>
+                                                                                            <button *ngIf="!load_precio" type="button" class="btn btn-dark"(click)="set_precio(item)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Confirmar
+                                                                                            </button>
+                                                                                            <button *ngIf="load_precio" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procensando...
+                                                                                            </button>
+
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        
+                                                                        <td class="text-end" style="width: 100px !important;">
+                                                                            <a style="cursor: pointer;" (click)="remove_variacion(idx)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                                
+                                                                                <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                    <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <!--end::Table body-->
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="producto.tipo == 'Acero'">
+                                              
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="fv-row mb-7">
+                                                            <label class="form-label required">Titulo</label>
+                                                            <input type="text" name="variacion_name" [(ngModel)]="variacion.variacion_name" class="form-control form-control-solid mb-2" placeholder="Nombre de la variación" />
+                                                            <div class="text-muted fs-7">Nombre de la variación.</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fv-row mb-7">
+                                                            <label class="form-label required">Color</label>
+                                                            <select class="form-select mb-2 form-select-solid" id="select-color-variacion" data-control="select2" data-placeholder="Color">
+                                                                <option></option>
+                                                                <option value="{{item._id}}" *ngFor="let item of coloresbase">{{item.color}}</option>
+                                                            </select>
+                                                            <div class="text-muted fs-7">Color hexadecimal de la tela.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="fv-row mb-10">
+                                                        <label class="form-label">Dimensiones</label>
+                                                        <textarea placeholder="Dimensiones del producto." class="form-control form-control-solid mb-2" name="dimensiones"  [(ngModel)]="variacion.dimensiones"></textarea>
+                                                        <div class="text-muted fs-7">Dimensiones totales del producto.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 mb-10">
+                                                        <a class="text-primary" style="cursor: pointer;" (click)="validate_variacion()">Agregar variedad</a>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        
+                                                        <div class="table-responsive" *ngIf="variaciones.length >= 1">
+                                                            <!--begin::Table-->
+                                                            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                                  
+                                                                <!--begin::Table body-->
+                                                                <tbody>
+                                                                    
+                                                                    <tr *ngFor="let item of variaciones;let idx = index">
+                                                                        <td class="max-w-100px">
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-600 text-hover-primary fs-6">
+                                                                                    {{item.variacion_name}}
+                                                                                </a>
+                                                                                <span class="text-gray-400 fw-semibold d-block fs-7">Variación</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        
+                                                                        <td class="pe-0">
+                                                                            <!--begin::Label-->
+                                                                            <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                {{item.color_name}}
+                                                                            </a>
+                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">Color</span>
+                                                                        </td>
+                                                                       
+                                                                        <td class="pe-0"  style="width: 150px !important;">
+                                                                            <ng-container *ngIf="!item.precio_venta">
+                                                                                <a class="text-primary cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id"> 
+                                                                                    Asignar precio
+                                                                                </a>
+                                                                                <span class="text-gray-400 fw-semibold d-block fs-7">Precio</span>
+                                                                            </ng-container>
+                                                                            <ng-container *ngIf="item.precio_venta">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-7">
+                                                                                    {{item.precio_venta|currency:'MXN'}}
+                                                                                </a>
+                                                                                <span style="cursor: pointer;" class="text-primary fw-semibold d-block fs-7" data-bs-toggle="modal" [attr.data-bs-target]="'#precio-'+item._id">Precio</span>
+                                                                            </ng-container>
+                                                                            <div class="modal fade" id="precio-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h3 class="modal-title fw-500">Precio de venta</h3>
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <input type="number" class="form-control" placeholder="Precio por medida" name="precio_venta" [(ngModel)]="precio_venta">
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button data-bs-dismiss="modal" aria-label="Close" class="btn btn-light me-3">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Descartar
+                                                                                            </button>
+                                                                                            <button *ngIf="!load_precio" type="button" class="btn btn-dark"(click)="set_precio(item)">
+                                                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                Confirmar
+                                                                                            </button>
+                                                                                            <button *ngIf="load_precio" class="btn btn-dark" type="button" disabled>
+                                                                                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                                                                Procensando...
+                                                                                            </button>
+
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        
+                                                                        
+                                                                        <td class="text-end"  style="width: 150px !important;">
+                                                                            <a style="cursor: pointer;" (click)="remove_variacion(idx)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                                
+                                                                                <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                    <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                                <!--end::Table body-->
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        
+                                        </div>
+                                    </div>
+                                    <div [hidden]="option != 4">
+                                        <div class="w-100" >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Galería
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Imagenes referenciales del producto.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            <!--end::Heading-->
+                                            
+                                            <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Foto</label>
+                                                        <input type="file" id="file-upload-img" accept=".png, .jpg, .jpeg, .webp" class="form-control form-control-solid" (change)="upload_imagen($event)">
+                                                        <input type="hidden" id="img_str">
+                                                        <div class="text-muted fs-7">Foto de la imagen.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Título</label>
+                                                        <input type="text" name="imagen_titulo" [(ngModel)]="imagen_titulo" class="form-control form-control-solid mb-2" placeholder="Título de la imagen" (keyup.ENTER)="add_imagen()"/>
+                                                        <div class="text-muted fs-7">Color hexadecimal de la tela.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-10">
+                                                    <a class="text-primary" style="cursor: pointer;" (click)="add_imagen()">Agregar foto</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="table-responsive" *ngIf="galeria.length >= 1">
+                                                        <div class="table-responsive">
+                                                            <!--begin::Table-->
+                                                            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                                <!--begin::Table head-->
+                                                            
+                                                                <!--begin::Table body-->
+                                                                <tbody *ngIf="!load_galeria">
+                                                                    <tr *ngFor="let item of galeria; let idx = index">
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div class="symbol symbol-40px me-5 light-gallery-message">
+                                                                                    <img  [src]="item.imagen" data-lg-size="1600-1067" [attr.data-src]="url+'resources/products/'+item.imagen">
+                                                                                </div>
+                                                                                <div class="d-flex justify-content-start flex-column">
+                                                                                    <a class="text-gray-800 fw-600 text-hover-primary mb-1 fs-6">
+                                                                                        {{item.titulo}}
+                                                                                    </a>
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                        Archivo de imagen
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-end" >
+                                                                            <a style="cursor: pointer;" (click)="remove_imagen(item._id)" class="btn btn-sm btn-icon btn-bg-danger btn-active-color-primary w-30px h-30px">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                                <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                    <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    
+                                                                </tbody>
+                                                                <!--end::Table body-->
+                                                                <tbody *ngIf="load_galeria">
+                                                                    <tr>
+                                                                        <td class="text-center" colspan="2">
+                                                                            <div class="pt-15 pb-10 text-center">
+                                                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                    <span class="sr-only">Loading...</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <!--end::Table-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                        
+                                        </div>
+                                    </div>
+                                    <div [hidden]="option != 5">
+                                        <div class="w-100" >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Etiquetas
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, dolores.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            
+                                            <!--begin::Input group-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Etiqueta</label>
+                                                       
+                                                        <select name="etiqueta" [(ngModel)]="etiqueta.etiqueta" class="form-select form-select-solid mb-2">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="Básico">Básico</option>
+                                                            <option value="Favorito">Favorito</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Nombre clave de una sola palabra.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="fv-row mb-7">
+                                                        <label class="form-label required">Prioridad</label>
+                                                        <select name="prioridad" [(ngModel)]="etiqueta.prioridad" class="form-select form-select-solid mb-2">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Orden de importancia de la etiqueta.</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-12 mb-10">
+                                                    <a class="text-primary" style="cursor: pointer;" (click)="add_etiqueta()">Agregar etiqueta</a>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="table-responsive">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_etiquetas">
+                                                                <tr *ngFor="let item of etiquetas;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <span class="badge badge-primary" [ngStyle]="{'background': item.color}">{{item.etiqueta}}</span>
+                                                                                <span class="text-gray-400 fw-semibold d-block fs-7">Etiqueta</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex justify-content-start flex-column">
+                                                                            <a class="text-gray-800 fw-600 text-hover-primary fs-6">
+                                                                                {{item.prioridad}}
+                                                                            </a>
+                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">Prioridad</span>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end" >
+                                                                        <a style="cursor: pointer;" (click)="remove_etiqueta(item._id)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <!--end::Table body-->
+                                                            <tbody *ngIf="load_etiquetas">
+                                                                <tr>
+                                                                    <td class="text-center" colspan="2">
+                                                                        <div class="pt-15 pb-10 text-center">
+                                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                <span class="sr-only">Loading...</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                        
+                                        </div>
+                                    </div>
+
+
+                                    <div class="text-center mt-10">
+                                        <button type="button" *ngIf="!load_btn" class="btn btn-dark" (click)="validate_producto()">
+                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                            Actualizar
+                                        </button>
+                                        <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                            Procensando...
+                                        </button>
+                                    </div>
+                                
+                                </div>
+                                <!--end::Form-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="modalColor" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2>Editar color</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <form id="kt_modal_new_card_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+                    <!--begin::Input group-->
+                    <ng-container >
+                        <div class="d-flex flex-wrap gap-5 mb-3">
+                            <div class="d-flex align-items-center position-relative my-1" style="width: 100%;">
+                                <i class="position-absolute ms-6">
+                                    <span class="svg-icon svg-icon-muted svg-icon-4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </i>    
+                                <input type="text" class="form-control form-control-solid w-100 ps-15" placeholder="Buscar color & hxd" name="filtro_color_edit" [(ngModel)]="filtro_color_edit" (keyup)="filtro_colores_edit()">
+                            </div>
+                        </div>
+                         
+                    </ng-container>
+
+                    <ng-container *ngIf="!load_coloresbase_edit">
+                        <div class="py-5" *ngIf="coloresbase_edit.length >= 1">
+                            <small class="text-gray-700">Restaltados: {{coloresbase_edit.length}} colores encontrados</small>
+                            <div class="mh-300px scroll-y me-n5 pe-5" style="margin-top: 1rem;">
+                                <table class="table align-middle table-row-dashed fs-6 gy-2 dataTable no-footer">
+                                    <tr *ngFor="let item of coloresbase_edit">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="symbol symbol- symbol-40px me-3"  style="width: 30px !important;
+                                                height: 30px !important;" [ngStyle]="{'background-color': item.hxd}">                                                   
+                                                </div>
+                                                
+                                                <div class="d-flex justify-content-start flex-column">
+                                                    <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{item.color}}</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{item.hxd}}</td>
+                                        <td class="text-end">
+                                            <code *ngIf="!load_add_variacion" class="cursor-pointer" (click)="editar_color(item)">Cambiar</code>
+                                            <code class="text-muted" *ngIf="load_add_variacion">Cambiando...</code>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container  *ngIf="load_coloresbase_edit">
+                        <div class="row">
+                            <div class="col-12 text-center pt-15 pb-10">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    
+                    <!--end::Input group-->
+                   
+                    <!--end::Actions-->
+                <div></div></form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="modalPrecioGlobal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Establecer precio</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Al confirmar se establecera el precio globalmente para todos los colores.</p>
+
+                <input type="number" class="form-control" name="precio_global" [(ngModel)]="precio_global">
+            </div>
+            <div class="modal-footer">
+                
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_precio_global" type="button" class="btn btn-dark"  (click)="set_precio_global()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="load_precio_global" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<div class="modal fade" id="newColor" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2 class="fw-700">Nuevo color</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-3">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Variación</label>
+                            <input (keyup)="toUpperCase()" type="text" class="form-control form-control-solid" placeholder="HUNTER05" name="new_color" [(ngModel)]="new_color.color">
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Hexadecimal</label>
+                            <input type="text" id="color-picker-modal"  class="form-control"  style="width:100% !important"/>
+                        </div>
+                    </div>
+                    <!--end::Input group-->
+                   
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container" *ngIf="msm_error_crear_color">
+                        <!--begin::Col-->
+                        <div class="col-12 text-center">
+                            <span class="text-danger"><b>{{msm_error_crear_color}}</b></span>
+                        </div>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-10">
+                        <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Descartar</button>
+                        <button *ngIf="!btn_add_color" type="button" class="btn btn-dark" (click)="crear_color()">
+                            <span class="indicator-label">Agregar</span>
+                        </button>
+                        <button *ngIf="btn_add_color" class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Agregando...
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="addColoresPrimarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Agregar colores</h3>
+    
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Confirmación se agregarán los colores primarios al producto y aquellos que ya estan dentro serán omitidos.</p>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+                <button *ngIf="!load_add_primario" type="button" class="btn btn-dark" (click)="add_colores_primarios()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="load_add_primario" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

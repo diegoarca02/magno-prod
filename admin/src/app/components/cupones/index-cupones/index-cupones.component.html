@@ -1,0 +1,279 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cupones
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Cupones</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card h-xl-100">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 pb-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Cupones</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, laboriosam.</span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                        <div class="card-toolbar">
+                                            <a *ngIf="permisos.cupon_dos" [routerLink]="['/cupones/create']" class="btn btn-dark btn-sm">
+                                                
+                                                <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M21.6 11.2L19.3 8.89998V5.59993C19.3 4.99993 18.9 4.59993 18.3 4.59993H14.9L12.6 2.3C12.2 1.9 11.6 1.9 11.2 2.3L8.9 4.59993H5.6C5 4.59993 4.6 4.99993 4.6 5.59993V8.89998L2.3 11.2C1.9 11.6 1.9 12.1999 2.3 12.5999L4.6 14.9V18.2C4.6 18.8 5 19.2 5.6 19.2H8.9L11.2 21.5C11.6 21.9 12.2 21.9 12.6 21.5L14.9 19.2H18.2C18.8 19.2 19.2 18.8 19.2 18.2V14.9L21.5 12.5999C22 12.1999 22 11.6 21.6 11.2Z" fill="currentColor"/>
+                                                    <path d="M11.3 9.40002C11.3 10.2 11.1 10.9 10.7 11.3C10.3 11.7 9.8 11.9 9.2 11.9C8.8 11.9 8.40001 11.8 8.10001 11.6C7.80001 11.4 7.50001 11.2 7.40001 10.8C7.20001 10.4 7.10001 10 7.10001 9.40002C7.10001 8.80002 7.20001 8.4 7.30001 8C7.40001 7.6 7.7 7.29998 8 7.09998C8.3 6.89998 8.7 6.80005 9.2 6.80005C9.5 6.80005 9.80001 6.9 10.1 7C10.4 7.1 10.6 7.3 10.8 7.5C11 7.7 11.1 8.00005 11.2 8.30005C11.3 8.60005 11.3 9.00002 11.3 9.40002ZM10.1 9.40002C10.1 8.80002 10 8.39998 9.90001 8.09998C9.80001 7.79998 9.6 7.70007 9.2 7.70007C9 7.70007 8.8 7.80002 8.7 7.90002C8.6 8.00002 8.50001 8.2 8.40001 8.5C8.40001 8.7 8.30001 9.10002 8.30001 9.40002C8.30001 9.80002 8.30001 10.1 8.40001 10.4C8.40001 10.6 8.5 10.8 8.7 11C8.8 11.1 9 11.2001 9.2 11.2001C9.5 11.2001 9.70001 11.1 9.90001 10.8C10 10.4 10.1 10 10.1 9.40002ZM14.9 7.80005L9.40001 16.7001C9.30001 16.9001 9.10001 17.1 8.90001 17.1C8.80001 17.1 8.70001 17.1 8.60001 17C8.50001 16.9 8.40001 16.8001 8.40001 16.7001C8.40001 16.6001 8.4 16.5 8.5 16.4L14 7.5C14.1 7.3 14.2 7.19998 14.3 7.09998C14.4 6.99998 14.5 7 14.6 7C14.7 7 14.8 6.99998 14.9 7.09998C15 7.19998 15 7.30002 15 7.40002C15.2 7.30002 15.1 7.50005 14.9 7.80005ZM16.6 14.2001C16.6 15.0001 16.4 15.7 16 16.1C15.6 16.5 15.1 16.7001 14.5 16.7001C14.1 16.7001 13.7 16.6 13.4 16.4C13.1 16.2 12.8 16 12.7 15.6C12.5 15.2 12.4 14.8001 12.4 14.2001C12.4 13.3001 12.6 12.7 12.9 12.3C13.2 11.9 13.7 11.7001 14.5 11.7001C14.8 11.7001 15.1 11.8 15.4 11.9C15.7 12 15.9 12.2 16.1 12.4C16.3 12.6 16.4 12.9001 16.5 13.2001C16.6 13.4001 16.6 13.8001 16.6 14.2001ZM15.4 14.1C15.4 13.5 15.3 13.1 15.2 12.9C15.1 12.6 14.9 12.5 14.5 12.5C14.3 12.5 14.1 12.6001 14 12.7001C13.9 12.8001 13.8 13.0001 13.7 13.2001C13.6 13.4001 13.6 13.8 13.6 14.1C13.6 14.7 13.7 15.1 13.8 15.4C13.9 15.7 14.1 15.8 14.5 15.8C14.8 15.8 15 15.7 15.2 15.4C15.3 15.2 15.4 14.7 15.4 14.1Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nuevo cupón
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-0">
+                                        
+                                        <div class="input-group input-group-solid mb-5 mt-5">
+                                            <input type="input" class="form-control form-control-sm" placeholder="WS4246390LV" name="str_codigo" [(ngModel)]="str_codigo">
+                                            <button class="btn btn-dark" (click)="init_data()">
+                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/general/gen021.svg-->
+                                                <span class="svg-icon icon-size-2qx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                    <!--end::Svg Icon-->
+                                            </button>
+                                        </div>
+                                        
+      
+
+                                        <!--begin::Seprator-->
+                                        <div class="separator separator-dashed my-4"></div>
+                                        <!--end::Seprator-->
+
+                                        <div class="table-responsive">
+                                            <table class="table align-middle table-row-dashed gy-3 dataTable no-footer" id="kt_table_widget_4_table">
+                                                <!--begin::Table head-->
+                                              
+                                                <!--begin::Table body-->
+                                                <ng-container *ngIf="!load_data">
+                                                    <tbody class="" *ngIf="cupones.length >= 1">
+                                                        <ng-container *ngFor="let item of cupones| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; let idx = index">
+                                                            <tr class="odd" >
+                                                                <td class="min-w-150px" style="padding-left: 1rem;">
+                                                                    <a class="text-gray-800 text-hover-primary fw-700">{{item.codigo}}</a>
+                                                                </td>
+                                                                
+                                                                <td class="min-w-100px">
+                                                                    {{item.tipo_pago}}                          
+                                                                </td>
+                                                                
+                                                                <td class="min-w-100px">
+                                                                    <ng-container *ngIf="item.tipo">{{item.tipo}} </ng-container>     
+                                                                    <ng-container *ngIf="!item.tipo">No disponible</ng-container>     
+                                                                </td>                      
+                                                                
+                                                                <td class="min-w-100px">
+                                                                    <span class="badge py-3 px-4 fs-7 badge-light-primary" *ngIf="item.estado">Disponible</span>
+                                                                    <span class="badge py-3 px-4 fs-7 badge-light-danger" *ngIf="!item.estado">No disponible</span>
+                                                                </td>
+                                                                
+                                                                <td class="text-end min-w-150px" style="padding-right: 1rem;">
+                                                                    <a *ngIf="permisos.cupon_tres" [routerLink]="['/cupones/detail',item.codigo]" class="btn btn-ico btn-sm btn-dark" style="margin-right: 1rem;" placement="top" ngbTooltip="Detalles de cupón">
+                                                                        <span class="svg-icon svg-icon-3 m-0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M10 10V9C10 8.4 10.4 8 11 8H21C21.6 8 22 8.4 22 9V10C22 10.6 21.6 11 21 11H11C10.4 11 10 10.6 10 10ZM3 6H21C21.6 6 22 5.6 22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6Z" fill="currentColor"/>
+                                                                            <path opacity="0.3" d="M2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16H3C2.4 16 2 15.6 2 15ZM11 21H21C21.6 21 22 20.6 22 20V19C22 18.4 21.6 18 21 18H11C10.4 18 10 18.4 10 19V20C10 20.6 10.4 21 11 21Z" fill="currentColor"/>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </a>
+                                                                    <button disabled *ngIf="!permisos.cupon_tres" class="btn btn-sm btn-dark" style="margin-right: 1rem;" placement="top" ngbTooltip="Detalles de cupón">
+                                                                        <span class="svg-icon svg-icon-3 m-0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M10 10V9C10 8.4 10.4 8 11 8H21C21.6 8 22 8.4 22 9V10C22 10.6 21.6 11 21 11H11C10.4 11 10 10.6 10 10ZM3 6H21C21.6 6 22 5.6 22 5V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4V5C2 5.6 2.4 6 3 6Z" fill="currentColor"/>
+                                                                            <path opacity="0.3" d="M2 15V14C2 13.4 2.4 13 3 13H21C21.6 13 22 13.4 22 14V15C22 15.6 21.6 16 21 16H3C2.4 16 2 15.6 2 15ZM11 21H21C21.6 21 22 20.6 22 20V19C22 18.4 21.6 18 21 18H11C10.4 18 10 18.4 10 19V20C10 20.6 10.4 21 11 21Z" fill="currentColor"/>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <a style="cursor: pointer;" (click)="show_detalles(idx)" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                                        <span *ngIf="!item.visible" class="svg-icon svg-icon-3 m-0 toggle-off">
+                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor"></rect>
+                                                                                <rect x="6" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <span *ngIf="item.visible" class="svg-icon svg-icon-3 m-0 toggle-on">
+                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <rect x="6" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <ng-container *ngIf="item.visible">
+                                                                <ng-container *ngIf="item.tipo == 'Tela'">
+                                                                    <tr *ngFor="let subitem of item.colores" style="background: #f1f3f6;"> 
+                                                                        <td colspan="3" style="padding-left: 1rem !important;">
+                                                                            <div class="d-flex align-items-center gap-3">
+                                                                                <a class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                                                                    <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': subitem.hxd}"></span>
+                                                                                </a>
+                                                                                <div class="d-flex flex-column text-muted">
+                                                                                    <a class="text-gray-800 text-hover-primary fw-bold">{{item.producto.titulo}}</a>
+                                                                                    <div class="fs-7">{{subitem.variante}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-end">
+                                                                            <div class="text-gray-800 fs-7">Precio venta</div>
+                                                                            <div class="text-muted fs-7 fw-bold">
+                                                                                {{subitem.precio_venta|currency:'MXN'}}
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-end" style="padding-right: 1.5rem !important;">
+                                                                            <div class="text-gray-800 fs-7">Precio descuento</div>
+                                                                            <div class="text-muted fs-7 fw-bold">
+                                                                                {{subitem.precio_ahora|currency:'MXN'}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="item.tipo == 'Ropa'">
+                                                                    <tr *ngFor="let subitem of item.variaciones" style="background: #f1f3f6;"> 
+                                                                        <td colspan="3" style="padding-left: 1rem !important;">
+                                                                            <div class="d-flex align-items-center gap-3">
+                                                                                <a class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                                                                    <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': subitem.hxd}"></span>
+                                                                                </a>
+                                                                                <div class="d-flex flex-column text-muted">
+                                                                                    <a class="text-gray-800 text-hover-primary fw-bold">{{item.producto.titulo}}</a>
+                                                                                    <div class="fs-7">{{subitem.talla}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-end">
+                                                                            <div class="text-gray-800 fs-7">Precio venta</div>
+                                                                            <div class="text-muted fs-7 fw-bold">
+                                                                                {{subitem.precio_venta|currency:'MXN'}}
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-end" style="padding-right: 1.5rem !important;">
+                                                                            <div class="text-gray-800 fs-7">Precio descuento</div>
+                                                                            <div class="text-muted fs-7 fw-bold">
+                                                                                {{subitem.precio_ahora|currency:'MXN'}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                            </ng-container>
+                                                            
+                                                        </ng-container>
+                                                    </tbody>
+                                                    <tbody *ngIf="cupones.length == 0">
+                                                        <td colspan="7">
+                                                            <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                                <!--begin::Logo-->
+                                                                <a  class="pt-lg-20 mb-12">
+                                                                    <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/logos/default.svg" class="theme-light-show h-40px h-lg-50px">    
+                                                                </a> 
+                                                                <!--end::Logo-->
+                                                        
+                                                                
+                                                                <!--begin::Logo-->
+                                                                <h3 class="fw-bold fs-2qx text-gray-800 mb-10">No se encontraron datos.</h3>
+                                                                <!--end::Logo-->
+                                                            
+                                                                <!--begin::Message-->
+                                                                <div class="fw-semibold fs-3 text-muted mb-15">
+                                                                    No se pudo encontrar ningun cupón <br> intenta con otro filtro.
+                                                                </div>      
+                                                                <!--end::Message-->
+                                                        
+                                                        
+                                                            </div>
+                                                        </td>
+                                                    </tbody>
+                                                </ng-container>
+                                                <ng-container  *ngIf="load_data">
+                                                    <tr>
+                                                        <td colspan="7">
+                                                            <div class="py-20 text-center">
+                                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                    <span class="sr-only">Loading...</span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </ng-container>
+                                                <!--end::Table body-->
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer"  *ngIf="cupones.length >= 1">
+                                        <ngb-pagination
+                                            [(page)]="page"
+                                            [pageSize]="pageSize"
+                                            [maxSize]="10"
+                                            [rotate]="true" [boundaryLinks]="true"
+                                            [collectionSize]="cupones.length"></ngb-pagination>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

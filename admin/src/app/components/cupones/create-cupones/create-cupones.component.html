@@ -1,0 +1,593 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                Cupones
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cupones']"  class="pe-3">
+                                            Cupones
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Nuevo cupón</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush h-xl-100">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">
+                                                Nuevo cupon
+                                            </span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, laboriosam.
+                                            </span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                        <div class="card-toolbar">
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    
+                                    <div class="card-body">
+                                        <div class="fv-row row mb-7">
+                                            <!--begin::Col-->
+                                            <div class="col-md-3 d-flex">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold mt-2">Código</label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Col-->
+                            
+                                            <!--begin::Col-->
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Cupón" readonly value="{{cupon.codigo}}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-dark" (click)="generar_codigo()" style="border-bottom-left-radius: 0px;    border-top-left-radius: 0px;">
+                                                            Generar
+                                                        </button>
+                                                    </div>
+                                                  </div>
+                                                <!--end::Input-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+
+                                        <div class="fv-row row mb-7">
+                                            <!--begin::Col-->
+                                            <div class="col-md-3 d-flex">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold mt-2">Tipo</label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Col-->
+                            
+                                            <!--begin::Col-->
+                                            <div class="col-md-9">
+                                                <select class="form-select form-select-solid mb-3" name="tipo" [(ngModel)]="cupon.tipo" (change)="setTipo()">
+                                                    <option value="" selected disabled>Seleccionar</option>
+                                                    <option value="Tela">Tela</option>
+                                                    <option value="Ropa">Ropa</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+
+                                        <div class="fv-row row mb-7">
+                                            <!--begin::Col-->
+                                            <div class="col-md-3 d-flex">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold mt-2">Usuario cliente</label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Col-->
+                            
+                                            <!--begin::Col-->
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid mb-3" placeholder="Cliente o empresa" name="filtro_cliente" [(ngModel)]="filtro_cliente" (keyup)="init_clientes()">
+                                                <!--end::Input-->
+
+                                                <div class="pt-5" *ngIf="clientes.length >= 1">
+                                                    <!--begin::Suggestions-->
+                                                    <div data-kt-search-element="suggestions" class="d-none">
+                                                        <!--begin::Illustration-->
+                                                        <div class="text-center px-4">
+                                                            <img class="mw-100 mh-200px" alt="image" src="/html/metronic/docs/assets/media/illustrations/sigma-1/1.png">
+                                                        </div>
+                                                        <!--end::Illustration-->
+                                                    </div>
+                                                    <!--end::Suggestions-->
+                                                    <!--begin::Results-->
+                                                    <div class="">
+                                                        <!--begin::Users-->
+                                                        <div class="mh-300px scroll-y me-n5 pe-5">
+                                                            <!--begin::User-->
+                                                            <ng-container *ngIf="!load_clientes">
+                                                                <ng-container *ngFor="let item of clientes">
+                                                                    <ng-container *ngIf="item.tipo == 'Cliente'">
+                                                                        <div style="cursor: pointer;background: #fffcfc;" (click)="select_cliente(item.cliente)" class="d-flex p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': cupon.cliente == item.cliente._id}">
+                                                                            <!--begin::Avatar-->
+                                                                            <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="symbol symbol-45px me-5">
+                                                                                        <span class="symbol-label fw-bold" [ngClass]="{
+                                                                                            'bg-light-danger text-danger': item.cliente.nombres.charAt(0) >='A' && item.cliente.nombres.charAt(0) <= 'H',
+                                                                                            'bg-light-primary text-primary': item.cliente.nombres.charAt(0) >='I' && item.cliente.nombres.charAt(0) <= 'O',
+                                                                                            'bg-light-info text-info': item.cliente.nombres.charAt(0) >='P' && item.cliente.nombres.charAt(0) <= 'U',
+                                                                                            'bg-light-success text-success': item.cliente.nombres.charAt(0) >='V' && item.cliente.nombres.charAt(0) <= 'Z'}">
+                                                                                            {{item.cliente.nombres.charAt(0)}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="d-flex justify-content-start flex-column">
+                                                                                        <a class="text-gray-800 fw-bold mb-1 fs-6">
+                                                                                            {{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <small class="text-primary">Cliente</small>
+                                                                                        </a>
+                                                                                        <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                            {{item.cliente.email}}
+                                                                                            
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end::Avatar-->
+                                                                        </div>
+                                                                        <!--end::User-->
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="item.tipo == 'Empresa'">
+                                                                        <div  style="cursor: pointer;background: #fffcfc;" (click)="select_empresa(item.empresa)" class="d-flex p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': cupon.empresa_rs == item.empresa._id}">
+                                                                            <!--begin::Avatar-->
+                                                                            <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                <div class="d-flex align-items-center">
+                                                                                   
+                                                                                    <div class="symbol symbol-45px me-5">
+                                                                                        <span class="symbol-label fw-bold" [ngClass]="{
+                                                                                            'bg-light-danger text-danger': item.empresa.razon_social.charAt(0) >='A' && item.empresa.razon_social.charAt(0) <= 'H',
+                                                                                            'bg-light-primary text-primary': item.empresa.razon_social.charAt(0) >='I' && item.empresa.razon_social.charAt(0) <= 'O',
+                                                                                            'bg-light-info text-info': item.empresa.razon_social.charAt(0) >='P' && item.empresa.razon_social.charAt(0) <= 'U',
+                                                                                            'bg-light-success text-success': item.empresa.razon_social.charAt(0) >='V' && item.empresa.razon_social.charAt(0) <= 'Z'}">
+                                                                                            {{item.empresa.razon_social.charAt(0)}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="d-flex justify-content-start flex-column">
+                                                                                        <a class="text-gray-800 fw-bold mb-1 fs-6">
+                                                                                            {{item.empresa.razon_social}}
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <small class="text-primary">Empresa</small>
+                                                                                        </a>
+                                                                                        <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                           {{item.empresa.tipo_empresa}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--end::Avatar-->
+                                                                        </div>
+                                                                        <!--end::User-->
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="load_clientes">
+                                                                <div class="py-20 text-center">
+                                                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                      </div>
+                                                                </div>
+                                                            </ng-container>
+                                                            
+                                                        </div>
+                                                        <!--end::Users-->
+                                                    </div>
+                                                    <!--end::Results-->
+                                                
+                                                </div>
+
+                                                <div class="py-5" *ngIf="cupon_compradores.length >= 1">
+                                                    <span (click)="remove_comprador(idx)" class="text-primary cursor-pointer" style="margin-right: 1rem;" *ngFor="let item of cupon_compradores;let idx = index">
+                                                        <ng-container *ngIf="item.tipo_usuario == 'Cliente natural'">{{item.fullnames}}</ng-container>
+                                                        <ng-container *ngIf="item.tipo_usuario == 'Empresa'">{{item.fullnames}}</ng-container>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+
+
+                                      
+
+                                        <div class="fv-row row mb-7">
+                                            <!--begin::Col-->
+                                            <div class="col-md-3 d-flex">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold mt-2">Pago</label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Col-->
+                            
+                                            <!--begin::Col-->
+                                            <div class="col-md-9">
+                                                <select class="form-select form-select-solid mb-3" name="tipo_pago" [(ngModel)]="cupon.tipo_pago">
+                                                    <option value="" selected disabled>Seleccionar</option>
+                                                    <option value="Credito">Credito</option>
+                                                    <option value="Contado">Contado</option>
+                                                    <option value="Ambos">Ambos</option>
+                                                </select>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+
+                                        <div class="fv-row row mb-7">
+                                            <!--begin::Col-->
+                                            <div class="col-md-3">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold ">Descuento crédito</label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <!--end::Col-->
+                            
+                                            <!--begin::Col-->
+                                            <div class="col-md-9">
+                                                <div class="d-flex">
+                                                    <!--begin::Switch-->
+                                                    <div class="form-check form-switch form-check-custom form-check-solid me-10 mb-3">
+                                                        <input class="form-check-input h-30px w-50px" name="descuento_credito" type="checkbox" [(ngModel)]="cupon.descuento_credito">
+                                                        <label class="form-check-label" for="org_read">
+                                                            <span *ngIf="cupon.descuento_credito">Aplicar</span>
+                                                            <span *ngIf="!cupon.descuento_credito">No aplicar</span>
+                                                        </label>
+                                                    </div>
+                                                    <!--begin::Switch-->
+                        
+                                                </div>
+                                                <!--end::Options-->
+                            
+                                             
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+
+                                        <ng-container *ngIf="cupon.tipo == 'Tela'">
+                                            <div class="fv-row row mb-7">
+                                                <!--begin::Col-->
+                                                <div class="col-md-3 d-flex">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold mt-2">Producto</label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <!--end::Col-->
+                                
+                                                <!--begin::Col-->
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Buscar producto" name="filtro_producto" [(ngModel)]="filtro_producto" id="str_producto" (keyup)="search_productos()">
+    
+                                                    <ng-container *ngIf="load_productos">
+                                                        <div class="py-20 text-center">
+                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!load_productos">
+                                                        <div class="py-5" *ngIf="productos.length >= 1">
+                                                            <!--begin::Suggestions-->
+                                                            <div data-kt-search-element="suggestions" class="d-none">
+                                                                <!--begin::Illustration-->
+                                                                <div class="text-center px-4">
+                                                                    <img class="mw-100 mh-200px" alt="image" src="/html/metronic/docs/assets/media/illustrations/sigma-1/1.png">
+                                                                </div>
+                                                                <!--end::Illustration-->
+                                                            </div>
+                                                            <!--end::Suggestions-->
+                                                            <!--begin::Results-->
+                                                            <div class="">
+                                                                <!--begin::Users-->
+                                                                <div class="mh-300px scroll-y me-n5 pe-5">
+                                                                    <!--begin::User-->
+                                                                    <ng-container *ngFor="let item of productos">
+                                                                        <ng-container>
+                                                                            <div class="d-flex p-3 rounded-3 border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': cupon.producto == item.producto._id}" (click)="selected_producto(item)">
+                                                                                <!--begin::Avatar-->
+                                                                                <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <a class="symbol symbol-50px" style="margin-right: 1rem;">
+                                                                                            <span class="symbol-label" style="background-image:url({{url}}/resources/products/{{item.producto.portada}});"></span>
+                                                                                        </a>
+                                                                                        <div class="d-flex justify-content-start flex-column">
+                                                                                            <a class="text-gray-800 text-hover-primary fs-6 fw-bold text-1" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto.titulo}}" (click)="selected_producto(item)" style="cursor: pointer;font-size: 1rem!important;">
+                                                                                                {{item.producto.titulo}}
+                                                                                            </a>
+                                                                                            <div class="symbol-group symbol-hover flex-grow-1 min-w-100px pe-2">
+                                                          
+                                                                                                <!--begin::User-->
+                                                                                                <div class="symbol symbol-circle symbol-25px" *ngFor="let subitem of item.colores" style="border: 1px dashed #ccc;">
+                                                                                                    <div style="cursor: pointer;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': subitem.hxd}"  placement="top" tooltipClass="bg_toolip" ngbTooltip="{{subitem.variante}}">
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                                <!--end::User-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+        
+                                                                                    <div class="text-right">
+                                                                                        <span class="badge badge-success" *ngIf="item.rollos_activos >= 1">En stock</span>
+                                                                                        <span class="badge badge-danger" *ngIf="item.rollos_activos == 0">Agotado</span>
+                                                                                    </div>
+                                                                                   
+                                                                                    
+                                                                                </div>
+                                                                                <!--end::Avatar-->
+                                                                            </div>
+                                                                            <!--end::User-->
+                                                                        </ng-container>
+        
+                                                                        
+                                                                    </ng-container>
+                                                                </div>
+                                                                <!--end::Users-->
+                                                            </div>
+                                                            <!--end::Results-->
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+    
+                                            <div class="fv-row row" *ngIf="colores_cupon.length >= 1">
+                                                <!--begin::Col-->
+                                                <div class="col-md-3 d-flex">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold mt-2 mb-7 fw-600">Colores</label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <!--end::Col-->
+                                
+                                                <!--begin::Col-->
+                                                <div class="col-md-9">
+                                                    <div class="row" *ngFor="let item of colores_cupon;let idx = index;let frst = first">
+                                                        <div class="col">
+                                                            <label class="required form-label">Color</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                  <span class="input-group-text" [ngStyle]="{'background': item.hxd}"
+                                                                  style="border-bottom-right-radius: 0px !important;border-top-right-radius: 0px !important;">@</span>
+                                                                </div>
+                                                                <input style="border-bottom-left-radius: 0px !important;border-top-left-radius: 0px !important;" type="text" class="form-control" readonly value="{{item.variante}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label class="required form-label">Venta</label>
+                                                            <input type="text" class="form-control" value="{{item.precio_venta|currency:'MXN'}}" readonly>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label class="required form-label">Ahora</label>
+                                                            <input type="text" class="form-control" name="precio_ahora" [(ngModel)]="item.precio_ahora">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <small class="text-danger cursor-pointer" (click)="remove_color(idx)" style="margin-right: 1rem;">
+                                                                Eliminar color
+                                                            </small>
+                                                            <ng-container *ngIf="frst">
+                                                                <small *ngIf="colores_cupon.length>=2" class="text-primary cursor-pointer" (click)="aplicar_todos_tela(item.precio_ahora)">
+                                                                    Aplicar en todos
+                                                                </small>
+                                                            </ng-container>
+                                                            <div class="separator separator-dashed my-4"></div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="cupon.tipo == 'Ropa'">
+                                            <div class="fv-row row mb-7">
+                                                <!--begin::Col-->
+                                                <div class="col-md-3 d-flex">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold mt-2">Ropas</label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <!--end::Col-->
+                                
+                                                <!--begin::Col-->
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control form-control-solid" placeholder="Buscar producto" name="filtro_producto" [(ngModel)]="filtro_producto" id="str_producto" (keyup)="search_productos()">
+    
+                                                    <ng-container *ngIf="load_ropas">
+                                                        <div class="py-20 text-center">
+                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!load_ropas">
+                                                        <div class="py-5" *ngIf="ropas.length >= 1">
+                                                            <!--begin::Suggestions-->
+                                                            <div data-kt-search-element="suggestions" class="d-none">
+                                                                <!--begin::Illustration-->
+                                                                <div class="text-center px-4">
+                                                                    <img class="mw-100 mh-200px" alt="image" src="/html/metronic/docs/assets/media/illustrations/sigma-1/1.png">
+                                                                </div>
+                                                                <!--end::Illustration-->
+                                                            </div>
+                                                            <!--end::Suggestions-->
+                                                            <!--begin::Results-->
+                                                            <div class="">
+                                                                <!--begin::Users-->
+                                                                <div class="mh-300px scroll-y me-n5 pe-5">
+                                                                    <!--begin::User-->
+                                                                    <ng-container *ngFor="let item of ropas">
+                                                                        <ng-container>
+                                                                            <div class="d-flex p-3 rounded-3 border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': cupon.producto == item.producto._id}" (click)="selected_ropa(item)">
+                                                                                <!--begin::Avatar-->
+                                                                                <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <a class="symbol symbol-50px" style="margin-right: 1rem;">
+                                                                                            <span class="symbol-label" style="background-image:url({{url}}/resources/products/{{item.producto.portada}});"></span>
+                                                                                        </a>
+                                                                                        <div class="d-flex justify-content-start flex-column">
+                                                                                            <a class="text-gray-800 text-hover-primary fs-6 fw-bold text-1" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto.titulo}}" (click)="selected_producto(item)" style="cursor: pointer;font-size: 1rem!important;">
+                                                                                                {{item.producto.titulo}}
+                                                                                            </a>
+                                                                                            <div class="symbol-group symbol-hover flex-grow-1 min-w-100px pe-2">
+                                                          
+                                                                                                <!--begin::User-->
+                                                                                                <div class="symbol symbol-circle symbol-25px" *ngFor="let subitem of item.variaciones" style="border: 1px dashed #ccc;">
+                                                                                                    <div style="cursor: pointer;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': subitem.hxd}"  placement="top" tooltipClass="bg_toolip" ngbTooltip="{{subitem.talla}}">
+                                                                                                        {{subitem.talla}}
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <!--end::User-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+        
+                                                                                    <div class="text-right">
+                                                                                        <span class="badge badge-success" *ngIf="item.cantidad >= 1">En stock</span>
+                                                                                        <span class="badge badge-danger" *ngIf="item.cantidad == 0">Agotado</span>
+                                                                                    </div>
+                                                                                   
+                                                                                    
+                                                                                </div>
+                                                                                <!--end::Avatar-->
+                                                                            </div>
+                                                                            <!--end::User-->
+                                                                        </ng-container>
+        
+                                                                        
+                                                                    </ng-container>
+                                                                </div>
+                                                                <!--end::Users-->
+                                                            </div>
+                                                            <!--end::Results-->
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+    
+                                            <div class="fv-row row" *ngIf="variaciones_cupon.length >= 1">
+                                                <!--begin::Col-->
+                                                <div class="col-md-3 d-flex">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold mt-2 mb-7 fw-600">Variaciones</label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <!--end::Col-->
+                                
+                                                <!--begin::Col-->
+                                                <div class="col-md-9">
+                                                    <div class="row" *ngFor="let item of variaciones_cupon;let idx = index;let frst = first">
+                                                        <div class="col">
+                                                            <label class="required form-label">Variación</label>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                  <span class="input-group-text" [ngStyle]="{'background': item.hxd}"
+                                                                  style="border-bottom-right-radius: 0px !important;border-top-right-radius: 0px !important;">@</span>
+                                                                </div>
+                                                                <input style="border-bottom-left-radius: 0px !important;border-top-left-radius: 0px !important;" type="text" class="form-control" readonly value="{{item.talla}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label class="required form-label">Venta</label>
+                                                            <input type="text" class="form-control" value="{{item.precio_venta|currency:'MXN'}}" readonly>
+                                                        </div>
+                                                        <div class="col">
+                                                            <label class="required form-label">Ahora</label>
+                                                            <input type="text" class="form-control" name="precio_ahora" [(ngModel)]="item.precio_ahora">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <small class="text-danger cursor-pointer" (click)="remove_variacion(idx)" style="margin-right: 1rem;">
+                                                                Eliminar variedad
+                                                            </small>
+                                                            <ng-container *ngIf="frst">
+                                                                <small *ngIf="variaciones_cupon.length>=2" class="text-primary cursor-pointer" (click)="aplicar_todos_ropa(item.precio_ahora)">
+                                                                    Aplicar en todos
+                                                                </small>
+                                                            </ng-container>
+                                                            <div class="separator separator-dashed my-4"></div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <!--end::Card body-->
+                                    <div class="card-footer">
+                                        <button (click)="create()" class="btn btn-dark">
+                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                            Crear cupón
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

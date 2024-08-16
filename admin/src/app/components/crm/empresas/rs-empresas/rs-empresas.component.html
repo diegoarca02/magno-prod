@@ -1,0 +1,1171 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">CRM
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/empresas']"  class="pe-3">Empresas</a></li>
+                                <li class="breadcrumb-item pe-3">Detalle</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="!data">
+                                <div class="card">
+                                    <div class="card-body pt-15">
+                                        <div class="text-center mt-20 mb-15">
+                                            <!--begin::Title-->
+                                            <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                            <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                            <!--end::Title-->
+                                            <!--begin::Text-->
+                                            <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                            <!--end::Text-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="data">
+                                <div class="card mb-5 mb-xl-10" >
+                                    <!--begin::Card header-->
+                                    <div class="card-header" >
+                                        <!--begin::Heading-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Colaboradores</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <!--end::Heading-->
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar" >
+                                            <a style="cursor: pointer;" class="btn btn-dark my-1" data-bs-toggle="modal" [attr.data-bs-target]="'#addCliente'">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nuevo colaborador
+                                            </a>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-0" >
+                                        <!--begin::Table wrapper-->
+                                        <div class="table-responsive" >
+                                            <!--begin::Table-->
+                                            <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                                <!--begin::Thead-->
+                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
+                                                    <tr>
+                                                        <th class="min-w-250px">Nombres</th>
+                                                        <th class="min-w-100px">Telefono</th>
+                                                        <th class="min-w-150px text-end">Tipo</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end::Thead-->
+                                                <!--begin::Tbody-->
+                                                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_data">
+                                                    <tr *ngFor="let item of clientes">
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="symbol symbol-45px me-5">
+                                                                    <span class="symbol-label fw-bold" [ngClass]="{
+                                                                        'bg-light-danger text-danger': item.cliente.nombres.charAt(0) >='A' && item.cliente.nombres.charAt(0) <= 'H',
+                                                                        'bg-light-primary text-primary': item.cliente.nombres.charAt(0) >='I' && item.cliente.nombres.charAt(0) <= 'O',
+                                                                        'bg-light-info text-info': item.cliente.nombres.charAt(0) >='P' && item.cliente.nombres.charAt(0) <= 'U',
+                                                                        'bg-light-success text-success': item.cliente.nombres.charAt(0) >='V' && item.cliente.nombres.charAt(0) <= 'Z'}">
+                                                                        {{item.cliente.nombres.charAt(0)}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-start flex-column">
+                                                                    <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                        {{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}
+                                                                    </a>
+                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                        <small>{{item.cliente.email}}</small>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="pe-0">
+                                                            <span class="text-gray-600 fw-bold fs-6">
+                                                                <small>{{item.cliente.prefijo}} {{item.cliente.telefono}}</small>
+                                                            </span>
+                                                        </td>
+                                                        
+                                                        <td class="text-end">
+                                                            <span class="badge py-3 px-4 fs-7 badge-light-primary">{{item.cliente.tipo}}</span>
+                                                        </td>
+                                                        
+                                                        
+                                                    </tr>
+                                                   
+                                                   
+                                                </tbody>
+                                                <!--end::Tbody-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                        <!--end::Table wrapper-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+        
+                                <div class="card mb-5 mb-xl-10" >
+                                    <!--begin::Card header-->
+                                    <div class="card-header" >
+                                        <!--begin::Heading-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Razones sociales</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <!--end::Heading-->
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar" >
+                                           
+                                            <a style="cursor: pointer;" class="btn btn-dark my-1" data-bs-toggle="modal" [attr.data-bs-target]="'#addRS'">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nueva razón
+                                            </a>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-0" >
+                                        <!--begin::Table wrapper-->
+                                        <div class="table-responsive" >
+                                            <!--begin::Table-->
+                                            <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                                <!--begin::Thead-->
+                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
+                                                    <tr>
+                                                        <th class="min-w-250px">Razón social</th>
+                                                        <th class="min-w-100px">Negocio</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end::Thead-->
+                                                <!--begin::Tbody-->
+                                                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_data">
+                                                    <tr *ngFor="let item of rs">
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="symbol symbol-45px me-5">
+                                                                    <span class="symbol-label fw-bold" [ngClass]="{
+                                                                        'bg-light-danger text-danger': item.razon_social.charAt(0) >='A' && item.razon_social.charAt(0) <= 'H',
+                                                                        'bg-light-primary text-primary': item.razon_social.charAt(0) >='I' && item.razon_social.charAt(0) <= 'O',
+                                                                        'bg-light-info text-info': item.razon_social.charAt(0) >='P' && item.razon_social.charAt(0) <= 'U',
+                                                                        'bg-light-success text-success': item.razon_social.charAt(0) >='V' && item.razon_social.charAt(0) <= 'Z'}">
+                                                                        {{item.razon_social.charAt(0)}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-start flex-column">
+                                                                    <a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                        {{item.razon_social}}
+                                                                    </a>
+                                                                   
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="pe-0">
+                                                            <span class="text-gray-600 fw-bold fs-6">
+                                                                {{item.tipo_empresa}}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                                <!--end::Tbody-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                        <!--end::Table wrapper-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+        
+                                <div class="card mb-5 mb-xl-10" >
+                                    <!--begin::Card header-->
+                                    <div class="card-header" >
+                                        <!--begin::Heading-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Ubicaciones</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <!--end::Heading-->
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar" >
+                                           
+                                            <a style="cursor: pointer;" class="btn btn-dark my-1" data-bs-toggle="modal" [attr.data-bs-target]="'#newUbicacion'">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nueva ubicación
+                                            </a>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-0" >
+                                        <!--begin::Table wrapper-->
+                                        <div class="table-responsive" >
+                                            <!--begin::Table-->
+                                            <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                                <!--begin::Thead-->
+                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
+                                                    <tr>
+                                                        <th class="min-w-250px">Encargado</th>
+                                                        <th class="min-w-100px">Dirección</th>
+                                                        <th class="min-w-150px text-end">Editar</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end::Thead-->
+                                                <!--begin::Tbody-->
+                                                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_ubicaciones">
+                                                    <ng-container *ngIf="ubicaciones.length >= 1">
+                                                        <tr *ngFor="let item of ubicaciones">
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                   
+                                                                    <div class="d-flex justify-content-start flex-column">
+                                                                        <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                            {{item.encargado}}
+                                                                        </a>
+                                                                        <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                            <small>{{item.prefijo}} {{item.telefono}}</small>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="pe-0 min-w-250px">
+                                                                <span class="text-gray-600 fw-bold fs-6">
+                                                                    <small>{{item.direccion}}</small>
+                                                                </span>
+                                                                <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                    <small>{{item.pais}}, {{item.estado}} {{item.ciudad}}</small>
+                                                                </span>
+                                                            </td>
+                                                            
+                                                            <td class="text-end">
+                                                                <a class="text-primary" style="cursor: pointer;" (click)="get_ubicacion(item._id)" data-bs-toggle="modal" [attr.data-bs-target]="'#editUbicacion-'+item._id">
+                                                                    <small>Editar</small>
+                                                                </a>
+            
+                                                                <div class="modal fade" id="editUbicacion-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document" style="max-width: 600px;">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h3 class="modal-title">Editar ubicación</h3>
+                                                                
+                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                        <!--end::Svg Icon-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <!--begin::Input group-->
+                                                                                <div class="row mb-6">
+                                                                                    <!--begin::Label-->
+                                                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Encargado</label>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Col-->
+                                                                                    <div class="col-lg-8 fv-row">
+                                                                                        <!--begin::Input-->
+                                                                                        <input type="text" placeholder="Nombres y apellidos" name="encargado" [(ngModel)]="ubicacion_edit.encargado" class="form-control form-control-lg form-control-solid"/>
+                                                                                        <!--end::Hint-->
+                                                                                    </div>
+                                                                                    <!--end::Col-->
+                                                                                </div>
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+                                                                                <div class="row mb-6">
+                                                                                    <!--begin::Label-->
+                                                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Telefono</label>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Col-->
+                                                                                    <div class="col-lg-8 fv-row">
+                                                                                        <div class="row">
+                                                                                            <!--begin::Input-->
+                                                                                            <div class="col-6">
+                                                                                                <select class="form-select" id="select-phone-edit-{{item._id}}" data-control="select2" data-placeholder="Prefijo">
+                                                                                                    <option></option>
+                                                                                                    <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="col">
+                                                                                                <input type="text" placeholder="Telefono" name="telefono" [(ngModel)]="ubicacion_edit.telefono" class="form-control form-control-lg form-control-solid"/>
+                                                                                            </div>
+                                                                                        
+                                                                                            <!--end::Hint-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end::Col-->
+                                                                                </div>
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+                                                                                <div class="row mb-6">
+                                                                                    <!--begin::Label-->
+                                                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">País</label>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Col-->
+                                                                                    <div class="col-lg-8 fv-row">
+                                                                                        <select name="pais" [(ngModel)]="ubicacion_edit.pais" class="form-select form-select-solid form-select-lg fw-semibold">
+                                                                                            <option value="" selected disabled>Seleccionar pais...</option>
+                                                                                
+                                                                                            <option value="Argentina">Argentina</option>
+                                                                                            <option value="Bolivia">Bolivia</option>
+                                                                                            <option value="Brazil">Brazil</option>
+                                                                                            <option value="Chile">Chile</option>
+                                                                                            <option value="Colombia">Colombia</option>
+                                                                                            <option value="Costa Rica">Costa Rica</option>
+                                                                                            <option value="Cuba">Cuba</option>
+                                                                                            <option value="Dominican Republic">Dominican Republic</option>
+                                                                                            <option value="Ecuador">Ecuador</option>
+                                                                                            <option value="El Salvador">El Salvador</option>
+                                                                                            <option value="Guatemala">Guatemala</option>
+                                                                                            <option value="Mexico">Mexico</option>
+                                                                                            <option value="Nicaragua">Nicaragua</option>
+                                                                                            <option value="Panama">Panama</option>
+                                                                                            <option value="Paraguay">Paraguay</option>
+                                                                                            <option value="Peru">Peru</option>
+                                                                                            <option value="Portugal">Portugal</option>
+                                                                                            <option value="Puerto Rico">Puerto Rico</option>
+                                                                                            <option value="Spain">Spain</option>
+                                                                                            <option value="United States">United States</option>
+                                                                                            <option value="Uruguay">Uruguay</option>
+                                                                                            <option value="Venezuela">Venezuela</option>
+                                                                            
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <!--end::Col-->
+                                                                                </div>
+                                                                                <!--end::Input group-->
+                                                                                <!--begin::Input group-->
+                                                                                <div class="row mb-6">
+                                                                                    <!--begin::Label-->
+                                                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                                                        <span class="required">Estado / Ciudad</span>
+                                                                                        
+                                                                                    </label>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Col-->
+                                                                                    <div class="col-lg-8">
+                                                                                        <!--begin::Row-->
+                                                                                        <div class="row">
+                                                                                            <!--begin::Col-->
+                                                                                            <div class="col-lg-6 fv-row">
+                                                                                                <input type="text" name="estado" [(ngModel)]="ubicacion_edit.estado" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Estado" />
+                                                                                            </div>
+                                                                                            <!--end::Col-->
+                                                                                            <!--begin::Col-->
+                                                                                            <div class="col-lg-6 fv-row">
+                                                                                                <input type="text" name="ciudad" [(ngModel)]="ubicacion_edit.ciudad" class="form-control form-control-lg form-control-solid" placeholder="Ciudad"  />
+                                                                                            </div>
+                                                                                            <!--end::Col-->
+                                                                                        </div>
+                                                                                        <!--end::Row-->
+                                                                                    </div>
+                                                                                    <!--end::Col-->
+                                                                                </div>
+                                                                                <!--end::Input group-->
+                                                                                
+                                                                                <!--begin::Input group-->
+                                                                                <div class="row mb-6">
+                                                                                    <!--begin::Label-->
+                                                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Dirección</label>
+                                                                                    <!--end::Label-->
+                                                                                    <!--begin::Col-->
+                                                                                    <div class="col-lg-8 fv-row">
+                                                                                        <!--begin::Input-->
+                                                                                        <input type="text" name="direccion" [(ngModel)]="ubicacion_edit.direccion" class="form-control form-control-lg form-control-solid" placeholder="Dirección de ubicación"/>
+                                                                                        <!--end::Hint-->
+                                                                                    </div>
+                                                                                    <!--end::Col-->
+                                                                                </div>
+                                                                                <!--end::Input group-->
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                <button *ngIf="!load_update" type="button" class="btn btn-primary font-weight-bold btn-sm" (click)="update_ubicacion(item._id)">Actualizar</button>
+                                                                
+                                                                                <button *ngIf="load_update" class="btn btn-primary btn-sm" type="button" disabled>
+                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                    Procesando...
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </ng-container>
+                                                   <tr  *ngIf="ubicaciones.length == 0">
+                                                    <td colspan="3" class="text-center">
+                                                        <div>
+                                                            <!--begin::Title-->
+                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">Nada que mostrar</a>
+                                                            <!--end::Title-->
+                                                            <!--begin::Description-->
+                                                            <div class="text-muted fs-7 fw-bold">No se encontró ningun dato registrado.</div>
+                                                            <!--end::Description-->
+                                                        </div>
+                                                    </td>
+                                                   </tr>
+                                                   
+                                                </tbody>
+                                                <tbody *ngIf="load_ubicaciones">
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <img src="assets/icons/reloj.gif" style="width: 60px;" class="theme-light-show" alt="">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <!--end::Tbody-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                        <!--end::Table wrapper-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+
+                                <div class="card mb-5 mb-xl-10" >
+                                    <!--begin::Card header-->
+                                    <div class="card-header" >
+                                        <!--begin::Heading-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Facturación</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <!--end::Heading-->
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar" >
+                                            <button class="btn btn-dark me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#newCuenta'">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nuevo
+                                            </button>
+                                            <button class="btn btn-dark" data-bs-toggle="modal" [attr.data-bs-target]="'#addCuenta'">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Agregar
+                                            </button>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-0" >
+                                        <!--begin::Table wrapper-->
+                                        <div class="table-responsive" >
+                                            <!--begin::Table-->
+                                            <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                                <!--begin::Thead-->
+                                                <thead class="border-gray-200 fs-5 fw-semibold bg-lighten">
+                                                    <tr>
+                                                        <th class="min-w-250px">Nombres y apellidos</th>
+                                                        <th class="min-w-100px">RFC</th>
+                                                        <th class="min-w-150px text-end">Telefono</th>
+                                                        <th class="min-w-150px text-end">Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <!--end::Thead-->
+                                                <!--begin::Tbody-->
+                                                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_facturacion">
+                                                    <ng-container *ngIf="clientes_facturacion.length >= 1">
+                                                        <tr *ngFor="let item of clientes_facturacion">
+                                                            <td class="min-w-200px">
+                                                                <div class="d-flex align-items-center">
+                                                                    <!--begin::Avatar-->
+                                                                    <div class="symbol symbol-45px me-5">
+                                                                        <span class="symbol-label fw-bold" [ngClass]="{
+                                                                            'bg-light-danger text-danger': item.cliente_facturacion.nombres.charAt(0) >='A' && item.cliente_facturacion.nombres.charAt(0) <= 'H',
+                                                                            'bg-light-primary text-primary': item.cliente_facturacion.nombres.charAt(0) >='I' && item.cliente_facturacion.nombres.charAt(0) <= 'O',
+                                                                            'bg-light-info text-info': item.cliente_facturacion.nombres.charAt(0) >='P' && item.cliente_facturacion.nombres.charAt(0) <= 'U',
+                                                                            'bg-light-success text-success': item.cliente_facturacion.nombres.charAt(0) >='V' && item.cliente_facturacion.nombres.charAt(0) <= 'Z'}">
+                                                                            {{item.cliente_facturacion.nombres.charAt(0)}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <!--end::Avatar-->
+                                                                    <!--begin::Name-->
+                                                                    <div class="d-flex justify-content-start flex-column">
+                                                                        <a class="text-dark fw-bold text-hover-primary mb-1 fs-6">
+                                                                            {{item.cliente_facturacion.nombres}} {{item.cliente_facturacion.apellidos}}
+                                                                        </a>
+                                                                        <a class="text-hover-primary fw-semibold d-block fs-7">
+                                                                            {{item.cliente_facturacion.email}}
+                                                                        </a>
+                                                                    </div>
+                                                                    <!--end::Name-->
+                                                                </div>
+                                                            </td>
+                                                            <td class="min-w-100px">
+                                                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                                                    {{item.cliente_facturacion.rfc}}
+                                                                </a>
+                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">RFC</span>
+                                                            </td>
+                                                            <td class="text-end min-w-100px" >
+                                                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                                                    +51 {{item.cliente_facturacion.telefono}}</a>
+                                                                <span class="text-muted fw-semibold text-muted d-block fs-7">Telefono</span>
+                                                            </td>
+                                                            <td class="text-end min-w-100px">
+                                                                <a data-bs-toggle="modal" [attr.data-bs-target]="'#delete-'+item._id" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px cursor-pointer">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                   
+                                                                    <span class="svg-icon svg-icon-5 svg-icon-gray-700" style="margin-right: 0px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"/>
+                                                                        <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"/>
+                                                                        <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"/>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->                                
+                                                                </a>
+                                                                <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h3 class="modal-title">Remover colaborador</h3>
+                                                                    
+                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                        <!--end::Svg Icon-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <p>Confirmación para eliminación de ubicación.</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+
+                                                                                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                        
+                                                                                    Descartar
+                                                                                </button>
+                                                                                <button *ngIf="!load_delete" type="button" class="btn btn-dark" (click)="remove_cuenta(item._id)">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                    Eliminar
+                                                                                </button>
+
+                                                                                <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                    Procesando...
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            </td>
+                                                            
+                                                            
+                                                        </tr>
+                                                    </ng-container>
+                                                   <tr  *ngIf="clientes_facturacion.length == 0">
+                                                    <td colspan="3" class="text-center">
+                                                        <div>
+                                                            <!--begin::Title-->
+                                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">Nada que mostrar</a>
+                                                            <!--end::Title-->
+                                                            <!--begin::Description-->
+                                                            <div class="text-muted fs-7 fw-bold">No se encontró ningun dato registrado.</div>
+                                                            <!--end::Description-->
+                                                        </div>
+                                                    </td>
+                                                   </tr>
+                                                   
+                                                </tbody>
+                                                <tbody *ngIf="load_facturacion">
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <img src="assets/icons/reloj.gif" style="width: 60px;" class="theme-light-show" alt="">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <!--end::Tbody-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                        <!--end::Table wrapper-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="addCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fw-700">Agregar cliente</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body pb-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar cliente" name="filtro_cliente" [(ngModel)]="filtro_cliente">
+                    <button class="btn btn-dark" (click)="init_clientes()">
+                        <span class="svg-icon icon-size-2qx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="min-height:550px;max-height:550px;overflow: hidden;overflow-y: auto;">
+                <div class="table-responsive" *ngIf="!load_clientes">
+                    <!--begin::Table-->
+                    <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                        
+                        <tbody *ngIf="clientes_nuevos.length >= 1">
+                            <tr *ngFor="let item of clientes_nuevos" style="cursor: pointer;">
+                                <td>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <div class="symbol symbol-45px me-5">
+                                                <span class="symbol-label fw-bold" [ngClass]="{
+                                                    'bg-light-danger text-danger': item.cliente.nombres.charAt(0) >='A' && item.cliente.nombres.charAt(0) <= 'H',
+                                                    'bg-light-primary text-primary': item.cliente.nombres.charAt(0) >='I' && item.cliente.nombres.charAt(0) <= 'O',
+                                                    'bg-light-info text-info': item.cliente.nombres.charAt(0) >='P' && item.cliente.nombres.charAt(0) <= 'U',
+                                                    'bg-light-success text-success': item.cliente.nombres.charAt(0) >='V' && item.cliente.nombres.charAt(0) <= 'Z'}">
+                                                    {{item.cliente.nombres.charAt(0)}}
+                                                </span>
+                                            </div>
+                                            <div class="d-flex justify-content-start flex-column">
+                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}</a>
+                                                <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                    {{item.cliente.email}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button (click)="add_cliente(item.cliente._id)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="clientes_nuevos.length == 0">
+                            <tr>
+                                <td colspan="2">
+                                    <div class="text-center" style="margin-top: 2rem !important;">
+                                        <img src="assets/icons/pakistani.gif" alt="" style="width: 80px;">
+                                        <h3 class="font-weight-bolder text-dark mt-5">Resultado de clientes</h3>
+                                        <div class="font-size-h4 mb-8">No se encontraron registros que mostrar</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <ng-container *ngIf="load_clientes">
+                    <div class="py-20 text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="addRS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fw-700">Nueva razón social</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Razón social</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <!--begin::Input-->
+                        <input type="text" name="razon_social" [(ngModel)]="new_rs.razon_social" class="form-control form-control-lg form-control-solid" placeholder="Razón social"/>
+                        <!--end::Hint-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Tipo de negocio</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <!--begin::Input-->
+                       
+                        <input type="text" name="tipo_empresa" [(ngModel)]="new_rs.tipo_empresa" class="form-control form-control-lg form-control-solid" placeholder="Empresa farmacéutica"/>
+                        <!--end::Hint-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger font-weight-bold" data-bs-dismiss="modal">Cerrar</button>
+                <button *ngIf="!load_add_rs" type="button" class="btn btn-dark font-weight-bold" (click)="add_rs()">Crear</button>
+
+                <button *ngIf="load_add_rs" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="newUbicacion" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2 class="fw-700">Nueva ubicación</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-7">
+                        <!--begin::Col-->
+                        <div class="col-12">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Encargado</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="Nombres y apellidos" name="encargado" [(ngModel)]="ubicacion.encargado">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-7">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="fs-6 fw-semibold form-label mb-2">Telefono</label>
+                            <select class="form-select" id="select-phone-create" data-control="select2" data-placeholder="Prefijo">
+                                <option></option>
+                                <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                            </select>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Telefono</label>
+                            <input type="text" placeholder="Telefono" name="telefono" [(ngModel)]="ubicacion.telefono" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-7">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="fs-6 fw-semibold form-label mb-2">País</label>
+                            <select name="pais" [(ngModel)]="ubicacion.pais" class="form-select form-select-solid form-select-lg fw-semibold">
+                                <option value="" selected disabled>Seleccionar pais...</option>
+                      
+                                <option value="Argentina">Argentina</option>
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="Chile">Chile</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Costa Ric">Costa Rica</option>
+                                <option value="Cuba">Cuba</option>
+                                <option value="Dominican Republic">Dominican Republic</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Mexico">Mexico</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                                <option value="Panama">Panama</option>
+                                <option value="Paraguay">Paraguay</option>
+                                <option value="Peru">Peru</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Spain">Spain</option>
+                                <option value="United States">United States</option>
+                                <option value="Uruguay">Uruguay</option>
+                                <option value="Venezuela">Venezuela</option>
+                   
+                            </select>
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">ZIP</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="Código postal" name="zip" [(ngModel)]="ubicacion.zip">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-7">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="fs-6 fw-semibold form-label mb-2">Estado</label>
+                            <input type="text" name="estado" [(ngModel)]="ubicacion.estado" class="form-control form-control-lg form-control-solid" placeholder="Region/Provincia" />
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Ciudad</label>
+                            <input type="text" name="ciudad" [(ngModel)]="ubicacion.ciudad" class="form-control form-control-lg form-control-solid" placeholder="Ciudad"  />
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-10">
+                        <!--begin::Col-->
+                        <div class="col-12">
+                            <label class="fs-6 fw-semibold form-label mb-2">Dirección</label>
+                            <input type="text" name="direccion" [(ngModel)]="ubicacion.direccion" class="form-control form-control-lg form-control-solid" placeholder="Dirección de ubicación"/>
+                        </div>
+                        <!--end::Col-->
+                        
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container pt-10" *ngIf="msm_error_ubicacion">
+                        <!--begin::Col-->
+                        <div class="col-12 text-center">
+                            <span class="text-danger"><b>{{msm_error_ubicacion}}</b></span>
+                        </div>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-10">
+                        <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Descartar</button>
+                        <button *ngIf="!load_save" type="button" class="btn btn-dark" (click)="create_ubicacion()">
+                            <span class="indicator-label">Crear ubicación</span>
+                        </button>
+                        <button *ngIf="load_save" class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Procensando...
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+<div class="modal fade" id="addCuenta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fw-700">Agregar cuenta</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body" style="min-height:550px;max-height:550px;overflow: hidden;overflow-y: auto;" [ngClass]="{'modal-void': cuentas.length == 0}">
+                <ng-container *ngIf="!load_cuentas">
+                    <div class="table-responsive" *ngIf="cuentas.length >= 1">
+                        <!--begin::Table-->
+                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                            <tbody>
+                                <tr *ngFor="let item of cuentas" style="cursor: pointer;" (click)="add_cuenta(item._id)">
+                                    <td>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex">
+                                                <div class="symbol symbol-45px me-5">
+                                                    <span class="symbol-label fw-bold" [ngClass]="{
+                                                        'bg-light-danger text-danger': item.nombres.charAt(0) >='A' && item.nombres.charAt(0) <= 'H',
+                                                        'bg-light-primary text-primary': item.nombres.charAt(0) >='I' && item.nombres.charAt(0) <= 'O',
+                                                        'bg-light-info text-info': item.nombres.charAt(0) >='P' && item.nombres.charAt(0) <= 'U',
+                                                        'bg-light-success text-success': item.nombres.charAt(0) >='V' && item.nombres.charAt(0) <= 'Z'}">
+                                                        {{item.nombres.charAt(0)}}
+                                                    </span>
+                                                </div>
+                                                <div class="d-flex justify-content-start flex-column">
+                                                    <a class="text-gray-800 fw-bold text-hover-primary fs-6">{{item.nombres.split(' ')[0]}} {{item.apellidos.split(' ')[0]}}</a>
+                                                    <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                        {{item.email}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="m-0" >                            
+                                                <span class="fw-semibold text-gray-400 d-block fs-8" style="text-align: end !important;">RFC</span>
+                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">{{item.rfc}}</a>
+                                            </div>
+                                        </div>
+                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <!--end::Table body-->
+                        </table>
+                        <!--end::Table-->
+                    </div>
+                    <div class="text-center"  *ngIf="cuentas.length == 0">
+                        <h3 class="font-weight-bolder text-dark">Resultado de cuentas</h3>
+                        <div class="font-size-h4 mb-8">No se encontraron cuentas de facturacion</div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="load_cuentas">
+                    <div class="py-20 text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="newCuenta" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2 class="fw-700">Nueva cuenta</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                <!--begin::Form-->
+                <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-10">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Nombres</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="Nombres" name="nombres" [(ngModel)]="cuenta.nombres">
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Apellidos</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="Apellidos" name="apellidos" [(ngModel)]="cuenta.apellidos">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container mb-10">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="fs-6 fw-semibold form-label mb-2">Correo electrónico</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="Correo electrónico" name="email" [(ngModel)]="cuenta.email">
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">Telefono</label>
+                            <input type="number" class="form-control form-control-solid" placeholder="Telefono" name="telefono" [(ngModel)]="cuenta.telefono">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container">
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="fs-6 fw-semibold form-label mb-2">Codigo postal</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="ZIP" name="zip" [(ngModel)]="cuenta.zip">
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-6">
+                            <label class="required fs-6 fw-semibold form-label mb-2">RFC</label>
+                            <input type="text" class="form-control form-control-solid" placeholder="RFC" name="rfc" [(ngModel)]="cuenta.rfc">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="row fv-row fv-plugins-icon-container pt-10" *ngIf="msm_error_cuenta">
+                        <!--begin::Col-->
+                        <div class="col-12 text-center">
+                            <span class="text-danger"><b>{{msm_error_cuenta}}</b></span>
+                        </div>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Actions-->
+                    <div class="text-center pt-10">
+                        <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Descartar</button>
+                        <button *ngIf="!btn_facturacion" type="button" class="btn btn-dark" (click)="crear_facturacion()">
+                            <span class="indicator-label">Crear cuenta</span>
+                        </button>
+                        <button *ngIf="btn_facturacion" class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Procensando...
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>

@@ -1,0 +1,1434 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar class="no-print" (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar class="no-print"></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar no-print" id="kt_toolbar" >
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Manufactura
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/ordenes']"  class="pe-3">
+                                            Ordenes
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Detalle de orden</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-10" id="toPDF">
+                                            <!-- begin::Body-->
+                                            <div class="card-body py-20">
+                                                <!-- begin::Wrapper-->
+                                                <div class="mw-lg-950px mx-auto w-100">
+                                                    <!-- begin::Header-->
+                                                    <div class="d-flex justify-content-between" [ngClass]="{'mb-15': !venta.conf_entrega}">
+                                                        <div class="" >
+                                                            <h4 class="fw-700 text-gray-800 fs-2qx pe-5" style="margin-bottom: 0px;">
+                                                                Orden #VEN{{venta.year}}-{{venta.serie.toString().padStart(6,'000000')}}
+                                                            </h4>
+                                                        </div>
+                                                        <div>
+                                                            <a *ngIf="permisos.includes('8001')" href="{{venta.file}}" target="_blank" class="btn btn-sm btn-flex btn-secondary fw-bold cursor-pointer me-3">              
+                                                                PDF
+                                                            </a>
+
+                                                            <a *ngIf="permisos.includes('8002')" (click)="download_pagare()" class="btn btn-sm btn-flex btn-secondary fw-bold cursor-pointer me-3">              
+                                                                Pagaré
+                                                            </a>
+
+                                                            <a *ngIf="permisos.includes('8003')" (click)="downloadExcel()" class="btn btn-sm btn-flex btn-secondary fw-bold cursor-pointer">              
+                                                                XLS
+                                                            </a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center mt-1 fs-6 mb-7" *ngIf="venta.conf_entrega">
+                                                        <!--begin::Info-->
+                                                        <div class="text-muted me-2 fs-7">
+                                                            Confirmado por {{venta.conf_entrega.nombres}} {{venta.conf_entrega.apellidos}}
+                                                        </div>
+                                                        <!--end::Info-->
+                                                        <!--begin::User-->
+                                                        <div class="symbol symbol-circle symbol-25px">
+                                                            <img [src]="str_portada" alt="img">
+                                                        </div>
+                                                        <!--end::User-->
+                                                    </div>
+                                                    <!--end::Header-->
+
+                                                    <ng-container *ngIf="permisos.includes('8005')">
+                                                        <ng-container  *ngIf="venta.estado == 'Procesado'">
+                                                            <div class="mb-5" *ngIf="count_en_camino == 0">
+                                                                <a style="cursor: pointer;" class="btn btn-light-primary btn-sm mb-3 me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmacion'">
+                                                                    Confirmar
+                                                                </a>
+                                                                <a style="cursor: pointer;" class="btn btn-danger btn-sm mb-3" data-bs-toggle="modal" [attr.data-bs-target]="'#cancelacion'">
+                                                                    Cancelar
+                                                                </a>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container  *ngIf="venta.estado == 'Pendiente'">
+                                                            <div class="mb-5" *ngIf="count_en_camino == 0">
+                                                                <a style="cursor: pointer;" class="btn btn-danger btn-sm mb-3" data-bs-toggle="modal" [attr.data-bs-target]="'#cancelacion'">
+                                                                    Cancelar
+                                                                </a>
+                                                            </div>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                   
+                                                
+                                                    <div class="row mb-7">
+                                                        <div class="col-sm-6">
+                                                            <!--end::Label-->
+                                                            <div class="fw-semibold fs-7 text-gray-600 mb-1">Cliente:</div>                
+                                                            <!--end::Label-->  
+                                        
+                                                            <!--end::Text-->
+                                                            <div class="fs-6 text-gray-800">
+                                                                <ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+                                                                    <span class="fw-600">{{venta.empresa_rs.razon_social}}</span>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                                    <a [routerLink]="['/clientes',venta.cliente._id]">
+                                                                        <span class="fw-600">{{venta.cliente.nombres}} {{venta.cliente.apellidos}}</span>
+                                                                    </a>
+                                                                    
+                                                                </ng-container>
+                                                            </div>                
+                                                            <!--end::Text-->  
+                                        
+                                                             <!--end::Description-->
+                                                             <div class="fw-semibold fs-7 text-gray-600">
+                                                                <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                                    {{venta.cliente.email}}
+                                                                </ng-container>
+                                                                
+                                                                <ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+                                                                    {{venta.empresa_rs.empresa.razon_social}}
+                                                                </ng-container> 
+
+                                                                <br>
+                                                                Cliente tipo socio.
+                                                                
+                                                                <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                                    <br>
+                                                                    {{venta.cliente.prefijo}} 
+                                                                    {{venta.cliente.telefono}}
+                                                                </ng-container>
+                                                            </div>                
+                                                            <!--end::Description-->  
+                                                        </div>
+    
+                                                        <div class="col-sm-6 text-end">
+                                                            <!--end::Label-->
+                                                            <div class="fw-semibold fs-7 text-gray-600 mb-1">Venta:</div>                
+                                                            <!--end::Label-->  
+                                        
+                                                            <!--end::Text-->
+                                                            <div class="fw-600 fs-6 text-gray-800">
+                                                                {{venta.colaborador.nombres}} {{venta.colaborador.apellidos}}
+                                                            </div>                
+                                                            <!--end::Text-->  
+                                        
+                                                             <!--end::Description-->
+                                                             <div class="fw-semibold fs-7 text-gray-600">                      
+                                                                {{venta.createdAt|date:'dd-MM-YYYY'}}.<br>
+                                                                Pago tipo {{venta.tipo_pago.toLowerCase()}}.<br> 
+                                                                Transportista {{venta.metodo_envio}}.<br>             
+                                                            </div>                
+                                                            <!--end::Description-->   
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <ng-container>
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+                                                         
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span>La orden no puede ser confirmada hasta aprobar el pago.</span>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container> -->
+
+                                                    <!--begin::Body-->
+                                                    <div class="">
+                                                        <!--begin::Wrapper-->
+                                                        <div class="gap-7 gap-md-10">
+
+                                                            <div class="d-none d-sm-block mb-15">
+                                                                <div class="row">
+                                                                    <div class="col-12 mb-5 text-center" style="text-align: right;">
+                                                                        <code>Estado del pedido</code>
+                                                                    </div>
+                                                                    <div class="col-12 text-center">
+                                                                        <div class="timeline-steps aos-init aos-animate" data-aos="fade-up">
+                                                                            <div class="timeline-step">
+                                                                                <div class="timeline-content">
+                                                                                    <div class="inner-circle" [ngClass]="{'bg_active': venta.estado == 'Procesado'|| venta.estado == 'Cancelado'|| venta.estado == 'Confirmado'|| venta.estado == 'Enviado'||venta.estado == 'Entregado'}"></div>
+                                                                                    <p class="mt-3 mb-1 text-gray-600" [ngClass]="{'color_active': venta.estado == 'Procesado'}">
+                                                                                        Procesado
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="timeline-step" *ngIf="venta.estado == 'Cancelado'">
+                                                                                <div class="timeline-content">
+                                                                                    <div class="inner-circle" [ngClass]="{'bg_active': venta.estado == 'Cancelado'}"></div>
+                                                                                    <p class="mt-3 mb-1 text-gray-600" [ngClass]="{'color_active': venta.estado == 'Cancelado'}">
+                                                                                        Cancelado
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <ng-container *ngIf="venta.estado != 'Cancelado'">
+                                                                                <div class="timeline-step">
+                                                                                    <div class="timeline-content">
+                                                                                        <div class="inner-circle" [ngClass]="{'bg_active': venta.estado == 'Confirmado'|| venta.estado == 'Enviado'||venta.estado == 'Entregado'}"></div>
+                                                                                        <p class="mt-3 mb-1 text-gray-600" [ngClass]="{'color_active': venta.estado == 'Confirmado'}">
+                                                                                            Confirmado
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="timeline-step">
+                                                                                    <div class="timeline-content">
+                                                                                        <div class="inner-circle" [ngClass]="{'bg_active': venta.estado == 'Enviado'||venta.estado == 'Entregado'}"></div>
+                                                                                        <p class="mt-3 mb-1 text-gray-600" [ngClass]="{'color_active': venta.estado == 'Enviado'}">
+                                                                                            Enviado
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="timeline-step">
+                                                                                    <div class="timeline-content">
+                                                                                        <div class="inner-circle" [ngClass]="{'bg_active': venta.estado == 'Entregado'}"></div>
+                                                                                        <p class="mt-3 mb-1 text-gray-600" [ngClass]="{'color_active': venta.estado == 'Entregado'}">
+                                                                                            Entregado
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-container>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                            <div class="col-sm-12 my-7" *ngIf="solicitud">
+                                                                <ng-container >
+                                                                    <div *ngIf="solicitud.estado == 'Pendiente'" 
+                                                                    class="notice d-flex justify-content-between bg-light-primary rounded border-primary border border-dashed mb-2 p-6" >
+                                                                        <div class="d-flex flex-column">
+                                                                            <span class="fw-700">Solicitud de Crédito</span>
+                                                                            <div class="">
+                                                                                <small>
+                                                                                    Se aplicó la apertura de una solicitud de ampliación de crédito por el monto de 
+                                                                                    <span class="fw-bold">{{solicitud.monto|currency:'MXN'}}</span>
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <a [routerLink]="['/clientes',venta.cliente._id]" [queryParams]="{tipo:'solicitudes'}" 
+                                                                            class="btn btn-dark btn-sm">Acción</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="solicitud.estado == 'Aprobado'" 
+                                                                    class="notice d-flex justify-content-between bg-light-success rounded border-success border border-dashed mb-2 p-6" >
+                                                                        <div class="d-flex flex-column">
+                                                                            <span class="fw-700">Solicitud de Crédito</span>
+                                                                            <div class="">
+                                                                                <small>
+                                                                                    Se aprobó la solicitud de ampliación de crédito por el monto de 
+                                                                                    <span class="fw-bold">{{solicitud.monto|currency:'MXN'}}</span>
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <a [routerLink]="['/clientes',venta.cliente._id]" [queryParams]="{tipo:'solicitudes'}" 
+                                                                            class="btn btn-dark btn-sm">Acción</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="solicitud.estado == 'Denegado'" 
+                                                                    class="notice d-flex justify-content-between bg-light-danger rounded border-danger border border-dashed mb-2 p-6" >
+                                                                        <div class="d-flex flex-column">
+                                                                            <span class="fw-700">Solicitud de Crédito</span>
+                                                                            <div class="">
+                                                                                <small>
+                                                                                    Se denegó la solicitud de ampliación de crédito por el monto de 
+                                                                                    <span class="fw-bold">{{solicitud.monto|currency:'MXN'}}</span>
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <a [routerLink]="['/clientes',venta.cliente._id]" [queryParams]="{tipo:'solicitudes'}" 
+                                                                            class="btn btn-dark btn-sm">Acción</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </ng-container>
+                                                            </div>
+                                                            <div class="col-sm-12 my-7" style="margin-bottom: 3rem !important;" *ngIf="!venta.file">
+                                                                <div class="notice d-flex justify-content-between bg-light-danger rounded border-danger border border-dashed mb-2 p-6" >
+                                                                    <div class="d-flex flex-column">
+                                                                        <span class="fw-700">Documento PDF</span>
+                                                                        <div class="">
+                                                                            <small>
+                                                                                El documento de venta no se generó correctamente, por favor vuelvelo a generar. 
+                                                                            </small>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div>
+                                                                        <a class="btn btn-dark btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#generarPDF'">Generar</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                           
+                                                            <!--begin:Order summary-->
+                                                            <div class="d-flex justify-content-between flex-column no-print mb-10" *ngIf="detalles_almacen.length >= 1">
+                                                                <!--begin::Table-->
+                                                                <div class="d-flex justify-content-between mb-5">
+                                                                    <div>
+                                                                        <h3 class="card-title align-items-start flex-column mb-0">
+                                                                            <span class="card-label fw-600 text-dark">Detalles de Venta:</span>
+                                                                        </h3>
+                                                                        <small class="text-muted">Unidades asignadas a la venta.</small>
+                                                                    </div>
+                                                                    <div class="d-flex">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            
+                                                                <div class=" mb-9">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                                            <tbody class="fw-semibold">
+                                                                                <!--begin::Products-->
+                                                                                <tr *ngFor="let item of detalles_almacen">
+                                                                                    <td class="min-w-200px">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <!--begin::Thumbnail-->
+                                                                                            <a  class="symbol symbol-50px me-5">
+                                                                                                <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.producto_variacion.hxd}"></span>
+                                                                                            </a>
+                                                                                            <!--end::Thumbnail-->
+                                                                                            <!--begin::Title-->
+                                                                                            <div class="fw-semibold">
+                                                                                                <span class="fs-6 fw-600 text-gray-800 me-2" style="font-weight: 500;
+                                                                                                font-size: 1rem !important;">
+                                                                                                   {{item.producto.titulo.substr(0,30)}} - 
+                                                                                                   {{item.producto_variacion.variacion_name}}
+                                                                                                   <ng-container *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                                       {{item.producto_variacion.talla}}
+                                                                                                   </ng-container>
+                                                                                                </span>
+                                                                                                <br>
+                                                                                                <code *ngIf="item.estado == 'Procesado' || item.estado == 'Confirmado'">
+                                                                                                    {{item.fe_inicio}} 
+                                                                                                    <small class="text-muted">entre</small> 
+                                                                                                    {{item.fe_fin}}
+                                                                                                </code>
+                                                                                                <code class="text-success" *ngIf="item.estado == 'Enviado'">
+                                                                                                    Unidades enviadas
+                                                                                                </code>
+                                                                                                <code class="text-info" *ngIf="item.estado == 'Entregado'">
+                                                                                                    Unidades entregadas
+                                                                                                </code>
+                                                                                            </div>
+
+                                                                                            <!--end::Title-->
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Product-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                               Almacen
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.ingreso_detalle.ingreso.almacen}}
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Quantity-->
+                                                                                    <!--begin::SKU-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <a [routerLink]="['/inventario/detail',item.producto_variacion._id]">
+                                                                                            <code>
+                                                                                                {{item.ingreso_detalle.codigo}}
+                                                                                            </code>
+                                                                                        </a>
+    
+                                                                                        <ng-container >
+                                                                                            <ng-container *ngIf="item.estado == 'Confirmado'">
+                                                                                                <br>
+                                                                                                <small class="text-danger" data-bs-toggle="modal" 
+                                                                                                [attr.data-bs-target]="'#removeDetalle-'+item._id" style="cursor: pointer;">
+                                                                                                    Quitar
+                                                                                                </small>
+        
+                                                                                                <div class="modal fade" id="removeDetalle-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                    <div class="modal-dialog" role="document">
+                                                                                                        <div class="modal-content">
+                                                                                                            <div class="modal-header">
+                                                                                                                <h3 class="modal-title">Eliminación</h3>
+                                                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                                        </svg>
+                                                                                                                    </span>
+                                                                                                                        <!--end::Svg Icon-->
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="modal-body">
+                                                                                                                <p>Confirmación para la eliminación del registro.</p>
+                                                                                                            </div>
+                                                                                                            <div class="modal-footer">
+                                                                                                                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                                                        </svg>
+                                                                                                                    </span>
+                                                                                                
+                                                                                                                    Descartar
+                                                                                                                </button>
+                                                                                                
+                                                                                                                <button *ngIf="!load_btn_remove" type="button" class="btn btn-dark" (click)="remove_detalle(item._id)">
+                                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                                        </svg>
+                                                                                                                    </span>
+                                                                                                                    Confirmar
+                                                                                                                </button>
+                                                                                                                <button *ngIf="load_btn_remove" class="btn btn-dark" type="button" disabled>
+                                                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                                    Procesando...
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div> 
+                                                                                            </ng-container>
+                                                                                        </ng-container>
+    
+                                                                                        
+                                                                                    </td>
+                                                                                    
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                               Cantidad
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.cantidad}}
+                                                                                                <small>{{venta.unidad}}</small>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        
+                                                                                    </td>
+                                                                                    <!--end::Quantity-->
+                                                                                    <!--begin::Total-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                P/U
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.precio|currency:'MXN'}}
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                    <!--end::Total-->
+                                                                                    <!--begin::Total-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                Subtotal
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.precio*item.cantidad|currency:'MXN'}}
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                    <!--end::Total-->
+                                                                                   
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="separator separator-dashed my-6"></div>
+
+                                                                    <div class="d-flex flex-stack">
+                                                                        <div class="d-flex align-items-center me-5">
+                                                                            <div class="me-5">
+                                                                                <a class="text-gray-800 fw-700 text-hover-primary fs-6">
+                                                                                    TOTAL
+                                                                                </a>
+                                                                                <span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">
+                                                                                    Monto de Ventas
+                                                                                </span>                                     
+                                                                            </div>                                     
+                                                                        </div>
+                                                                        <div class="d-flex">
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end"
+                                                                            style="margin-right: 3rem;">         
+                                                                                <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                    {{cantidades_almacen.toFixed(2)}} {{venta.unidad}}
+                                                                                </span> 
+                                                                                Cantidades        
+                                                                            </div>    
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end">         
+                                                                                <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                    {{venta.monto_ventas|currency:'MXN'}}
+                                                                                </span> 
+                                                                                Total        
+                                                                            </div>    
+                                                                        </div>         
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Table-->
+                                                                
+                                                            </div>
+                                                            <!--end:Order summary-->
+                                                            <div class="d-flex justify-content-between flex-column no-print mb-10" *ngIf="detalles_camino.length >= 1">
+                                                                <!--begin::Table-->
+                                                                <h3 class="card-title align-items-start flex-column">
+                                                                    <span class="card-label fw-600 text-dark">Detalles de Future Stock:</span>
+                                                                </h3>
+
+                                                                <div class=" mb-9">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                                            <tbody class="fw-semibold">
+                                                                                <!--begin::Products-->
+                                                                                <tr *ngFor="let item of detalles_camino">
+                                                                                    <td class="min-w-200px">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <!--begin::Thumbnail-->
+                                                                                            <a  class="symbol symbol-50px me-5">
+                                                                                                <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.producto_variacion.hxd}"></span>
+                                                                                            </a>
+                                                                                            <!--end::Thumbnail-->
+                                                                                            <!--begin::Title-->
+                                                                                            <div class="fw-semibold">
+                                                                                                <span class="fs-6 fw-600 text-gray-800 me-2" style="font-weight: 500;
+                                                                                                font-size: 1rem !important;">
+                                                                                                   {{item.producto.titulo.substr(0,30)}} - 
+                                                                                                   {{item.producto_variacion.variacion_name}}
+                                                                                                   <ng-container *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                                       {{item.producto_variacion.talla}}
+                                                                                                   </ng-container>
+                                                                                                </span>
+                                                                                                <br>
+                                                                                                <code *ngIf="!item.venta_envio">
+                                                                                                    <span class="text-muted">
+                                                                                                        En camino: &nbsp;
+                                                                                                    </span>
+                                                                                                    {{item.fe_inicio}} 
+                                                                                                    <small class="text-muted">entre</small> 
+                                                                                                    {{item.fe_fin}}
+                                                                                                </code>
+                                                                                                <code class="text-success" *ngIf="item.venta_envio">
+                                                                                                    Unidades enviadas - 
+                                                                                                    <span class="fw-700 text-gray-700">
+                                                                                                        {{item.venta_envio.tracking}}
+                                                                                                    </span>
+                                                                                                </code>
+                                                                                            </div>
+
+                                                                                            <!--end::Title-->
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Product-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                               Almacen
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                No disponible
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Quantity-->
+                                                                                    <!--begin::SKU-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <a [routerLink]="['/inventario/detail',item.producto_variacion._id]">
+                                                                                            <code class="text-warning">
+                                                                                                En camino
+                                                                                            </code>
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                               Cantidad
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.cantidad}}
+                                                                                                <small>{{venta.unidad}}</small>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Quantity-->
+                                                                                    <!--begin::Total-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                P/U
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.precio|currency:'MXN'}}
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                    <!--end::Total-->
+                                                                                    <!--begin::Total-->
+                                                                                    <td class="text-end min-w-100px">
+                                                                                        <div class="m-0">                            
+                                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                Subtotal
+                                                                                            </span>
+                                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                {{item.precio*item.cantidad|currency:'MXN'}}
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                    </td>
+                                                                                    <!--end::Total-->
+                                                                                   
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="separator separator-dashed my-6"></div>
+
+                                                                    <div class="d-flex flex-stack">
+                                                                        <div class="d-flex align-items-center me-5">
+                                                                            <div class="me-5">
+                                                                                <a class="text-gray-800 fw-700 text-hover-primary fs-6">
+                                                                                    TOTAL
+                                                                                </a>
+                                                                                <span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">
+                                                                                    Monto de Ventas
+                                                                                </span>                                     
+                                                                            </div>                                     
+                                                                        </div>
+                                                                        <div class="d-flex">
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end"
+                                                                            style="margin-right: 3rem;">         
+                                                                                <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                    {{cantidades_camino.toFixed(2)}} {{venta.unidad}}
+                                                                                </span> 
+                                                                                Cantidades        
+                                                                            </div>    
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end">         
+                                                                                <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                    {{venta.monto_camino|currency:'MXN'}}
+                                                                                </span> 
+                                                                                Total        
+                                                                            </div>
+                                                                        </div>             
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Table-->
+                                                                
+                                                            </div>
+                                                            <!--end:Order summary-->
+                                                            <div class="d-flex justify-content-between flex-column no-print mb-10" *ngIf="programaciones.length >= 1">
+                                                                <!--begin::Table-->
+                                                                <h3 class="card-title align-items-start flex-column">
+                                                                    <span class="card-label fw-600 text-dark">Detalles de Programaciones:</span>
+                                                                </h3>
+
+                                                                <div class=" mb-9">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                                            <tbody class="fw-semibold">
+                                                                                <!--begin::Products-->
+                                                                                <ng-container  *ngFor="let item of programaciones">
+                                                                                    <tr>
+                                                                                        <!--begin::Product-->
+                                                                                        <td class="min-w-200px">
+                                                                                            <div class="d-flex align-items-center">
+                                                                                                <!--begin::Thumbnail-->
+                                                                                                <a  class="symbol symbol-50px me-5">
+                                                                                                    <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.producto_variacion.hxd}"></span>
+                                                                                                </a>
+                                                                                                <!--end::Thumbnail-->
+                                                                                                <!--begin::Title-->
+                                                                                                <div class="fw-semibold">
+                                                                                                    <span class="fs-6 fw-600 text-gray-800 me-2" style="font-weight: 500;
+                                                                                                    font-size: 1rem !important;">
+                                                                                                       {{item.producto.titulo.substr(0,30)}} - 
+                                                                                                       {{item.producto_variacion.variacion_name}}
+                                                                                                       <ng-container *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                                           {{item.producto_variacion.talla}}
+                                                                                                       </ng-container>
+                                                                                                    </span>
+                                                                                                    <br>
+                                                                                                    <code>
+                                                                                                        <span class="text-muted" *ngIf="item.tipo_detalle =='Programación'">
+                                                                                                            En programación
+                                                                                                        </span>
+                                                                                                        <a [routerLink]="['/programaciones/detail',item.programacion._id]" >
+                                                                                                            #PRO{{item.programacion.createdAt|date:'YYYY'}}-{{item.programacion.serie.toString().padStart(6,'000000')}}: &nbsp;
+                                                                                                        </a>
+                                                                                                        {{item.fe_inicio}} 
+                                                                                                        <small class="text-muted">entre</small> 
+                                                                                                        {{item.fe_fin}}
+                                                                                                    </code>
+                                                                                                </div>
+    
+                                                                                                <!--end::Title-->
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <!--end::Product-->
+                                                                                        <td class="text-end" style="    max-width: 100px !important;">
+                                                                                            <span class="badge bg-danger" *ngIf="item.estado == 'Cancelado'">Cancelado</span>
+                                                                                            <span class="badge bg-light text-gray-600" *ngIf="item.estado == 'En espera'">En espera</span>
+                                                                                            <span class="badge bg-primary" *ngIf="item.estado == 'Procesado'">Procesado</span>
+                                                                                            <span class="badge bg-success" *ngIf="item.estado == 'Realizado'">Realizado</span>
+                                                                                            <span class="badge bg-info" *ngIf="item.estado == 'Finalizado'">Finalizado</span>
+                                                                                        </td>
+                                                                                        
+                                                                                        <td class="text-end min-w-100px">
+                                                                                            <div class="m-0" >                            
+                                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                   Cantidad
+                                                                                                </span>
+                                                                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                    {{item.cantidad}}
+                                                                                                    <small>{{venta.unidad}}</small>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <!--end::Quantity-->
+                                                                                        <!--begin::Total-->
+                                                                                        <td class="text-end min-w-100px">
+                                                                                            <div class="m-0">                            
+                                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                    P/U
+                                                                                                </span>
+                                                                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                    {{item.precio_unidad|currency:'MXN'}}
+                                                                                                </a>
+                                                                                            </div>
+    
+                                                                                        </td>
+                                                                                        <!--end::Total-->
+                                                                                        <!--begin::Total-->
+                                                                                        <td class="text-end min-w-100px">
+                                                                                            <div class="m-0">                            
+                                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                                    Subtotal
+                                                                                                </span>
+                                                                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                    {{item.precio_unidad*item.cantidad|currency:'MXN'}}
+                                                                                                </a>
+                                                                                            </div>
+    
+                                                                                        </td>
+                                                                                        <!--end::Total-->
+                                                                                       
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <div class="m-0">                            
+                                                                                                <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                                                    Pedido
+                                                                                                </span>
+                                                                                                <code *ngIf="item.pedido">
+                                                                                                    <a [routerLink]="['/pedidos/detail',item.pedido._id]" >
+                                                                                                        #PED{{item.pedido.year}}-{{item.pedido.serie.toString().padStart(6,'000000')}}
+                                                                                                    </a>
+                                                                                                </code>
+                                                                                                <code *ngIf="!item.pedido">
+                                                                                                    Procesado en espera de pedido
+                                                                                                </code>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td colspan="4">
+                                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                                                Estado
+                                                                                            </span>
+                                                                                            <div class="progress" *ngIf="item.estado == 'Procesado'" style="border: 1px dashed #ccc;">
+                                                                                                <div class="progress-bar" role="progressbar" aria-label="Segment one" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Procesado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-white" role="progressbar" aria-label="Segment two" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Realizado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-white" role="progressbar" aria-label="Segment three" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Finalizado
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="progress" *ngIf="item.estado == 'Realizado'" style="border: 1px dashed #ccc;">
+                                                                                                <div class="progress-bar" role="progressbar" aria-label="Segment one" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Procesado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-success" role="progressbar" aria-label="Segment two" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Realizado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-white" role="progressbar" aria-label="Segment three" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Finalizado
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="progress" *ngIf="item.estado == 'Finalizado'" style="border: 1px dashed #ccc;">
+                                                                                                <div class="progress-bar" role="progressbar" aria-label="Segment one" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Procesado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-success" role="progressbar" aria-label="Segment two" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Realizado
+                                                                                                </div>
+                                                                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Segment three" style="width: 33.3333333333%" aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                                                                    Finalizado
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </ng-container>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="separator separator-dashed my-6"></div>
+
+                                                                    <div class="d-flex flex-stack">
+                                                                        <div class="d-flex align-items-center me-5">
+                                                                            <div class="me-5">
+                                                                                <a class="text-gray-800 fw-700 text-hover-primary fs-6">
+                                                                                    TOTAL
+                                                                                </a>
+                                                                                <span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">
+                                                                                    Monto de Programaciones
+                                                                                </span>                                     
+                                                                            </div>                                     
+                                                                        </div>
+                                                                        <div class="d-flex">
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end"
+                                                                            style="margin-right: 3rem;">         
+                                                                                    <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                        {{cantidades_programacion.toFixed(2)}} {{venta.unidad}}
+                                                                                    </span> 
+                                                                                    Cantidades        
+                                                                                </div>    
+                                                                            <div class="text-gray-500 fw-bold fs-7 text-end">         
+                                                                                <span class="text-gray-800 fw-700 fs-6 d-block">
+                                                                                    {{venta.monto_programaciones|currency:'MXN'}}
+                                                                                </span> 
+                                                                                Total        
+                                                                            </div>
+                                                                        </div>             
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Table-->
+                                                                
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <div class="notice d-flex align-items-center bg-light-primary rounded border-primary border border-dashed  p-6">
+                                                                <!--begin::Icon-->
+                                                                <span class="svg-icon svg-icon-muted me-5"><svg class="h-50px w-50px" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M20 8H16C15.4 8 15 8.4 15 9V16H10V17C10 17.6 10.4 18 11 18H16C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18H21C21.6 18 22 17.6 22 17V13L20 8Z" fill="currentColor"/>
+                                                                    <path opacity="0.3" d="M20 18C20 19.1 19.1 20 18 20C16.9 20 16 19.1 16 18C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18ZM15 4C15 3.4 14.6 3 14 3H3C2.4 3 2 3.4 2 4V13C2 13.6 2.4 14 3 14H15V4ZM6 16C4.9 16 4 16.9 4 18C4 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>
+                                                                
+                                                                <!--begin::Wrapper-->
+                                                                <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
+                                                                    <!--begin::Content-->
+                                                                    <div class="mb-3 mb-md-0 fw-semibold">
+                                                                        <div class="text-gray-700 pe-7">
+                                                                            <b>Encargado: &nbsp;</b> 
+                                                                            <ng-container *ngIf="venta.cliente_ubicacion.encargado">
+                                                                                <span>{{venta.cliente_ubicacion.encargado}}</span>
+                                                                            </ng-container>
+                                                                            <ng-container *ngIf="!venta.cliente_ubicacion.encargado">
+                                                                                <span>No asignado</span>
+                                                                            </ng-container>
+                                                                        </div>
+                                                    
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <div class="text-gray-700 pe-7">
+                                                                               {{venta.cliente_ubicacion.place_name_es}}
+                                                                                <br>
+                                                                                {{venta.cliente_ubicacion.country}}
+                                                                                <br>
+                                                                                {{venta.cliente_ubicacion.region}}
+                                                                                <br>
+                                                                                {{venta.cliente_ubicacion.place}}
+                                                                                <br>
+                                                                                {{venta.cliente_ubicacion.postcode}}
+                                                                            </div>
+                                                                           
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class=" d-flex flex-column align-items-center justify-content-center" style="margin-top: 4rem;">
+                                                                <img [src]="venta.firma" style="width: 200px;">
+                                                                <small class="text-muted">
+                                                                    <ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+                                                                        <span class="fw-600">{{venta.empresa_rs.razon_social}}</span>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                                        <span class="fw-600">{{venta.cliente.nombres}} {{venta.cliente.apellidos}}</span>
+                                                                    </ng-container>
+                                                                </small>
+                                                            </div>
+                                                            
+                                                        <!--end:Order summary-->
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </div>
+                                                    <!--end::Body-->
+                                                    <!-- begin::Footer-->
+                                                    
+                                                    <!-- end::Footer-->
+                                                </div>
+                                                <!-- end::Wrapper-->
+                                            </div>
+                                        </div>
+
+                                        <ng-container *ngIf="permisos.includes('8006')">
+                                            <div class="card  mb-5 mb-xl-10" *ngIf="transacciones.length >= 1">
+                                                <!--begin::Card header-->
+                                                <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_signin_method">
+                                                    <div class="card-title m-0">
+                                                        <h3 class="fw-700 m-0">Transacciones</h3>
+                                                    </div>
+                                                </div>
+                                                <!--end::Card header-->
+                                            
+                                                <!--begin::Content-->
+                                                <div class="card-body border-top p-9" >
+                                                    <ng-container *ngIf="!load_transacciones">
+                                                        <ng-container *ngFor="let item of transacciones;let lst = last">
+                                                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                                <!--begin::Label-->
+                                                                <div class="d-flex flex-column">
+                                                                    <code class="fs-6">#TRS{{item.year}}-{{item.serie.toString().padStart(6,'000000')}}</code>
+                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                        {{item.createdAt|date:'medium'}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fs-6">
+                                                                        <strong class="text-success" *ngIf="item.monto >= 1">
+                                                                            +{{item.monto|currency:'MXN'}}
+                                                                        </strong>
+                                                                        <strong class="text-danger" *ngIf="item.monto <= 0">
+                                                                            {{item.monto|currency:'MXN'}}
+                                                                        </strong>
+                                                                    </span>
+                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                        Monto
+                                                                    </span>
+                                                                </div>
+                                                                <div class="d-flex flex-column align-items-center justify-content-end">
+                                                                    <span class="badge bg-success" *ngIf="item.estado">Aprobado</span>
+                                                                    <span class="badge bg-danger" *ngIf="!item.estado">Denegado</span>
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Email Address-->
+                                                
+                                                            <!--begin::Separator-->
+                                                            <div *ngIf="!lst" class="separator separator-dashed my-6"></div>
+                                                            <!--end::Separator-->
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div class="py-3 text-center"  *ngIf="load_transacciones">
+                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Content-->
+                                            </div>
+                                        </ng-container>
+                                        
+                                      
+                                        <ng-container *ngIf="permisos.includes('8007')">
+                                            <div class="card  mb-5 mb-xl-10" *ngIf="envios.length >= 1">
+                                                <!--begin::Card header-->
+                                                <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_signin_method">
+                                                    <div class="card-title m-0">
+                                                        <h3 class="fw-700 m-0">Documentos de envio</h3>
+                                                    </div>
+                                                </div>
+                                                <!--end::Card header-->
+                                            
+                                                <!--begin::Content-->
+                                                <div class="card-body border-top p-9" >
+                                                    <ng-container *ngIf="!load_envios">
+                                                        <ng-container *ngFor="let item of envios;let lst = last">
+                                                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                                                <!--begin::Label-->
+                                                                <div id="kt_signin_email">
+                                                                    <div class="fs-6 fw-600 mb-1"> {{item.destinatario}}</div>
+                                                                    <div class="fw-semibold text-gray-600">
+                                                                        {{item.paqueteria}} 
+                                                                        <code class="cursor-pointer" *ngIf="item.file">
+                                                                            - 
+                                                                            <a href="{{item.file}}" target="_blank">
+                                                                                Imagen Adjunta
+                                                                            </a>
+                                                                        </code>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Label-->
+                                                                <div class="text-end">
+                                                                    <span class="badge badge-primary" *ngIf="item.estado == 'Procesado'">
+                                                                        Procesado
+                                                                    </span>
+                                                                    <span class="badge badge-success" *ngIf="item.estado == 'Entregado'">
+                                                                        Entregado
+                                                                    </span>
+                                                                </div>
+                                                                <div class="text-end">
+                                                                    <span class="badge badge-success" *ngIf="item.firma">
+                                                                        Firmado
+                                                                    </span>
+                                                                    <span class="badge badge-light-success" *ngIf="!item.firma">
+                                                                        No firmado
+                                                                    </span>
+                                                                </div>
+                                                                <!--begin::Action-->
+                                                                <div class="text-end">
+                                                                    <ng-container  *ngIf="item.file">
+                                                                        <button *ngIf="!item.firma" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#firmaEnvio'" (click)="openModalFirma(item)">
+                                                                            <i class="bi bi-brush"></i>
+                                                                        </button>
+                                                                    </ng-container>
+    
+                                                                    <button *ngIf="!item.file" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#envioModal-'+item._id">
+                                                                        <i class="bi bi-image"></i>
+                                                                    </button>
+    
+                                                                   
+    
+                                                                    <ng-container *ngIf="item.firma">
+                                                                        <button class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px me-3" (click)="download_envio(item)">
+                                                                            <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M21 22H3C2.4 22 2 21.6 2 21C2 20.4 2.4 20 3 20H21C21.6 20 22 20.4 22 21C22 21.6 21.6 22 21 22ZM13 13.4V3C13 2.4 12.6 2 12 2C11.4 2 11 2.4 11 3V13.4H13Z" fill="currentColor"/>
+                                                                                <path opacity="0.3" d="M7 13.4H17L12.7 17.7C12.3 18.1 11.7 18.1 11.3 17.7L7 13.4Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </button>
+                                                                    </ng-container>
+    
+                                                                    <ng-container *ngIf="item.estado == 'Entregado'">
+                                                                        <ng-container  *ngIf="item.firma">
+                                                                            <ng-container *ngIf="!item.file_entrega">
+                                                                                <button *ngIf="!load_entrega_envio" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px" (click)="download_entrega(item)">
+                                                                                    <i class="bi bi-file-earmark-pdf"></i>
+                                                                                </button>
+                                                                                <button *ngIf="load_entrega_envio" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px" disabled>
+                                                                                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                                                                    <span class="visually-hidden" role="status">Loading...</span>
+                                                                                </button>
+                                                                            </ng-container>
+                                                                            <a *ngIf="item.file_entrega" href="{{item.file_entrega}}" target="_blank" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px">
+                                                                                <i class="bi bi-file-earmark-pdf"></i>
+                                                                            </a>
+                                                                        </ng-container>
+                                                                    </ng-container>
+                                                                   
+                                                                    <div class="modal fade" id="envioModal-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h3 class="modal-title">Subir Foto de Entrega</h3>
+                                                                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                            <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                            <!--end::Svg Icon-->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <input type="file" class="form-control" (change)="fileChangeEventEnvio($event)">
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                    
+                                                                                        Descartar
+                                                                                    </button>
+                                                                    
+                                                                                    <button *ngIf="!load_foto_envio" type="button" class="btn btn-dark" (click)="upload_envio(item._id)">
+                                                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                            <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                        Confirmar
+                                                                                    </button>
+                                                                                    <button *ngIf="load_foto_envio" class="btn btn-dark" type="button" disabled>
+                                                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                        Procesando...
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+                                                                <!--end::Action-->
+                                                            </div>
+                                                            <!--end::Email Address-->
+                                                
+                                                            <!--begin::Separator-->
+                                                            <div *ngIf="!lst" class="separator separator-dashed my-6"></div>
+                                                            <!--end::Separator-->
+                                                        </ng-container>
+                                                    </ng-container>
+                                                    <div class="py-3 text-center"  *ngIf="load_envios">
+                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Content-->
+                                            </div>
+                                        </ng-container>
+
+                             
+
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmación de pedido</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Confirmación de preparación de productos.</p>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_confirmacion" type="button" class="btn btn-dark" (click)="set_estado()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+                <button *ngIf="load_confirmacion" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="cancelacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmación de cancelación</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>La venta será cancelada.</p>
+            </div>
+            <div class="modal-footer">
+
+                
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_cancelacion" type="button" class="btn btn-dark" (click)="set_cancelado()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+                <button *ngIf="load_cancelacion" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="conf-envio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmación de envió</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Código de {{venta.metodo_envio}}:</p>
+                <input type="text" placeholder="Número de seguimiento" class="form-control" name="tracking" [(ngModel)]="tracking">
+            </div>
+            <div class="modal-footer">
+        
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_confirmacion" type="button" class="btn btn-dark" (click)="set_envio()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="load_confirmacion" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="generarPDF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Generar PDF</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Confirmación para generar documento PDF de la orden.</p>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_pdf" type="button" class="btn btn-dark" (click)="init_resumen_response()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+                <button *ngIf="load_pdf" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="firmaEnvio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Firma de Envío</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <canvas #canvas id="myCanvas" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()"   (touchstart)="startDrawing($event)"
+                (touchend)="stopDrawing()" (touchmove)="draw($event)">
+
+                </canvas>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                        </svg>
+                    </span>
+
+                    Descartar
+                </button>
+
+                <button *ngIf="!load_firma_envio" type="button" class="btn btn-dark" (click)="saveFirma()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+                <button *ngIf="load_firma_envio" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

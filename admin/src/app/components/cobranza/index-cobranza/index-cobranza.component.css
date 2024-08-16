@@ -1,0 +1,61 @@
+.ticket td,
+.ticket th,
+.ticket tr,
+.ticket table {
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+.ticket td.description,
+.ticket th.description {
+    width: 100%;
+}
+
+.ticket td.quantity,
+.ticket th.quantity {
+    width: 100%;
+    word-break: break-all;
+}
+
+.ticket td.price,
+.ticket th.price {
+    width: 100%;
+    word-break: break-all;
+}
+
+.centered {
+    text-align: center;
+    align-content: center;
+}
+
+.ticket {
+    width: 100%;
+    width: 100%;
+}
+
+.ticket img {
+    max-width: inherit;
+    width: inherit;
+}
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+}
+
+.border-none{
+    border-bottom: none !important;
+}
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}
+

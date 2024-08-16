@@ -1,0 +1,454 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cobranza
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cobranzas']"  class="pe-3">
+                                            Cobranza
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Detalle de pago</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="data">
+                                <div class="row gy-5 g-xl-10" >
+                                    <!--begin::Col-->
+                                    <div class="col-xl-4" >
+                                        <!--begin::List widget 5-->
+										<div class="card card-flush mb-5">
+                                            <!--begin::Body-->
+                                            <div class="card-header pt-7">
+                                                <!--begin::Title-->
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold text-dark fw-700">Pago</span>
+                                                    <code class="mt-1">#{{pago_completo._id}}</code>
+                                                </h3>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                                <div class="card-toolbar">
+                                                    <img class="w-20px h-20px rounded-1" src="assets/media/flags/mexico.svg" alt=""> 
+                                                </div>
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <div class="card-body pt-5">
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2" *ngIf="pago_completo.tipo_usuario == 'Cliente natural'">
+														Cliente
+													</div>
+													<div class="text-gray-700 fw-semibold fs-6 me-2" *ngIf="pago_completo.tipo_usuario == 'Empresa'">
+														Empresa
+													</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <a *ngIf="pago_completo.tipo_usuario == 'Cliente natural'">
+                                                            <span class="fw-bold fs-6">
+																{{pago_completo.cliente.nombres.split(' ')[0]}} {{pago_completo.cliente.apellidos.split(' ')[0]}}
+															</span>
+                                                        </a>
+														<a *ngIf="pago_completo.tipo_usuario == 'Empresa'">
+                                                            <span class="fw-bold fs-6">
+																{{pago_completo.empresa.razon_social}}
+															</span>
+                                                        </a>
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2" *ngIf="pago_completo.tipo_usuario == 'Cliente natural'">
+														Correo
+													</div>
+													<div class="text-gray-700 fw-semibold fs-6 me-2" *ngIf="pago_completo.tipo_usuario == 'Empresa'">
+														Razón social
+													</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder" *ngIf="pago_completo.tipo_usuario == 'Cliente natural'">
+                                                            {{pago_completo.cliente.email}}
+                                                        </small>
+														<small class="text-gray-900 fw-bolder" *ngIf="pago_completo.tipo_usuario == 'Empresa'">
+                                                            {{pago_completo.empresa_rs.razon_social}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+												<!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Colaborador</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{pago_completo.colaborador.nombres.split(' ')[0]}} {{pago_completo.colaborador.apellidos.split(' ')[0]}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+												<!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+												<!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Metodo</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{pago_completo.metodo}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+												<ng-container *ngIf="pago_completo.sat_uid">
+                                                    <!--begin::Separator-->
+                                                    <div class="separator separator-dashed my-3"></div>
+                                                    <!--end::Separator-->
+                                                    <!--begin::Item-->
+                                                    <div class="d-flex flex-stack" >
+                                                        <!--begin::Section-->
+                                                        <div class="text-gray-700 fw-semibold fs-6 me-2">Comprobante</div>
+                                                        <!--end::Section-->
+                                                        <!--begin::Statistics-->
+                                                        <div class="d-flex align-items-senter">
+                                                            
+                                                            <!--begin::Number-->
+                                                            <small class="text-gray-900 fw-bolder">
+                                                                {{pago_completo.sat_serie}}-{{pago_completo.sat_folio}}
+                                                            </small>
+                                                            <!--end::Number-->
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                                    </div>
+                                                    <!--end::Item-->
+                                                    <!--begin::Separator-->
+                                                    <div class="separator separator-dashed my-3"></div>
+                                                    <!--end::Separator-->
+                                                    <!--begin::Item-->
+                                                    <div class="d-flex flex-stack">
+                                                        <!--begin::Section-->
+                                                        <div class="text-gray-700 fw-semibold fs-6 me-2">Estado SAT</div>
+                                                        <!--end::Section-->
+                                                        <!--begin::Statistics-->
+                                                        <div class="d-flex align-items-senter">
+                                                            
+                                                            <!--begin::Number-->
+                                                            <small class="text-gray-900 fw-bolder">
+                                                                {{pago_completo.sat_estado}}
+                                                            </small>
+                                                            <!--end::Number-->
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                                    </div>
+                                                    <!--end::Item-->
+                                                </ng-container>
+												<!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+												<!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Fecha</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{pago_completo.createdAt|date}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+												<!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+												<!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Aprobación</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Number-->
+                                                        <small class="fw-bolder" [ngClass]="{'text-success': pago_completo.estado == 'Aprobado'}">
+                                                            {{pago_completo.estado}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+												<ng-container *ngIf="pago_completo.estado == 'Aprobado'">
+                                                    <!--begin::Separator-->
+                                                    <div class="separator separator-dashed my-3"></div>
+                                                    <!--end::Separator-->
+                                                    <!--begin::Item-->
+                                                    <div class="d-flex flex-stack" >
+                                                        <!--begin::Section-->
+                                                        <div class="text-gray-700 fw-semibold fs-6 me-2">Fecha a.</div>
+                                                        <!--end::Section-->
+                                                        <!--begin::Statistics-->
+                                                        <div class="d-flex align-items-senter">
+                                                            <!--begin::Number-->
+                                                            <small class="fw-bolder">
+                                                                {{pago_completo.aprobacion|date}}
+                                                            </small>
+                                                            <!--end::Number-->
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                                    </div>
+                                                    <!--end::Item-->
+                                                </ng-container>
+												<!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+												<!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Monto</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                        	{{pago_completo.monto|currency:'MXN'}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+												<!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Tipo</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                        	{{pago_completo.tipo_pago}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end::Security recent alerts-->
+                                        <!--end::List widget 5-->
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-8" >
+                                        <!--begin::Table Widget 5-->
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Header-->
+                                            <div class="card-header card-header-stretch">
+                                                <!--begin::Title-->
+                                                <div class="card-title">
+                                                    <h3 class="m-0 text-gray-900 fw-700">Pagos asignados</h3>
+                                                </div>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                               
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <!--end::Header-->
+                                            <!--begin::Body-->
+                                          
+                                            
+                                            <div class="card-body" style="max-height: 500px;overflow: hidden;overflow-y: auto;">
+                                                <div>
+                                                    <div class="table-responsive" *ngIf="pagos.length >= 1">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                                            <!--begin::Table head-->
+                                                            <thead>
+                                                                <tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
+                                                                    <th class="p-0 w-200px w-xxl-450px"></th>
+                                                                    <th class="p-0 w-200px w-xxl-450px"></th>
+                                                                    <th class="p-0 w-50px"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <!--end::Table head-->
+                                                            <!--begin::Table body-->
+                                                            <tbody>
+                                                                <ng-container *ngFor="let item of pagos">
+                                                                    <tr>
+                                                                        <td style="padding-left: 0rem;">
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-dark fw-bold text-hover-primary mb-1 fs-6 fw-600">
+                                                                                    #{{item.venta.year}}-{{item.venta.serie.toString().padStart(6,'000000')}}
+                                                                                </a>
+                                                                                <span class="text-muted fw-semibold d-block fs-7">{{item.venta.createdAt|date}}</span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="text-gray-800 fw-bold d-block mb-1 fs-6">
+                                                                                {{item.monto|currency:'MXN'}}
+                                                                            </span>
+                                                                            <span class="fw-semibold text-gray-400 d-block">Monto</span>
+                                                                        </td>
+																		<td class="text-end">
+																			<a class="btn btn-sm btn-light" [routerLink]="['/ventas/detail',item.venta._id]">Venta</a>
+																		</td>
+                                                                    </tr>
+                                                                    
+                                                                </ng-container>
+                                                               
+                                                            </tbody>
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                    <ng-container  *ngIf="pagos.length == 0">
+                                                        <div class="mt-10 text-center mb-7">
+                                                            <!--begin::Title-->
+                                                           
+                                                            <!--end::Title-->
+                                                            <small class="text-muted">— Tom Hopkins</small>
+                                                            <!--begin::Illustration-->
+                                                            <div class="py-5 text-center">
+                                                                <img src="assets/images/1.svg" class="theme-light-show w-200px" alt="">
+                                                            </div>
+                                                            <!--end::Illustration-->
+                                                            <h3 class="fw-semibold text-gray-800 lh-lg">
+                                                                «Nunca veo el fracaso como un fracaso, 
+                                                                <br>
+                                                                <span class="fw-bolder">sino solo como el juego que debo jugar y ganar.»</span>
+                                                            </h3>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end::Table Widget 5-->
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!data">
+                                <div class="card">
+                                    <div class="card-body pt-15">
+                                        <div class="text-center mt-20 mb-15">
+                                            <!--begin::Title-->
+                                            <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                            <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                            <!--end::Title-->
+                                            <!--begin::Text-->
+                                            <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                            <!--end::Text-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                       
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

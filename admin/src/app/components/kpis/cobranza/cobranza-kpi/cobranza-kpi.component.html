@@ -1,0 +1,120 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">KPI´s
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/reportes/cobranza']"  class="pe-3">
+                                            KPI's de cobranza
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Pagos semanales por mes</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush h-xl-100">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800">Pagos semanales por mes</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6">Indice de estadisticas de cobranza</span>
+                                        </h3>
+                                        <!--end::Title-->
+                                        <!--begin::Actions-->
+                                        <div class="card-toolbar">
+                                            <!--begin::Filters-->
+                                            <!--begin::Filters-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-2">
+                                        <!--begin::Table-->
+                                        <div class="mb-10 d-flex justify-content-between align-items-start">
+                                            <div class="col-4">
+                                                <label class="form-label required">Periodo</label>
+                                                <div class="input-group mb-3">
+                                                    <input class="form-control form-control-solid" type="month" name="filter" [(ngModel)]="filter"/>
+                                                    <button type="button" class="btn btn-dark" (click)="init_charts()">Buscar</button>
+                                                  </div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        <!--end::Table-->
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h4 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold text-gray-800">Cobranza semanal</span> <br>
+                                                    <span class="text-gray-400 mt-1 fw-semibold fs-6">Monto cobrado por semana del mes consultado</span>
+                                                </h4>
+
+                                                <div id="content_apexcharts_1">
+                                                    <div id="kt_apexcharts_1" style="height: 350px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

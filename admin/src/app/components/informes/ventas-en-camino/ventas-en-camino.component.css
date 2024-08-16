@@ -1,0 +1,12 @@
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+td{
+    padding: 0.75rem 1rem !important;
+    background: white !important;
+}
+
+.border-bottomz{
+    border-bottom: 1px #dee2e6 solid !important;
+}

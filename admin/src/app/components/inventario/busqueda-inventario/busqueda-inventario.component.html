@@ -1,0 +1,241 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inventario
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/inventario']"  class="pe-3">
+                                            Inventario
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Historial de color</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush h-xl-100">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800">Inventario general</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit, impedit.</span>
+                                        </h3>
+                                        <!--end::Title-->
+                                        <!--begin::Actions-->
+                                        <div class="card-toolbar">
+                                            <button class="btn fw-bold btn-dark" (click)="buscar()">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Aplicar busqueda
+                                            </button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-2">
+                                        <div class="row">
+                                            <div class="col-12 mb-7">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <!--begin::Label-->
+                                                        <label class="fs-6 fw-semibold" style="font-size: 1.2rem;margin-bottom: 0rem;">
+                                                            Periodo
+                                                            <br>
+                                                            <small class="text-muted fs-7">Periodo a consultar la entrada de rollos</small>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-md-8" >
+                                                        <input type="month" class="form-control form-control-solid" name="periodo" [(ngModel)]="periodo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div *ngIf="productos.length >= 1">
+                                                    <!--begin::Suggestions-->
+                                                    <div data-kt-search-element="suggestions" class="d-none">
+                                                        <!--begin::Illustration-->
+                                                        <div class="text-center px-4">
+                                                            <img class="mw-100 mh-200px" alt="image" src="/html/metronic/docs/assets/media/illustrations/sigma-1/1.png">
+                                                        </div>
+                                                        <!--end::Illustration-->
+                                                    </div>
+                                                    <!--end::Suggestions-->
+                                                    <!--begin::Results-->
+                                                    <div class="">
+                                                        <div class="fv-row row mb-5">
+                                                            <!--begin::Col-->
+                                                            <div class="col-md-4">
+                                                                <!--begin::Label-->
+                                                                <label class="fs-6 fw-semibold" style="font-size: 1.2rem;margin-bottom: 0rem;">Producto</label> <br>
+                                                                <small class="text-primary" style="cursor: pointer;" (click)="init_productos('Todos')">Restablecer</small>
+                                                                <!--end::Label-->
+                                                            </div>
+                                                            <!--end::Col-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-md-8" >
+                                                                <input type="text" class="form-control form-control-solid" placeholder="Buscar producto" name="filtro_producto" [(ngModel)]="filtro_producto" id="str_producto" (keyup)="search_productos()">
+                                                            </div>
+                                                            <!--end::Col-->
+            
+                                                            <div class="col-md-12">
+                                                                <div class="py-5" *ngIf="productos.length >= 1">
+                                                                    <!--begin::Suggestions-->
+                                                                    <div data-kt-search-element="suggestions" class="d-none">
+                                                                        <!--begin::Illustration-->
+                                                                        <div class="text-center px-4">
+                                                                            <img class="mw-100 mh-200px" alt="image" src="/html/metronic/docs/assets/media/illustrations/sigma-1/1.png">
+                                                                        </div>
+                                                                        <!--end::Illustration-->
+                                                                    </div>
+                                                                    <!--end::Suggestions-->
+                                                                    <!--begin::Results-->
+                                                                    <div class="">
+                                                                        <!--begin::Users-->
+                                                                        <div class="mh-300px scroll-y me-n5 pe-5">
+                                                                            <!--begin::User-->
+                                                                            <ng-container *ngFor="let item of productos">
+                                                                                <ng-container>
+                                                                                    <div class="d-flex p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': producto_id == item.producto._id}" (click)="selected_producto(item)">
+                                                                                        <!--begin::Avatar-->
+                                                                                        <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                            <div class="d-flex align-items-center">
+                                                                                                <a class="symbol symbol-50px" style="margin-right: 1rem;">
+                                                                                                    <span class="symbol-label" style="background-image:url({{url}}/resources/products/{{item.producto.portada}});"></span>
+                                                                                                </a>
+                                                                                                <div class="d-flex justify-content-start flex-column">
+                                                                                                    <a class="text-gray-800 text-hover-primary fs-6 fw-bold text-1" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto.titulo}}" (click)="selected_producto(item)" style="cursor: pointer;font-size: 1rem!important;">
+                                                                                                        {{item.producto.titulo}}
+                                                                                                    </a>
+                                                                                                    <div class="symbol-group symbol-hover flex-grow-1 min-w-100px pe-2">
+                                                                  
+                                                                                                        <!--begin::User-->
+                                                                                                        <div class="symbol symbol-circle symbol-25px" *ngFor="let subitem of item.colores" style="border: 1px dashed #ccc;">
+                                                                                                            <div style="cursor: pointer;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': subitem.hxd}"  placement="top" tooltipClass="bg_toolip" ngbTooltip="{{subitem.variante}}">
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                        <!--end::User-->
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                
+                                                                                            <div class="text-right">
+                                                                                                <span class="badge badge-success" *ngIf="item.rollos_activos >= 1">En stock</span>
+                                                                                                <span class="badge badge-danger" *ngIf="item.rollos_activos == 0">Agotado</span>
+                                                                                            </div>
+                                                                                           
+                                                                                            
+                                                                                        </div>
+                                                                                        <!--end::Avatar-->
+                                                                                    </div>
+                                                                                    <!--end::User-->
+                                                                                </ng-container>
+
+                                                                                
+                                                                            </ng-container>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                        <!--end::Users-->
+                                                                    </div>
+                                                                    <!--end::Results-->
+                                                                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <!--end::Results-->
+                                                    <div *ngIf="colores.length >= 1" class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9">
+                                                        <!--begin::Col-->
+                                                        <div class="col" *ngFor="let item of colores">
+                                                            <!--begin::Option-->
+                                                            <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" [ngClass]="{'active': producto_color_id == item._id}">
+                                                                <!--begin::Radio-->
+                                                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                    <input id="radio-color-{{item._id}}" class="form-check-input" type="radio" name="discount_option" (change)="selected_color(item)" />
+                                                                </span>
+                                                                <!--end::Radio-->
+                                                                <!--begin::Info-->
+                                                                <span class="d-flex ms-5">
+                                                                    <a class="symbol symbol-50px">
+                                                                        <span class="symbol-label" style="width: 25px !important;height: 25px !important;margin-right: .8rem;" [ngStyle]="{'background': item.hxd}"></span>
+                                                                    </a>
+                                                                    <span class="fs-4 fw-bold text-gray-800 d-block">{{item.variante}}</span>
+                                                                </span>
+                                                                <!--end::Info-->
+                                                            </label>
+                                                            <!--end::Option-->
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

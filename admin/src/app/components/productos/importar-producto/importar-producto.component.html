@@ -1,0 +1,217 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Productos
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3">
+                                    <a [routerLink]="['/manufactura/productos/ropas']"  class="pe-3">
+                                        Productos
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item pe-3">Importación</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <!--begin::Table Widget 3-->
+                        <div class="card h-xl-100">
+                            <!--begin::Card header-->
+                            <div class="card-header py-7">
+                                <!--begin::Tabs-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Importación de productos</span>
+                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                </h3>
+                                <!--end::Tabs-->
+
+                                <!--begin::Create campaign button-->
+                                <div class="card-toolbar d-none d-sm-block">
+                                    <div class="card-toolbar d-none d-sm-block">
+                                        <a  href="/assets/docs/Productos.xlsx" class="btn btn-dark" style="background: #186627 !important">
+                                            <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21 22H3C2.4 22 2 21.6 2 21C2 20.4 2.4 20 3 20H21C21.6 20 22 20.4 22 21C22 21.6 21.6 22 21 22ZM11 6.59998V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V6.59998H11Z" fill="currentColor"/>
+                                                <path opacity="0.3" d="M7 6.59999H17L12.7 2.3C12.3 1.9 11.7 1.9 11.3 2.3L7 6.59999Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                            Descargar modelo XLS
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--end::Create campaign button-->
+                            </div>
+                            <div class="card-body pt-3">
+                                <div class="d-flex justify-content-between mt-5" style="    margin-bottom: 1rem !important;">
+                                    <div>
+                                        <div class="input-group">
+                                            <input id="input_xls" type="file" class="form-control form-control-solid form-control-sm mb-3" (change)="upload_xls($event)" accept=".xls,.xlsx">
+                                            <div class="input-group-append">
+                                              <button class="btn btn-danger btn-sm" (click)="remove_xls()" style="border-radius: 0px !important;">Quitar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="align-items-center">
+                                        
+                                    </div>
+                                </div>
+                                <!--begin::Seprator-->
+                                <div class="separator separator-dashed my-5"></div>
+                                <!--end::Seprator-->
+                                <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5" *ngIf="error_xls">
+                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                        <h5 class="mb-1">Consola de errores</h5>
+                                        <span>{{error_xls}}</span>
+                                    </div>
+                                </div>
+                                <div class="alert alert-dismissible bg-light-success border border-success border-dashed d-flex flex-column flex-sm-row w-100 p-5" *ngIf="!error_xls && data_xls.length >= 1">
+                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                        <h5 class="mb-1" style="color: #4c6c5f">Validado correctamente.</h5>
+                                        <span>Se leyeron {{data_xls.length}} registros en el XLS.</span>
+                                    </div>
+                                </div>
+                                <!--begin::Input group-->
+
+                                <div class="table-responsive mt-7" *ngIf="data_xls.length >= 1">
+                                    <table class="table table-bordered mb-0">
+                                        <thead>
+                                            <tr class="fw-bold fs-6 text-gray-800">
+                                                <th style="padding-left: 0.75rem !important;min-width: 200px !important;">Título</th>
+                                                <th style="min-width: 200px !important">Tipo</th>
+                                                <th style="min-width: 200px !important">Genero</th>
+                                                <th style="min-width: 200px !important">Categoria</th>
+                                                <th style="min-width: 200px !important">Subcategoria</th>
+                                                <th style="min-width: 200px !important">Estado</th>
+                                                <th style="min-width: 200px !important">Descripcion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of data_xls;let idx = index">
+                                                <td style="padding-left: 0.75rem !important;">{{item.titulo}}</td>
+                                                <td class="p-0">
+                                                    <select [(ngModel)]="item.tipo" (change)="set_tipo(item.tipo,idx)" class="form-select form-select-sm" style="border: none !important;">
+                                                        <option value="Ropa">Ropa</option>
+                                                        <option value="Tela">Tela</option>
+                                                    </select>
+                                                </td>
+                                                <td class="p-0">
+                                                    <select [(ngModel)]="item.genero" class="form-select form-select-sm" style="border: none !important;">
+                                                        <option value="Masculino">Masculino</option>
+                                                        <option value="Femenino">Femenino</option>
+                                                    </select>
+                                                </td>
+                                                <td class="p-0">
+                                                    <select [(ngModel)]="item.categoria" class="form-select form-select-sm" (change)="set_categoria(item.categoria,idx)" style="border: none !important;">
+                                                        <option value="">Seleccionar</option>
+                                                        <option [value]="item.categoria" *ngFor="let item of categorias[idx]">
+                                                            {{item.categoria}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td class="p-0">
+                                                    <select [(ngModel)]="item.subcategoria" class="form-select form-select-sm" style="border: none !important;">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="Masculino" *ngFor="let item of subcategorias_active[idx]">
+                                                            {{item}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td class="p-0">
+                                                    <select [(ngModel)]="item.estado" class="form-select form-select-sm" style="border: none !important;">
+                                                        <option value="Publicado">Publicado</option>
+                                                        <option value="Borrador">Borrador</option>
+                                                    </select>
+                                                </td>
+                                                <td class="p-0">
+                                                    <input [(ngModel)]="item.descripcion" type="text" class="form-control form-control-sm" style="border: none !important;">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ng-container *ngIf="data_xls.length == 0">
+                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                        <!--begin::Logo-->
+                                        <a  class="pt-lg-20 mb-12">
+                                            <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/logos/default.svg" class="theme-light-show h-40px h-lg-50px">    
+                                        </a> 
+                                        <!--end::Logo-->
+                                
+                                            
+                                        <!--begin::Logo-->
+                                        <h5 class="fw-bold fs-2qx text-gray-800 mb-10">No se encontraron datos.</h5>
+                                        <!--end::Logo-->
+                                    
+                                        <!--begin::Message-->
+                                        <div class="fw-semibold fs-5 text-muted mb-15">
+                                            No se pudo encontrar ninguna categoría <br> intenta con otro filtro.
+                                        </div>      
+                                        <!--end::Message-->
+                                
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <!--end::Card body-->
+                            <div class="card-footer"  *ngIf="data_xls.length >= 1">
+                                <button *ngIf="!load_importar" type="button" class="btn btn-dark" (click)="validate()">
+                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                    Importar
+                                </button>
+                                <button *ngIf="load_importar" class="btn btn-dark" type="button" disabled>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    Procensando...
+                                </button>
+                            </div>
+                        </div>
+                        <!--end::Table Widget 3-->
+
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

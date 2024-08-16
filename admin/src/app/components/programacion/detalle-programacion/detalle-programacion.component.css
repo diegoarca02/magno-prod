@@ -1,0 +1,14 @@
+.btn_pendiente{
+    background: #FFC700 !important;
+    color: black;
+}
+
+.btn_realizado{
+    background: #3E97FF !important;
+    color: white;
+}
+
+.btn_finalizado{
+    background: #50cd89 !important;
+    color: white;
+}

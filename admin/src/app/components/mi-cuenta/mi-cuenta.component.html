@@ -1,0 +1,370 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Mi cuenta
+                            <!--begin::Separator--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="load_data">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-700 fs-3 mb-1">Mi cuenta</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7">Información de cuenta de colaborador.</span>
+                                                </h3>
+                                                <div class="card-toolbar">
+                                                    <button *ngIf="!load_btn" type="button" class="btn btn-dark" (click)="actualizar()">
+                                                        <span class="svg-icon svg-icon-muted svg-icon-3 me-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+
+                                                        Guardar cambios
+                                                    </button>
+                                                    <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                        Procensando...
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!--begin::Card header-->
+                                             <!--begin::Card body-->
+                                             <div class="card-body p-9">
+                                                     
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Avatar</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8">
+                                                        <!--begin::Image input-->
+                                                        <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" style="background-image: url({{str_portada}})">
+                                                            <!--begin::Preview existing avatar-->
+                                                            <div class="image-input-wrapper w-150px h-150px"></div>
+                                                            <!--end::Preview existing avatar-->
+                                                            <!--begin::Label-->
+                                                            <label for="input-edit-portada" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" title="Subir portada" style="cursor: pointer;
+                                                            position: absolute;
+                                                            right: -10px;
+                                                            top: -10px;">
+                                                                <i class="bi bi-pencil-fill fs-7"></i>
+                                                                <!--begin::Inputs-->
+                                                                <input id="input-edit-portada" type="file" name="avatar" accept=".png, .jpg, .jpeg, .webp" (change)="fileChangeEvent($event)" style="display: none;" />
+                                                                <!--end::Inputs-->
+                                                            </label>
+                                                            <!--end::Label-->
+                                                         
+                                                             <!--begin::Remove-->
+                                                            <span *ngIf="str_portada != str_static_portada" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" style="display: block;position: absolute;
+                                                            right: -10px;
+                                                            bottom: -5px;" (click)="cancelPortada()">
+                                                                <i class="bi bi-x fs-2"></i>
+                                                            </span>
+                                                            <!--end::Remove-->
+                                                        </div>
+                                                        <!--end::Image input-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fs-7">
+                                                            Configure la imagen en miniatura del producto. Solo se aceptan archivos de imagen *.png, *.jpg y *.jpeg
+                                                            <br>
+                                                            Maximo 2MB por imagen
+                                                        </div>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nombres y apellidos</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-6 fv-row">
+                                                                <input type="text" readonly [value]="colaborador.nombres" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Nombres" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-6 fv-row">
+                                                                <input type="text" readonly [value]="colaborador.apellidos" class="form-control form-control-lg form-control-solid" placeholder="Apellidos"  />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Correo electrónico</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" readonly [value]="colaborador.email" class="form-control form-control-lg form-control-solid" placeholder="john.doe@domain.cpm" />
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="required">Telefono</span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <select class="form-select" id="select-phone" data-control="select2" data-placeholder="Prefijo">
+                                                                    <option></option>
+                                                                    <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="tel" name="telefono" [(ngModel)]="colaborador.telefono" class="form-control form-control-lg" placeholder="(+51) 335987 741523" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">INE</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" name="ine" [(ngModel)]="colaborador.ine" class="form-control form-control-lg form-control-solid" placeholder="Documento nacional"/>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nacimiento</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <!--begin::Input-->
+                                                        <input type="date" readonly [value]="colaborador.nacimiento" class="form-control form-control-lg form-control-solid"/>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">País</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <select id="kt_docs_select2_country" aria-label="Select a Country" data-control="select2" data-placeholder="Seleccionar país" class="form-select form-select-solid form-select-lg fw-semibold" data-allow-clear="true">
+                                                            <option value="">Select a Country...</option>
+                                                            <option data-kt-select2-country="assets/media/flags/argentina.svg" value="Argentina">Argentina</option>
+                                                            <option data-kt-select2-country="assets/media/flags/bolivia.svg" value="Bolivia">Bolivia</option>
+                                                            <option data-kt-select2-country="assets/media/flags/brazil.svg" value="Brazil">Brazil</option>
+                                                            <option data-kt-select2-country="assets/media/flags/chile.svg" value="Chile">Chile</option>
+                                                            <option data-kt-select2-country="assets/media/flags/colombia.svg" value="Colombia">Colombia</option>
+                                                            <option data-kt-select2-country="assets/media/flags/costa rica.svg" value="Costa Ric">Costa Rica</option>
+                                                            <option data-kt-select2-country="assets/media/flags/cuba.svg" value="Cuba">Cuba</option>
+                                                            <option data-kt-select2-country="assets/media/flags/dominican republic.svg" value="Dominican Republic">Dominican Republic</option>
+                                                            <option data-kt-select2-country="assets/media/flags/ecuador.svg" value="Ecuador">Ecuador</option>
+                                                            <option data-kt-select2-country="assets/media/flags/el salvador.svg" value="El Salvador">El Salvador</option>
+                                                            <option data-kt-select2-country="assets/media/flags/guatemala.svg" value="Guatemala">Guatemala</option>
+                                                            <option data-kt-select2-country="assets/media/flags/mexico.svg" value="Mexico">Mexico</option>
+                                                            <option data-kt-select2-country="assets/media/flags/nicaragua.svg" value="Nicaragua">Nicaragua</option>
+                                                            <option data-kt-select2-country="assets/media/flags/panama.svg" value="Panama">Panama</option>
+                                                            <option data-kt-select2-country="assets/media/flags/paraguay.svg" value="Paraguay">Paraguay</option>
+                                                            <option data-kt-select2-country="assets/media/flags/peru.svg" value="Peru">Peru</option>
+                                                            <option data-kt-select2-country="assets/media/flags/portugal.svg" value="Portugal">Portugal</option>
+                                                            <option data-kt-select2-country="assets/media/flags/puerto rico.svg" value="Puerto Rico">Puerto Rico</option>
+                                                            <option data-kt-select2-country="assets/media/flags/spain.svg" value="Spain">Spain</option>
+                                                            <option data-kt-select2-country="assets/media/flags/united states.svg" value="United States">United States</option>
+                                                            <option data-kt-select2-country="assets/media/flags/uruguay.svg" value="Uruguay">Uruguay</option>
+                                                            <option data-kt-select2-country="assets/media/flags/venezuela.svg" value="Venezuela">Venezuela</option>
+                                               
+                                                        </select>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Dirección</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" readonly [value]="colaborador.direccion" name="website" class="form-control form-control-lg form-control-solid" placeholder="Dirección"/>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                               
+                                                <!--begin::Input group-->
+                                                <div class="row mb-0">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Rol</label>
+                                                    <!--begin::Label-->
+                                                    <!--begin::Label-->
+                                                    <div class="col-lg-8 d-flex align-items-center">
+                                                        <select disabled [value]="colaborador.rol" class="form-control form-control-lg form-control-solid">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="{{item.rol}}" *ngFor="let item of roles">{{item.rol}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <!--begin::Label-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                            <!--end::Card body-->
+                                        </div>
+
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-700 fs-3 mb-1">
+                                                        Credenciales
+                                                    </span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7">Seguridad de acceso a cuenta de colaborador.</span>
+                                                </h3>
+                                                <div class="card-toolbar">
+                                                    <button *ngIf="!load_password" class="btn btn-dark" (click)="updatePassword()">
+                                                        <span class="svg-icon svg-icon-muted svg-icon-3 me-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Guardar cambios
+                                                    </button>
+                                                    <button *ngIf="load_password" class="btn btn-dark" type="button" disabled>
+                                                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                        Procensando...
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Content-->
+                                            <div id="kt_account_settings_connected_accounts" class="collapse show">
+                                                <!--begin::Card body-->
+                                                <div class="card-body p-9">
+                                                    
+                                                    <!--begin::Items-->
+                                                    <div class="py-2">
+                                                        <!--begin::Item-->
+                                                        <div class="d-flex flex-stack">
+                                                            <div class="d-flex">
+                                                                <div class="d-flex flex-column">
+                                                                    <a class="fs-5 text-dark text-hover-primary fw-bold">Contraseña</a>
+                                                                    <div class="fs-6 fw-semibold text-gray-400">Cambiar clave de acceso a cuenta.</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex justify-content-end">
+                                                                <input type="number" class="form-control" name="new_password" [(ngModel)]="new_password" placeholder="Nueva contraseña">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Items-->
+                                                </div>
+                                                <!--end::Card body-->
+                                            </div>
+                                            <!--end::Content-->
+                                        </div>
+        
+                                       
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

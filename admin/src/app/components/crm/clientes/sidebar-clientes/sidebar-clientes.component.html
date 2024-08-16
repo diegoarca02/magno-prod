@@ -1,0 +1,514 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">CRM
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/clientes']"  class="pe-3">Clientes</a></li>
+                                <li class="breadcrumb-item pe-3">Dashboard</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Access Token: {{user.token_number}} ({{user.token_date|date}})</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="data">
+                                <div class="card mb-5 mb-xl-10" >
+                                    <div class="card-body pt-9 pb-0" >
+                                        <!--begin::Details-->
+                                        <div class="d-flex flex-wrap flex-sm-nowrap mb-3" >
+                                            
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1" >
+                                                <!--begin::Title-->
+                                                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2" >
+                                                    <!--begin::User-->
+                                                    <div class="d-flex flex-column" >
+                                                        <!--begin::Name-->
+                                                        <div class="d-flex align-items-center mb-2" >
+                                                            <a class="text-gray-900 text-hover-primary fs-2 fw-700 me-1 fw-700">
+                                                                {{cliente.nombres}} {{cliente.apellidos}}
+                                                            </a>
+                                                            
+                                                            <a class="badge badge-secondary fw-bold ms-2 fs-8 py-1 px-3" *ngIf="cliente.tipo == 'Prospecto'">
+                                                                Prospecto
+                                                            </a>
+                                                            <a class="badge badge-warning text-dark fw-bold ms-2 fs-8 py-1 px-3" *ngIf="cliente.tipo == 'Socio'">
+                                                                Socio
+                                                            </a>
+                                                        </div>
+                                                        <!--end::Name-->
+                                                        <!--begin::Info-->
+                                                        <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2" >
+                                                            <a  class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                                                <!--begin::Svg Icon | path: icons/duotune/communication/com006.svg-->
+                                                                <span class="svg-icon svg-icon-4 me-1">
+                                                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path opacity="0.3" d="M16.5 9C16.5 13.125 13.125 16.5 9 16.5C4.875 16.5 1.5 13.125 1.5 9C1.5 4.875 4.875 1.5 9 1.5C13.125 1.5 16.5 4.875 16.5 9Z" fill="currentColor"></path>
+                                                                        <path d="M9 16.5C10.95 16.5 12.75 15.75 14.025 14.55C13.425 12.675 11.4 11.25 9 11.25C6.6 11.25 4.57499 12.675 3.97499 14.55C5.24999 15.75 7.05 16.5 9 16.5Z" fill="currentColor"></path>
+                                                                        <rect x="7" y="6" width="4" height="4" rx="2" fill="currentColor"></rect>
+                                                                    </svg>
+                                                                </span>
+                                                                <!--end::Svg Icon-->
+                                                                <small *ngIf="cliente.telefono">{{cliente.prefijo}} {{cliente.telefono}}</small>
+                                                                <small *ngIf="!cliente.telefono" class="text-primary">
+                                                                    <a [routerLink]="['/clientes',cliente._id]">Actualizar telefono</a>
+                                                                </small>
+                                                            </a>
+                                                            <a  class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+                                                            <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
+                                                                <span class="svg-icon svg-icon-4 me-1">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path opacity="0.3" d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z" fill="currentColor"></path>
+                                                                        <path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="currentColor"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                <!--end::Svg Icon-->
+                                                                <small *ngIf="cliente.pais">{{cliente.pais}}</small>
+                                                                <small *ngIf="!cliente.pais" class="text-primary">
+                                                                    <a [routerLink]="['/clientes',cliente._id]">Actualizar país</a>
+                                                                </small>
+                                                            </a>
+                                                            <a  class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+                                                            <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
+                                                                <span class="svg-icon svg-icon-4 me-1">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="currentColor"></path>
+                                                                        <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="currentColor"></path>
+                                                                    </svg>
+                                                                </span>
+                                                                <!--end::Svg Icon-->
+                                                                <ng-container *ngIf="!cliente.email_verify">
+                                                                    <small *ngIf="cliente.email">{{cliente.email}}</small>
+                                                                    <small *ngIf="!cliente.email" class="text-primary">Actualizar email</small>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="cliente.email_verify">
+                                                                    <small class="text-success" *ngIf="cliente.email">
+                                                                        {{cliente.email}}
+                                                                        <span class="svg-icon svg-icon-5 svg-icon-success ms-n1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z" fill="currentColor"/>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </small>
+                                                                </ng-container>
+                                                            </a>
+                                                        </div>
+                                                        <!--end::Info-->
+                                                    </div>
+                                                    <!--end::User-->
+                                                    <!--begin::Actions-->
+                                                    <div class="d-flex my-4" >
+                                                        
+                                                        <!-- <a class="btn btn-dark me-2" data-bs-toggle="modal" [attr.data-bs-target]="'#restablecerModal'">
+                                                            <span class="svg-icon svg-icon-muted svg-icon-md"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="currentColor"/>
+                                                                <path d="M14.854 11.321C14.7568 11.2282 14.6388 11.1818 14.4998 11.1818H14.3333V10.2272C14.3333 9.61741 14.1041 9.09378 13.6458 8.65628C13.1875 8.21876 12.639 8 12 8C11.361 8 10.8124 8.21876 10.3541 8.65626C9.89574 9.09378 9.66663 9.61739 9.66663 10.2272V11.1818H9.49999C9.36115 11.1818 9.24306 11.2282 9.14583 11.321C9.0486 11.4138 9 11.5265 9 11.6591V14.5227C9 14.6553 9.04862 14.768 9.14583 14.8609C9.24306 14.9536 9.36115 15 9.49999 15H14.5C14.6389 15 14.7569 14.9536 14.8542 14.8609C14.9513 14.768 15 14.6553 15 14.5227V11.6591C15.0001 11.5265 14.9513 11.4138 14.854 11.321ZM13.3333 11.1818H10.6666V10.2272C10.6666 9.87594 10.7969 9.57597 11.0573 9.32743C11.3177 9.07886 11.6319 8.9546 12 8.9546C12.3681 8.9546 12.6823 9.07884 12.9427 9.32743C13.2031 9.57595 13.3333 9.87594 13.3333 10.2272V11.1818Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                            Restablecer clave
+                                                        </a> -->
+                                                        <!--begin::Menu-->
+                                                        <div class="me-0" >
+                                                            <a [routerLink]="['/ventas/create']" class="btn btn-sm btn-dark me-3" (click)="select_cliente()">
+                                                                <i class="bi bi-bag"></i>
+                                                                Nueva Venta
+                                                            </a>
+                                                        </div>
+                                                        <!--end::Menu-->
+                                                    </div>
+                                                    <!--end::Actions-->
+                                                </div>
+                                                <!--end::Title-->
+                                                <!--begin::Stats-->
+                                                <div class="d-flex flex-wrap flex-stack" *ngIf="cliente.credito_total>= 1">
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex flex-column flex-grow-1 pe-8" >
+                                                        <!--begin::Stats-->
+                                                        <div class="d-flex flex-wrap" >
+                                                            <!--begin::Stat-->
+                                                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" >
+                                                                <!--begin::Number-->
+                                                                <div class="d-flex align-items-center" >
+                                                                   
+                                                                    <!--end::Svg Icon-->
+                                                                    <div class="fs-2 fw-bold counted fw-600">
+                                                                        <a style="cursor: pointer;">
+                                                                            {{cliente.credito_total|currency:'MXN'}}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Number-->
+                                                                <!--begin::Label-->
+                                                                <div class="d-flex  justify-content-between">
+                                                                    <code class="cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#creditoAmpliacionModal'" (click)="openModalCredito()">
+                                                                        Amplicar
+                                                                    </code>
+                                                                    <code  class="cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#creditoReduccionModal'">
+                                                                        Reducir
+                                                                    </code>
+                                                                </div>
+                                                                <!--end::Label-->
+                                                            </div>
+                                                            <!--end::Stat-->
+                                                            <!--begin::Stat-->
+                                                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" >
+                                                                <!--begin::Number-->
+                                                                <div class="d-flex align-items-center" >
+                                                                   
+                                                                    <!--end::Svg Icon-->
+                                                                    <div class="fs-2 fw-bold counted fw-600">
+                                                                        <a style="cursor: pointer;">
+                                                                            {{cliente.credito_disponible|currency:'MXN'}}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Number-->
+                                                                <!--begin::Label-->
+                                                                <div class="d-flex  justify-content-between">
+                                                                    <code class="text-muted">Disponible</code>
+                                                                </div>
+                                                                <!--end::Label-->
+                                                            </div>
+                                                            <!--end::Stat-->
+                                                            <!--begin::Stat-->
+                                                            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" >
+                                                                <!--begin::Number-->
+                                                                <div class="d-flex align-items-center" >
+                                                                   
+                                                                    <!--end::Svg Icon-->
+                                                                    <div class="fs-2 fw-bold counted fw-600">
+                                                                        <a style="cursor: pointer;" 
+                                                                        [ngClass]="{'text-success': cliente.credito_usado < 0,'text-danger': cliente.credito_usado >= 1}">
+                                                                            {{cliente.credito_usado|currency:'MXN'}}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <!--end::Number-->
+                                                                <!--begin::Label-->
+                                                                <div class="d-flex  justify-content-between">
+                                                                    <code class="text-danger" *ngIf="cliente.credito_usado >= 1">Deuda</code>
+                                                                    <code class="text-success" *ngIf="cliente.credito_usado < 0">Saldo a favor</code>
+                                                                </div>
+                                                                <!--end::Label-->
+                                                            </div>
+                                                            <!--end::Stat-->
+                                                        </div>
+                                                        <!--end::Stats-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                    <!--begin::Progress-->
+                                                    <div class="d-flex w-200px w-sm-300px flex-column mt-3" >
+                                                        
+                                                    </div>
+                                                    <!--end::Progress-->
+                                                </div>
+                                                <!--end::Stats-->
+                                                <div  *ngIf="cliente.credito_total == 0">
+                                                    <div class="d-none d-md-block">
+                                                        <div class="alert alert-dismissible bg-light-primary  border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 justify-content-between"
+                                                        style="border-radius: 0px;">
+                                                            
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1">Activar crédito al cliente.</h5>
+                                                                <span>
+                                                                    El cliente actualmente no tiene credito, si desea activarlo asigne un monto.
+                                                                </span>
+                                                            </div>
+                                                            <!--end::Content-->
+                                        
+                                                            <!--begin::Close-->
+                                                            <button class="btn btn-dark btn-sm"
+                                                            data-bs-toggle="modal" [attr.data-bs-target]="'#creditoAmpliacionModal'" (click)="openModalCredito()">Activar</button>
+                                                            <!--end::Close-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-block d-md-none">
+                                                        <div class="alert alert-dismissible bg-light-primary  border-primary border-dashed 
+                                                        d-flex flex-column flex-sm-row w-100 p-5 justify-content-between mb-7"
+                                                        style="border-radius: 0px;">
+                                                            
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10 mb-3">
+                                                                <h5 class="mb-1 text-center">Activar crédito al cliente.</h5>
+                                                                <span class="text-center">
+                                                                    El cliente actualmente no tiene credito, si desea activarlo asigne un monto.
+                                                                </span>
+                                                            </div>
+                                                            <!--end::Content-->
+                                        
+                                                            <!--begin::Close-->
+                                                            <button class="btn btn-dark btn-sm"
+                                                            data-bs-toggle="modal" [attr.data-bs-target]="'#creditoAmpliacionModal'" (click)="openModalCredito()">Activar</button>
+                                                            <!--end::Close-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                        <!--end::Details-->
+                                        <!--begin::Navs-->
+                                        <div class="d-none d-md-block">
+                                            <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+                                                <!--begin::Nav item-->
+                                                <li class="nav-item mt-2">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" 
+                                                    (click)="setNav('perfil')" [ngClass]="{'active': tipo=='perfil'}">
+                                                        Perfíl
+                                                    </a>
+                                                </li>
+                                                <!--end::Nav item-->
+                                                <li class="nav-item mt-2"  *ngIf="permisos.includes('2004')">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" 
+                                                    (click)="setNav('direcciones')" [ngClass]="{'active': tipo=='direcciones'}">
+                                                        Direcciones
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item mt-2" *ngIf="permisos.includes('2005')">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" 
+                                                    (click)="setNav('facturacion')" [ngClass]="{'active': tipo=='facturacion'}">
+                                                        Facturación
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item mt-2" *ngIf="permisos.includes('2006')">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" 
+                                                    (click)="setNav('pagos')" [ngClass]="{'active': tipo=='pagos'}">
+                                                        Pagos
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item mt-2" *ngIf="permisos.includes('2007')">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" 
+                                                    (click)="setNav('solicitudes')" [ngClass]="{'active': tipo=='solicitudes'}">
+                                                        Solicitudes
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item mt-2" *ngIf="permisos.includes('2008')">
+                                                    <a class="nav-link text-active-primary ms-0 me-10 py-5 fw-600 cursor-pointer" (click)="setNav('ventas')" [ngClass]="{'active': tipo=='ventas'}">
+                                                        Ventas
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="d-block d-md-none">
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle w-100 mb-7" type="button" 
+                                                data-bs-toggle="dropdown" aria-expanded="false" style="text-transform: uppercase;font-weight: 600;">
+                                                  {{tipo}}
+                                                </button>
+                                                <ul class="dropdown-menu w-100">
+                                                  <li *ngIf="permisos.includes('2005')">
+                                                    <a class="dropdown-item" (click)="setNav('perfil')" [ngClass]="{'active': tipo=='perfil'}">Perfíl</a>
+                                                  </li>
+                                                  <li *ngIf="permisos.includes('2004')">
+                                                    <a class="dropdown-item" (click)="setNav('direcciones')" [ngClass]="{'active': tipo=='direcciones'}">Direcciones</a>
+                                                  </li>
+                                                  <li *ngIf="permisos.includes('2005')">
+                                                    <a class="dropdown-item" (click)="setNav('facturacion')" [ngClass]="{'active': tipo=='facturacion'}">Facturación</a>
+                                                  </li>
+                                                  <li *ngIf="permisos.includes('2006')">
+                                                    <a class="dropdown-item" (click)="setNav('pagos')" [ngClass]="{'active': tipo=='pagos'}">Pagos</a>
+                                                  </li>
+                                                  <li *ngIf="permisos.includes('2007')">
+                                                    <a class="dropdown-item" (click)="setNav('solicitudes')" [ngClass]="{'active': tipo=='solicitudes'}">
+                                                        Solicitudes
+                                                    </a>
+                                                  </li>
+                                                  <li *ngIf="permisos.includes('2008')">
+                                                    <a class="dropdown-item" (click)="setNav('ventas')" [ngClass]="{'active': tipo=='ventas'}">
+                                                        Ventas
+                                                    </a>
+                                                  </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--begin::Navs-->
+                                    </div>
+                                </div>
+
+                                <ng-container *ngIf="tipo == 'perfil'">
+                                    <app-edit-clientes></app-edit-clientes>
+                                </ng-container>
+                                <ng-container *ngIf="tipo == 'direcciones'">
+                                    <app-ubicacion-clientes></app-ubicacion-clientes>
+                                </ng-container>
+                                <ng-container *ngIf="tipo == 'facturacion'">
+                                    <app-facturacion-clientes></app-facturacion-clientes>
+                                </ng-container>
+                                <ng-container *ngIf="tipo == 'pagos'">
+                                    <app-pagos-clientes></app-pagos-clientes>
+                                </ng-container>
+                                <ng-container *ngIf="tipo == 'solicitudes'">
+                                    <app-solicitud-clientes></app-solicitud-clientes>
+                                </ng-container>
+                                <ng-container *ngIf="tipo == 'ventas'">
+                                    <app-ventas-clientes></app-ventas-clientes>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="load_data">
+                            <div class="card mb-5 mb-xl-10">
+                                <div class="card-body pt-9 pb-0 text-center">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+
+<div class="modal fade" id="creditoAmpliacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ampliación de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="text" class="form-control form-control-solid mb-3" name="monto" 
+                    [(ngModel)]="amplitud.monto" placeholder="Monto de ampliación" 
+                    (keyup.ENTER)="update_credito('Amplitud')" id="inpAmplitud">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_amplitud" type="button" class="btn btn-dark font-weight-bold" (click)="update_credito('Amplitud')">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_amplitud" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="modal fade" id="creditoReduccionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reducción de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="text" class="form-control form-control-solid mb-3" name="monto" 
+                    [(ngModel)]="amplitud.monto" placeholder="Monto de ampliación" 
+                    (keyup.ENTER)="update_credito('Reduccion')" id="inpReduccion">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_amplitud" type="button" class="btn btn-dark font-weight-bold" (click)="update_credito('Reduccion')">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_amplitud" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

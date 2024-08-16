@@ -1,0 +1,603 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ingresos
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/ingresos']"  class="pe-3">Ingresos</a></li>
+                                    <li class="breadcrumb-item pe-3">Nuevo ingresos</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <div class="card card-flush mb-10">
+                            <!--begin::Card header-->
+                            
+                            <div class="card-header pt-7 mb-3">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold text-gray-800 fw-700">Ingreso pedido</span>
+                                    <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Ingresos realizadas al almacén</span>
+                                </h3>
+                            </div>
+                            <!--begin::Card header-->
+                            <div class="card-body">
+
+                                <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10">
+                                    <!--begin::Icon-->
+                                    <!--begin::Svg Icon | path: icons/duotune/communication/com003.svg-->
+                                    <span class="svg-icon svg-icon-2hx svg-icon-danger me-4 mb-5 mb-sm-0 d-none d-sm-block">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path opacity="0.3" d="M2 4V16C2 16.6 2.4 17 3 17H13L16.6 20.6C17.1 21.1 18 20.8 18 20V17H21C21.6 17 22 16.6 22 16V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4Z" fill="currentColor"></path>
+                                            <path d="M18 9H6C5.4 9 5 8.6 5 8C5 7.4 5.4 7 6 7H18C18.6 7 19 7.4 19 8C19 8.6 18.6 9 18 9ZM16 12C16 11.4 15.6 11 15 11H6C5.4 11 5 11.4 5 12C5 12.6 5.4 13 6 13H15C15.6 13 16 12.6 16 12Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    <!--end::Icon-->
+                                    <!--begin::Content-->
+                                    <div class="d-flex flex-column pe-0 pe-sm-10">
+                                        <h5 class="mb-1">Alerta importante!</h5>
+                                        <span>Si cambia a un nuevo pedido cuando tenga rollos agregados estos serán eliminados.</span>
+                                    </div>
+                                    <!--end::Content-->
+                                   
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <!--begin::Label-->
+                                    <div id="kt_signin_email">
+                                        <div class="fs-6 fw-bold mb-1">Tipo</div>
+                                        <div class="fw-semibold text-gray-600 d-none d-sm-block">Selecciona el tipo producto.</div>
+                                        
+                                    </div>
+                                    
+                                    <div id="kt_signin_email_button" class="ms-auto">
+                                       <select disabled="" class="form-select" name="tipo" [(ngModel)]="ingreso.tipo" (change)="setTipo()">
+                                            <option value="" selected disabled>Seleccionar</option>
+                                            <option value="Ropa">Ropa</option>
+                                            <option value="Tela">Tela</option>
+                                            <option value="Acero">Acero</option>
+                                       </select>
+                                    </div>
+                                    <!--end::Action-->
+                                </div>
+
+
+                                <div class="separator separator-dashed my-6"></div>
+
+
+                                <div class="d-flex flex-wrap align-items-center mb-5">
+                                    <!--begin::Label-->
+                                    <div id="kt_signin_email">
+                                        <div class="fs-6 fw-bold mb-1 required">Almacen</div>
+                                        <div class="fw-semibold text-gray-600 d-none d-sm-block">Almacén de destino para los productos.</div>
+                                    </div>
+                                    
+                                    <div id="kt_signin_email_button" class="ms-auto">
+                                       <select name="" class="form-select" name="almacen" [(ngModel)]="ingreso.almacen">
+                                            <option value="" selected disabled>Seleccionar</option>
+                                            <option value="{{item}}" *ngFor="let item of almacenes">{{item}}</option>
+                                       </select>
+                                    </div>
+                                    <!--end::Action-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-flush">
+                            <!--begin::Card header-->
+                            <div class="card-header pt-7 mb-3">
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold text-gray-800 fw-700">Conteo de productos</span>
+                                    <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Lorem ipsum dolor sit adipisicing elit.</span>
+                                </h3>
+                            </div>
+                            <!--end::Card header-->
+                            <div class="card-body">
+
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <!--begin::Label-->
+                                    <div id="kt_signin_email">
+                                        <div class="fs-6 fw-bold mb-1 required">Pedido</div>
+                                        <div class="fw-semibold text-gray-600 d-none d-sm-block">Selección del pedido a realizar conteo.</div>
+                                    </div>
+                                    
+                                    <div id="kt_signin_email_button" class="ms-auto">
+                                        <button class="btn btn-light btn-active-light-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#modalEnvios'">Buscar</button>
+                                    </div>
+                                    <!--end::Action-->
+                                </div>
+
+                                
+                                <div class="separator separator-dashed my-6"></div>
+
+                                <div class="table-responsive mb-6" *ngIf="detalles.length >= 1">
+                                    <table class="table  table-row-dashed fs-6 gy-3 mb-10">
+                                        <ng-container *ngFor="let subitem of detalles">
+                                            <tr [ngClass]="{'bg_select': ingreso.pedido_detalle == subitem._id,'bg_complete':subitem.complete,'detalle_completed':subitem.estado == 'Confirmado'}" class="">
+                                                <td class="min-w-250px" colspan="2">
+                                                    
+                                                    <div class="d-flex align-items-center">
+                                                        <a class="symbol symbol-50px">
+                                                            <span class="symbol-label" style="width: 30px;height: 30px;border: 1px dashed #ccc;" [ngStyle]="{'background': subitem.producto_variacion.hxd}"></span>
+                                                        </a>
+                                                        <div class="d-flex justify-content-start flex-column ms-5">
+                                                            <code class="text-dark">
+                                                                {{subitem.producto.titulo}}
+                                                            </code>
+                                                            <span style="font-size: .8rem!important;" class="text-gray-400 fw-semibold d-block fs-7">
+                                                                {{subitem.producto_variacion.variacion_name}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end" style="width: 150px !important;">
+                                                    <div *ngIf="subitem.estado == 'Enviado'" class="progress" style="border: 1px dashed #ccc;height: unset !important;padding: 0px !important;">
+                                                        <div class="progress-bar" role="progressbar" 
+                                                        aria-label="Segment one" style="height: fit-content !important;" 
+                                                        [ngStyle]="{width: subitem.porcentaje+'%'}"
+                                                        aria-valuenow="33.3333333333" aria-valuemin="0" aria-valuemax="100">
+                                                            {{subitem.porcentaje?.toFixed(2)}}%
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end min-w-150px">
+                                                    <div class="text-gray-800 fs-7 mb-0" style="padding-bottom: 0px;">Pedido</div>
+                                                        <div class="text-muted fs-7 fw-bold pt-0" data-kt-table-widget-4="template_cost">
+                                                        <a [routerLink]="['/pedidos/detail',subitem.pedido._id]">
+                                                            <code>
+                                                                #PE{{subitem.pedido.year}}-{{subitem.pedido.serie.toString().padStart(6,'000000')}}
+                                                            </code>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                        
+                                                <td class="text-end min-w-150px">
+                                                    <div class="text-gray-800 fs-7 mb-0" style="padding-bottom: 0px;">Programación</div>
+                                                    <div class="text-muted fs-7 fw-bold pt-0" data-kt-table-widget-4="template_cost" *ngIf="subitem.programacion_detalle">
+                                                        <a [routerLink]="['/programaciones/detail',subitem.programacion_detalle.programacion._id]">
+                                                            <code>
+                                                                #PRO{{subitem.programacion_detalle.createdAt|date:'y'}}
+                                                                -
+                                                                {{subitem.programacion_detalle.programacion.serie.toString().padStart(6,'000000')}}
+                                                            </code>
+                                                        </a>
+                                                    </div>
+                                                    <div class="text-muted fs-7 fw-bold pt-0" data-kt-table-widget-4="template_cost" 
+                                                    *ngIf="!subitem.programacion_detalle">
+                                                        <a>
+                                                            <code>
+                                                               Interno
+                                                            </code>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end min-w-100px">
+                                                    <div class="text-gray-800 fs-7 mb-0" style="padding-bottom: 0px;">Qty</div>
+                                                    <div class="text-muted fs-7 fw-bold pt-0" data-kt-table-widget-4="template_qty">
+                                                        {{subitem.cantidad.toFixed(2)}}
+                                                        <small>{{subitem.unidad}}</small>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end min-w-100px">
+                                                    <span class="badge bg-primary" *ngIf="subitem.estado == 'Pedido'||subitem.estado == 'Confirmado'||subitem.estado == 'Aprobado'" 
+                                                    style="padding: 0.5rem;">
+                                                        {{subitem.estado}}
+                                                    </span>
+                                                    <span class="badge bg-success" *ngIf="subitem.estado == 'Enviado'" style="padding: 0.5rem;">
+                                                        Enviado
+                                                    </span>
+                                                </td>
+                                                <td class="text-end min-w-100px">
+                                                    <a *ngIf="subitem.estado == 'Enviado'" style="cursor: pointer;" (click)="select_detalle(subitem)" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px" style="margin-right: 1rem;">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor"></path>
+                                                                <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                    </a>
+                                                    <a *ngIf="subitem.estado == 'Pedido'||subitem.estado == 'Confirmado'||subitem.estado == 'Aprobado'" 
+                                                    class="btn btn-sm btn-icon btn-light w-30px h-30px" 
+                                                    style="margin-right: 1rem;cursor: not-allowed !important;">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor"></path>
+                                                                <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            
+                                        </ng-container>
+                                        
+                                    </table>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-6">
+                                    <div class="d-flex justify-content-between"  style="max-width: 600px !important;">
+                                     
+                                        <div class="input-group mb-3">
+                                            <input type="number" class="form-control form-control-solid mb-lg-0" placeholder="Cantidad" name="cantidad" [(ngModel)]="detalle.cantidad" (keyup.ENTER)="agregar_detalle()">
+                                            <button class="btn btn-dark" (click)="agregar_detalle()">
+                                                <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+
+
+                                        
+                                    </div>
+
+                                    <div>
+                                        <div class="m-0">                            
+                                            <span class="fw-semibold text-gray-400 d-block fs-8">Cantidad</span>
+                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                {{cantidad.toFixed(2)}} 
+                                                {{ingreso.unidad}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex gap-5" style="overflow-x: auto; max-width: 100%;">
+                                    <div class="d-flex flex-column cursor-pointer" style="border: 1px dashed #e2e2e2; padding: 10px 10px; background-color: #f5f8fa; border-radius: 5px; min-width: 200px;" *ngFor="let item of arr_pedidos" [ngClass]="{'variacion_resumen_selected':  pedido_active == item.pedido}" (click)="pedido_active = item.pedido">
+                                        <div class="w-100">
+                                            <small>
+                                                {{item.producto.substring(0,25)}}...
+                                            </small>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2" style="width: 35px;height: 35px;border-radius: 5px;" 
+                                                [ngStyle]="{'background': item.hxd}">
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <p class="mb-0 fw-700">
+                                                    {{item.variante}}
+                                                    <ng-container *ngIf="item.tipo == 'Ropa'">
+                                                        - {{item.talla}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="item.tipo == 'Acero'">
+                                                        - {{item.color_name}}
+                                                    </ng-container>
+                                                </p>
+                                                <small class="text-primary">{{item.cantidad.toFixed(2)}} {{ingreso.unidad}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--begin::Card body-->
+                            <div class="card-body pt-0" *ngIf="arr_pedidos.length >= 1">
+
+                               
+                                <!--begin::Table wrapper-->
+                                <div class="table-responsive" *ngFor="let item of arr_pedidos; let idx1 = index">
+                                    <!--begin::Table-->
+                                    <table *ngIf="item.pedido == pedido_active" class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9">
+                                        
+                                        <!--begin::Tbody-->
+                                        <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="item.unidades.length >= 1">
+                                            <ng-container  *ngFor="let subitem of item.unidades; let idx2 = index">
+                                                <tr >
+                                                    <td style="padding-left: 0px !important;">
+                                                        <div class="d-flex align-items-center">
+                                                            <a class="symbol symbol-50px bg-secondary bg-opacity-25 rounded me-3" >
+                                                                <span class="symbol-label" style="width: 25px;height: 25px;border: 1px dashed #ccc;" [ngStyle]="{'background': subitem.hxd}"></span>
+                                                            </a>
+                                                            <a>
+                                                                {{subitem.producto_titulo}}
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        {{producto_variacion.variante}}
+                                                    </td>
+                                                    <td><code>{{subitem.codigo.toUpperCase()}}</code></td>
+                                                    <td class="text-center" style="    width: 100px !important;">
+                                                        <b style="padding-left: 0px;padding-right: 0.9rem;">
+                                                            {{subitem.cantidad.toFixed(2)}}
+                                                            <small>{{ingreso.unidad}}</small>
+                                                        </b>
+                                                    </td>
+                                                
+                                                    <td class="text-end" style="    width: 60px !important;">
+                                                        <a style="cursor: pointer;" (click)="remove_detalle(idx1,idx2,subitem.cantidad)" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                            
+                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                        </tbody>
+                                        <tbody *ngIf="item.unidades.length == 0">
+                                            <tr>
+                                                <td colspan="7">
+                                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                        <!--begin::Logo-->
+                                                        <a  class="pt-lg-20">
+                                                            <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                        </a> 
+                                                        <!--begin::Message-->
+                                                        <div class="fw-semibold fs-6 text-muted mb-15">
+                                                            Aun no se ingresa rollos en el ingreso.
+                                                        </div>  
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--end::Table-->
+                                </div>
+                                <!--end::Table wrapper-->
+                                
+                            </div>
+                            <!--end::Card body-->
+                            <div class="card-footer text-center">
+                                <!--begin::Button-->
+                                <button class="btn btn-dark"  data-bs-toggle="modal" [attr.data-bs-target]="'#confirmarModal'">
+                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3" d="M3 13H10C10.6 13 11 13.4 11 14V21C11 21.6 10.6 22 10 22H3C2.4 22 2 21.6 2 21V14C2 13.4 2.4 13 3 13Z" fill="currentColor"/>
+                                        <path d="M7 16H6C5.4 16 5 15.6 5 15V13H8V15C8 15.6 7.6 16 7 16Z" fill="currentColor"/>
+                                        <path opacity="0.3" d="M14 13H21C21.6 13 22 13.4 22 14V21C22 21.6 21.6 22 21 22H14C13.4 22 13 21.6 13 21V14C13 13.4 13.4 13 14 13Z" fill="currentColor"/>
+                                        <path d="M18 16H17C16.4 16 16 15.6 16 15V13H19V15C19 15.6 18.6 16 18 16Z" fill="currentColor"/>
+                                        <path opacity="0.3" d="M3 2H10C10.6 2 11 2.4 11 3V10C11 10.6 10.6 11 10 11H3C2.4 11 2 10.6 2 10V3C2 2.4 2.4 2 3 2Z" fill="currentColor"/>
+                                        <path d="M7 5H6C5.4 5 5 4.6 5 4V2H8V4C8 4.6 7.6 5 7 5Z" fill="currentColor"/>
+                                        <path opacity="0.3" d="M14 2H21C21.6 2 22 2.4 22 3V10C22 10.6 21.6 11 21 11H14C13.4 11 13 10.6 13 10V3C13 2.4 13.4 2 14 2Z" fill="currentColor"/>
+                                        <path d="M18 5H17C16.4 5 16 4.6 16 4V2H19V4C19 4.6 18.6 5 18 5Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                    Subir ingreso
+                                </button>
+
+
+                                <div class="modal fade" id="confirmarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title">Confirmación de Ingreso</h3>
+                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                        <!--end::Svg Icon-->
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Confirmación para el registro del ingreso de rollos a almacen.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                
+                                                    Descartar
+                                                </button>
+                                
+                                                <button *ngIf="!load_btn" type="button" class="btn btn-dark" (click)="validate()">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Confirmar
+                                                </button>
+                                                <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    Procesando...
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+
+
+<div class="modal fade" id="modalEnvios" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-muted svg-icon-2x">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>              
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                <!--begin::Heading-->
+                <div class="text-center mb-13">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">Envios</h1>
+                    <!--end::Title-->
+
+                    <!--begin::Description-->
+                    <div class="text-muted fs-6">
+                        Si quieres registrar directamente el ingreso  
+                        <a class="link-primary" [routerLink]="['/ingresos/proveedor']" >accede aquí</a>.
+                    </div>
+                    <!--end::Description-->
+                </div>
+                <!--end::Heading-->
+
+                <!--begin::Users-->
+                <div class="mb-15">
+                    <!--begin::List-->
+                    <div class="mh-375px scroll-y me-n7 pe-7" *ngIf="envios.length >= 1">
+                        <!--begin::User-->
+                        <div class="mh-375px scroll-y me-n7 pe-7">
+                            <!--begin::User-->
+                            <ng-container  *ngIf="envios.length >= 1">
+                                <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed"  
+                                *ngFor="let item of envios">
+                                    <!--begin::Details-->
+                                    <div class="d-flex align-items-center">
+                                        
+                                        <!--begin::Details-->
+                                        <div class="ms-6">
+                                            <!--begin::Name-->
+                                            <a href="#" class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">
+                                                #ENV{{item.envio.createdAt|date:'YYYY'}}
+                                                -
+                                                {{item.envio.serie.toString().padStart(6,'000000')}}
+                                            </a>
+                                            <!--end::Name-->
+        
+                                            <!--begin::Email-->
+                                            <div class="fw-semibold text-muted">
+                                                Finalizados: ({{item.finalizados}}/{{item.total}})
+                                            </div>
+                                            <!--end::Email-->
+                                        </div>
+                                        <!--end::Details-->
+                                    </div>
+                                    <!--end::Details-->
+        
+                                    <!--begin::Stats-->
+                                    <div class="d-flex">
+                                        <!--begin::Sales-->
+                                        <div class="text-end">
+                                            <a (click)="select_envio(item.envio._id)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                                <span class="svg-icon svg-icon-muted svg-icon-3 text-primary"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <!--end::Sales-->
+                                    </div>
+                                    <!--end::Stats-->
+                                </div>
+                            </ng-container>
+                            
+                            <!--end::User-->
+    
+                            <div class="" *ngIf="envios.length == 0">
+                                <div class="text-center" style="margin-top: 2rem !important;height: 100% !important;" >
+                                    <a style="font-weight: 700;
+                                        font-size: 2rem;" class="app-sidebar-logo-default text-dark">
+                                            <span class="text-yellow">OO</span>neunion
+                                    </a>
+                                    <div class="font-size-h4 mb-8 text-muted">No se pudieron encontrar cliente con los datos ingresados.</div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::User-->
+                    </div>
+                    <!--end::List-->
+                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 pb-lg-10" *ngIf="envios.length == 0">
+                        <!--begin::Logo-->
+                        <a>
+                            <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 50px !important;">    
+                        </a> 
+                        <!--begin::Message-->
+                        <div class="fw-semibold text-muted mb-15">
+                            <small>Lo sentimos, pero no se encontraron resultados para tu búsqueda.</small>
+                        </div>      
+         
+                
+                    </div>
+                </div>
+                <!--end::Users-->
+
+                <!--begin::Notice-->
+                <div class="d-flex justify-content-between">
+                    <!--begin::Label-->                        
+                    <div class="fw-semibold">
+                        <label class="fs-6">Adding Users by Team Members</label>
+
+                        <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+                    </div>
+                    <!--end::Label-->   
+                </div>
+                <!--end::Notice-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+

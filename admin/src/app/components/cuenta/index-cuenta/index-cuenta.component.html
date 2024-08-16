@@ -1,0 +1,147 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cuentas
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Cuentas</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">
+                                                Cuentas Bancarias
+                                            </span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">
+                                                Cuentas de Destino para los Pagos Realizados.
+                                            </span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                        <div class="card-toolbar">
+                                            <a [routerLink]="['/cuentas/create']" class="btn btn-dark fw-bold " *ngIf="permisos.includes('13001')">
+                                                <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M22 7H2V11H22V7Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nuevo Cuenta
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <!--begin::Table-->
+                                            <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                <!--begin::Table body-->
+                                                <tbody>
+                                                    <tr *ngFor="let item of cuentas">                            
+                                                        <td>
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="symbol symbol-50px me-3">                                                   
+                                                                    <img *ngIf="item.banco == 'Banco Azteca'" src="assets/banks/azteca.png">   
+                                                                    <img *ngIf="item.banco == 'Santander'" src="assets/banks/santander.jpg">   
+                                                                    <img *ngIf="item.banco == 'BBVA'" src="assets/banks/bbva.jpg">      
+                                                                    <img *ngIf="item.banco == 'Intercam'" src="assets/banks/intercam.jpg">      
+                                                                    <img *ngIf="item.banco == 'HSBC'" src="assets/banks/hsbc.png">      
+                                                                    <img *ngIf="item.banco == 'Banamex'" src="assets/banks/banamex.jpg">                                                    
+                                                                </div>
+                                                                    
+                                                                
+                                                                <div class="d-flex justify-content-start flex-column">
+                                                                    <a class="text-gray-800 fw-bold text-hover-primary fs-6 d-flex align-items-center">
+                                                                        <ng-container *ngIf="item.destacado">
+                                                                            <img src="assets/icons/star.svg" style="width: 14px;" alt="">
+                                                                            &nbsp;
+                                                                        </ng-container>
+                                                                        {{item.banco}}
+                                                                    </a>
+                                                                    <span class="text-gray-500 fw-semibold d-block fs-7">
+                                                                        {{item.titular}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>                                
+                                                        </td>
+                                                        <td class="text-end"> 
+                                                            <div class="m-0">                            
+                                                                <span class="fw-semibold text-gray-500 d-block fs-8"> N° Cuenta</span>
+                                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                    {{item.ncuenta}}
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-end"  *ngIf="permisos.includes('13002')">
+                                                            <a [routerLink]="['/cuentas/edit',item._id]"  class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                                                <i class="bi bi-pencil"></i>                                    
+                                                            </a>
+                                                        </td>
+                                                    </tr>                        
+                                                </tbody>
+                                                <!--end::Table body-->
+                                            </table>
+                                            <!--end::Table-->
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

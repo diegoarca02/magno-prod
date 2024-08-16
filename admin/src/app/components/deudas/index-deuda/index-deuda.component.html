@@ -1,0 +1,411 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Notas
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Clientes con deudas</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Clientes con deuda</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, laboriosam.</span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                        <div class="card-toolbar">
+                                            <button class="btn btn-dark" *ngIf="option == 2" (click)="option = 1">
+                                                <i class="bi bi-arrow-return-left"></i>
+                                                Regresar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    
+                                    <ng-container *ngIf="option == 1">
+                                        <ng-container *ngIf="!load_data">
+                                            <div id="" class="table-responsive">
+                                                <table class="table align-middle table-row-dashed gy-5 gs-7 dataTable">
+                                            
+                                                    <tbody class="fw-bold text-gray-600">
+                                                        <tr *ngFor="let item of cliente">
+                                                            <td style="width: 50px;">
+                                                                <span>
+                                                                    {{item.serie}}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                        {{item.email}}
+                                                                    </span>
+                                                                    <code>
+                                                                       {{item.nombres}} {{item.apellidos}}
+                                                                    </code>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">Lugar</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.region}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">Credito Total</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.credito_total|currency:'MXN'}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">Credito Usado</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.total|currency:'MXN'}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">Pagado</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.pagado|currency:'MXN'}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="m-0">                            
+                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">Días</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.dias}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <a class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px" (click)="init_data(item._id)">
+                                                                    <i class="bi bi-arrow-right"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <div class="card-body pt-4" *ngIf="load_data">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="option == 2">
+                                        <ng-container *ngIf="!load_cliente">
+                                            <div class="px-9 mb-5 py-3">   
+                                                <!--begin::Statistics-->
+                                                <div class="d-flex">
+                                                    <div style="margin-right: 5rem;">
+                                                        <div class="d-flex mb-2">   
+                                                            <span class="fs-4 fw-semibold text-gray-500 me-1">$</span>
+                                                            <span style="font-size: 2rem;" class="fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                                {{total|currency:'MXN'}}
+                                                            </span>                
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                            
+                                                        <!--begin::Description-->
+                                                        <span class="fs-6 fw-semibold text-gray-500">Total</span>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                    <div style="margin-right: 5rem;">
+                                                        <div class="d-flex mb-2">   
+                                                            <span class="fs-4 fw-semibold text-gray-500 me-1">$</span>
+                                                            <span style="font-size: 2rem;" class="fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                                {{pagado|currency:'MXN'}}
+                                                            </span>                
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                            
+                                                        <!--begin::Description-->
+                                                        <span class="fs-6 fw-semibold text-gray-500">Pagado</span>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                    <div style="margin-right: 5rem;">
+                                                        <div class="d-flex mb-2">   
+                                                            <span class="fs-4 fw-semibold text-gray-500 me-1">$</span>
+                                                            <span style="font-size: 2rem;" class="fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                                {{total-pagado|currency:'MXN'}}
+                                                            </span>                
+                                                        </div>
+                                                        <!--end::Statistics-->
+                                            
+                                                        <!--begin::Description-->
+                                                        <span class="fs-6 fw-semibold text-gray-500">Saldo</span>
+                                                        <!--end::Description-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <ng-container *ngIf="envios.length >= 1">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover table-rounded table-striped gy-5 gs-7 mb-0">
+                                                        
+                                                        <tbody class="fw-bold text-gray-600">
+                                                            <ng-container *ngFor="let item of envios;let idx = index">
+                                                                <tr class="odd" >
+                                                                    <td>
+                                                                        <div class="m-0">                            
+                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                                Envío
+                                                                            </span>
+                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7"
+                                                                            [routerLink]="['/ordenes/detail',item.envio.venta]" target="_blank">
+                                                                                <code>
+                                                                                    #ENV{{item.envio.year}}-{{item.envio.serie.toString().padStart(6,'000000')}}
+                                                                                </code>
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="m-0">                            
+                                                                            <button class="btn btn-light btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#unidadesModal-'+item.envio._id">Ver Productos</button>
+
+                                                                            <div class="modal fade" id="unidadesModal-{{item.envio._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                                                                <!--begin::Modal dialog-->
+                                                                                <div class="modal-dialog mw-650px">
+                                                                                    <!--begin::Modal content-->
+                                                                                    <div class="modal-content">
+                                                                                        <!--begin::Modal header-->
+                                                                                        <div class="modal-header pb-0 border-0 justify-content-end">
+                                                                                            <!--begin::Close-->
+                                                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                    </svg>
+                                                                                                </span>
+                                                                                                    <!--end::Svg Icon-->
+                                                                                            </div>
+                                                                                            <!--end::Close-->
+                                                                                        </div>
+                                                                                        <!--begin::Modal header-->
+                                                                            
+                                                                                        <!--begin::Modal body-->
+                                                                                        <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                                                                                            <!--begin::Heading-->
+                                                                                            <div class="text-center mb-13">
+                                                                                                <!--begin::Title-->
+                                                                                                <h1 class="mb-3">
+                                                                                                    Productos del envío
+                                                                                                </h1>
+                                                                                                <!--end::Title-->
+                                                                            
+                                                                                                <!--begin::Description-->
+                                                                                                <div class="text-muted fs-6">
+                                                                                                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, laborum.    
+                                                                                                </div>
+                                                                                                <!--end::Description-->
+                                                                                            </div>
+                                                                                            <!--end::Heading-->
+                                                                            
+                                                                                            <!--begin::Users-->
+                                                                                            <div class="mb-15">
+                                                                                                <!--begin::List-->
+                                                                                                <div class="mh-375px scroll-y me-n7 pe-7">
+                                                                                                    <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed" 
+                                                                                                    *ngFor="let subitem of item.detalles">
+                                                                                                        <!--begin::Details-->
+                                                                                                        <div class="d-flex align-items-center">
+                                                                                                            <!--begin::Avatar-->
+                                                                                                            <a  class="symbol symbol-50px me-5">
+                                                                                                                <span class="symbol-label" style="width: 20px;height: 20px;border: 1px dashed #ccc;" 
+                                                                                                                [ngStyle]="{'background': subitem.producto_variacion.hxd}">
+                                                                                                                </span>
+                                                                                                            </a>
+                                                                                                            <!--end::Avatar-->
+                                                                            
+                                                                                                            <!--begin::Details-->
+                                                                                                            <div >
+                                                                                                                <span>{{subitem.producto_variacion.variacion_name}}</span>
+                                                                                                                &nbsp;
+                                                                                                                <code>{{subitem.codigo}}</code>
+                                                                                                            </div>
+                                                                                                            <!--end::Details-->
+                                                                                                        </div>
+                                                                                                        <!--end::Details-->
+                                                                                                        <!--begin::Stats-->
+                                                                                                        <div class="text-end">
+                                                                                                            <code>
+                                                                                                                {{subitem.ingreso_detalle.codigo}}
+                                                                                                            </code>
+                                                                                                        </div>
+                                                                                                        <!--begin::Stats-->
+                                                                                                        <div class="text-end">
+                                                                                                            <div class="fs-7 ">{{subitem.cantidad}} {{subitem.unidad}}</div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <!--end::User-->
+                                                                                                </div>
+                                                                                                <!--end::List-->
+                                                                                            </div>
+                                                                                            <!--end::Users-->
+                                                                            
+                                                                                            <!--begin::Notice-->
+                                                                                            <div class="d-flex justify-content-between">
+                                                                                                <!--begin::Label-->                        
+                                                                                                <div class="fw-semibold">
+                                                                                                    <label class="fs-6">Adding Users by Team Members</label>
+                                                                            
+                                                                                                    <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+                                                                                                </div>
+                                                                                                <!--end::Label-->   
+                                                                            
+                                                                                                <!--begin::Switch-->
+                                                                                                <label class="form-check form-switch form-check-custom form-check-solid">
+                                                                                                    <input class="form-check-input" type="checkbox" value="" checked="checked">
+                                                                            
+                                                                                                    <span class="form-check-label fw-semibold text-muted">
+                                                                                                        Allowed
+                                                                                                    </span>
+                                                                                                </label>
+                                                                                                <!--end::Switch-->
+                                                                                            </div>
+                                                                                            <!--end::Notice-->
+                                                                                        </div>
+                                                                                        <!--end::Modal body-->
+                                                                                    </div>
+                                                                                    <!--end::Modal content-->
+                                                                                </div>
+                                                                                <!--end::Modal dialog-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="m-0">                            
+                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">Entrega</span>
+                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                {{item.envio.fecha_entrega|date}}
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="m-0">                            
+                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">Total</span>
+                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                {{item.envio.subtotal|currency:'MXN'}}
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="m-0">                            
+                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">Pagado</span>
+                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                {{item.pagado|currency:'MXN'}}
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    
+                                                                    <td class="text-end">
+                                                                        <div class="m-0">                            
+                                                                            <span class="fw-semibold text-gray-500 d-block fs-8">Días</span>
+                                                                            <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                {{item.dias_transcurridos}}
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                            
+                                                            </tbody>
+                                                        <!--end::Table body-->
+                                                    </table>
+                                                </div>
+                                            </ng-container>
+                                           
+                                            <div *ngIf="envios.length == 0" class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                <!--begin::Logo-->
+                                                <a  class="pt-lg-20">
+                                                    <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                </a> 
+                                                <!--begin::Message-->
+                                                <div class="fw-semibold fs-6 text-muted mb-15">
+                                                    Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <div class="card-body pt-4" *ngIf="load_cliente">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

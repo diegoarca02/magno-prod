@@ -1,0 +1,356 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inventario
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/inventario']"  class="pe-3">
+                                            Inventario
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Inventario de color</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-10">
+                                            <!--begin::Body-->
+                                            <div class="card-header border-0 py-7">
+                                                <!--begin::Tabs-->
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Inventario</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                </h3>
+                                                <div class="card-toolbar">
+                                                    <button *ngIf="permisos.inventario_cinco" class="btn btn-dark me-3" style="background: #186627 !important" (click)="downloadExcel()">
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path opacity="0.3" d="M14 10V20C14 20.6 13.6 21 13 21H10C9.4 21 9 20.6 9 20V10C9 9.4 9.4 9 10 9H13C13.6 9 14 9.4 14 10ZM20 9H17C16.4 9 16 9.4 16 10V20C16 20.6 16.4 21 17 21H20C20.6 21 21 20.6 21 20V10C21 9.4 20.6 9 20 9Z" fill="currentColor"/>
+                                                            <path d="M7 10V20C7 20.6 6.6 21 6 21H3C2.4 21 2 20.6 2 20V10C2 9.4 2.4 9 3 9H6C6.6 9 7 9.4 7 10ZM21 6V3C21 2.4 20.6 2 20 2H3C2.4 2 2 2.4 2 3V6C2 6.6 2.4 7 3 7H20C20.6 7 21 6.6 21 6Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Exportar XLS
+                                                    </button>
+
+                                                    <button *ngIf="permisos.inventario_seis" class="btn btn-dark" (click)="downloadAll()" placement="top" ngbTooltip="Descargar etiquetas">
+                                                        <span class="svg-icon svg-icon-3" style="margin-right: 0px !important;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path opacity="0.3" d="M3 6C2.4 6 2 5.6 2 5V3C2 2.4 2.4 2 3 2H5C5.6 2 6 2.4 6 3C6 3.6 5.6 4 5 4H4V5C4 5.6 3.6 6 3 6ZM22 5V3C22 2.4 21.6 2 21 2H19C18.4 2 18 2.4 18 3C18 3.6 18.4 4 19 4H20V5C20 5.6 20.4 6 21 6C21.6 6 22 5.6 22 5ZM6 21C6 20.4 5.6 20 5 20H4V19C4 18.4 3.6 18 3 18C2.4 18 2 18.4 2 19V21C2 21.6 2.4 22 3 22H5C5.6 22 6 21.6 6 21ZM22 21V19C22 18.4 21.6 18 21 18C20.4 18 20 18.4 20 19V20H19C18.4 20 18 20.4 18 21C18 21.6 18.4 22 19 22H21C21.6 22 22 21.6 22 21Z" fill="currentColor"/>
+                                                            <path d="M3 16C2.4 16 2 15.6 2 15V9C2 8.4 2.4 8 3 8C3.6 8 4 8.4 4 9V15C4 15.6 3.6 16 3 16ZM13 15V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V15C11 15.6 11.4 16 12 16C12.6 16 13 15.6 13 15ZM17 15V9C17 8.4 16.6 8 16 8C15.4 8 15 8.4 15 9V15C15 15.6 15.4 16 16 16C16.6 16 17 15.6 17 15ZM9 15V9C9 8.4 8.6 8 8 8H7C6.4 8 6 8.4 6 9V15C6 15.6 6.4 16 7 16H8C8.6 16 9 15.6 9 15ZM22 15V9C22 8.4 21.6 8 21 8H20C19.4 8 19 8.4 19 9V15C19 15.6 19.4 16 20 16H21C21.6 16 22 15.6 22 15Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                           
+                                            <div class="card-body pt-3">
+                                                <!--begin::Stats-->
+                                                <div class="row" >
+                                                    <div class="col" style="max-width: 150px;">
+                                                        <qrcode [qrdata]="current_route" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+                                                    </div>
+                                                    <!--begin::Col-->
+                                                    <div class="col">
+                                                        <div class="card card-dashed flex-center min-w-175px my-3 p-6">
+                                                            <span class="fs-4 fw-semibold text-dark pb-1 px-2">
+                                                                {{variacion.tipo}}
+                                                            </span>
+                                                            <div class="d-flex">
+                                                                <div class="me-2" style="width: 20px; height: 20px !important;margin-top: 10px;border: 1px dashed #ccc;" [ngStyle]="{'background-color': variacion.hxd}">
+                                                                  
+                                                                </div>
+                                                                &nbsp;
+                                                                <span class="fs-lg-2tx fw-bold d-flex justify-content-center" style="font-size: 2rem!important;">
+                                                                    {{variacion.variacion_name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+                                                    <div class="col">
+                                                        <div class="card card-dashed flex-center min-w-175px my-3 p-6">
+                                                            <span class="fs-4 fw-semibold text-dark pb-1 px-2">Cantidad</span>
+                                                            <span class="fs-lg-2tx fw-bold d-flex justify-content-center" style="    font-size: 2rem!important;">
+                                                                {{total_cantidad.toFixed(2)}}
+                                                                <ng-container *ngIf="variacion.tipo == 'Tela'">Mtr</ng-container>
+                                                                <ng-container *ngIf="variacion.tipo == 'Acero'">Kg</ng-container>
+                                                                <ng-container *ngIf="variacion.tipo == 'Ropa'">Unid</ng-container>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                     <!--begin::Col-->
+                                                     <div class="col">
+                                                        <div class="card card-dashed flex-center min-w-175px my-3 p-6">
+                                                            <span class="fs-4 fw-semibold text-dark pb-1 px-2">Unidades</span>
+                                                            <span class="fs-lg-2tx fw-bold d-flex justify-content-center" style="    font-size: 2rem!important;">
+                                                                {{detalles.length}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    
+                                                </div>
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+
+        
+                                        <div class="card">
+                                            <!--begin::Header-->
+                                            <div class="card-header border-0 py-7">
+                                                <!--begin::Title-->
+                                                <div class="card-title">
+                                                    <h3 class="fw-700">Inventario</h3>
+                                                </div>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                                <div class="card-toolbar">
+                                                    <!--begin::Tab nav-->
+                                                    <div class="d-flex">
+                                                        <select name="almacen_active" [(ngModel)]="almacen_active" (change)="set_almacen_active()" class="form-select" style="border: none !important;">
+                                                            <option value="{{item.almacen}}" *ngFor="let item of almacenes">
+                                                                {{item.almacen}} ({{item.detalles.length}})
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <!--end::Tab nav-->
+                                                </div>
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <!--end::Header-->
+                                            <!--begin::Tab content-->
+                                            <div id="kt_referred_users_tab_content" class="tab-content">
+                                                <ng-container *ngFor="let item of almacenes; let idx =index">
+                                                    <!--begin::Tab panel-->
+                                                <div id="kt_referrals_1" class="card-body p-0 tab-pane fade" [ngClass]="{'show active': item.almacen == almacen_active}">
+                                                    <ng-container *ngIf="load_data">
+                                                        <div class="py-20 text-center">
+                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                              </div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!load_data">
+                                                        <div class="table-responsive">
+                                                            <!--begin::Table-->
+                                                            <table class="table table-row-bordered table-flush align-middle gy-6">
+                                                                
+                                                                <!--begin::Tbody-->
+                                                                <tbody class="fs-6 fw-semibold">
+                                                                    <ng-container *ngIf="item.detalles.length >= 1">
+                                                                        <tr  *ngFor="let subitem of item.detalles" [ngClass]="{'bg_programacion': item.pedido_programacion}">
+                                                                            <td class="ps-9 max-w-120px" style="max-width: 120px !important;">
+                                                                                <img *ngIf="permisos.inventario_siete" (click)="downloadEtiqueta(subitem)" class="barcode-inv cursor-pointer" id="barcode-{{subitem.codigo}}" style="width:100% !important">
+                                                                                <img *ngIf="!permisos.inventario_siete" class="barcode-inv" id="barcode-{{subitem.codigo}}" style="width:100% !important">
+                                                                            </td>
+                                                                            <td class="ps-9 min-w-100px ">
+                                                                                <div class="m-0">                            
+                                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                       Código
+                                                                                    </span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7" *ngIf="!subitem.apartado">
+                                                                                        {{subitem.codigo.toUpperCase()}}
+                                                                                    </span>
+                                                                                    <ng-container *ngIf="subitem.apartado">
+                                                                                        <span class="fw-bold text-gray-800 fs-7">
+                                                                                           <a [routerLink]="['/ordenes/detail',subitem.venta_detalle.venta._id]">
+                                                                                                Venta: #{{subitem.venta_detalle.venta.year}}-{{subitem.venta_detalle.venta.serie.toString().padStart(6,'000000')}}
+                                                                                           </a>
+                                                                                        </span>
+                                                                                    </ng-container>
+                                                                                </div>
+                                                                                
+                                                                            </td>
+                                                                            <td class="min-w-50px text-end">
+                                                                                <div class="m-0">                            
+                                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                                       Cantidades
+                                                                                    </span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                                        {{subitem.cantidad}}
+                                                                                        <ng-container *ngIf="variacion.tipo == 'Tela'">Mtr</ng-container>
+                                                                                        <ng-container *ngIf="variacion.tipo == 'Acero'">Kg</ng-container>
+                                                                                        <ng-container *ngIf="variacion.tipo == 'Ropa'">Unid</ng-container>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="min-w-100px text-end">
+                                                                                <span *ngIf="subitem.pedido_programacion" class="badge badge-dark">Programación</span>
+                                                                                <span *ngIf="!subitem.pedido_programacion" class="badge badge-dark">Interno</span>
+                                                                                <ng-container *ngIf="!subitem.pedido_programacion">
+                                                                                    <br>
+                                                                                    <small *ngIf="!subitem.apartado" class="text-danger cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#delModal-'+subitem._id">Eliminar</small>
+                                                                                </ng-container>
+                                                                                
+                                                                                <div class="modal fade" id="delModal-{{subitem._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h3 class="modal-title">Confirmación de eliminación</h3>
+                                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                        <!--end::Svg Icon-->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <p>Confirmación para la eliminación.</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-danger font-weight-bold" data-bs-dismiss="modal">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                    Cerrar
+                                                                                                </button>
+                                                                                                <button *ngIf="!load_delete" type="button" class="btn btn-dark font-weight-bold" (click)="delete_rollo(subitem._id)">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                    Confirmar
+                                                                                                </button>
+                                                                                
+                                                                                                <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                    Procesando...
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="min-w-150px text-end" style="padding-right: 3rem;">
+                                                                                <ng-container *ngIf="!subitem.apartado">
+                                                                                    <span *ngIf="subitem.estado" class="badge py-3 px-4 fs-7 badge-light-primary">
+                                                                                        Disponible
+                                                                                    </span>
+                                                                                    <span *ngIf="!subitem.estado" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                                                        No disponible
+                                                                                    </span>
+                                                                                </ng-container>
+                                                                                <span *ngIf="subitem.apartado" class="badge py-3 px-4 fs-7 badge-light-info">
+                                                                                    Reservado
+                                                                                </span>
+                                                                            </td>
+                                                                            
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="item.detalles.length == 0">
+                                                                        <tr>
+                                                                            <td colspan="3">
+                                                                                <div class="text-center mt-15 mb-15">
+                                                                                    <!--begin::Title-->
+                                                                                    <img src="assets/icons/babero.gif" alt="" style="width: 80px;">
+                                                                                    <h3 class="fs-2hx text-dark mb-5">Sin resultados</h3>
+                                                                                    <!--end::Title-->
+                                                                                    <!--begin::Text-->
+                                                                                    <div class="fs-5 text-muted fw-semibold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been 
+                                                                                    <br>successfully deployed by small businesses to global enterprises</div>
+                                                                                    <!--end::Text-->
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </ng-container>
+                                                                </tbody>
+                                                                <!--end::Tbody-->
+                                                            </table>
+                                                            <!--end::Table-->
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                                <!--end::Tab panel-->
+                                                </ng-container>
+                                            </div>
+                                            <!--end::Tab content-->
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

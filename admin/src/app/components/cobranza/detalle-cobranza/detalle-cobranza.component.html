@@ -1,0 +1,923 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar no-print" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Crédito
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cobranzas/creditos']"  class="pe-3">
+                                            Créditos
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Credito de cliente</li>
+                                </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="data">
+                                <div class="row g-xxl-9">
+                                    <!--begin::Col-->
+                                    <div class="col-xxl-4">
+                                        <!--begin::Security recent alerts-->
+                                        <div class="card card-flush mb-5" *ngIf="tipo == 'cliente'">
+                                            <!--begin::Body-->
+                                            <div class="card-header pt-7">
+                                                <!--begin::Title-->
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold text-dark fw-700">Cliente</span>
+                                                    <code class="mt-1">{{cliente.cliente.email}}</code>
+                                                </h3>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                                
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <div class="card-body pt-5">
+                                                 <!--begin::Item-->
+                                                 <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Nombres</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{cliente.cliente.nombres.split(' ')[0]}} {{cliente.cliente.apellidos.split(' ')[0]}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Correo</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{cliente.cliente.email}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Telefono</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{cliente.cliente.telefono}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Crédito</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder" *ngIf="cliente.cliente.limit_credito">
+                                                            {{cliente.cliente.limit_credito|currency:'MXN'}}
+                                                        </small>
+                                                        <small class="text-gray-900 fw-bolder" *ngIf="!cliente.cliente.limit_credito">
+                                                            Sin crédito
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Deuda</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{cliente.deuda|currency:'MXN'}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                 <!--begin::Item-->
+                                                 <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Disponible</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            <span *ngIf="cliente.cliente.limit_credito">
+                                                                {{cliente.cliente.limit_credito-cliente.deuda|currency:'MXN'}}
+                                                            </span>
+                                                            <span *ngIf="!cliente.cliente.limit_credito">
+                                                                {{0|currency:'MXN'}}
+                                                            </span>
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                 <!--begin::Item-->
+                                                 <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">A favor</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-success me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            <span *ngIf="cliente.cliente.saldo_favor">
+                                                                {{cliente.cliente.saldo_favor|currency:'MXN'}}
+                                                            </span>
+                                                            <span *ngIf="!cliente.cliente.saldo_favor">
+                                                                {{0|currency:'MXN'}}
+                                                            </span>
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                 <!--begin::Item-->
+                                                <div class="d-flex flex-stack mb-7">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Tiempo</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-primary fw-bolder cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#diasModal'">
+                                                            <span *ngIf="cliente.cliente.limit_days">
+                                                                {{cliente.cliente.limit_days}} días
+                                                            </span>
+                                                            <span *ngIf="!cliente.cliente.limit_days">
+                                                                {{0}} días
+                                                            </span>
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+   
+                                                <div class="btn-group" style="width: 100% !important;">
+                                                    <button *ngIf="permisos.cobranza_cuatro" class="btn btn-light-primary btn-active-light-primary btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#creditoModal'">
+                                                        
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                                                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Ampliar
+                                                    </button>
+    
+                                                    <button  *ngIf="permisos.cobranza_cinco" class="btn btn-light-danger btn-active-light-danger btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#reducirModal'">
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M21 13H3C2.4 13 2 12.6 2 12C2 11.4 2.4 11 3 11H21C21.6 11 22 11.4 22 12C22 12.6 21.6 13 21 13Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Reducir
+                                                    </button>
+                                                </div>
+                                               
+                                            </div>
+                                            <!--end::Body-->
+                                           
+                                        </div>
+                                        <div class="card card-flush mb-5" *ngIf="tipo == 'empresa'">
+                                            <!--begin::Body-->
+                                            <div class="card-header pt-7">
+                                                <!--begin::Title-->
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold text-dark fw-700">Empresa</span>
+                                                    <code class="mt-1">{{empresa.empresa._id}}</code>
+                                                </h3>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                                
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <div class="card-body pt-5">
+                                                 <!--begin::Item-->
+                                                 <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Razón social</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{empresa.empresa.razon_social}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Matríz</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{empresa.empresa.empresa.razon_social}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Tipo</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{empresa.empresa.tipo_empresa}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Crédito</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder" *ngIf="empresa.empresa.limit_credito">
+                                                            {{empresa.empresa.limit_credito|currency:'MXN'}}
+                                                        </small>
+                                                        <small class="text-gray-900 fw-bolder" *ngIf="!empresa.empresa.limit_credito">
+                                                            Sin crédito
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Deuda</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            {{empresa.deuda|currency:'MXN'}}
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Separator-->
+                                                <div class="separator separator-dashed my-3"></div>
+                                                <!--end::Separator-->
+                                                 <!--begin::Item-->
+                                                <div class="d-flex flex-stack">
+                                                    <!--begin::Section-->
+                                                    <div class="text-gray-700 fw-semibold fs-6 me-2">Disponible</div>
+                                                    <!--end::Section-->
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-senter">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr093.svg-->
+                                                        <span class="svg-icon svg-icon-2 svg-icon-danger me-2">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05026" y="15.5355" width="13" height="2" rx="1" transform="rotate(-45 7.05026 15.5355)" fill="currentColor"></rect>
+                                                                <path d="M9.17158 14.0284L9.17158 8.11091C9.17158 7.52513 8.6967 7.05025 8.11092 7.05025C7.52513 7.05025 7.05026 7.52512 7.05026 8.11091L7.05026 15.9497C7.05026 16.502 7.49797 16.9497 8.05026 16.9497L15.8891 16.9497C16.4749 16.9497 16.9498 16.4749 16.9498 15.8891C16.9498 15.3033 16.4749 14.8284 15.8891 14.8284L9.97158 14.8284C9.52975 14.8284 9.17158 14.4703 9.17158 14.0284Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Number-->
+                                                        <small class="text-gray-900 fw-bolder">
+                                                            <span *ngIf="empresa.empresa.limit_credito">
+                                                                {{empresa.empresa.limit_credito-empresa.deuda|currency:'MXN'}}
+                                                            </span>
+                                                            <span *ngIf="!empresa.empresa.limit_credito">
+                                                                {{0|currency:'MXN'}}
+                                                            </span>
+                                                        </small>
+                                                        <!--end::Number-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                </div>
+                                                <!--end::Item-->
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end::Security recent alerts-->
+                                    </div>
+                                    <!--end::Security recent alerts-->
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xxl-8">
+                                        <!--begin::Security summary-->
+                                        <div class="card card-flush mb-5 mb-xl-10">
+                                            <!--begin::Header-->
+                                            <div class="card-header card-header-stretch">
+                                                <!--begin::Title-->
+                                                <div class="card-title">
+                                                    <h3 class="m-0 text-gray-900 fw-700">Historial de crédito</h3>
+                                                </div>
+                                                <!--end::Title-->
+                                                <!--begin::Toolbar-->
+                                                <div class="card-toolbar">
+                                                    <ul class="nav nav-tabs nav-line-tabs nav-stretch border-transparent fs-5 fw-bold">
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link text-active-primary cursor-pointer" [ngClass]="{'active': option_menu == 1}" (click)="option_menu=1">
+                                                                Historial
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link text-active-primary cursor-pointer" [ngClass]="{'active': option_menu == 2}" (click)="option_menu=2">
+                                                                Solicitudes
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!--end::Toolbar-->
+                                            </div>
+                                            <!--end::Header-->
+                                            <!--begin::Body-->
+                                            <ng-container *ngIf="option_menu == 1">
+                                                
+                                                <div class="card-body pt-3 pb-0" *ngIf="historial.length >= 1">
+                                                    <div class="table-responsive">
+                                                        <table class="table align-middle mb-0 table-row-dashed fs-6 gy-3 dataTable no-footer mb-0" id="kt_table_widget_4_table">
+                                                            <!--begin::Table body-->
+                                                            <tbody class="fw-bold text-gray-600">
+                                                                <tr class="odd" *ngFor="let item of historial| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                                    <td class="min-w-150px">
+                                                                        <span class="text-success" *ngIf="item.monto >= 1">+{{item.monto|currency:'MXN'}}</span>
+                                                                        <span class="text-danger" *ngIf="item.monto <=0">{{item.monto|currency:'MXN'}}</span>
+                                                                    </td>
+                                                    
+                                                                    <td class="text-end min-w-150px">
+                                                                        <a class="text-gray-600 text-hover-primary">
+                                                                            {{item.colaborador.nombres.split(' ')[0]}} {{item.colaborador.apellidos.split(' ')[0]}}
+                                                                        </a>
+                                                                    </td>
+                                                    
+                                                                    <td class="text-end min-w-100px">
+                                                                        {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                    </td>
+                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body pt-3 pb-0" *ngIf="historial.length == 0">
+                                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                        <!--begin::Logo-->
+                                                        <a  class="pt-lg-20">
+                                                            <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                        </a> 
+                                                        <!--begin::Message-->
+                                                        <div class="fw-semibold fs-6 text-muted mb-15">
+                                                            Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                                        </div>      
+                                         
+                                                
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer" *ngIf="historial.length >= 1">
+                                                    <ngb-pagination
+                                                    [(page)]="page"
+                                                    [pageSize]="pageSize"
+                                                    [maxSize]="10"
+                                                    [rotate]="true" [boundaryLinks]="true"
+                                                    [collectionSize]="historial.length"></ngb-pagination>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="option_menu == 2">
+                                                <div class="card-body pt-3 pb-0" *ngIf="solicitudes.length >= 1">
+                                                    <div class="table-responsive">
+                                                        <table id="kt_widget_table_3" class="table table-row-dashed align-middle fs-6 gy-4 my-0 pb-3 dataTable no-footer">
+                                                            <tbody>
+                                                                <tr class="odd" *ngFor="let item of solicitudes| slice: (pageSol-1) * pageSizeSol : (pageSol-1) * pageSizeSol + pageSizeSol">
+                                                                    <td class="min-w-175px" *ngIf="item.tipo == 'Venta'">
+                                                                        <div class="position-relative ps-6 pe-3 py-2">
+                                                                            <div class="position-absolute start-0 top-0 w-4px h-100 rounded-2 bg-info"></div>
+                                                                            <a [routerLink]="['/ventas/detail',item.venta._id]" class="mb-1 text-dark text-hover-primary fw-bold">
+                                                                                #{{item.venta.year}}-{{item.venta.serie.toString().padStart(6,'000000')}}
+                                                                            </a>
+                                                                            <div class="fs-7 text-muted fw-bold">{{item.createdAt|date:'dd-MM-YYYY'}}</div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="min-w-175px" *ngIf="item.tipo == 'Programacion'">
+                                                                        <div class="position-relative ps-6 pe-3 py-2">
+                                                                            <div class="position-absolute start-0 top-0 w-4px h-100 rounded-2 bg-info"></div>
+                                                                            <a class="mb-1 text-dark text-hover-primary fw-bold">
+                                                                                Programaciones
+                                                                            </a>
+                                                                            <div class="fs-7 text-muted fw-bold">{{item.createdAt|date:'dd-MM-YYYY'}}</div>
+                                                                        </div>
+                                                                    </td>
+                                                                   
+                                                                    <td class="min-w-150px">
+                                                                        <div class="fw-bold">
+                                                                            {{item.monto|currency:'MXN'}}
+                                                                        </div>
+                                                                        <div class="fs-7 fw-bold text-muted">Monto solicitado</div>
+                                                                    </td>
+                                                                    <td class="text-end min-w-100px">
+                                                                        <div class="fw-bold">
+                                                                            {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                        </div>
+                                                                        <div class="fs-7 fw-bold text-muted">Fecha</div>
+                                                                        
+                                                                    </td>
+                                                                    <td class="text-end min-w-100px">
+                                                                        <a data-bs-toggle="modal" [attr.data-bs-target]="'#solicitudModal-'+item._id" class="btn btn-sm btn-light">
+                                                                            Resolución
+                                                                        </a>
+                                                                        <div class="modal fade" id="solicitudModal-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Resolución de solicitud</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Resolución de aprobación o denegación de la solicitud aperturada.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button *ngIf="!btn_credito" type="button" class="btn btn-light-danger font-weight-bold" (click)="set_solicitud(item._id,'Denegar')">
+                                                                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                            Denegar
+                                                                                        </button>
+                                                                                        <button *ngIf="!btn_credito" type="button" class="btn btn-light-dark font-weight-bold" (click)="set_solicitud(item._id,'Confirmar')">
+                                                                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                            Confirmar
+                                                                                        </button>
+                                                                        
+                                                                                        <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                            <!--end::Table-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body pt-3 pb-0" *ngIf="solicitudes.length == 0">
+                                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                        <!--begin::Logo-->
+                                                        <a  class="pt-lg-20 mb-12">
+                                                            <img alt="Logo" src="assets/images/metronic.svg" class="theme-light-show h-lg-100px" style="width: 100px !important;">    
+                                                        </a> 
+                                                        <!--end::Logo-->
+                                                
+                                                            
+                                                        <!--begin::Logo-->
+                                                        <h1 class="fw-700 text-gray-800 mb-5">No se encontraron datos.</h1>
+                                                        <!--end::Logo-->
+                                                    
+                                                        <!--begin::Message-->
+                                                        <div class="fw-semibold fs-6 text-muted mb-15">
+                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae qui, similique impedit rem maiores provident <br> vero cupiditate delectus, cumque enim nobis nihil optio exercitationem reprehenderit quod minus.
+                                                        </div>      
+                                         
+                                                
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer" *ngIf="solicitudes.length >= 1">
+                                                    <ngb-pagination
+                                                    [(page)]="pageSol"
+                                                    [pageSize]="pageSizeSol"
+                                                    [maxSize]="10"
+                                                    [rotate]="true" [boundaryLinks]="true"
+                                                    [collectionSize]="solicitudes.length"></ngb-pagination>
+                                                </div>
+                                            </ng-container>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end::Security summary-->
+                                    </div>
+                                    <!--end::Col-->
+                                    
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <!--begin::Title-->
+                                        <h1 class="fw-bolder fs-2hx text-gray-900 mb-4">Oops!</h1>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <div class="fw-semibold fs-6 text-gray-500 mb-7">No se encontró la página.</div>
+                                        <!--end::Text-->
+                                        <!--begin::Illustration-->
+                                        <div class="mb-3">
+                                            <img src="assets/images/404-error.png" class="mw-100 mh-300px theme-light-show" alt="">
+                                        </div>
+                                        <!--end::Illustration-->
+                                        
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="creditoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ampliación de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="number" class="form-control form-control-solid mb-3" name="monto" [(ngModel)]="amplitud.monto" placeholder="Monto de ampliación" (keyup.ENTER)="update_credito()">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_credito" type="button" class="btn btn-dark font-weight-bold" (click)="update_credito()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="reducirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reducción de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="number" class="form-control form-control-solid mb-3" name="monto" [(ngModel)]="reduccion.monto" placeholder="Monto de ampliación" (keyup.ENTER)="update_credito()">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_credito" type="button" class="btn btn-dark font-weight-bold" (click)="update_reduccion()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="diasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Tiempo de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Días</span>
+                    </label>
+                    <select name="limit_days" [(ngModel)]="limit_days" class="form-control form-control-solid mb-3">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="5">5</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="45">45</option>
+                        <option value="60">60</option>
+                    </select>
+                    <small class="text-muted">
+                        Tiempo limite para poder finalizar el pago de una venta.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_credito" type="button" class="btn btn-dark font-weight-bold" (click)="update_tiempo()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

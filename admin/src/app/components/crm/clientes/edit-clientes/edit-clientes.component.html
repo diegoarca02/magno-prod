@@ -1,0 +1,430 @@
+<ng-container *ngIf="!load_data">
+    <ng-container *ngIf="!data">
+        <div class="card">
+            <div class="card-body pt-15">
+                <div class="text-center mt-20 mb-15">
+                    <!--begin::Title-->
+                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                    <!--end::Title-->
+                    <!--begin::Text-->
+                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                    <!--end::Text-->
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="data">
+        <div class="card mb-5 mb-xl-10">
+            <!--begin::Card header-->
+            <div class="card-header border-0 pt-5">
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Editar cliente</span>
+                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </h3>
+                <div class="card-toolbar">
+                    
+                    <ng-container *ngIf="!inpDisabled">
+                        <button *ngIf="!load_btn" type="button" class="btn btn-sm btn-primary fw-bold" id="kt_account_profile_details_submit" (click)="actualizar()">
+                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                </svg>
+                            </span>
+                            Guardar cambios
+                        </button>
+                        <button *ngIf="load_btn" class="btn btn-sm btn-dark fw-bold" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Procensando...
+                        </button>
+                    </ng-container>
+                    <ng-container *ngIf="inpDisabled">
+                        <button type="button" class="btn btn-sm btn-dark fw-bold" (click)="inpDisabled = false">
+                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                </svg>
+                            </span>
+                            Desbloquear
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <!--begin::Card header-->
+             <!--begin::Card body-->
+             <div class="card-body p-9">
+                     
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nombres y apellidos</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <!--begin::Col-->
+                            <div class="col-lg-6 fv-row">
+                                <input type="text" name="nombres" 
+                                [(ngModel)]="cliente.nombres" class="form-control form-control-lg  mb-3 mb-lg-0"
+                                placeholder="Nombres"
+                                [disabled]="inpDisabled" />
+                            </div>
+                            <!--end::Col-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6 fv-row">
+                                <input type="text" name="apellidos" 
+                                [(ngModel)]="cliente.apellidos" class="form-control form-control-lg " 
+                                placeholder="Apellidos"  
+                                [disabled]="inpDisabled"/>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Correo electrónico</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" name="email" [(ngModel)]="cliente.email" class="form-control form-control-lg " 
+                        placeholder="john.doe@domain.cpm" 
+                        [disabled]="inpDisabled"/>
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                        <span class="required">Telefono</span>
+                        
+                    </label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <div class="row">
+                            <div class="col-4">
+                                <select class="form-select" id="select-phone" data-control="select2" data-placeholder="Prefijo"  [disabled]="inpDisabled">
+                                    <option></option>
+                                    <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <input type="tel" id="inpTelefono" name="telefono" [(ngModel)]="cliente.telefono" 
+                                class="form-control form-control-lg " placeholder="55 1234 5678" 
+                                [disabled]="inpDisabled"/>
+                            </div>
+                        </div>
+               
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="row mb-6">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">RFC</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" name="rfc" [(ngModel)]="cliente.rfc"
+                        class="form-control form-control-lg " placeholder="RFC"
+                        [disabled]="inpDisabled"/>
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+            
+                <!--begin::Input group-->
+                <div class="row">
+                    <!--begin::Label-->
+                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Nacimiento</label>
+                    <!--end::Label-->
+                    <!--begin::Col-->
+                    <div class="col-lg-8 fv-row">
+                        <!--begin::Input-->
+                        <input type="date" name="nacimiento" [(ngModel)]="cliente.nacimiento" 
+                        class="form-control form-control-lg "
+                        [disabled]="inpDisabled"/>
+                        <!--end::Hint-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Input group-->
+  
+              
+                
+            </div>
+            <!--end::Card body-->
+            <!--end::Content-->
+        </div>
+
+        <div class="card mb-5 mb-xl-10">
+            <!--begin::Card header-->
+            <div class="card-header border-0 pt-5" >
+                <!--begin::Heading-->
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Colaboradores asignados</span>
+                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </h3>
+                <!--end::Heading-->
+                <!--begin::Toolbar-->
+                <div class="card-toolbar" >
+                    <button class="btn btn-sm btn-dark fw-bold" data-bs-toggle="modal" [attr.data-bs-target]="'#addColaborador'">
+                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                            <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        Nuevo colaborador
+                    </button>
+                </div>
+                <!--end::Toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body p-0 pt-5 pb-5" >
+                <!--begin::Table wrapper-->
+                <div class="table-responsive" >
+                    <!--begin::Table-->
+                    <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9" style="margin-bottom: 0px !important;">
+                        <!--begin::Thead-->
+                      
+                        <!--end::Thead-->
+                        <!--begin::Tbody-->
+                        <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_colaboradores">
+                            <ng-container *ngIf="colaboradores.length >= 1">
+                                <tr *ngFor="let item of colaboradores">
+                                    <td class="min-w-200px">
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::Avatar-->
+                                            <div class="symbol symbol-45px me-5">
+                                                <span class="symbol-label fw-bold" [ngClass]="{
+                                                    'bg-light-danger text-danger': item.colaborador.nombres.charAt(0) >='A' && item.colaborador.nombres.charAt(0) <= 'H',
+                                                    'bg-light-primary text-primary': item.colaborador.nombres.charAt(0) >='I' && item.colaborador.nombres.charAt(0) <= 'O',
+                                                    'bg-light-info text-info': item.colaborador.nombres.charAt(0) >='P' && item.colaborador.nombres.charAt(0) <= 'U',
+                                                    'bg-light-success text-success': item.colaborador.nombres.charAt(0) >='V' && item.colaborador.nombres.charAt(0) <= 'Z'}">
+                                                    {{item.colaborador.nombres.charAt(0)}}
+                                                </span>
+                                            </div>
+                                            <!--end::Avatar-->
+                                            <!--begin::Name-->
+                                            <div class="d-flex justify-content-start flex-column">
+                                                <a class="text-dark fw-bold text-hover-primary mb-1 fs-6">{{item.colaborador.fullnames}}</a>
+                                                <a class="text-hover-primary fw-semibold d-block fs-7" [ngClass]="{'text-success': item.colaborador.verificacion,'text-muted': !item.colaborador.verificacion}">
+                                                   
+                                                    {{item.colaborador.email}}
+
+                                                    <span *ngIf="item.colaborador.verificacion" class="svg-icon svg-icon-5 svg-icon-success ms-n1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <!--end::Name-->
+                                        </div>
+                                    </td>
+                                    <td class="min-w-100px">
+                                        <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                            <img src="assets/media/flags/{{item.colaborador.pais.toLowerCase()}}.svg" class="mr-3" style="width: 15px;margin-right: 0.4rem;">
+
+                                            {{item.colaborador.pais}}
+                                        </a>
+                                        <span class="text-muted fw-semibold text-muted d-block fs-7">País</span>
+                                    </td>
+                                    <td class="text-end min-w-100px" >
+                                        <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{item.colaborador.prefijo}} {{item.colaborador.telefono}}</a>
+                                        <span class="text-muted fw-semibold text-muted d-block fs-7">Telefono</span>
+                                    </td>
+                                    <td class="text-end min-w-100px">
+                                        <span class="badge badge-light-primary" *ngIf="item.colaborador.estado">Activo</span>
+                                        <span class="badge badge-light-danger" *ngIf="!item.colaborador.estado">Desactivado</span>
+                                    </td>
+                                    <td class="text-end min-w-100px">
+                                        <a data-bs-toggle="modal" [attr.data-bs-target]="'#delete-'+item._id" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px cursor-pointer">
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                           
+                                            <span class="svg-icon svg-icon-5 svg-icon-gray-700" style="margin-right: 0px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"/>
+                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"/>
+                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->                                
+                                        </a>
+                                        <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title">Remover colaborador</h3>
+                                            
+                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                                <!--end::Svg Icon-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Confirmación para eliminación de ubicación.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                
+                                                            Descartar
+                                                        </button>
+                                                        <button *ngIf="!load_delete" type="button" class="btn btn-dark" (click)="remove_colaborador(item._id)">
+                                                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                            Eliminar
+                                                        </button>
+
+                                                        <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                            Procesando...
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </td>
+                                    
+                                    
+                                </tr>
+                            </ng-container>
+                           <tr  *ngIf="colaboradores.length == 0">
+                            <td colspan="3" class="text-center">
+                                <div>
+                                    <!--begin::Title-->
+                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">Nada que mostrar</a>
+                                    <!--end::Title-->
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7 fw-bold">No se encontró ningun dato registrado.</div>
+                                    <!--end::Description-->
+                                </div>
+                            </td>
+                           </tr>
+                           
+                        </tbody>
+                        <tbody *ngIf="load_colaboradores">
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!--end::Tbody-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <!--end::Table wrapper-->
+            </div>
+            <!--end::Card body-->
+        </div>
+
+      
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="load_data">
+    <div class="py-20 text-center">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-container>
+
+<div class="modal fade" id="addColaborador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title fw-700">Agregar colaborador</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body" style="min-height:550px;max-height:550px;overflow: hidden;overflow-y: auto;">
+                <div class="table-responsive" *ngIf="!load_colaboradores">
+                    <!--begin::Table-->
+                    <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                        
+                        <tbody *ngIf="arr_colaboradores.length >= 1">
+                            <tr *ngFor="let item of arr_colaboradores" style="cursor: pointer;" (click)="add_colaborador(item)">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-45px me-5">
+                                            <span class="symbol-label fw-bold" [ngClass]="{
+                                                'bg-light-danger text-danger': item.nombres.charAt(0) >='A' && item.nombres.charAt(0) <= 'H',
+                                                'bg-light-primary text-primary': item.nombres.charAt(0) >='I' && item.nombres.charAt(0) <= 'O',
+                                                'bg-light-info text-info': item.nombres.charAt(0) >='P' && item.nombres.charAt(0) <= 'U',
+                                                'bg-light-success text-success': item.nombres.charAt(0) >='V' && item.nombres.charAt(0) <= 'Z'}">
+                                                {{item.nombres.charAt(0)}}
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-start flex-column">
+                                            <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{item.nombres.split(' ')[0]}} {{item.apellidos.split(' ')[0]}}</a>
+                                            <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                {{item.email}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="arr_colaboradores.length == 0">
+                            <tr>
+                                <td colspan="2">
+                                    <div class="text-center" style="margin-top: 2rem !important;">
+                                        <img src="assets/icons/pakistani.gif" alt="" style="width: 80px;">
+                                        <h3 class="font-weight-bolder text-dark mt-5">Resultado de colaboradores</h3>
+                                        <div class="font-size-h4 mb-8">No se encontraron registros que mostrar</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <ng-container *ngIf="load_colaboradores">
+                    <div class="py-20 text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            
+        </div>
+    </div>
+</div> 

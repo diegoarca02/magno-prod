@@ -1,0 +1,524 @@
+<div class="app-main flex-column flex-row-fluid">
+    <!--begin::Page-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px !important;">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cobranza
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cobranzas']"  class="pe-3">
+                                            Pagos
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Nuevo pago</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Content-->
+                <div id="kt_app_content" class="app-content flex-column-fluid content">
+                    <!--begin::Content container-->
+                    <div id="kt_app_content_container" class="app-container container-xxl">
+                        <!--begin::Form-->
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mx-auto mw-700px w-100 py-10 fv-plugins-bootstrap5 fv-plugins-framework">
+                                    <div class="d-flex justify-content-center mb-20 d-flex gap-6">
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(1)" [ngClass]="{'text-primary': option_menu == 1}">
+                                               
+                                                General
+                                            </h3>
+                                        </div>
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(2)" [ngClass]="{'text-primary': option_menu == 2}">
+                                               
+                                                Cliente
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div [hidden]="option_menu != 1">
+                                        <!--begin::Group-->
+                                        <div class="mb-7">
+                                            
+
+                                            <!--begin::Heading-->
+                                            <div class="pb-10 pb-lg-15" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Comprobante electrónico
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Antes de seguir, si esta seleccionando comprobantes del SAT
+                                                    verifique los campos requeridos del cliente como dni, ruc y dirección.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+                                            
+                                            <!--begin::Input group-->
+                                            <div class="row">
+
+                                                <div class="col-lg-12">
+                                                    <!--begin::Option-->
+                                                    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10" [ngClass]="{'active': data_facturacion.tipo_de_comprobante == 'NO-BOLETA'}" (click)="set_comprobante('NO-BOLETA')">
+                                                        <!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+                                                        <span class="me-5">
+                                                            <img src="assets/images/factura.png" style="width: 40px;">
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                        <!--begin::Info-->
+                                                        <span class="d-block text-start">
+                                                            <span class="text-dark fw-bold d-block fs-4 fw-600">Sin factura</span>
+                                                            <span class="text-muted fs-6">Matricula no genera ningun comprobante con SAT.</span>
+                                                        </span>
+                                                        <!--end::Info-->
+                                                    </label>
+                                                    <!--end::Option-->
+                                                </div>
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                        <!--end::Group-->
+                                
+                                        <!--begin::Actions-->
+                                        <!--begin::Wrapper-->
+                                        <div class="text-center">
+                                            <button *ngIf="!data_facturacion.tipo_de_comprobante" disabled type="button" class="btn btn-dark">
+                                                Continuar
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <button *ngIf="data_facturacion.tipo_de_comprobante" (click)="next_step(2)" type="button" class="btn btn-dark">
+                                                Continuar
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <!--end::Wrapper-->
+                                        <!--end::Actions-->
+                                    </div>
+
+                                    <div [hidden]="option_menu != 2">
+                                        <!--begin::Group-->
+                                        <div class="mb-10">
+                                            <!--begin::Step 1-->
+                                            <div class="flex-column">
+                                                <!--begin::Input group-->
+                                                <!--begin::Heading-->
+                                                <div class="pb-10 pb-lg-15" >
+                                                    <!--begin::Title-->
+                                                    <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                        Nuevo pago
+                                                    </h1>
+                                                    <!--end::Title-->
+                                                    <!--begin::Notice-->
+                                                    <div class="text-muted fw-semibold fs-6 text-center">
+                                                        Información acerca de la venta que se pagará.
+                                                    </div>
+                                                    <!--end::Notice-->
+                                                </div>
+                                                <!--end::Heading-->
+
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label required">Comprador</label>
+                                                    <input type="text" class="form-control form-control-solid mb-2" placeholder="Cliente o empresa" name="filtro_cliente" [(ngModel)]="filtro_cliente" (keyup)="init_clientes()">
+                                                    <div class="fs-7 fw-semibold text-muted">Cliente que realiza la compra. </div>
+                                                    <!--end::Input-->
+                                                </div>
+
+                                                <div class="fv-row mb-7" *ngIf="data_facturacion.tipo_de_comprobante != 'NO-BOLETA'">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label required">Cuenta facturación</label>
+                                                    <ng-container *ngIf="cuentas.length >= 1">
+                                                        <select name="receptor" [(ngModel)]="data_facturacion.receptor" class="form-select form-control-solid mb-2">
+                                                            <option value="" selected disabled></option>
+                                                            <option value="{{item.cliente_facturacion.uid}}" *ngFor="let item of cuentas">
+                                                                {{item.cliente_facturacion.nombres}}
+                                                                {{item.cliente_facturacion.apellidos}}
+                                                            </option>
+                                                        </select>
+                                                        <div class="fs-7 fw-semibold text-muted">Cliente a facturar el pago. </div>   
+                                                    </ng-container>
+                                                    <ng-container *ngIf="cuentas.length == 0">
+                                                        <select name="" class="form-select form-control-solid mb-2" disabled>
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                        </select>
+                                                        <div class="fs-7 fw-semibold text-muted">El cliente no tiene cuentas de facturación.</div>   
+                                                    </ng-container> 
+                                                </div>
+
+                                                <div class="mb-10" *ngIf="clientes.length >= 1">
+													
+                                                    <!--begin::Results-->
+                                                    <div class="">
+                                                        <div class="d-flex justify-content-between">
+                                                            <small class="text-gray-700 mb-2">Restaltados: {{clientes_const.length}} clientes encontrados</small>
+                                                            <code *ngIf="view_all_clients" class="cursor-pointer" (click)="ver_todos_clientes()">Todos los resultados</code>
+                                                        </div>
+
+                                                        <!--begin::Users-->
+                                                        <div class="mh-300px scroll-y me-n5 pe-5">
+                                                            <!--begin::User-->
+                                                            <ng-container *ngIf="!load_clientes">
+                                                                <ng-container *ngFor="let item of clientes">
+                                                                    <ng-container *ngIf="item.tipo == 'Cliente'">
+                                                                        <div class="d-flex cursor-pointer flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed" [ngClass]="{'bg_selected': pago.cliente == item.cliente._id}"  (click)="select_cliente(item.cliente)">
+                                                                            <!--begin::Avatar-->
+                                                                            <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="symbol symbol-45px me-5" style="padding-left: 1rem;">
+                                                                                        <span class="symbol-label fw-bold" [ngClass]="{
+                                                                                            'bg-light-danger text-danger': item.cliente.nombres.charAt(0) >='A' && item.cliente.nombres.charAt(0) <= 'H',
+                                                                                            'bg-light-primary text-primary': item.cliente.nombres.charAt(0) >='I' && item.cliente.nombres.charAt(0) <= 'O',
+                                                                                            'bg-light-info text-info': item.cliente.nombres.charAt(0) >='P' && item.cliente.nombres.charAt(0) <= 'U',
+                                                                                            'bg-light-success text-success': item.cliente.nombres.charAt(0) >='V' && item.cliente.nombres.charAt(0) <= 'Z'}">
+                                                                                            {{item.cliente.nombres.charAt(0)}}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="d-flex justify-content-start flex-column">
+                                                                                        <a class="text-gray-800 fw-bold mb-1 fs-6">
+                                                                                            <code>[Cliente]</code> &nbsp;
+                                                                                            {{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}
+                                                                                           
+                                                                                        </a>
+                                                                                        <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                            {{item.cliente.email}}
+                                                                                            
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--end::Avatar-->
+                                                                            </div>
+                                                                            <!--end::Avatar-->
+                                                                        </div>
+                                                                    </ng-container>
+                                                                </ng-container>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="load_clientes">
+                                                                <div class="py-20 text-center">
+                                                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                      </div>
+                                                                </div>
+                                                            </ng-container>
+                                                            
+                                                        </div>
+                                                        <!--end::Users-->
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-10" *ngIf="cliente_selected">
+                                                    <ng-container *ngIf="load_cliente_selected">
+                                                        <div class="py-20 text-center">
+                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                              </div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="!load_cliente_selected">
+                                                        <ng-container *ngIf="cliente.credito_total >= 1">
+                                                            <!--end::Input group-->
+                                                            <div class="py-7 py-lg-10">
+                                                                <!--begin::Title-->
+                                                                <h2 class="fw-bold d-flex align-items-center text-dark fw-700">Resúmen de crédito
+                                                                <i class="fas fa-exclamation-circle ms-2 fs-7"></i></h2>
+                                                                <!--end::Title-->
+                                                                <!--begin::Notice-->
+                                                                <div class="text-muted fw-semibold fs-6">Información del credito del cliente.
+                                                                    <a href="#" class="link-primary fw-bold"*ngIf="cliente_selected">
+                                                                        {{cliente_selected.nombres}} {{cliente_selected.apellidos}}
+                                                                    </a>.
+                                                                </div>
+                                                                <!--end::Notice-->
+                                                            </div>
+
+                                                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-5">
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <small>
+                                                                            Tipo
+                                                                        </small>
+                                                                    </td>
+                                                                    <td class="text-end fw-bold">
+                                                                        <small>
+                                                                            Crédito
+                                                                        </small>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <small>Crédito Total</small>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <small class="fw-bold">{{cliente.credito_total|currency:'MXN'}}</small>
+                                                                    </td>
+                                                                </tr>
+                                                             
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <small>
+                                                                            Crédito Disponible
+                                                                        </small>
+                                                                    </td>
+                                                                    <td class="text-end fw-bold">
+                                                                        <small class="fw-bold">
+                                                                            {{cliente.credito_disponible|currency:'MXN'}}
+                                                                        </small>
+                                                                    </td>
+                                                                </tr>
+    
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <span>
+                                                                            <strong>Crédito Usado</strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="text-end fw-bold">
+                                                                        <span class="fw-bold" [ngClass]="{'text-danger': cliente.credito_usado >= 1,'text-success': cliente.credito_usado < 0}">
+                                                                            <strong>{{cliente.credito_usado|currency:'MXN'}}</strong>
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+    
+                                                            <div *ngIf="cliente.credito_usado < 0" 
+                                                            class="notice d-flex justify-content-between bg-light-success rounded border-success border border-dashed mb-2 p-6" >
+                                                                <div class="d-flex flex-column">
+                                                                    <span class="fw-700">Saldo a favor</span>
+                                                                    <div class="">
+                                                                        <small>
+                                                                            El cliente tiene un saldo a favor, cuando se apruebe el siguiente pago se usará el saldo.
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="cliente.credito_total == 0">
+                                                            <div class="py-7 py-lg-10">
+                                                                <!--begin::Title-->
+                                                                <h2 class="fw-bold d-flex align-items-center text-dark fw-700">Resúmen de deuda
+                                                                <i class="fas fa-exclamation-circle ms-2 fs-7"></i></h2>
+                                                                <!--end::Title-->
+                                                                <!--begin::Notice-->
+                                                                <div class="text-muted fw-semibold fs-6">Información de las ventas.
+                                                                    <a href="#" class="link-primary fw-bold"*ngIf="cliente_selected">
+                                                                        {{cliente_selected.nombres}} {{cliente_selected.apellidos}}
+                                                                    </a>.
+                                                                </div>
+                                                                <!--end::Notice-->
+                                                            </div>
+
+                                                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-5">
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <small>
+                                                                            Tipo
+                                                                        </small>
+                                                                    </td>
+                                                                    <td class="text-end fw-bold">
+                                                                        <small>
+                                                                            Contado
+                                                                        </small>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="3" class="text-start">
+                                                                        <span>
+                                                                            <strong>Deuda</strong>
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="text-end fw-bold">
+                                                                        <span class="fw-bold" [ngClass]="{'text-danger': contado.deuda >= 1,'text-success': contado.deuda < 0}">
+                                                                            <strong>{{contado.deuda|currency:'MXN'}}</strong>
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </ng-container> 
+                                                    </ng-container>
+                                                </div>
+                                                
+
+                                                <div class="mb-10" >
+                                                    <!--begin::Input group-->
+                                                    <div class="pb-7 pb-lg-10">
+                                                        <!--begin::Title-->
+                                                        <h2 class="fw-bold d-flex align-items-center text-dark fw-700">Forma de pago
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"></i></h2>
+                                                        <!--end::Title-->
+                                                        <!--begin::Notice-->
+                                                        <div class="text-muted fw-semibold fs-6">Información acerca de la forma del pago.
+                                                        <a href="#" class="link-primary fw-bold">Help Page</a>.</div>
+                                                        <!--end::Notice-->
+                                                    </div>
+
+                                                    <div class="row mb-7">
+                                                        <div class="col">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Monto</label>
+                                                            <!--end::Label-->
+                                                            <!--begin::Input-->
+                                                            <input type="text" class="form-control form-control-solid mb-2" name="monto" 
+                                                             [(ngModel)]="pago.monto" placeholder="Monto" id="inpMonto">
+                                                            <div class="text-muted fs-7">Monto abonado.</div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                        <div class="col" *ngIf="pago.metodo != 'Efectivo'">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label">Transacción</label>
+                                                            <!--end::Label-->
+                                        
+                                                            <!--begin::Input-->
+                                                            <input type="number" class="form-control form-control-solid mb-2" name="id_transaccion" [(ngModel)]="pago.id_transaccion" placeholder="Código de transacción">
+                                                            <div class="text-muted fs-7">Código de transacción.</div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col mb-7">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Metodo</label>
+                                                            <!--end::Label-->
+                                        
+                                                            <!--begin::Input-->
+                                                            <select class="form-select form-select-solid mb-2" name="metodo" [(ngModel)]="pago.metodo" (change)="set_metodo()">
+                                                                <option value="" disabled selected>Seleccionar</option>
+                                                                <option value="Efectivo">Efectivo</option>
+                                                                <option value="Cheque nominativo">Cheque nominativo</option>
+                                                                <option value="Transferencia electrónica de fondos">Transferencia electrónica de fondos</option>
+                                                                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                                                                <option value="Monedero electrónico">Monedero electrónico</option>
+                                                            </select>
+                                                            <div class="text-muted fs-7">Metodo con el que se realiza el pago.</div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                        <div class="col mb-7" *ngIf="pago.metodo != 'Efectivo'">
+                                                            <!--begin::Label-->
+                                                            <label class="form-label required">Entidad</label>
+                                                            <!--end::Label-->
+                                        
+                                                            <!--begin::Input-->
+                                                            <select class="form-select form-select-solid mb-2" name="entidad" [(ngModel)]="pago.entidad">
+                                                                <option value="" disabled selected>Seleccionar</option>
+                                                                <option value="{{item}}" *ngFor="let item of entidades">{{item}}</option>
+                                                            </select>
+                                                            <div class="text-muted fs-7">Metodo con el que se realiza el pago.</div>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="fv-row mb-7">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label">Comprobante</label>
+                                                        <!--end::Label-->
+                                    
+                                                        <!--begin::Input-->
+                                                        <input type="file" class="form-control form-control-solid mb-2" (change)="upload_file($event)">
+                                                        <div class="text-muted fs-7">Captura del comprobante</div>
+                                                        <!--end::Input-->
+                                                    </div>
+    
+                                                    <div *ngIf="file != undefined">
+                                                        <div class="d-flex align-items-center p-3 rounded-3 border-hover border border-dashed border-gray-300 cursor-pointer mb-1" style="border: 1px dashed #e4e6ef!important;">
+                                                            <!--begin::Avatar-->
+                                                            <div class="symbol symbol-35px symbol-circle me-5">
+                                                                <img *ngIf="file_formato == 'Documento Word'" src="assets/icons/doc.png">
+                                                                <img *ngIf="file_formato == 'Documento Excel'" src="assets/icons/excel.png">
+                                                                <img *ngIf="file_formato == 'Imagen'" src="assets/icons/imagen.png">
+                                                                <img *ngIf="file_formato == 'PDF'" src="assets/icons/pdf.png">
+                                                            </div>
+                                                            <!--end::Avatar-->
+                                                            <!--begin::Info-->
+                                                            <div class="fw-semibold">
+                                                                <span class="fs-6 text-gray-800 me-2">{{file_name}}</span>
+                                                                <span class="badge badge-light">{{file_formato}}</span>
+                                                            </div>
+                                                            <!--end::Info-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--begin::Step 1-->
+                                        </div>
+                                        <!--end::Group-->
+                                
+                                        <!--begin::Actions-->
+                                        <div class="text-center">
+                                      
+                                            <button *ngIf="!load_btn" (click)="crear()" type="button" class="btn btn-dark">
+                                                Realizar pago
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                Procesando...
+                                            </button>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Content container-->
+                </div>
+                <!--end::Content-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

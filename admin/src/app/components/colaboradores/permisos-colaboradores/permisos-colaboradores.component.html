@@ -1,0 +1,1856 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Colaboradores
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/seguridad/colaboradores']"  class="pe-3">Usuarios</a></li>
+                                <li class="breadcrumb-item pe-3">Editar usuarios</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div class="app-container container-xxl">
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="!load_data">
+                            <ng-container *ngIf="data">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0 pt-5">
+                                        <!--begin::Card title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Permisos de {{usuario.nombres}} {{usuario.apellidos}}</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nihil?</span>
+                                        </h3>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body">
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Colaboradores
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-1000"
+                                                                    (change)="selectPermiso($event,1000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>1000 - </b> Mostar y buscar colaboradores.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-1001"
+                                                                    (change)="selectPermiso($event,1001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>1001 - </b> Crear nuevo colaborador.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-1002"
+                                                                    (change)="selectPermiso($event,1002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>1002 - </b> Activar y desactivar colaborador.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-1003"
+                                                                    (change)="selectPermiso($event,1003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>1003 - </b> Editar un colaborador.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-1004"
+                                                                    (change)="selectPermiso($event,1004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>1004 - </b> Permisos un colaborador.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Clientes
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2000"
+                                                                    (change)="selectPermiso($event,2000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2000 - </b> Mostar y buscar clientes.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2001"
+                                                                    (change)="selectPermiso($event,2001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2001 - </b> Crear nuevo cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2002"
+                                                                    (change)="selectPermiso($event,2002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2002 - </b> Activar y desactivar cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2003"
+                                                                    (change)="selectPermiso($event,2003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2003 - </b> Dashboard de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2004"
+                                                                    (change)="selectPermiso($event,2004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2004 - </b> Direcciones de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2005"
+                                                                    (change)="selectPermiso($event,2005)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2005 - </b> Facturación de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2006"
+                                                                    (change)="selectPermiso($event,2006)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2006 - </b> Pagos de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2007"
+                                                                    (change)="selectPermiso($event,2007)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2007 - </b> Solicitudes de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-2008"
+                                                                    (change)="selectPermiso($event,2008)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>2008 - </b> Ventas de cliente.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Productos
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3000"
+                                                                    (change)="selectPermiso($event,3000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3000 - </b> Mostrar y buscar productos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3001"
+                                                                    (change)="selectPermiso($event,3001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3001 - </b> Crear nuevo producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3002"
+                                                                    (change)="selectPermiso($event,3002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3002 - </b> Papelera de productos.
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3003"
+                                                                    (change)="selectPermiso($event,3003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3003 - </b> Acceso Directo de etiquetado de producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3004"
+                                                                    (change)="selectPermiso($event,3004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3004 - </b> Acceso Directo de venta de producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3005"
+                                                                    (change)="selectPermiso($event,3005)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3005 - </b> Acceso Directo de stock futuro de producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3006"
+                                                                    (change)="selectPermiso($event,3006)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3006 - </b> Editar un producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3007"
+                                                                    (change)="selectPermiso($event,3007)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3007 - </b> Activar y desactivar producto.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3008"
+                                                                    (change)="selectPermiso($event,3008)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3008 - </b> Listado de colores.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3009"
+                                                                    (change)="selectPermiso($event,3009)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3009 - </b> Agregar nuevo color.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3010"
+                                                                    (change)="selectPermiso($event,3010)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3010 - </b> Configuracion de color.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-3011"
+                                                                    (change)="selectPermiso($event,3011)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>3011 - </b> Etiquetado de productos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container >
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Pedidos
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4000"
+                                                                    (change)="selectPermiso($event,4000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4000 - </b> Mostar y buscar pedidos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4001"
+                                                                    (change)="selectPermiso($event,4001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4001 - </b> Crear nuevo pedido.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4002"
+                                                                    (change)="selectPermiso($event,4002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4002 - </b> Enviar pedidos.
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4003"
+                                                                    (change)="selectPermiso($event,4003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4003 - </b> Detalles de pedido.
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4004"
+                                                                    (change)="selectPermiso($event,4004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4004 - </b> Descargar PDF de pedido.
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-4005"
+                                                                    (change)="selectPermiso($event,4005)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>4005 - </b> Confirmar detalles de pedido.
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Proveedores
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-5000"
+                                                                    (change)="selectPermiso($event,5000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>5000 - </b> Mostar y buscar proveedores.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-5001"
+                                                                    (change)="selectPermiso($event,5001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>5001 - </b> Crear nuevo proveedor.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-5002"
+                                                                    (change)="selectPermiso($event,5002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>5002 - </b> Activar y desactivar proveedor.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-5003"
+                                                                    (change)="selectPermiso($event,5003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>5003 - </b> Editar un proveedor.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Inventario
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-6000"
+                                                                    (change)="selectPermiso($event,6000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>6000 - </b> Acceso completo a inventario.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Ingresos
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-7000"
+                                                                    (change)="selectPermiso($event,7000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>7000 - </b> Mostar y buscar ingresos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-7001"
+                                                                    (change)="selectPermiso($event,7001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>7001 - </b> Crear nuevo ingreso.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-7002"
+                                                                    (change)="selectPermiso($event,7002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>7002 - </b> Modal de envios de pedidos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Ordenes
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8000"
+                                                                    (change)="selectPermiso($event,8000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8000 - </b> Mostar y buscar ordenes.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8001"
+                                                                    (change)="selectPermiso($event,8001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8001 - </b> Descargar documento PDF de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8002"
+                                                                    (change)="selectPermiso($event,8002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8002 - </b>  Descargar documento pagaré de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8003"
+                                                                    (change)="selectPermiso($event,8003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8003 - </b> Exportar venta a XLS.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8004"
+                                                                    (change)="selectPermiso($event,8004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8004 - </b> Detalle de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8005"
+                                                                    (change)="selectPermiso($event,8005)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8005 - </b> Confirmar y/o cancelar orden.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8006"
+                                                                    (change)="selectPermiso($event,8006)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8006 - </b> Transacciones de orden.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-8007"
+                                                                    (change)="selectPermiso($event,8007)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>8007 - </b> Envios de orden.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Envios de Ventas
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-9000"
+                                                                    (change)="selectPermiso($event,9000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>9000 - </b> Mostar y buscar envios.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-9001"
+                                                                    (change)="selectPermiso($event,9001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>9001 - </b> Crear de envío de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-9002"
+                                                                    (change)="selectPermiso($event,9002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>9002 - </b> Agregar rollo en envio.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-9003"
+                                                                    (change)="selectPermiso($event,9003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>9003 - </b> Quitar rollo de envio.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Ventas
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-10000"
+                                                                    (change)="selectPermiso($event,10000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>10000 - </b> Mostar y buscar ventas.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-10001"
+                                                                    (change)="selectPermiso($event,10001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>10001 - </b> Crear nueva venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-10002"
+                                                                    (change)="selectPermiso($event,10002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>10002 - </b> Descargar documento PDF de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-10003"
+                                                                    (change)="selectPermiso($event,10003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>10003 - </b> Detalle de venta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Programaciones
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-11000"
+                                                                    (change)="selectPermiso($event,11000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>11000 - </b> Mostrar y buscar programaciones.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-11001"
+                                                                    (change)="selectPermiso($event,11001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>11001 - </b> Confirmación para programación.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-11002"
+                                                                    (change)="selectPermiso($event,11002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>11002 - </b> Confirmar y/o cancelar programación.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-11003"
+                                                                    (change)="selectPermiso($event,11003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>11003 - </b> Detalle de programacion.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-11004"
+                                                                    (change)="selectPermiso($event,11004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>11004 - </b> Cancelar programacion individuales.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Notas
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-12000"
+                                                                    (change)="selectPermiso($event,12000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>12000 - </b> Acceso completo a los notas.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Cuentas Bancarias
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-13000"
+                                                                    (change)="selectPermiso($event,13000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>13000 - </b> Mostar y buscar cuentas.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-13001"
+                                                                    (change)="selectPermiso($event,13001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>13001 - </b> Crear nuevo cuenta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-13002"
+                                                                    (change)="selectPermiso($event,13002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>13002 - </b> Editar una cuenta.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container>
+                                            <!--begin::Heading-->
+                                            <div class="pb-10" >
+                                                <!--begin::Title-->
+                                                <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                    Cobranza
+                                                </h1>
+                                                <!--end::Title-->
+                                                <!--begin::Notice-->
+                                                <div class="text-muted fw-semibold fs-6 text-center">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, culpa.
+                                                </div>
+                                                <!--end::Notice-->
+                                            </div>
+                                            <!--end::Heading-->
+
+                                            <div class="table-responsive mb-10">
+                                                <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer">
+                                                
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-14000"
+                                                                    (change)="selectPermiso($event,14000)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>14000 - </b> Mostar y buscar pagos.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-14001"
+                                                                    (change)="selectPermiso($event,14001)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>14001 - </b> Crear nuevo pago.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-14002"
+                                                                    (change)="selectPermiso($event,14002)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>14002 - </b> Aprobar un pago.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-14003"
+                                                                    (change)="selectPermiso($event,14003)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>14003 - </b> Cancelar un pago.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="odd">
+                                                            <td class="w-10px pe-2 ">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input chks_colaborador" type="checkbox" id="customCheck-14004"
+                                                                    (change)="selectPermiso($event,14004)">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <div class="ms-5">
+                                                                        <a class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1">
+                                                                            <b>14004 - </b> Detalles de pago.
+                                                                        </a>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+
+                            </ng-container>
+                            <ng-container *ngIf="!data">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <!--begin::Title-->
+                                        <h1 class="fw-bolder fs-2hx text-gray-900 mb-4">Oops!</h1>
+                                        <!--end::Title-->
+                                        <!--begin::Text-->
+                                        <div class="fw-semibold fs-6 text-gray-500 mb-7" bis_skin_checked="1">No se encontró la página.</div>
+                                        <!--end::Text-->
+                                        <!--begin::Illustration-->
+                                        <div class="mb-3" bis_skin_checked="1">
+                                            <img src="assets/images/404-error.png" class="mw-100 mh-300px theme-light-show" alt="">
+                                        </div>
+                                        <!--end::Illustration-->
+                                        
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+
+                      
+                        
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

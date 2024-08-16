@@ -1,0 +1,13 @@
+.m-procesado{
+    border-left: 4px solid #3e68d7  !important;
+    border-radius: 0px !important;
+}
+
+.m-confirmado{
+    border-left: 4px solid #ffc700  !important;
+    border-radius: 0px !important;
+}
+
+.check-span{
+    fill: #fff !important;
+}

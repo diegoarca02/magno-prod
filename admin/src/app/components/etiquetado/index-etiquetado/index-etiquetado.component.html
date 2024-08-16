@@ -1,0 +1,312 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Etiquetado
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Etiquetado</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0 py-7">
+                                        <!--begin::Tabs-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">
+                                                Etiquetado
+                                            </span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <!--end::Tabs-->
+                                       
+                                
+                                    </div>
+                                   
+                                    <div class="card-header border-0 mb-5">
+                                        
+                                        <div class="card-title">
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                
+                                                <span class="svg-icon svg-icon-muted svg-icon-1 position-absolute ms-6"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span> 
+                                            
+                                                <input (keyup)="init_productos()" (keyup.enter)="init_productos()" type="text" class="form-control form-control-solid w-300px ps-15 me-3" placeholder="Buscar producto" name="filtro" [(ngModel)]="filtro"/>
+
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card card-flush">
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Productos disponibles</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                    </div>
+
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-5 pb-5">
+                                        <ng-container  *ngIf="!load_data">
+                                          
+                                            <div class="table-responsive">
+                                                <table *ngIf="productos.length >= 1" class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <ng-container *ngFor="let item of productos;let idx = index">
+                                                            <!--begin::Table row-->
+                                                            <tr>
+                                                            
+                                                                <!--begin::Category=-->
+                                                                <td class="min-w-200px">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <!--begin::Thumbnail-->
+                                                                        <a class="symbol symbol-50px">
+                                                                            <span class="symbol-label" style="background-image:url({{item.producto.portada}});"></span>
+                                                                        </a>
+                                                                        <!--end::Thumbnail-->
+                                                                        <div class="ms-5">
+                                                                            <!--begin::Title-->
+                                                                            <a class="text-gray-800 fs-6 fw-bold text-1 fw-600 cursor-pointer" style="font-size: 1rem!important;" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto.titulo}}">
+                                                                           
+                                                                                <ng-container  *ngIf="item.producto.minutos_pasados <= min_new_tag ">
+                                                                                    <span class="badge badge-warning text-dark" style="font-size: .7rem;">
+                                                                                        Nuevo
+                                                                                    </span>
+                                                                                    &nbsp;
+                                                                                </ng-container>
+
+                                                                                {{item.producto.titulo}}
+                                                                                
+                                                                            </a>
+                                                                            <!--end::Title-->
+                                                                            <code>
+                                                                                {{item.producto.tipo}} - {{item.producto.categoria}}
+                                                                            </code>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <!--end::Category=-->
+                                                                 <!--begin::SKU=-->
+                                                                 <td class="text-end pe-0 min-w-100px">
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">
+                                                                        Cantidades
+                                                                    </span>
+                                                                    <code [ngClass]="{'text-muted': item.cantidad_total == 0}">
+                                                                        {{item.cantidad_total}} 
+                                                                        <code [ngClass]="{'text-muted': item.cantidad_total == 0}">
+                                                                            <ng-container  *ngIf="item.producto.tipo == 'Tela'">
+                                                                                Mtr
+                                                                            </ng-container>
+                                                                            <ng-container  *ngIf="item.producto.tipo == 'Acero'">
+                                                                                Kg
+                                                                            </ng-container>
+                                                                            <ng-container  *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                Unid
+                                                                            </ng-container>
+                                                                        </code>
+                                                                    </code>
+                                                                </td>
+                                                                <!--end::SKU=-->
+                                                             
+                                                            
+                                                                <!--begin::Status=-->
+                                                                <td class="pe-0 min-w-100px text-end">
+                                                                    <!--begin::Badges-->
+                                                                    <div [ngStyle]="{'background': subitem.color}" *ngFor="let subitem of item.etiquetas" class="badge badge-primary mb-1 me-3">
+                                                                        {{subitem.etiqueta}}
+                                                                    </div>
+                                                                </td>
+                                                                <!--end::Status=-->
+                                                                <!--begin::Action=-->
+                                                                <td class="text-end min-w-100px">
+                                                                    
+                                                                    <a style="cursor: pointer;" (click)="show_detalles(idx)" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-3">
+                                                                        <span *ngIf="!item.visible" class="svg-icon svg-icon-3 m-0 toggle-off">
+                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor"></rect>
+                                                                                <rect x="6" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
+                                                                            </svg>
+                                                                        </span>
+                                                                        <span *ngIf="item.visible" class="svg-icon svg-icon-3 m-0 toggle-on">
+                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <rect x="6" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </a>
+                                                                    <a style="cursor: pointer;" [routerLink]="['/etiquetado',item.producto._id]" routerLinkActive="router-link-active"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm ">
+                                                                        <span class="svg-icon svg-icon-3 m-0 toggle-on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path opacity="0.3" d="M3 6C2.4 6 2 5.6 2 5V3C2 2.4 2.4 2 3 2H5C5.6 2 6 2.4 6 3C6 3.6 5.6 4 5 4H4V5C4 5.6 3.6 6 3 6ZM22 5V3C22 2.4 21.6 2 21 2H19C18.4 2 18 2.4 18 3C18 3.6 18.4 4 19 4H20V5C20 5.6 20.4 6 21 6C21.6 6 22 5.6 22 5ZM6 21C6 20.4 5.6 20 5 20H4V19C4 18.4 3.6 18 3 18C2.4 18 2 18.4 2 19V21C2 21.6 2.4 22 3 22H5C5.6 22 6 21.6 6 21ZM22 21V19C22 18.4 21.6 18 21 18C20.4 18 20 18.4 20 19V20H19C18.4 20 18 20.4 18 21C18 21.6 18.4 22 19 22H21C21.6 22 22 21.6 22 21Z" fill="currentColor"/>
+                                                                            <path d="M3 16C2.4 16 2 15.6 2 15V9C2 8.4 2.4 8 3 8C3.6 8 4 8.4 4 9V15C4 15.6 3.6 16 3 16ZM13 15V9C13 8.4 12.6 8 12 8C11.4 8 11 8.4 11 9V15C11 15.6 11.4 16 12 16C12.6 16 13 15.6 13 15ZM17 15V9C17 8.4 16.6 8 16 8C15.4 8 15 8.4 15 9V15C15 15.6 15.4 16 16 16C16.6 16 17 15.6 17 15ZM9 15V9C9 8.4 8.6 8 8 8H7C6.4 8 6 8.4 6 9V15C6 15.6 6.4 16 7 16H8C8.6 16 9 15.6 9 15ZM22 15V9C22 8.4 21.6 8 21 8H20C19.4 8 19 8.4 19 9V15C19 15.6 19.4 16 20 16H21C21.6 16 22 15.6 22 15Z" fill="currentColor"/>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+                                                                <!--end::Action=-->
+                                                            </tr>
+                                                            <!--end::Table row-->
+                                                            <tr *ngIf="item.visible">
+                                                                <td colspan="6">
+                                                                    <a *ngFor="let subitem of item.variaciones" class="symbol symbol-50px bg-secondary bg-opacity-25 rounded me-3 cursor-pointer"  placement="top" ngbTooltip="{{subitem.variacion_name}}">
+                                                                        <span class="symbol-label text-white" style="width: 35px;height: 35px;border: 1px dashed #ccc;border-radius: 50%;" [ngStyle]="{'background-color': subitem.hxd}">
+                                                                            <ng-container *ngIf="item.producto.tipo == 'Ropa'">
+                                                                                {{subitem.talla}}
+                                                                            </ng-container>
+                                                                        </span>
+                                                                    </a>
+                                                                </td>   
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                    <!--end::Table body-->
+                                                </table>
+                                                <table *ngIf="productos.length == 0" class="table align-middle table-row-dashed fs-6 gy-5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                                    <!--begin::Logo-->
+                                                                    <a  class="pt-lg-20 mb-12">
+                                                                        <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/logos/default.svg" class="theme-light-show h-40px h-lg-50px">    
+                                                                    </a> 
+                                                                    <!--end::Logo-->
+                                                                
+                                                                        
+                                                                    <!--begin::Logo-->
+                                                                    <h3 class="fw-bold fs-2qx text-gray-800 mb-10">No se encontraron datos.</h3>
+                                                                    <!--end::Logo-->
+                                                                
+                                                                    <!--begin::Message-->
+                                                                    <div class="fw-semibold fs-3 text-muted mb-15">
+                                                                        No se pudo encontrar ninguna tela <br> intenta con otro filtro.
+                                                                    </div>      
+                                                                    <!--end::Message-->
+                                                                
+                                                            
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="load_data">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <!--end::Card body-->
+                                    <div class="card-body pt-5 pb-5" *ngIf="tipo_option == 'Ropas'">
+                                        <ng-container *ngIf="load_ropas">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="!load_ropas">
+                                           
+                                            <div class="table-responsive">
+                                                <table *ngIf="ropas.length >= 1" class="table align-middle table-row-dashed fs-6 gy-5">
+                                                    
+                                                </table>
+                                                <table *ngIf="ropas.length == 0" class="table align-middle table-row-dashed fs-6 gy-5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                                    <!--begin::Logo-->
+                                                                    <a  class="pt-lg-20 mb-12">
+                                                                        <img alt="Logo" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/logos/default.svg" class="theme-light-show h-40px h-lg-50px">    
+                                                                    </a> 
+                                                                    <!--end::Logo-->
+                                                                
+                                                                        
+                                                                    <!--begin::Logo-->
+                                                                    <h3 class="fw-bold fs-2qx text-gray-800 mb-10">No se encontraron datos.</h3>
+                                                                    <!--end::Logo-->
+                                                                
+                                                                    <!--begin::Message-->
+                                                                    <div class="fw-semibold fs-3 text-muted mb-15">
+                                                                        No se pudo encontrar ninguna ropa <br> intenta con otro filtro.
+                                                                    </div>      
+                                                                    <!--end::Message-->
+                                                                
+                                                                   
+                                                            
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!--end::Table-->
+                                            
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

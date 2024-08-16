@@ -1,0 +1,271 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Colaboradores
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/seguridad/colaboradores']"  class="pe-3">Usuarios</a></li>
+                                <li class="breadcrumb-item pe-3">Nuevo usuarios</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card mb-5 mb-xl-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Nuevo colaborador</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                    </div>
+                                    <!--begin::Card header-->
+                                    <!--begin::Content-->
+                                    <div class="card-body pt-3">
+                                             
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nombres y apellidos</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 fv-row">
+                                                        <input type="text" name="nombres" [(ngModel)]="colaborador.nombres" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Nombres" />
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 fv-row">
+                                                        <input type="text" name="apellidos" [(ngModel)]="colaborador.apellidos" class="form-control form-control-lg form-control-solid" placeholder="Apellidos"  />
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Correo electrónico</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="email" [(ngModel)]="colaborador.email" class="form-control form-control-lg form-control-solid" placeholder="john.doe@domain.cpm" />
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                <span class="required">Telefono</span>
+                                                
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <select class="form-select" name="prefijo" [(ngModel)]="colaborador.prefijo">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="{{item.code}}" *ngFor="let item of codes">
+                                                                {{item.name}} ({{item.code}})
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="tel" name="telefono" [(ngModel)]="colaborador.telefono" class="form-control form-control-lg form-control-solid" placeholder="Telefono" />
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label fw-semibold fs-6">INE</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="website" class="form-control form-control-lg form-control-solid" placeholder="Documento nacional"/>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nacimiento</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <!--begin::Input-->
+                                                <input type="date" name="nacimiento" [(ngModel)]="colaborador.nacimiento" class="form-control form-control-lg form-control-solid"/>
+                                                <!--end::Hint-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">País</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <select id="kt_docs_select2_country" aria-label="Select a Country" data-control="select2" data-placeholder="Seleccionar país" class="form-select form-select-solid form-select-lg fw-semibold">
+                                                    <option value="">Select a Country...</option>
+                                          
+                                                    <option data-kt-select2-country="assets/media/flags/argentina.svg" value="Argentina">Argentina</option>
+                                                    <option data-kt-select2-country="assets/media/flags/bolivia.svg" value="Bolivia">Bolivia</option>
+                                                    <option data-kt-select2-country="assets/media/flags/brazil.svg" value="Brazil">Brazil</option>
+                                                    <option data-kt-select2-country="assets/media/flags/chile.svg" value="Chile">Chile</option>
+                                                    <option data-kt-select2-country="assets/media/flags/colombia.svg" value="Colombia">Colombia</option>
+                                                    <option data-kt-select2-country="assets/media/flags/costa rica.svg" value="Costa Ric">Costa Rica</option>
+                                                    <option data-kt-select2-country="assets/media/flags/cuba.svg" value="Cuba">Cuba</option>
+                                                    <option data-kt-select2-country="assets/media/flags/dominican republic.svg" value="Dominican Republic">Dominican Republic</option>
+                                                    <option data-kt-select2-country="assets/media/flags/ecuador.svg" value="Ecuador">Ecuador</option>
+                                                    <option data-kt-select2-country="assets/media/flags/el salvador.svg" value="El Salvador">El Salvador</option>
+                                                    <option data-kt-select2-country="assets/media/flags/guatemala.svg" value="Guatemala">Guatemala</option>
+                                                    <option data-kt-select2-country="assets/media/flags/mexico.svg" value="Mexico">Mexico</option>
+                                                    <option data-kt-select2-country="assets/media/flags/nicaragua.svg" value="Nicaragua">Nicaragua</option>
+                                                    <option data-kt-select2-country="assets/media/flags/panama.svg" value="Panama">Panama</option>
+                                                    <option data-kt-select2-country="assets/media/flags/paraguay.svg" value="Paraguay">Paraguay</option>
+                                                    <option data-kt-select2-country="assets/media/flags/peru.svg" value="Peru">Peru</option>
+                                                    <option data-kt-select2-country="assets/media/flags/portugal.svg" value="Portugal">Portugal</option>
+                                                    <option data-kt-select2-country="assets/media/flags/puerto rico.svg" value="Puerto Rico">Puerto Rico</option>
+                                                    <option data-kt-select2-country="assets/media/flags/spain.svg" value="Spain">Spain</option>
+                                                    <option data-kt-select2-country="assets/media/flags/united states.svg" value="United States">United States</option>
+                                                    <option data-kt-select2-country="assets/media/flags/uruguay.svg" value="Uruguay">Uruguay</option>
+                                                    <option data-kt-select2-country="assets/media/flags/venezuela.svg" value="Venezuela">Venezuela</option>
+                                       
+                                                </select>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Dirección</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <input type="text" name="direccion" [(ngModel)]="colaborador.direccion" class="form-control form-control-lg form-control-solid" placeholder="Dirección"/>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                       
+                                        <!--begin::Input group-->
+                                        <div class="row mb-6">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Rol</label>
+                                            <!--begin::Label-->
+                                            <!--begin::Label-->
+                                            <div class="col-lg-8 d-flex align-items-center">
+                                                <select name="rol" [(ngModel)]="colaborador.rol" class="form-control form-control-lg form-control-solid">
+                                                    <option value="" selected disabled>Seleccionar</option>
+                                                    <option value="{{item.rol}}" *ngFor="let item of roles">{{item.rol}}</option>
+                                                </select>
+                                            </div>
+                                            <!--begin::Label-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row mb-0">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Contraseña</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8 fv-row">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <input type="password" name="password" [(ngModel)]="colaborador.password" class="form-control form-control-lg form-control-solid" placeholder="Contraseña"/>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="password" name="password_confirm" [(ngModel)]="colaborador.password_confirm" class="form-control form-control-lg form-control-solid" placeholder="Confirmación de contraseña"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Actions-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        <a [routerLink]="['/seguridad/colaboradores']" class="btn btn-light btn-active-light-primary me-2">Regresar</a>
+                                        <button *ngIf="!load_btn" type="button" class="btn btn-dark" id="kt_account_profile_details_submit" (click)="registrar()">Crear usuario</button>
+                                        <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                            Procensando...
+                                        </button>
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

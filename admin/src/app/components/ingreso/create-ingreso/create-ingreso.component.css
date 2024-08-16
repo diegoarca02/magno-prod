@@ -1,0 +1,16 @@
+.bg_select{
+    background: #fff9e7 !important;
+}
+
+.bg_complete{
+    background-color: #e7f2ff !important;
+}
+
+.detalle_completed{
+    background-color: #e5fff1 !important;   
+}
+
+.variacion_resumen_selected{
+    border: 1px dashed #3e97ff !important; 
+    background-color: #f1faff !important;
+}

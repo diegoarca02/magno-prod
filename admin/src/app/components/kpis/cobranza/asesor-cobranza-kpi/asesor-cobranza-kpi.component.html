@@ -1,0 +1,311 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">KPI´s
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/reportes/cobranza']"  class="pe-3">
+                                            KPI's de cobranza
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Cobranza por agente</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800">Cobranza por producto</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6">Indice de estadisticas de cobranza</span>
+                                        </h3>
+                                        <!--end::Title-->
+                                        <!--begin::Actions-->
+                                        <div class="card-toolbar">
+                                            <!--begin::Filters-->
+                                            <!--begin::Filters-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-2">
+                                        <!--begin::Table-->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Periodo</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center flex-wrap gap-3 gap-xl-9">
+                                            <div class="form-group">
+                                                <input type="date" name="inicio" [(ngModel)]="inicio" class="form-control form-control-lg form-control-solid"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="date" name="hasta" [(ngModel)]="hasta" class="form-control form-control-lg form-control-solid"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <button *ngIf="!load_btn" class="btn btn-dark" (click)="init_data()">Buscar</button>
+                                                <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                    Procensando...
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!--end::Table-->
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+
+                                <ng-container *ngIf="!load_btn">
+                                    <div *ngIf="arr_general.length >= 1">
+                                        <div class="d-flex flex-wrap flex-stack mb-6">
+                                            <!--begin::Heading-->
+                                            <h3 class="fw-bolder" style="margin-bottom: 0px !important;">
+                                                Resultados
+                                                <br>
+                                                <span class="fs-6 text-gray-400 fw-bold ms-1">Active</span>
+                                            </h3>
+                                            <!--end::Heading-->
+                                            <!--begin::Actions-->
+                                            <div class="d-flex flex-wrap my-2">
+                                                <div class="me-4">
+                                                    <select name="idx_active" [(ngModel)]="idx_active" class="form-select form-select-sm bg-body border-body w-125px" style="width: 200px!important;">
+                                                        <option disabled>Meses</option>
+                                                        <ng-container *ngFor="let item of arr_general; let idx = index">
+                                                            <option value="{{idx}}">{{item.mes_str}} {{item.year}}</option>
+                                                        </ng-container>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--end::Actions-->
+                                        </div>
+                                        <ng-container *ngFor="let item of arr_general; let idx = index">
+                                            <div class="card mb-10" *ngIf="idx == idx_active">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-12 mb-1">
+                                                            <h3 class="card-title align-items-start flex-column" style="margin-bottom: 2rem;">
+                                                                <span class="card-label fw-bold text-gray-800">{{item.mes_str}} {{item.year}}</span>
+                                                                <br>
+                                                                <span class="text-gray-400 mt-1 fw-semibold fs-6">Año {{item.year}}</span>
+                                                            </h3>
+    
+                                                            
+                                                        </div>
+                                                        <div class="col-12 mb-1">
+                                                            <div class="row">
+                                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                                                    <span class="mt-1 fw-semibold fs-6" style="font-weight: 500;">Semana 1</span>
+                                                                    <div class="separator separator-dashed my-3"></div>
+                                                                    <table class="table">
+                                                                        <tr *ngFor="let subitem of item.sem_uno">
+                                                                            <td>{{subitem.nombres}} {{subitem.apellidos}}</td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': subitem.total >= 1,'text-danger': subitem.total == 0}">
+                                                                                    {{subitem.total|currency:'MXN'}}
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Total</b></td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': item.sem_uno_total >= 1,'text-danger': item.sem_uno_total == 0}">
+                                                                                    <b>{{item.sem_uno_total|currency:'MXN'}}</b>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                                                    <span class="mt-1 fw-semibold fs-6" style="font-weight: 500;">Semana 2</span>
+                                                                    <div class="separator separator-dashed my-3"></div>
+                                                                    <table class="table">
+                                                                        <tr *ngFor="let subitem of item.sem_dos">
+                                                                            <td>{{subitem.nombres}} {{subitem.apellidos}}</td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': subitem.total >= 1,'text-danger': subitem.total == 0}">
+                                                                                    {{subitem.total|currency:'MXN'}}
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Total</b></td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': item.sem_dos_total >= 1,'text-danger': item.sem_dos_total == 0}">
+                                                                                    <b>{{item.sem_dos_total|currency:'MXN'}}</b>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                                                    <span class="mt-1 fw-semibold fs-6" style="font-weight: 500;">Semana 3</span>
+                                                                    <div class="separator separator-dashed my-3"></div>
+                                                                    <table class="table">
+                                                                        <tr *ngFor="let subitem of item.sem_tres">
+                                                                            <td>{{subitem.nombres}} {{subitem.apellidos}}</td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': subitem.total >= 1,'text-danger': subitem.total == 0}">
+                                                                                    {{subitem.total|currency:'MXN'}}
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Total</b></td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': item.sem_tres_total >= 1,'text-danger': item.sem_tres_total == 0}">
+                                                                                    <b>{{item.sem_tres_total|currency:'MXN'}}</b>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                                                    <span class="mt-1 fw-semibold fs-6" style="font-weight: 500;">Semana 4</span>
+                                                                    <div class="separator separator-dashed my-3"></div>
+                                                                    <table class="table">
+                                                                        <tr *ngFor="let subitem of item.sem_cuatro">
+                                                                            <td>{{subitem.nombres}} {{subitem.apellidos}}</td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': subitem.total >= 1,'text-danger': subitem.total == 0}">
+                                                                                    {{subitem.total|currency:'MXN'}}
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Total</b></td>
+                                                                            <td>
+                                                                                <span [ngClass]="{'text-primary': item.sem_cuatro_total >= 1,'text-danger': item.sem_cuatro_total == 0}">
+                                                                                    <b>{{item.sem_cuatro_total|currency:'MXN'}}</b>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+
+                                        <div class="card mb-10">
+                                            <div class="card-body">
+                                                <div class="col-12">
+                                                    <h3 class="card-title align-items-start flex-column">
+                                                        <span class="card-label fw-bold text-gray-800">Rendimiento por producto</span>
+                                                        <br>
+                                                        <span class="text-gray-400 mt-1 fw-semibold fs-6">Muestra el rendimiento por producto</span>
+                                                    </h3>
+
+                                                    <div id="content_apexcharts_general">
+                                                        <div id="kt_apexcharts_general" style="height: 300px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="col-12">
+                                                    <h3 class="card-title align-items-start flex-column">
+                                                        <span class="card-label fw-bold text-gray-800">Rendimiento mensual</span>
+                                                        <br>
+                                                        <span class="text-gray-400 mt-1 fw-semibold fs-6">Muestra el rendimiento mensual por producto</span>
+                                                    </h3>
+
+                                                    <div id="content_apexcharts_mensual">
+                                                        <div id="kt_apexcharts_mensual" style="height: 300px;"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" *ngIf="arr_general.length == 0">
+                                            <div class="mb-2" style="margin-top: 2rem;">
+                                                <!--begin::Title-->
+                                                <h1 class="fw-semibold text-gray-800 text-center lh-lg">Have you tried 
+                                                <br>new 
+                                                <span class="fw-bolder">eCommerce App ?</span></h1>
+                                                <!--end::Title-->
+                                                <!--begin::Illustration-->
+                                                <div class="py-10 text-center">
+                                                    <img src="assets/media/svg/illustrations/easy/2.svg" class="theme-light-show w-200px" alt="">
+                                                    
+                                                </div>
+                                                <!--end::Illustration-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="load_btn">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="py-10 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

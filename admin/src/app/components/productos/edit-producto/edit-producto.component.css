@@ -1,0 +1,15 @@
+.dropdown-toggle::after{
+    margin-left: 0px !important;
+    display: none !important;
+}
+
+.dropdown button{
+    padding: calc(0.65rem + 1px) calc(1.25rem + 1px) !important;
+}
+.check-span{
+    fill: #fff !important;
+}
+
+.color-selected{
+    background-color: #ebfff8;
+}

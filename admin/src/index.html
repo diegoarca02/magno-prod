@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OOneunion</title>
+  <base href="/">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Con tan solo una pulsación, tienes la posibilidad de establecer tu emprendimiento con los más distinguidos artículos y las tecnologías más avanzadas a precios asequibles y con potencial de crecimiento ilimitado.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+  <link rel="shortcut icon" href="assets/favicon.png" />
+  <!--begin::Fonts-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+  <!--end::Fonts-->
+  <!--begin::Page Vendor Stylesheets(used by this page)-->
+  <link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+  <!--end::Page Vendor Stylesheets-->
+  <!--begin::Global Stylesheets Bundle(used by all pages)-->
+  <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://tutsplus.github.io/syntax-highlighter-demos/highlighters/Prism/prism_okaidia.css">
+  <link rel="stylesheet" href="assets/css/lightgallery.min.css">
+  <link rel="stylesheet" href="assets/css/spectrum.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" type="text/css" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js"></script>
+  <style >
+    .aside-dark .menu .menu-item .menu-section {
+        color: #9D9DA6!important;
+    }
+    .aside-dark .menu .menu-item .menu-link .menu-title {
+        color: #e5e5e5!important;
+    }
+    .bg-warning-kids{
+      background-color: #fdc71d !important;
+      opacity: 0.5;
+    }
+    .bg_toolip {
+      max-width: 300px !important; /* Establece el ancho máximo deseado */
+      /* Otros estilos personalizados, como colores de fondo, texto, etc. */
+    }
+    .menu-sub .menu-item a.menu-link.active {
+        transition: color 0.2s ease !important;
+        background-color: #2A2A3C !important;
+        color:#ffffff !important;
+        border-radius: 0.475rem;
+    }
+    div.menu-sub-accordion {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    a.menu-link.sub-item-menu{
+      padding-left: 10px !important;
+    }
+    .tox.tox-tinymce{
+      height: 900px !important;
+    }
+    .pagination {
+      justify-content: left !important;
+    }
+    ol.breadcrumb.text-muted.fs-6.fw-semibold {
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+    }
+    /*  SPINNER */
+    .lg-toolbar .lg-close:after {
+        content: url('../../../../assets/icons/close.png') !important;
+    }
+    .lg-toolbar .lg-download:after {
+        content: url('../../../../assets/icons/download.png') !important;
+    }
+    .lg-backdrop {
+      background-color: #000000ba !important;
+    }
+
+    .iti.iti--allow-dropdown {
+        width: 100%;
+    }
+
+    input#phone {
+        width: 100% !important;
+    }
+
+    .iti__flag-container.open.show {
+        width: 100%;
+    }
+
+    .dropdown-menu.country-dropdown.show {
+        width: 100% !important;
+    }
+
+    input#country-search-box:focus{
+      outline: none;
+    }
+ 
+    
+
+    .inpt-color .sp-colorize-container.sp-add-on{
+      width: 50px !important;
+    }
+    .text-1{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1; /* number of lines to show */
+              line-clamp: 1; 
+      -webkit-box-orient: vertical;
+    }
+
+    .yes-print{
+      display: none !important;
+    }
+
+    @media print
+    {    
+        .no-print, .no-print *
+        {
+            display: none !important;
+        }
+        .yes-print, .yes-print *
+        {
+            display: inline-block !important;
+        }
+
+        .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+    }
+    code {
+        word-wrap: break-word !important;
+        color: #2c7be5 !important;
+        font-size: 87.5% !important;
+        background: none !important;
+        box-shadow: none !important;
+        font-family: 'Kanit', sans-serif !important;
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+        margin-right: 0px !important;
+        padding-right: 0px !important;
+
+    }
+    .aside-dark .menu .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
+        transition: fill .3s ease;
+        fill: #ffffff !important;
+    }
+    .aside-dark .menu .menu-item .menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
+        transition: fill .3s ease;
+        fill: #b5b5b5 !important;
+    }
+    .stepper.stepper-pills .stepper-item.current:last-child .stepper-icon {
+        background-color: #009ef7 !important;
+    }
+
+    /* ////////////////////////////////////// */
+    .timeline-steps {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap
+    }
+
+    .timeline-steps .timeline-step {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: .8rem
+    }
+
+    @media (min-width:768px) {
+        .timeline-steps .timeline-step:not(:last-child):after {
+            content: "";
+            display: block;
+            border-top: .25rem dotted #d4d6d9;
+            width: 3rem;
+            position: absolute;
+            left: 7rem;
+            top: .3125rem
+        }
+        .timeline-steps .timeline-step:not(:first-child):before {
+            content: "";
+            display: block;
+            border-top: .25rem dotted #d4d6d9;
+            width: 3rem;
+            position: absolute;
+            right: 7rem;
+            top: .3125rem
+        }
+    }
+
+    .timeline-steps .timeline-content {
+        width: 7rem;
+        text-align: center
+    }
+
+    .timeline-steps .timeline-content .inner-circle {
+        border-radius: 1.5rem;
+        height: 1rem;
+        width: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #6c6c6c;
+    }
+
+    .timeline-steps .timeline-content .inner-circle:before {
+        content: "";
+        background-color: #deebff;
+        display: inline-block;
+        height: 2.5rem;
+        width: 2.5rem;
+        min-width: 2.5rem;
+        border-radius: 6.25rem;
+        opacity: 0.5;
+    }
+
+    .text-1{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1; /* number of lines to show */
+              line-clamp: 1; 
+      -webkit-box-orient: vertical;
+    }
+
+    .fw-700{
+      font-weight: 700 !important;
+    }
+
+    .fw-600{
+      font-weight: 600 !important;
+    }
+
+    .tooltip-inner {
+        background-color: #191919 !important;
+        color: white !important;
+    }
+    .tooltip.bs-tooltip-top .tooltip-arrow::before {
+        border-top-color: #191919 !important;
+    }
+
+    span.sp-original-input-container {
+        width: 100% !important;
+    }
+
+    .barcode-inv{
+      height: auto !important;
+      width: 100% !important;
+    }
+    .qrcode canvas{
+      width: 100% !important;
+      height: auto !important;
+    }
+    #select2-select2-container span, .select2-results__option span{
+      display: flex !important;
+    }
+
+    span#select2-select2_2-container span{
+      display: flex !important;
+    }
+
+    span#select2-select2_3-container span{
+      display: flex !important;
+    }
+    .btn.btn-blue {
+        color: #fff;
+        border-color: #2361af;
+        background-color: #2361af;
+    }
+    .tox.tox-tinymce {
+        height: 450px !important;
+    }
+    .texto-largo {
+      white-space: nowrap; /* evita que el texto se divida en varias líneas */
+      overflow: hidden; /* oculta el texto que se desborda del contenedor */
+      text-overflow: ellipsis; /* agrega tres puntos al final del texto que se desborda */
+    }
+    .dropdown-menu {
+      min-width: 13rem !important;
+    }
+    a.dropdown-item.cursor-pointer {
+        padding: 8px 15px !important;
+    }
+    .aside-dark .menu .menu-item .menu-link.active {
+        background-color: #252542 !important;
+    }
+    .td-select span.select2-selection.select2-selection--single.form-select {
+        border: none !important;
+    }
+    .sp-colorize-container.sp-add-on {
+        width: 50px !important;
+    }
+    .bg-yellow{
+      background-color: #f90 !important;
+    }
+    .bg-yellow:hover{
+      background-color: #ec7211 !important;
+    }
+    .text-dark{
+      color: #232f3e !important;
+    }
+    .text-primary{
+      color: #1b84ff !important;
+    }
+    .text-yellow{
+      color: #f90 !important;
+    }
+    .bg-navy{
+      background-color: #12265a !important;
+    }
+    .bg-navy:hover{
+      background-color: #12265a !important;
+    }
+    .aside-dark .menu .menu-item .menu-link.active {
+        background-color: #11171e !important;
+    }
+    .fill-success{
+        fill: #50cd89 !important;
+    }
+    .form-select.is-invalid, .form-control.is-invalid {
+        border-color: #dc3545 !important;
+    }
+     span.menu-title {
+        font-weight: 600 !important;
+        font-size: 1.08rem;
+    }
+    .aside-dark .menu .menu-item.hover:not(.here)>.menu-link:not(.disabled):not(.active):not(.here), .aside-dark .menu .menu-item:not(.here) .menu-link:hover:not(.disabled):not(.active):not(.here) {
+        transition: color .2s ease,background-color .2s ease;
+        background-color: #131313;
+        color: #fff;
+    }
+    a.menu-link.sub-item-menu span.menu-title {
+        font-weight: 300 !important;
+    }
+    .badge-light-primary {
+        color: #009ef7 !important;
+    }
+    .item-dragging {
+      opacity: 0;
+      cursor: grab; 
+    } 
+    /* Cambiar el color del scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px; /* Ancho del scrollbar */
+    }
+
+    /* Cambiar el color del thumb (la parte deslizante) */
+    ::-webkit-scrollbar-thumb {
+      background-color: #bebebe; /* Cambia el color a rojo */
+    }
+
+    .nsm7Bb-HzV7m-LgbsSe.hJDwNd-SxQuSe.i5vt6e-Ia7Qfc.uaxL4e-RbRzK {
+        width: 100% !important;
+        height: 42px !important;
+    }
+    .mapboxgl-ctrl-bottom-right{
+      display: none !important;
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E %3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5z'/%3E %3C/svg%3E");
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-zoom-out .mapboxgl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E %3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/%3E %3C/svg%3E");
+    }
+    .mapboxgl-ctrl button.mapboxgl-ctrl-compass .mapboxgl-ctrl-icon {
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E %3Cpath d='M10.5 14l4-8 4 8h-8z'/%3E %3Cpath id='south' d='M10.5 16l4 8 4-8h-8z' fill='%23ccc'/%3E %3C/svg%3E");
+    }
+
+    .mapboxgl-ctrl button .mapboxgl-ctrl-icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+    .marker {
+      background-image: url(assets/carro.png) !important;
+      background-size: cover;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    #mapbox { width: 100%;height: 400px; }
+
+    canvas.mapboxgl-canvas{
+      width: 100% !important;
+    }
+    .toastr-warning .toastr-message{
+      color: #000 !important;
+    }
+
+    .border-r-none{
+      border-radius: 0px;
+    }
+  </style>
+</head>
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+  <app-root></app-root>
+
+  <!-- Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, consectetur ab. Reprehenderit est repudiandae dolorum, praesentium consectetur sequi mollitia placeat dolore repellat? Nisi modi consequuntur voluptas dicta sed? Minus, hic. -->
+
+  <!--begin::Javascript-->
+  <script>var hostUrl = "assets/";</script>
+  <!--begin::Global Javascript Bundle(used by all pages)-->
+
+  <script src="assets/plugins/global/plugins.bundle.js"></script>
+  <script src="assets/js/scripts.bundle.js"></script>
+  <!--end::Global Javascript Bundle-->
+  <!--begin::Page Vendors Javascript(used by this page)-->
+  <script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+  <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+  <!--end::Page Vendors Javascript-->
+  <!--begin::Page Custom Javascript(used by this page)-->
+  <script src="assets/js/custom/widgets.js"></script>
+  <script src="assets/js/custom/apps/chat/chat.js"></script>
+  <script src="assets/js/custom/modals/upgrade-plan.js"></script>
+  <script src="assets/js/custom/modals/create-app.js"></script>
+  <script src="assets/js/custom/modals/users-search.js"></script>
+  <script src="assets/js/prism.js"></script>
+  <script src="assets/js/lightgallery.min.js"></script>
+  <script src="assets/js/spectrum.js"></script>
+  <script src="assets/js/print.min.js"></script>
+  <script src="assets/js/numstr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script src="assets/js/jspdf.min.js"></script>
+  <script src="assets/js/qrcode.min.js"></script>
+  <script src="https://unpkg.com/brain.js@2.0.0-beta.18/dist/browser.js"></script>
+  <script src="assets/tinymce/tinymce.min.js"></script>
+  <script src="assets/js/pswmeter.min.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@1.13.0/dist/Control.Geocoder.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+  
+  <script>
+    setTimeout(() => {
+      $('#country-search-box').addClass('form-control');
+    }, 50);
+  </script>
+
+<!-- dasd -->
+  <!--end::Page Custom Javascript-->
+  <!--end::Javascript-->
+</body>
+</html>

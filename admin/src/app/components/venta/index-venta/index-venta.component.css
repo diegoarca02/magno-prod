@@ -1,0 +1,64 @@
+.check-span{
+    fill: #fff !important;
+}
+
+.bg_pagado{
+    background: #f3ffff;
+}
+
+.bg_pendiente{
+    background: #fff9f3;
+}
+
+
+.bg_cancelado{
+    background: #fff3f5;
+}
+
+.border-dashed{
+    border: 1px dashed #ccc !important;
+}
+
+.m-procesado{
+    border-left: 4px solid #3e68d7  !important;
+    border-radius: 0px !important;
+}
+
+.m-confirmado{
+    border-left: 4px solid #ffc700  !important;
+    border-radius: 0px !important;
+}
+
+.m-enviado{
+    border-left: 4px solid #50cd89  !important;
+    border-radius: 0px !important;
+}
+
+.m-entregado{
+    border-left: 4px solid #000000  !important;
+    border-radius: 0px !important;
+}
+
+.m-pendiente{
+    border-left: 4px solid #a11919  !important;
+    border-radius: 0px !important;
+}
+
+.m-cancelado{
+    border-left: 4px solid #db0e0e  !important;
+    border-radius: 0px !important;
+}
+
+.check-span{
+    fill: #fff !important;
+}
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}

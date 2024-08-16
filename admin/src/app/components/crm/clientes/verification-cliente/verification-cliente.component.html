@@ -1,0 +1,47 @@
+<div class="d-flex flex-column flex-root" id="kt_app_root" style="height: 100vh !important;">
+    <!--begin::Page bg image-->
+    <style>body { background-image: url('/metronic8/demo1/assets/media/auth/bg6.jpg'); } [data-theme="dark"] body { background-image: url('/metronic8/demo1/assets/media/auth/bg6-dark.jpg'); }</style>
+    <!--end::Page bg image-->
+    <!--begin::Authentication - Signup Welcome Message -->
+    <div class="d-flex flex-column flex-center flex-column-fluid">
+        <!--begin::Content-->
+        <div class="d-flex flex-column flex-center text-center p-10">
+            <!--begin::Wrapper-->
+            <div class="card card-flush w-lg-650px py-5">
+                <div class="card-body py-15 py-lg-20">
+                    <!--begin::Logo-->
+                    <div class="mb-14">
+                        <a class="">
+                            <img alt="Logo" src="assets/images/logotipo.png" class="h-60px" />
+                        </a>
+                    </div>
+                    <!--end::Logo-->
+                    <!--begin::Title-->
+                    <h3 class="fw-700 text-gray-900 mb-5 ">Verificación de cuenta</h3>
+                    <!--end::Title-->
+                    <!--begin::Message-->
+                    <ng-container *ngIf="!load">
+                        <div class="fs-6 fw-semibold text-gray-50 my-5 mt-100">
+                            {{msm}}
+                        </div>
+                        <a href="https://ooneunion.com/"  class="btn btn-dark bg-navy">
+                            Inicar sesión
+                        </a>
+                    </ng-container>
+                    <ng-container *ngIf="load">
+                        <div class="spinner-border my-5 mt-10" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </ng-container>
+                    <!--end::Message-->
+                    <!--begin::Link-->
+                  
+                   
+                </div>
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Authentication - Signup Welcome Message-->
+</div>

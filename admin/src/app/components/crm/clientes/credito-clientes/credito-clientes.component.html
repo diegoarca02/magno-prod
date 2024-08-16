@@ -1,0 +1,237 @@
+<div class="card mb-5 mb-xl-10">
+    <!--begin::Card header-->
+    <div class="card-header border-0 pt-5" >
+        <!--begin::Heading-->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold fs-3 mb-1 fw-700">Historial de crédito</span>
+            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        </h3>
+        <!--end::Heading-->
+        <!--begin::Toolbar-->
+        <div class="card-toolbar">
+            <button class="btn btn-sm btn-dark fw-bold me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#creditoModal'">
+                                                        
+                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"/>
+                    </svg>
+                </span>
+                Ampliar
+            </button>
+
+            <button  class="btn btn-sm btn-dark fw-bold btn-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#reducirModal'">
+                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 13H3C2.4 13 2 12.6 2 12C2 11.4 2.4 11 3 11H21C21.6 11 22 11.4 22 12C22 12.6 21.6 13 21 13Z" fill="currentColor"/>
+                    </svg>
+                </span>
+                Reducir
+            </button>
+        </div>
+        <!--end::Toolbar-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body p-0 pt-5 pb-5" >
+        <!--begin::Table wrapper-->
+        <div class="table-responsive" >
+            <!--begin::Table-->
+            <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9" style="margin-bottom: 0px !important;">
+                <!--begin::Thead-->
+              
+                <!--end::Thead-->
+                <!--begin::Tbody-->
+                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="!load_creditos">
+                    <ng-container *ngIf="creditos.length >= 1">
+                        <tr *ngFor="let item of creditos">
+                            <td class="min-w-200px">
+                                <span class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                    {{item.tipo}}
+                                </span>
+                                <code>
+                                    <ng-container *ngIf="item.tipo == 'Programacion'">
+                                        #{{item.programacion.createdAt|date:'YYYY'}}-{{item.programacion.serie.toString().padStart(6,'000000')}}
+                                    </ng-container>
+                                    <ng-container *ngIf="item.tipo == 'Venta'">
+                                        #{{item.venta.createdAt|date:'YYYY'}}-{{item.venta.serie.toString().padStart(6,'000000')}}
+                                    </ng-container>
+                                    <ng-container *ngIf="item.tipo == 'Aumento'">
+                                        Automático
+                                    </ng-container>
+                                </code>
+                            </td>
+                            <td class="text-end min-w-100px" >
+                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                    <span class="text-success" *ngIf="item.monto >= 1">
+                                        +{{item.monto|currency:'MXN'}}
+                                    </span>
+                                                                        
+                                    <span class="text-danger" *ngIf="item.monto <=0">
+                                        {{item.monto|currency:'MXN'}}
+                                    </span>
+                                </a>
+                                <span class="text-muted fw-semibold text-muted d-block fs-7">Monto</span>
+                            </td>
+                            <td class="text-end min-w-100px" >
+                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                    {{item.createdAt|date}}
+                                </a>
+                                <span class="text-muted fw-semibold text-muted d-block fs-7">Fecha apertura</span>
+                            </td>
+                            <td class="text-end min-w-100px" >
+                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6" *ngIf="item.createdAt_resolucion">
+                                    {{item.createdAt_resolucion|date}}
+                                </a>
+                                <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6" *ngIf="!item.createdAt_resolucion">
+                                    ---
+                                </a>
+                                <span class="text-muted fw-semibold text-muted d-block fs-7">Fecha resolución</span>
+                            </td>
+                            <td class="text-end min-w-100px">
+                                <span class="badge badge-light-primary" *ngIf="item.estado == 'Aprobado'">Aprobado</span>
+                                <span class="badge badge-light-danger" *ngIf="item.estado == 'Denegado'">Denegado</span>
+                            </td>   
+                        </tr>
+                    </ng-container>
+                    <tr  *ngIf="creditos.length == 0">
+                         <td>
+                            <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-10">
+                                <!--begin::Logo-->
+                                <a  class="pt-lg-20">
+                                    <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                </a> 
+                                <!--end::Logo-->
+                            
+                                <!--begin::Message-->
+                                <div class="fw-semibold fs-6 text-muted mb-15">
+                                    Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                </div>      
+                 
+                        
+                            </div>
+                         </td>
+                    </tr>
+                   
+                </tbody>
+                <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="load_creditos">
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--end::Table-->
+        </div>
+        <!--end::Table wrapper-->
+    </div>
+    <!--end::Card body-->
+</div>
+
+<div class="modal fade" id="creditoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Ampliación de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="number" class="form-control form-control-solid mb-3" name="monto" [(ngModel)]="amplitud.monto" placeholder="Monto de ampliación" (keyup.ENTER)="update_credito()">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_credito" type="button" class="btn btn-dark font-weight-bold" (click)="update_credito()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="reducirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Reducción de crédito</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row fv-row fv-plugins-icon-container">
+                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                        <span class="required">Monto</span>
+                    </label>
+                    <input type="number" class="form-control form-control-solid mb-3" name="monto" [(ngModel)]="reduccion.monto" placeholder="Monto de ampliación" (keyup.ENTER)="update_credito()">
+                    <small class="text-muted">
+                        Al procesar la ampliación del crédito se registrara en el historial de crédito del cliente junto con el usuario responsable de la solicitud.
+                    </small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!btn_credito" type="button" class="btn btn-dark font-weight-bold" (click)="update_reduccion()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="btn_credito" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

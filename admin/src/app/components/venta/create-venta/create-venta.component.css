@@ -1,0 +1,91 @@
+.bg_dark_table{
+    background: #181c32 !important;
+}
+
+tr td{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.active_almacen{
+    font-weight: 600 !important;
+    color: #181c32 !important;
+}
+
+.bg_select{
+    background: #fffaec !important;
+}
+
+.cupon_selected{
+    background: #f1faff !important;
+}
+
+.svg-icon.svg-descuento svg [fill]:not(.permanent):not(g) {
+    fill: #f1416c !important;
+}
+
+.bg_selected{
+    background: #fffaec !important;
+}
+
+.stepper-line {
+    display: block !important;
+    flex-grow: 1 !important;
+    border-bottom: 1px dashed #ccc !important;
+    margin-left: 15px !important;
+    margin-right: 20px !important;
+}
+
+canvas:hover{
+    cursor: pointer !important;
+}
+
+canvas#myCanvas {
+    width: 500px;
+    height: 250px;
+    border: 1px dashed #ccc !important;
+}
+
+.border-almacen{
+    border-left: 5px solid #50CD89 !important;
+}
+
+.border-camino{
+    border-left: 5px solid #7239EA !important;
+}
+
+.border-programacion{
+    border-left: 5px solid #3e97ff !important;
+}
+
+.producto_selected{
+    background-color: #e5fff1 !important;   
+}
+
+.variacion-selected{
+    background-color: #e8fff3 !important;   
+    border: 1px dashed #50cd89 !important;
+}
+
+.variacion-active{ 
+    border: 1px dashed #50cd89 !important;
+}
+
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}
+
+.btn-dark-outline:hover{
+    color:white
+}
+
+.card-variacion{
+    border: 1px solid #ededed;
+}

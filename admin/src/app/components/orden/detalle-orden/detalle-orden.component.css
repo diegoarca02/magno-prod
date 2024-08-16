@@ -1,0 +1,18 @@
+.active_almacen{
+    font-weight: 600 !important;
+    color: #181c32 !important;
+}
+.bg_select{
+    background: #fffaec !important;
+}
+.bg_active{
+    background: #50cd89 !important;
+}
+.color_active{
+    color: #009ef7 !important;
+    font-weight: 500;
+}
+
+.timeline-steps .timeline-content .bg_active:before {
+    background: #8eb6ff !important;
+}

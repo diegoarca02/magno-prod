@@ -1,0 +1,386 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">CRM
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/clientes']"  class="pe-3">Clientes</a></li>
+                                <li class="breadcrumb-item pe-3">Nuevo cliente</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card mb-5 mb-xl-5">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Nuevo cliente</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            
+                                        </div>
+                                    </div>
+                                    <!--begin::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-9">
+                                        <div [hidden]="option != 1">
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nombres y apellidos</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8">
+                                                    <!--begin::Row-->
+                                                    <div class="row">
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6 fv-row">
+                                                            <input type="text" name="nombres" [(ngModel)]="cliente.nombres" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Nombres" />
+                                                        </div>
+                                                        <!--end::Col-->
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6 fv-row">
+                                                            <input type="text" name="apellidos" [(ngModel)]="cliente.apellidos" class="form-control form-control-lg form-control-solid" placeholder="Apellidos"  />
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Row-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Correo electrónico</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <input type="text" name="email" [(ngModel)]="cliente.email" class="form-control form-control-lg form-control-solid" placeholder="john.doe@domain.cpm" />
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                    <span class="required">Telefono</span>
+                                                    
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <select class="form-select" id="select-phone-create" data-control="select2" data-placeholder="Prefijo">
+                                                                <option></option>
+                                                                <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <input id="inpTelefono" type="tel" name="telefono" [(ngModel)]="cliente.telefono"
+                                                             class="form-control form-control-lg form-control-solid" placeholder="55 1234 5678" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6">RFC</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <input type="text" name="rfc" [(ngModel)]="cliente.rfc" class="form-control form-control-lg form-control-solid" placeholder="RFC"/>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                        
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Nacimiento</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <!--begin::Input-->
+                                                    <input type="date" name="nacimiento" [(ngModel)]="cliente.nacimiento" class="form-control form-control-lg form-control-solid"/>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <span *ngIf="!estado_empresa" class="col-lg-12 text-primary" style="cursor: pointer;" (click)="set_empresa(true)">
+                                                    Configuración de empresa
+                                                </span>
+                                                <!--end::Label-->
+                                            <!--begin::Label-->
+                                            <span *ngIf="estado_empresa" class="col-lg-12 text-primary" style="cursor: pointer;" (click)="set_empresa(false)">
+                                                Ocultar configuración de empresa
+                                            </span>
+                                            <!--end::Label-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6" *ngIf="estado_empresa">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Razón social</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <!--begin::Input-->
+                                                    <input type="text" name="razon_social" [(ngModel)]="cliente.razon_social" class="form-control form-control-lg form-control-solid" placeholder="Razón social"/>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6" *ngIf="estado_empresa">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Tipo de negocio</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <!--begin::Input-->
+                                                
+                                                    <input type="text" name="tipo_empresa" [(ngModel)]="cliente.tipo_empresa" class="form-control form-control-lg form-control-solid" placeholder="Empresa farmacéutica"/>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <!--begin::Input group-->
+                                            <div class="row mb-10" *ngIf="estado_empresa">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Correo corporativo</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-8 fv-row">
+                                                    <!--begin::Input-->
+                                                    <input type="text" name="email_empresa" [(ngModel)]="cliente.email_empresa" class="form-control form-control-lg form-control-solid" placeholder="john.doe@empresa.com" />
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <div class="d-flex flex-stack mt-10">
+                                                <button disabled type="button" class="btn btn-light" style="margin-right: 1rem;">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Regresar
+                                                </button>
+    
+                                                <button (click)="setOption(2)" type="button" class="btn btn-dark">
+                                                    Siguiente
+                                                    <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor"/>
+                                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div [hidden]="option != 2">
+                                            <div class="alert mb-0 alert-dismissible bg-light-warning border border-warning border-dashed d-flex flex-column flex-sm-row w-100 p-5">
+                                                <!--begin::Icon-->
+                                                <i class="ki-duotone ki-message-text-2 fs-2hx text-warning me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>                    <!--end::Icon-->
+                            
+                                                <!--begin::Content-->
+                                                <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                    <h5 class="mb-1">¡Advertencia!</h5>
+                                                    <span>
+                                                        El marcador del mapa no es exacto en la busqueda de la dirección.
+                                                    </span>
+                                                </div>
+                                                <!--end::Content-->
+                                            </div>
+                                                 
+                                            <div>
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6" style="margin-top: 2rem !important;">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Encargado</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <!--begin::Input-->
+                                                        <input type="text" placeholder="Nombres y apellidos" name="encargado" [(ngModel)]="ubicacion.encargado" class="form-control form-control-lg form-control-solid"/>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Tipo dirección</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <!--begin::Input-->
+    
+                                                        <select name="tipo" [(ngModel)]="ubicacion.tipo" class="form-select form-select-lg form-select-solid">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="Atención">Atención</option>
+                                                            <option value="Entrega">Entrega</option>
+                                                            <option value="Atención y Entrega">Atención y Entrega</option>
+                                                        </select>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Telefono</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                
+                                                                <select class="form-select" id="select-phone-direccion" data-control="select2" data-placeholder="Prefijo">
+                                                                    <option></option>
+                                                                    <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="tel" name="telefono" [(ngModel)]="ubicacion.telefono" class="form-control form-control-lg form-control-solid" placeholder="(+51) 335987 741523" />
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <span class="col-lg-12 text-primary" style="cursor: pointer;" (click)="copy_telefono()">
+                                                                    Copiar telefono de cliente
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Dirección</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <!--begin::Input-->
+                                                        <input *ngIf="data_geo != undefined" type="text" readonly placeholder="Dirección" value="{{data_geo.place_name_es}}" class="form-control form-control-lg form-control-solid"/>
+                                                        <!--end::Hint-->
+                                                        <input *ngIf="data_geo == undefined" type="text" readonly placeholder="Dirección" class="form-control form-control-lg form-control-solid"/>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-7">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div id="geocoder" #asGeoCoder class="geocoder"></div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-lg-12  mb-7" >
+                                                        <div id="mapid" style="height: 400px;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex flex-stack ">
+                                                    <button (click)="setOption(1)" type="button" class="btn btn-light" style="margin-right: 1rem;">
+                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                            <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Regresar
+                                                    </button>
+        
+                                                    <button *ngIf="!load_btn" type="button" class="btn btn-dark" (click)="registrar()">
+                                                        <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M6.28548 15.0861C7.34369 13.1814 9.35142 12 11.5304 12H12.4696C14.6486 12 16.6563 13.1814 17.7145 15.0861L19.3493 18.0287C20.0899 19.3618 19.1259 21 17.601 21H6.39903C4.87406 21 3.91012 19.3618 4.65071 18.0287L6.28548 15.0861Z" fill="currentColor"/>
+                                                            <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor"/>
+                                                            </svg>
+                                                        </span>
+                                                        Crear cliente
+                                                    </button>
+                                                    <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                        Procensando...
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

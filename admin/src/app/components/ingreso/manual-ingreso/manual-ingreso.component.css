@@ -1,0 +1,16 @@
+.bg_select{
+    background: #fff9e7 !important;
+}
+
+.producto_selected{
+    background-color: #e5fff1 !important;   
+}
+
+.variacion_selected{
+    background-color: #f1faff !important;
+}
+
+.variacion_resumen_selected{
+    border: 1px dashed #3e97ff !important; 
+    background-color: #f1faff !important;
+}

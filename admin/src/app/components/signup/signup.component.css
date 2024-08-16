@@ -1,0 +1,26 @@
+.btn.btn-outline:not(.btn-outline-dashed) {
+    border: 1px solid #e4e6ef;
+}
+
+.password-bar {
+    background-color: #cbced1; /* Gris por defecto */
+    border-radius: 5px;
+    height: 5px;
+    margin-right: 2px;
+  }
+  
+  .password-bar.level-1 {
+    background-color: #50CD89; /* Verde para el nivel 1 */
+  }
+  
+  .password-bar.level-2 {
+    background-color: #50CD89; /* Verde para el nivel 2 */
+  }
+  
+  .password-bar.level-3 {
+    background-color: #50CD89; /* Verde para el nivel 3 */
+  }
+  
+  .password-bar.level-4 {
+    background-color: #50CD89; /* Verde para el nivel 4 */
+  }

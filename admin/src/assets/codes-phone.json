@@ -1,0 +1,119 @@
+{
+  "countries": [
+   
+    {
+      "code": "+54",
+      "name": "Argentina"
+    },
+    
+    {
+      "code": "+61",
+      "name": "Australia"
+    },
+    {
+      "code": "+591",
+      "name": "Bolivia"
+    },
+    {
+      "code": "+55",
+      "name": "Brazil"
+    },
+    {
+      "code": "+1",
+      "name": "Canada"
+    },
+    
+    {
+      "code": "+56",
+      "name": "Chile"
+    },
+    {
+      "code": "+86",
+      "name": "China"
+    },
+    
+    {
+      "code": "+57",
+      "name": "Colombia"
+    },
+    
+    {
+      "code": "+506",
+      "name": "Costa Rica"
+    },
+    
+    {
+      "code": "+53",
+      "name": "Cuba"
+    },
+   
+    {
+      "code": "+1 767",
+      "name": "Dominica"
+    },
+    {
+      "code": "+1 809",
+      "name": "Dominican Republic"
+    },
+   
+    {
+      "code": "+593",
+      "name": "Ecuador"
+    },
+   
+    {
+      "code": "+503",
+      "name": "El Salvador"
+    },
+    
+    {
+      "code": "+502",
+      "name": "Guatemala"
+    },
+   
+    {
+      "code": "+504",
+      "name": "Honduras"
+    },
+    
+    {
+      "code": "+52",
+      "name": "Mexico"
+    },
+    
+    {
+      "code": "+505",
+      "name": "Nicaragua"
+    },
+   
+    {
+      "code": "+507",
+      "name": "Panama"
+    },
+   
+    {
+      "code": "+595",
+      "name": "Paraguay"
+    },
+    {
+      "code": "+51",
+      "name": "Peru"
+    },
+   
+    {
+      "code": "+1 787",
+      "name": "Puerto Rico"
+    },
+   
+    {
+      "code": "+34",
+      "name": "Spain"
+    },
+    
+    {
+      "code": "+598",
+      "name": "Uruguay"
+    }
+   
+  ]
+}

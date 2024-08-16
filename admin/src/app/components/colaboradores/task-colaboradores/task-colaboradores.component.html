@@ -1,0 +1,524 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Mi cuenta
+                            <!--begin::Separator--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card mb-5 mb-xl-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0 pt-5" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-700 fs-3 mb-1">Mis Tareas</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7">Información de cuenta de colaborador.</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" [attr.data-bs-target]="'#nuevaTarea'" >
+                                                <i class="bi bi-list-task"></i>
+                                                Nueva Tarea
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--begin::Card header-->
+                                     <!--begin::Card body-->
+                                     <div class="card-body">
+
+                                        <div class="d-flex mb-10">
+                                            <input type="month" class="form-control form-control-sm me-3" name="str_periodo" [(ngModel)]="str_periodo" style="max-width: 200px;">
+
+                                            <select class="form-select form-select-sm me-3" name="str_estado" [(ngModel)]="str_estado" style="max-width: 200px;">
+                                                <option value="Todos">Todos</option>
+                                                <option value="Pendientes">Pendientes</option>
+                                                <option value="Realizados">Realizados</option>
+                                            </select>
+
+                                            <div class="d-flex align-items-center">
+                                                <button *ngIf="!load_data" type="button" class="btn btn-dark btn-sm" (click)="init_tareas()">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="currentColor"/>
+                                                        <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                                <button *ngIf="load_data" class="btn btn-dark btn-sm" type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="py-20 text-center" *ngIf="load_data">
+                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                              </div>
+                                        </div>
+                                        <ng-container *ngIf="!load_data">
+                                    
+                                            <ng-container *ngIf="tareas.length >= 1">
+                                                <div class="timeline-label">
+                                                    <!--begin::Item-->
+                                                    <ng-container *ngFor="let item of tareas">
+                                                        <div class="timeline-item">
+                                                            <!--begin::Label-->
+                                                            <div class="timeline-label fw-bold text-gray-800">
+                                                                {{item.dia|date:'EE'}}
+                                                            </div>
+                                                            <!--end::Label-->
+                                            
+                                                            <!--begin::Badge-->
+                                                            <div class="timeline-badge">
+                                                                <i class="fa fa-genderless text-warning fs-1"></i>
+                                                            </div>
+                                                            <!--end::Badge-->
+                                            
+                                                            <!--begin::Text-->
+                                                            <div class="fw-600 timeline-content ps-3 fs-6">
+                                                                {{item.dia|date}} ({{item.realizados.length}}/{{item.tareas.length}})
+                                                            </div>
+                                                            <!--end::Text-->
+                                                        </div>
+                                                        <!--end::Item-->
+                                                        <div class="mb-4" style="margin-left: 5.5rem;">
+                                                            <div class="table-responsive mb-3">
+                                                                <table class="table align-middle table-row-dashed fs-6 gy-3 dataTable no-footer" id="kt_table_widget_4_table">
+                                                                    <tbody class="fw-bold text-gray-600">
+                                                                        <tr class="odd" *ngFor="let subitem of item.tareas">
+                                                                            <td style="width: 150px;">
+                                                                                <span class="fw-semibold text-gray-500 d-block fs-8">Hora</span>
+                                                                                <a class="text-gray-800 text-hover-primary">
+                                                                                    {{subitem.date_realizar|date:'hh:mm a'}}
+                                                                                </a>
+                                                                            </td>
+
+                                                                            <td style="width: 150px;">
+                                                                                <span class="badge bg-warning" *ngIf="subitem.estado == 'Pendiente'">
+                                                                                    Pendiente
+                                                                                </span>
+                                                                                <span class="badge bg-success" *ngIf="subitem.estado == 'Realizado'">
+                                                                                    Realizado
+                                                                                </span>
+                                                                                <span class="badge bg-danger" *ngIf="subitem.estado == 'Cancelado'">
+                                                                                    Cancelado
+                                                                                </span>
+                                                                            </td>
+                                                                            
+                                                                            
+                                                                            <td class="text-start">
+                                                                                <div class="m-0">                            
+                                                                                    <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                                        Descripcion
+                                                                                        <code *ngIf="subitem.pospuesto">
+                                                                                            <small>Tarea Pospuesta</small>
+                                                                                        </code>
+                                                                                    </span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                                        {{subitem.descripcion}}
+                                                                                    </span>
+                                                                                </div>                    
+                                                                            </td>
+                                                                            
+                                                                           
+                                
+                                                                            <td class="text-end">
+                                                                                <ng-container *ngIf="!subitem.exp">
+                                                                                    <button *ngIf="subitem.estado == 'Pendiente'" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px cursor-pointer"
+                                                                                    data-bs-toggle="modal"
+                                                                                    [attr.data-bs-target]="'#state-'+subitem._id">
+                                                                                        <i class="bi bi-check2 text-white" ></i>                                    
+                                                                                    </button>
+                                    
+                                                                                    <button *ngIf="subitem.estado == 'Realizado' || subitem.estado == 'Cancelado'" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px cursor-pointer"
+                                                                                    style="cursor: not-allowed;" disabled>
+                                                                                        <i class="bi bi-check2 text-white" ></i>                                    
+                                                                                    </button>
+                                                                                </ng-container>
+                                                                                <ng-container *ngIf="subitem.exp">
+                                                                                    <button *ngIf="subitem.estado == 'Pendiente'" class="btn btn-sm btn-icon btn-danger btn-active-color-danger w-30px h-30px cursor-pointer" data-bs-toggle="modal" (click)="tarea_pospuesta._id = subitem._id"
+                                                                                    [attr.data-bs-target]="'#posponerTarea'">
+                                                                                        <i class="bi bi-arrow-counterclockwise text-white"></i>                                    
+                                                                                    </button>
+                                                                                    <button *ngIf="subitem.estado == 'Realizado' || subitem.estado == 'Cancelado'" class="btn btn-sm btn-icon btn-dark btn-active-color-primary w-30px h-30px cursor-pointer"
+                                                                                    style="cursor: not-allowed;" disabled>
+                                                                                        <i class="bi bi-check2 text-white" ></i>                                    
+                                                                                    </button>
+                                                                                </ng-container>
+
+                                                                                <button *ngIf="subitem.estado == 'Pendiente'" class="btn btn-sm btn-icon btn-warning w-30px h-30px cursor-pointer" data-bs-toggle="modal"
+                                                                                [attr.data-bs-target]="'#cancelar-'+subitem._id" style="margin-left: 1rem;">
+                                                                                    <i class="bi bi-x-lg"></i>                                    
+                                                                                </button>
+
+                                                                                <div class="modal fade" id="state-{{subitem._id}}" tabindex="-1" role="dialog" 
+                                                                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                                                                >
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h3 class="modal-title">Marcar tarea</h3>
+                                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                        <!--end::Svg Icon-->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <p class="mb-0">
+                                                                                                    Al confirmar la tarea se marcará como realizada guardando la marca de tiempo.
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                        </span>
+                                                                                                    Cerrar
+                                                                                                </button>
+                                                                                                <button (click)="marcar_tarea(subitem._id)" *ngIf="!load_btn_state" type="button" class="btn btn-dark font-weight-bold">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                    Confirmar
+                                                                                                </button>
+                                                    
+                                                                                                <button *ngIf="load_btn_state" class="btn btn-dark" type="button" disabled>
+                                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                    Procesando...
+                                                                                                </button>
+                                                    
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> 
+
+                                                                                <div class="modal fade" id="cancelar-{{subitem._id}}" tabindex="-1" role="dialog" 
+                                                                                aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                                                                >
+                                                                                    <div class="modal-dialog" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h3 class="modal-title">Cancelar tarea</h3>
+                                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                        <!--end::Svg Icon-->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <p class="mb-0">
+                                                                                                    La calcelación de la tarea inhabilitara por completo sus acciones.
+                                                                                                </p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-light font-weight-bold" data-bs-dismiss="modal">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                        </span>
+                                                                                                    Cerrar
+                                                                                                </button>
+                                                                                                <button (click)="cancelar_tarea(subitem._id)" *ngIf="!load_btn_cancelar" type="button" class="btn btn-dark font-weight-bold">
+                                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                    Confirmar
+                                                                                                </button>
+                                                    
+                                                                                                <button *ngIf="load_btn_cancelar" class="btn btn-dark" type="button" disabled>
+                                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                                    Procesando...
+                                                                                                </button>
+                                                    
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div> 
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                
+                                                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                                <div class="progress-bar" [ngStyle]="{'width': item.porcent_pendientes+'%'}">
+                                                                    {{item.porcent_pendientes.toFixed(2)}}%
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--begin::Item-->
+                                                    </ng-container>
+                                        
+                                                </div>
+                                            </ng-container>
+                                           
+                                            <ng-container  *ngIf="tareas.length == 0">
+                                                <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                    <!--begin::Logo-->
+                                                    <a  class="pt-lg-20">
+                                                        <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                    </a> 
+                                                    <!--begin::Message-->
+                                                    <div class="fw-semibold fs-6 text-muted mb-15">
+                                                        Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                                    </div>      
+                                     
+                                            
+                                                </div>
+                                            </ng-container>
+                                        </ng-container>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="nuevaTarea" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal" >
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="kt_modal_new_target_form" class="form" action="#">
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Programar tarea</h1>
+                        <!--end::Title-->
+
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">
+                           Nueva programación para tarea.
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+
+                   
+
+                    <!--begin::Input group-->
+                    <div class="row g-9 mb-8">
+                        
+                        <!--begin::Col-->
+                        <div class="col-md-12 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Fecha</label>
+
+                            <input type="datetime-local" class="form-control form-control-solid" 
+                            name="date_realizar" [(ngModel)]="tarea.date_realizar">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+
+                    <!--begin::Input group-->
+                    <div class="d-flex flex-column mb-8">
+                        <label class="required fs-6 fw-semibold mb-2">Descripción</label>
+
+                        <textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Informacion del resultado de esta acción." name="descripcion" [(ngModel)]="tarea.descripcion"></textarea>
+                    </div>
+                    <!--end::Input group-->
+
+                    <div class="text-center mb-8">
+                        <span class="text-danger" *ngIf="tarea_error">{{tarea_error}}</span>
+                    </div>
+
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3">
+                            Cancelar
+                        </button>
+
+                        <button type="button" *ngIf="!load_btn_tarea" class="btn btn-dark" (click)="crear_tarea()">
+                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                </svg>
+                            </span>
+                            Crear
+                        </button>
+                        <button *ngIf="load_btn_tarea" class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Procensando...
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="posponerTarea" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content rounded">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal" >
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <!--begin:Form-->
+                <form id="kt_modal_new_target_form" class="form" action="#">
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Posponer Tarea</h1>
+                        <!--end::Title-->
+
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">
+                           Nueva programación para tarea.
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+
+                   
+
+                    <!--begin::Input group-->
+                    <div class="row g-9 mb-8">
+                        
+                        <!--begin::Col-->
+                        <div class="col-md-12 fv-row">
+                            <label class="required fs-6 fw-semibold mb-2">Nueva Fecha</label>
+
+                            <input type="datetime-local" class="form-control form-control-solid" 
+                            name="date_realizar" [(ngModel)]="tarea_pospuesta.date_realizar">
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Input group-->
+
+                    <div class="text-center mb-8">
+                        <span class="text-danger" *ngIf="tarea_error">{{tarea_error}}</span>
+                    </div>
+
+                    <!--begin::Actions-->
+                    <div class="text-center">
+                        <button data-bs-dismiss="modal" class="btn btn-light me-3">
+                            Cancelar
+                        </button>
+
+                        <button type="button" *ngIf="!load_btn_posponer" class="btn btn-dark" (click)="posponer_tarea()">
+                            <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                </svg>
+                            </span>
+                            Actualizar
+                        </button>
+                        <button *ngIf="load_btn_posponer" class="btn btn-dark" type="button" disabled>
+                            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            Procensando...
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </form>
+                <!--end:Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>

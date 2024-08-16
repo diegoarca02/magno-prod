@@ -1,0 +1,58 @@
+.bg_pedido{
+    background: #ffc700 !important;
+}
+.bg_aprobado{
+    background: #7239ea !important;
+}
+.bg_enviado{
+    background: #50cd89 !important;
+}
+.bg_confirmado{
+    background: #009ef7 !important;
+}
+
+.bg_pedido:before{
+    background: #ffc700 !important;
+}
+.bg_aprobado:before{
+    background: #7239ea !important;
+}
+.bg_enviado:before{
+    background: #50cd89 !important;
+}
+.bg_confirmado:before{
+    background: #009ef7 !important;
+}
+
+.color_pedido{
+    color: #ffc700 !important;
+    font-weight: 600;
+}
+.color_aprobado{
+    color: #7239ea !important;
+    font-weight: 600;
+}
+.color_enviado{
+    color: #50cd89 !important;
+    font-weight: 600;
+}
+.color_confirmado{
+    color: #009ef7 !important;
+    font-weight: 600;
+}
+
+.bg_cancelado:before{
+    background: #f1416c !important;
+}
+
+.color_cancelado{
+    color: #f1416c !important;
+}
+
+.proveedor_selected{
+    background: #fffaec !important;
+}
+
+.detalle_enviado{
+    background: #f1fff7 !important;
+}

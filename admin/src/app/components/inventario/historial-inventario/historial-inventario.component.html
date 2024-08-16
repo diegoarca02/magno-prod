@@ -1,0 +1,733 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inventario
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/inventario']"  class="pe-3">
+                                            Inventario
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Historial de color</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card card-flush">
+                                            <!--begin::Header-->
+                                            <div class="card-header pt-7 mb-3">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold text-gray-800 fw-700">Inventario</span>
+                                                    <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Inventario completo de los almacenes</span>
+                                                </h3>
+                                            </div>
+                                            
+                                            <!--end::Header-->
+                                            <div class="card-body pt-3 pb-3">
+                                                <div class="input-group mb-3">
+                                                    <input type="month" class="form-control form-control-solid ps-10" name="periodo" [(ngModel)]="periodo">
+                                                    <div class="input-group-append">
+                                                        <button *ngIf="!load_rollos" type="button" class="btn btn-dark me-5" (click)="historial_telas()">Buscar</button>
+                                                        <button *ngIf="load_rollos" class="btn btn-dark me-5" type="button" disabled>
+                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                            Loading...
+                                                        </button>
+                                                    </div>
+                                                  </div>
+                                                  
+                                              
+                                            </div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <!--begin::Separator-->
+                                                    <div class="separator separator-dashed mb-6"></div>
+                                                    <!--end::Separator-->
+                                    
+                                                    <!--begin::Row-->
+                                                    <div class="row g-8 mb-8">
+                                                        <!--begin::Col-->
+                                                        <div class="col-xxl-7">
+                                                            <label class="fs-6 form-label fw-bold text-dark">Código</label>
+                                                            <input type="text" class="form-control form-control form-control-solid" name="str_codigo" [(ngModel)]="str_codigo" placeholder="Código del rollo" (keyup)="search()">   
+                                                        </div>
+                                                        <!--end::Col-->
+                                    
+                                                        <!--begin::Col-->
+                                                        <div class="col-xxl-5">
+                                                            <!--begin::Row-->
+                                                            <div class="row g-8">
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-6">
+                                                                    <label class="fs-6 form-label fw-bold text-dark">Almacen</label>                    
+                                                                    <!--begin::Select-->
+                                                                    <select name="str_almacen" [(ngModel)]="str_almacen" class="form-select form-select-solid" (change)="search()">
+                                                                        <option value="Todos">Todos</option>
+                                                                        <option value="{{item.almacen}}" *ngFor="let item of almacenes">{{item.almacen}}</option>
+                                                                    </select>
+                                                                    <!--end::Select-->   
+                                                                </div>
+                                                                <!--end::Col-->
+                                    
+                                                                <!--begin::Col-->
+                                                                <div class="col-lg-6 ">
+                                                                    <label class="fs-6 form-label fw-bold text-dark">Disponiblidad</label>
+                                    
+                                                                    <!--begin::Radio group-->
+                                                                    <div class="nav-group nav-group-fluid">       
+                                                                        <!--begin::Option-->     
+                                                                        <label>     
+                                                                            <input type="radio" class="btn-check" name="str_estado" [(ngModel)]="str_estado" value="Todos" (change)="search()">
+                                                                            <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4">
+                                                                                Todos
+                                                                            </span>
+                                                                        </label>
+                                                                        <!--end::Option-->
+                                    
+                                                                        <!--begin::Option-->          
+                                                                        <label>  
+                                                                            <input type="radio" class="btn-check" name="str_estado" [(ngModel)]="str_estado" value="true" (change)="search()">
+                                                                            <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4">
+                                                                                Si
+                                                                            </span>
+                                                                        </label>
+                                                                        <!--end::Option-->
+                                    
+                                                                        <!--begin::Option-->        
+                                                                        <label>    
+                                                                            <input type="radio" class="btn-check" name="str_estado" [(ngModel)]="str_estado" value="false" (change)="search()">
+                                                                            <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4">
+                                                                                No
+                                                                            </span>
+                                                                        </label>
+                                                                        <!--end::Option-->
+                                                                    </div>
+                                                                    <!--end::Radio group-->
+                                                                </div>
+                                                                <!--end::Col-->
+                                                            </div>
+                                                            <!--end::Row-->
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Row-->
+                                                    <div class="separator separator-dashed mb-6"></div>
+                                                </div>
+                                            </div>
+                                            <!--begin::Tab content-->
+                                            <ng-container *ngIf="tipo_option == 'Telas'">
+                                                <div class="card-body pt-0">
+                                                    <div class="table-responsive">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                                          
+                                                            <ng-container *ngIf="!load_rollos">
+                                                                <!--begin::Table body-->
+                                                                <ng-container *ngIf="rollos.length >= 1">
+                                                                    <tbody >
+                                                                        <ng-container *ngFor="let item of rollos| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                                            <tr style="background: #f7f7f7 !important;">     
+                                                                                <td style="padding-left: 1.5rem;">
+                                                                                    <a class="text-dark fw-bold text-hover-primary mb-1 fs-6">
+                                                                                        {{item.codigo}}
+                                                                                    </a>
+                                                                                    <span class="text-muted fw-semibold d-block fs-7">ID Rollo</span>
+                                                                                </td>    
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6">
+                                                                                        {{item.cantidad}} {{item.ingreso.umedida_cantidad}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Metraje</span>
+                                                                                </td>
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="item.ingreso.umedida_peso">
+                                                                                        {{item.pes}} {{item.ingreso.umedida_peso}}
+                                                                                    </span>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="!item.ingreso.umedida_peso">
+                                                                                    ---
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Peso</span>
+                                                                                </td> 
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6">
+                                                                                        {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Ingreso</span>
+                                                                                </td> 
+    
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="item.venta_detalle">
+                                                                                        {{item.venta_detalle.cantidad*item.venta_detalle.precio|currency:'MXN'}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Precio venta</span>
+                                                                                </td>
+                                                                
+                                                                                <td class="text-end" style="padding-right: 1.5rem;">
+                                                                                    <span *ngIf="item.estado" class="badge py-3 px-4 fs-7 badge-light-primary">
+                                                                                        Disponible
+                                                                                    </span>
+                                                                                    <span *ngIf="!item.estado" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                                                        No disponible
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="6" class="pt-0">
+                                                                                    <div class="row">
+                                                                                        <div class="col" style="padding-right: 0px !important;">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #fff8eb;border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                
+                                                                                                    <!--begin::Section-->                                                    
+                                                                                                    <div>
+                                                                                                        <a [routerLink]="['/manufactura/ingresos/detail',item.ingreso._id]" target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            Ingreso
+                                                                                                        </a>
+                                                                                                        <span class="text-gray-400 fw-bold d-block fs-7">
+                                                                                                            {{item.ingreso.createdAt|date:'dd-MM-YYYY'}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Almacen</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">{{item.ingreso.almacen}}</a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Colaborador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.ingreso.colaborador.nombres.split(' ')[0]}}
+                                                                                                            {{item.ingreso.colaborador.apellidos.split(' ')[0]}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Desde ingreso</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_ingreso}} días
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>                                                    
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col" style="padding-left: 0px;" *ngIf="item.venta_detalle">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #daf3ff; border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                                                                    
+                                                                                                    <div class="" *ngIf="item.venta_detalle">
+                                                                                                        <a [routerLink]="['/ordenes/detail',item.venta_detalle.venta._id]" target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            Orden
+                                                                                                        </a>
+                                                                                                        <span class="text-gray-400 fw-bold d-block fs-7">
+                                                                                                            {{item.venta_detalle.venta.createdAt|date:'dd-MM-YYYY'}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Colaborador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.venta_detalle.colaborador.nombres.split(' ')[0]}}
+                                                                                                            {{item.venta_detalle.colaborador.apellidos.split(' ')[0]}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Comprador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'">
+                                                                                                                {{item.venta_detalle.venta.empresa_rs.razon_social}}
+                                                                                                            </ng-container>
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'">
+                                                                                                                {{item.venta_detalle.venta.cliente.nombres.split(' ')[0]}} 
+                                                                                                                {{item.venta_detalle.venta.cliente.apellidos.split(' ')[0]}}
+                                                                                                            </ng-container>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Tipo</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <span *ngIf="!item.venta_detalle.venta.ingreso">Venta</span>
+                                                                                                            <span *ngIf="item.venta_detalle.venta.ingreso">Programación</span>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Permanencia</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_venta}} días
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>                                                  
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-12" *ngIf="item.venta_detalle">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #e9fffa;border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                                                                    
+                                                                                                    <div class="">
+                                                                                                        <a target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            {{item.venta_detalle.venta.tipo_pago}}
+                                                                                                        </a>
+                                                                                                        <span class="fw-bold d-block fs-7" [ngClass]="{'text-danger': item.venta_detalle.venta.pago == 'Pendiente'}" [ngClass]="{'text-success': item.venta_detalle.venta.pago == 'Completo'}">
+                                                                                                            {{item.venta_detalle.venta.pago}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Descuento</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.venta_detalle.venta.descuento|currency:'MXN'}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Credito límite</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'">
+                                                                                                                {{item.venta_detalle.venta.empresa_rs.limit_days}} días
+                                                                                                            </ng-container>
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'">
+                                                                                                                {{item.venta_detalle.venta.cliente.limit_days}} días
+                                                                                                            </ng-container>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Días pago</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_pago}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    
+                                                                                                </div>  
+                                                                                                <div>
+                                                                                                    <a *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'" [routerLink]="['/cobranzas/detail/cliente/'+item.venta_detalle.venta.cliente._id]"  class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Credito
+                                                                                                    </a>
+                                                                                                    <a *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'" [routerLink]="['/cobranzas/detail/empresa/'+item.venta_detalle.venta.empresa_rs._id]"  class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Credito
+                                                                                                    </a>
+                                                                                                    <a *ngIf="!item.eliminacion" [routerLink]="['/ordenes/detail',item.venta_detalle.venta._id]" class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Orden
+                                                                                                    </a>
+                                                                                                    <a [routerLink]="['/manufactura/ingresos/detail',item.ingreso._id]" class="btn btn-sm btn-dark">
+                                                                                                        Ingreso
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            
+                                                                        </ng-container>
+                                                                    </tbody>
+                                                                </ng-container>
+                                                                
+                                                                <ng-container *ngIf="rollos.length == 0">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="text-center mt-15 mb-15">
+                                                                                <!--begin::Title-->
+                                                                                <img src="assets/icons/babero.gif" alt="" style="width: 80px;">
+                                                                                <h3 class="fs-2hx text-dark mb-5">Sin resultados</h3>
+                                                                                <!--end::Title-->
+                                                                                <!--begin::Text-->
+                                                                                <div class="fs-5 text-muted fw-semibold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been 
+                                                                                <br>successfully deployed by small businesses to global enterprises</div>
+                                                                                <!--end::Text-->
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                                <!--end::Table body-->
+                                                            </ng-container>
+                                                            <ng-container *ngIf="load_rollos">
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <div class="pt-20 text-center">
+                                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                <span class="sr-only">Loading...</span>
+                                                                              </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                        </table>
+                                                        <!--end::Table-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Tab content-->
+                                                <div class="card-footer" *ngIf="rollos.length >= 1">
+                                                    <ngb-pagination
+                                                    [(page)]="page"
+                                                    [pageSize]="pageSize"
+                                                    [maxSize]="10"
+                                                    [rotate]="true" [boundaryLinks]="true"
+                                                    [collectionSize]="rollos.length"></ngb-pagination>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="tipo_option == 'Ropas'">
+                                                <div class="card-body pt-0">
+                                                    <div class="table-responsive">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                                                          
+                                                            <ng-container *ngIf="!load_variaciones">
+                                                                <!--begin::Table body-->
+                                                                <ng-container *ngIf="variaciones.length >= 1">
+                                                                    <tbody >
+                                                                        <ng-container *ngFor="let item of variaciones| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                                                            <tr style="background: #f7f7f7 !important;">     
+                                                                                <td style="padding-left: 1.5rem;">
+                                                                                    <a class="text-dark fw-bold text-hover-primary mb-1 fs-6">
+                                                                                        {{item.codigo}}
+                                                                                    </a>
+                                                                                    <span class="text-muted fw-semibold d-block fs-7">ID Rollo</span>
+                                                                                </td>    
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6">
+                                                                                        {{item.cantidad}} {{item.ingreso.umedida_cantidad}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Metraje</span>
+                                                                                </td>
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="item.ingreso.umedida_peso">
+                                                                                        {{item.pes}} {{item.ingreso.umedida_peso}}
+                                                                                    </span>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="!item.ingreso.umedida_peso">
+                                                                                    ---
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Peso</span>
+                                                                                </td> 
+                                                                
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6">
+                                                                                        {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Ingreso</span>
+                                                                                </td> 
+    
+                                                                                <td>
+                                                                                    <span class="text-dark fw-bold d-block fs-6" *ngIf="item.venta_detalle">
+                                                                                        {{item.venta_detalle.cantidad*item.venta_detalle.precio|currency:'MXN'}}
+                                                                                    </span>
+                                                                
+                                                                                    <span class="text-gray-400 fw-semibold d-block fs-7">Precio venta</span>
+                                                                                </td>
+                                                                
+                                                                                <td class="text-end" style="padding-right: 1.5rem;">
+                                                                                    <span *ngIf="item.estado" class="badge py-3 px-4 fs-7 badge-light-primary">
+                                                                                        Disponible
+                                                                                    </span>
+                                                                                    <span *ngIf="!item.estado" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                                                        No disponible
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="6" class="pt-0">
+                                                                                    <div class="row">
+                                                                                        <div class="col" style="padding-right: 0px !important;">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #fff8eb;border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                
+                                                                                                    <!--begin::Section-->                                                    
+                                                                                                    <div>
+                                                                                                        <a [routerLink]="['/manufactura/ingresos/detail',item.ingreso._id]" target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            Ingreso
+                                                                                                        </a>
+                                                                                                        <span class="text-gray-400 fw-bold d-block fs-7">
+                                                                                                            {{item.ingreso.createdAt|date:'dd-MM-YYYY'}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Almacen</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">{{item.ingreso.almacen}}</a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Colaborador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.ingreso.colaborador.nombres.split(' ')[0]}}
+                                                                                                            {{item.ingreso.colaborador.apellidos.split(' ')[0]}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Desde ingreso</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_ingreso}} días
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>                                                    
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col" style="padding-left: 0px;" *ngIf="item.venta_detalle">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #daf3ff; border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                                                                    
+                                                                                                    <div class="" *ngIf="item.venta_detalle">
+                                                                                                        <a [routerLink]="['/ordenes/detail',item.venta_detalle.venta._id]" target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            Orden
+                                                                                                        </a>
+                                                                                                        <span class="text-gray-400 fw-bold d-block fs-7">
+                                                                                                            {{item.venta_detalle.venta.createdAt|date:'dd-MM-YYYY'}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Colaborador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.venta_detalle.colaborador.nombres.split(' ')[0]}}
+                                                                                                            {{item.venta_detalle.colaborador.apellidos.split(' ')[0]}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Comprador</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'">
+                                                                                                                {{item.venta_detalle.venta.empresa_rs.razon_social}}
+                                                                                                            </ng-container>
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'">
+                                                                                                                {{item.venta_detalle.venta.cliente.nombres.split(' ')[0]}} 
+                                                                                                                {{item.venta_detalle.venta.cliente.apellidos.split(' ')[0]}}
+                                                                                                            </ng-container>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Tipo</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <span *ngIf="!item.venta_detalle.venta.ingreso">Venta</span>
+                                                                                                            <span *ngIf="item.venta_detalle.venta.ingreso">Programación</span>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Permanencia</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_venta}} días
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>                                                  
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-12" *ngIf="item.venta_detalle">
+                                                                                            <div class="d-flex justify-content-between border border-gray-300 border-dashed rounded p-6" style="background: #e9fffa;border-radius: 0px !important;">
+                                                                                                <!--begin::Block-->      
+                                                                                                <div class="d-flex align-items-center me-2 me-sm-5">
+                                                                                                                                                    
+                                                                                                    <div class="">
+                                                                                                        <a target="_blank" class="text-gray-800 fs-6 fw-bold">
+                                                                                                            {{item.venta_detalle.venta.tipo_pago}}
+                                                                                                        </a>
+                                                                                                        <span class="fw-bold d-block fs-7" [ngClass]="{'text-danger': item.venta_detalle.venta.pago == 'Pendiente'}" [ngClass]="{'text-success': item.venta_detalle.venta.pago == 'Completo'}">
+                                                                                                            {{item.venta_detalle.venta.pago}}
+                                                                                                        </span>
+                                                                                                    </div>                                         
+                                                                                                    <!--end::Section-->  
+                                                                                                </div>                                         
+                                                                                                <!--end::Block-->  
+                                                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                                                    
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Descuento</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.venta_detalle.venta.descuento|currency:'MXN'}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Credito límite</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'">
+                                                                                                                {{item.venta_detalle.venta.empresa_rs.limit_days}} días
+                                                                                                            </ng-container>
+                                                                                                            <ng-container *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'">
+                                                                                                                {{item.venta_detalle.venta.cliente.limit_days}} días
+                                                                                                            </ng-container>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    <div style="margin-right: 1.5rem;">                            
+                                                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Días pago</span>
+                                                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                                                            {{item.dias_dsd_pago}}
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                    
+                                                                                                </div>  
+                                                                                                <div>
+                                                                                                    <a *ngIf="item.venta_detalle.venta.tipo_usuario == 'Cliente natural'" [routerLink]="['/cobranzas/detail/cliente/'+item.venta_detalle.venta.cliente._id]"  class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Credito
+                                                                                                    </a>
+                                                                                                    <a *ngIf="item.venta_detalle.venta.tipo_usuario == 'Empresa'" [routerLink]="['/cobranzas/detail/empresa/'+item.venta_detalle.venta.empresa_rs._id]"  class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Credito
+                                                                                                    </a>
+                                                                                                    <a *ngIf="!item.eliminacion" [routerLink]="['/ordenes/detail',item.venta_detalle.venta._id]" class="btn btn-sm btn-dark" style="margin-right: 1rem;">
+                                                                                                        Orden
+                                                                                                    </a>
+                                                                                                    <a [routerLink]="['/manufactura/ingresos/detail',item.ingreso._id]" class="btn btn-sm btn-dark">
+                                                                                                        Ingreso
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            
+                                                                        </ng-container>
+                                                                    </tbody>
+                                                                </ng-container>
+                                                                
+                                                                <ng-container *ngIf="variaciones.length == 0">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="text-center mt-15 mb-15">
+                                                                                <!--begin::Title-->
+                                                                                <img src="assets/icons/babero.gif" alt="" style="width: 80px;">
+                                                                                <h3 class="fs-2hx text-dark mb-5">Sin resultados</h3>
+                                                                                <!--end::Title-->
+                                                                                <!--begin::Text-->
+                                                                                <div class="fs-5 text-muted fw-semibold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been 
+                                                                                <br>successfully deployed by small businesses to global enterprises</div>
+                                                                                <!--end::Text-->
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </ng-container>
+                                                                <!--end::Table body-->
+                                                            </ng-container>
+                                                            <ng-container *ngIf="load_variaciones">
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <div class="pt-20 text-center">
+                                                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                                <span class="sr-only">Loading...</span>
+                                                                              </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-container>
+                                                        </table>
+                                                        <!--end::Table-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Tab content-->
+                                                <div class="card-footer" *ngIf="rollos.length >= 1">
+                                                    <ngb-pagination
+                                                    [(page)]="page"
+                                                    [pageSize]="pageSize"
+                                                    [maxSize]="10"
+                                                    [rotate]="true" [boundaryLinks]="true"
+                                                    [collectionSize]="rollos.length"></ngb-pagination>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

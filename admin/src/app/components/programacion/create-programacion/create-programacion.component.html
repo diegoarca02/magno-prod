@@ -1,0 +1,1050 @@
+<div class="app-main flex-column flex-row-fluid">
+    <!--begin::Page-->
+    <div class="d-flex flex-column flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="padding-top: 0px !important;">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Venta
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/ventas']"  class="pe-3">
+                                            Ventas
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Nueva programación</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Content-->
+                <div id="kt_app_content" class="app-content flex-column-fluid content">
+                    <!--begin::Content container-->
+                    <div id="kt_app_content_container" class="app-container container-xxl">
+                        <!--begin::Form-->
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="mx-auto mw-700px w-100 py-10 fv-plugins-bootstrap5 fv-plugins-framework">
+                                    <div class="d-flex justify-content-center mb-20 d-flex gap-6">
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(1)" [ngClass]="{'text-primary': option_menu == 1}">
+                                              
+                                                Comprador
+                                            </h3>
+                                        </div>
+
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(2)" [ngClass]="{'text-primary': option_menu == 2}">
+                                              
+                                                Productos
+                                            </h3>
+                                        </div>
+
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(3)" [ngClass]="{'text-primary': option_menu == 3}">
+                                              
+                                                Pago
+                                            </h3>
+                                        </div>
+
+                                        <div class="border-left d-flex align-items-center">
+                                            <h3 class="fw-700 text-dark mb-0 cursor-pointer" (click)="next_step(4)" [ngClass]="{'text-primary': option_menu == 4}">
+                                              
+                                                Resumen
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <!--begin::Form-->
+                                    <div *ngIf="option_menu == 1">
+                                        <!--begin::Heading-->
+                                        <div class="pb-10 pb-lg-15" >
+                                            <!--begin::Title-->
+                                            <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                Comprador
+                                            </h1>
+                                            <!--end::Title-->
+                                            <!--begin::Notice-->
+                                            <div class="text-muted fw-semibold fs-6 text-center">
+                                                Información y programaciónes del comprador.
+                                            </div>
+                                            <!--end::Notice-->
+                                        </div>
+                                        <!--end::Heading-->
+
+                                        <!--begin::Group-->
+                                        <div class="mb-5">
+                                            <!--begin::Step 1-->
+                                            <div class="flex-column">
+                                                <div class="fv-row mb-5">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label required">Comprador</label>
+                                                    <!--end::Label-->
+                                
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid mb-2" placeholder="Cliente o empresa" name="filtro_cliente" [(ngModel)]="filtro_cliente" (keyup)="init_clientes()">
+                                                    <div class="fs-7 fw-semibold text-muted">Cliente o empresa que realiza la compra.</div>
+                                                
+                                                    <div class="py-5" *ngIf="clientes.length >= 1">
+                                                        <div class="">
+                                                            <div class="d-flex justify-content-between">
+                                                                <small class="text-gray-700 mb-2">Restaltados: {{clientes_const.length}} clientes encontrados</small>
+                                                                <code *ngIf="view_all_clients" class="cursor-pointer" (click)="ver_todos_clientes()">Todos los resultados</code>
+                                                            </div>
+
+                                                            <!--begin::Users-->
+                                                            <div class="mh-300px scroll-y me-n5 pe-5">
+																<!--begin::User-->
+                                                                <ng-container *ngIf="!load_clientes">
+                                                                    <ng-container *ngFor="let item of clientes">
+                                                                        <ng-container *ngIf="item.tipo == 'Cliente'">
+                                                                            <div class="d-flex cursor-pointer flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed" [ngClass]="{'bg_selected': venta.cliente == item.cliente._id}"  (click)="select_cliente(item.cliente)">
+                                                                                <!--begin::Avatar-->
+                                                                                <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="symbol symbol-45px me-5" style="padding-left: 1rem;">
+                                                                                            <span class="symbol-label fw-bold" [ngClass]="{
+                                                                                                'bg-light-danger text-danger': item.cliente.nombres.charAt(0) >='A' && item.cliente.nombres.charAt(0) <= 'H',
+                                                                                                'bg-light-primary text-primary': item.cliente.nombres.charAt(0) >='I' && item.cliente.nombres.charAt(0) <= 'O',
+                                                                                                'bg-light-info text-info': item.cliente.nombres.charAt(0) >='P' && item.cliente.nombres.charAt(0) <= 'U',
+                                                                                                'bg-light-success text-success': item.cliente.nombres.charAt(0) >='V' && item.cliente.nombres.charAt(0) <= 'Z'}">
+                                                                                                {{item.cliente.nombres.charAt(0)}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="d-flex justify-content-start flex-column">
+                                                                                            <a class="text-gray-800 fw-bold mb-1 fs-6">
+                                                                                                <code>[Cliente]</code> &nbsp;
+                                                                                                {{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}
+                                                                                               
+                                                                                            </a>
+                                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                                {{item.cliente.email}}
+                                                                                                
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!--end::Avatar-->
+                                                                                </div>
+                                                                                <!--end::Avatar-->
+                                                                            </div>
+                                                                        </ng-container>
+                                                                        <ng-container *ngIf="item.tipo == 'Empresa'">
+                                                                            <div class="d-flex p-3 rounded-3 border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_selected': venta.empresa_rs == item.empresa._id}" (click)="select_empresa(item.empresa)">
+                                                                                <!--begin::Avatar-->
+                                                                                <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <div class="symbol symbol-45px me-5">
+                                                                                            <span class="symbol-label fw-bold" [ngClass]="{
+                                                                                                'bg-light-danger text-danger': item.empresa.razon_social.charAt(0) >='A' && item.empresa.razon_social.charAt(0) <= 'H',
+                                                                                                'bg-light-primary text-primary': item.empresa.razon_social.charAt(0) >='I' && item.empresa.razon_social.charAt(0) <= 'O',
+                                                                                                'bg-light-info text-info': item.empresa.razon_social.charAt(0) >='P' && item.empresa.razon_social.charAt(0) <= 'U',
+                                                                                                'bg-light-success text-success': item.empresa.razon_social.charAt(0) >='V' && item.empresa.razon_social.charAt(0) <= 'Z'}">
+                                                                                                {{item.empresa.razon_social.charAt(0)}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <div class="d-flex justify-content-start flex-column">
+                                                                                            <a class="text-gray-800 fw-bold mb-1 fs-6">
+                                                                                                <code>[Empresa]</code>
+                                                                                                {{item.empresa.razon_social}}
+                                                                                            </a>
+                                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">
+                                                                                               {{item.empresa.tipo_empresa}}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
+                                                                                <!--end::Avatar-->
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </ng-container>
+                                                                </ng-container>
+																<ng-container *ngIf="load_clientes">
+                                                                    <div class="py-20 text-center">
+                                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                          </div>
+                                                                    </div>
+                                                                </ng-container>
+																
+															</div>
+                                                            <!--end::Users-->
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <ng-container *ngIf="!load_cliente_selected">
+                                                    <!--end::Input group-->
+                                                    <div class="fv-row mb-1 mb-5" *ngIf="venta.tipo_usuario">
+                                                        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-12 p-6" *ngIf="!credito.limit_credito && !credito.limit_days">
+                                                            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                                                                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"></rect>
+                                                                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"></rect>
+                                                                </svg>
+                                                            </span>
+                                                            <div class="d-flex flex-stack flex-grow-1">
+                                                                <!--begin::Content-->
+                                                                <div class="fw-semibold">
+                                                                    <div class="fs-6 text-gray-700">
+                                                                        El usuario no tiene historial crediticio.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="credito.limit_credito && credito.limit_days">
+                                                            <div class="d-flex">
+                                                                <!--begin::Stat-->
+                                                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6 mb-3">
+                                                                    <span class="fs-6 text-gray-700 fw-bold">{{credito.limit_days}} días</span>
+                                                                    <div class="fw-semibold text-gray-400">Tiempo límite</div>
+                                                                </div>
+                                                                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 mb-3">
+                                                                    <span class="fs-6 text-gray-700 fw-bold">{{credito.disponible |currency:'MXN'}}</span>
+                                                                    <div class="fw-semibold text-gray-400">Credito disponible</div>
+                                                                </div>
+                                                                <!--end::Stat-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--begin::Input group-->
+                                                    <div class="fv-row mb-10" *ngIf="venta.tipo_usuario">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Dirección de envío</label>
+                                                        <!--end::Label-->
+                                    
+                                                        <!--begin::Input-->
+                                                        <select *ngIf="ubicaciones.length >=1" class="form-select form-select-solid mb-2" name="cliente_ubicacion" [(ngModel)]="venta.cliente_ubicacion" (change)="set_ubicacion()">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="{{item._id}}" *ngFor="let item of ubicaciones">{{item.direccion}}, {{item.colonia}} - {{item.ciudad}}</option>
+                                                        </select>
+                                                        <select *ngIf="ubicaciones.length == 0" class="form-select form-select-solid mb-2" disabled>
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            
+                                                        </select>
+                                                        <!--end::Input-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fs-7" *ngIf="ubicaciones.length >=1">Tipo de medio de transporte.</div>
+                                                        <div class="text-danger fs-7" *ngIf="ubicaciones.length == 0">El comprador no tiene direcciones.</div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </ng-container>
+                                                <ng-container *ngIf="load_cliente_selected">
+                                                    <div class="py-20 text-center">
+                                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                            <!--begin::Step 1-->
+                                
+                                        
+                                        </div>
+                                        <!--end::Group-->
+                                
+                                        <!--begin::Actions-->
+                                        <div class="d-flex flex-stack mt-10">
+                                            <button (click)="next_step(2)" type="button" class="btn btn-dark">
+                                                Continuar
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <!--end::Wrapper-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                    <!--begin::Form-->
+                                    <div *ngIf="option_menu == 2">
+                                        <!--begin::Heading-->
+                                        <div class="pb-10 pb-lg-15" >
+                                            <!--begin::Title-->
+                                            <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                Productos
+                                            </h1>
+                                            <!--end::Title-->
+                                            <!--begin::Notice-->
+                                            <div class="text-muted fw-semibold fs-6 text-center">
+                                                Variedad de productos disponibles en almacén.
+                                            </div>
+                                            <!--end::Notice-->
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--end::Group-->
+                                        <div class="mb-10">
+                                            <!--begin::General options-->
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="py-5" *ngIf="programaciones.length >= 1">
+                                                        
+                                                        <!--begin::Results-->
+                                                        <div class="">
+                                                            <!--begin::Users-->
+                                                            <div class="mh-300px scroll-y me-n5 pe-5">
+                                                                <!--begin::User-->
+                                                                <ng-container *ngFor="let item of programaciones">
+                                                                    <div class="d-flex p-3 rounded-3 border border-dashed border-gray-300 cursor-pointer mb-1" [ngClass]="{'bg_select': item.active === true}" (click)="select_programacion(item)">
+                                                                        <!--begin::Avatar-->
+                                                                        <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <a class="symbol symbol-50px" style="margin-right: 1rem;">
+                                                                                    <span class="symbol-label" style="background-image:url({{url}}/resources/products/{{item.pedido_detalle.producto.portada}});"></span>
+                                                                                </a>
+                                                                                <div class="d-flex justify-content-start flex-column">
+                                                                                    <a class="text-gray-800 text-hover-primary fs-6 fw-bold text-1" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.pedido_detalle.producto.titulo}}" (click)="select_programacion(item)" style="cursor: pointer;font-size: 1rem!important;">
+                                                                                        {{item.pedido_detalle.producto.titulo}} - 
+                                                                                        {{item.pedido_detalle.producto_color.variante}}
+                                                                                        &nbsp;
+                                                                                        <small *ngIf="item.active" class="text-danger" (click)="quitar_programacion(item._id)">
+                                                                                            Quitar
+                                                                                        </small>
+                                                                                    </a>
+                                                                                    <span class="text-muted">
+                                                                                        #{{item.pedido_programacion.createdAt|date:'y'}}-{{item.pedido_programacion.serie.toString().padStart(6,'000000')}}
+                                                                                        
+                                                                                        <ng-container *ngIf="item.cupon">
+                                                                                            &nbsp; | &nbsp;
+                                                                                            <span class="text-primary">{{item.cupon.codigo}}</span>
+                                                                                        </ng-container>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                        
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div style="margin-right:1.5rem">
+                                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">Cantidad</span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7">{{item.cantidad}} {{item.umedida_cantidad}}</span>
+                                                                                </div>
+                                                                                <div style="margin-right:1.5rem">
+                                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">P/U</span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                                        {{item.pedido_programacion.precio_unidad|currency:'MXN'}}
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div style="margin-right:1.5rem">
+                                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">Rollos</span>
+                                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                                        {{item.rollos}}
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            
+                                                                        </div>
+                                                                        <!--end::Avatar-->
+                                                                    </div>
+                                                                    <!--end::User-->
+                                                                </ng-container>
+                                                                
+                                                                
+                                                            </div>
+                                                            <!--end::Users-->
+                                                            <ng-container *ngIf="programacion_selected != undefined">
+                                                                <div class="d-flex p-3 rounded-3 border border-dashed border-gray-300 mb-1" style="    background: #f2f5f7 !important;">
+                                                                    <!--begin::Avatar-->
+                                                                    <div class="d-flex" style="width: 100% !important;justify-content: space-between !important;">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <a class="symbol symbol-50px" style="margin-right: 1rem;">
+                                                                                <span class="symbol-label" style="background-image:url({{url}}/resources/products/{{programacion_selected.pedido_detalle.producto.portada}});"></span>
+                                                                            </a>
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 text-hover-primary fs-6 fw-bold text-1" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{programacion_selected.pedido_detalle.producto.titulo}}" style="cursor: pointer;font-size: 1rem!important;">
+                                                                                    {{programacion_selected.pedido_detalle.producto.titulo}}
+                                                                                </a>
+                                                                                <div class="symbol-group symbol-hover flex-grow-1 min-w-100px pe-2">
+                                                
+                                                                                    <!--begin::User-->
+                                                                                    <div class="symbol symbol-circle symbol-25px" style="cursor: pointer;border: 1px dashed #ccc;">
+                                                                                        <div style="cursor: pointer;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': programacion_selected.pedido_detalle.producto_color.hxd}"  placement="top" tooltipClass="bg_toolip" ngbTooltip="{{programacion_selected.pedido_detalle.producto_color.variante}}">
+                                                                                            </div>
+                                                                                    </div>
+                                                                                    <!--end::User-->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <div class="d-flex" style="padding-top: 5px;">
+                                                                            <div style="margin-right:1.5rem">
+                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">Cantidad</span>
+                                                                                <span class="fw-bold text-gray-800 fs-7">
+                                                                                    {{programacion_selected.cantidad}} {{programacion_selected.umedida_cantidad}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div style="margin-right:1.5rem">
+                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">P/U</span>
+                                                                                <span class="fw-bold text-gray-800 fs-7">
+                                                                                    {{programacion_selected.pedido_programacion.precio_unidad|currency:'MXN'}}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="fw-semibold text-gray-400 d-block fs-8">Rollos</span>
+                                                                                <span class="fw-bold text-gray-800 fs-7">
+                                                                                    {{programacion_selected.rollos}}
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                    
+                                                                        <div class="">
+                                                                            <span class="fw-semibold text-gray-400 d-block fs-8">P/U</span>
+                                                                            <input type="number" class="form-control form-control-sm w-100px" name="precio_unidad" [(ngModel)]="precio_unidad">
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                    <!--end::Avatar-->
+                                                                </div>
+                                                                <!--end::User-->
+
+                                                                <small class="text-primary cursor-pointer" (click)="confirmar_programacion()">Confirmar</small>
+                                                            </ng-container>
+                                                        </div>
+                                                        <!--end::Results-->
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+
+
+                                            <div class="card mb-5 mb-xl-8" style="padding-bottom: 0px !important;border: 1px dashed #d7d7d7;">
+                                                <div class="card-header border-0 pt-5 pb-5" style="background: #f3f7f9 !important">
+                                                    <h3 class="card-title align-items-start flex-column">
+                                                        <span class="card-label fw-bold fs-3 mb-1">Detalles de venta ({{detalles.length}})</span>
+                                                        <span class="text-muted mt-1 fw-semibold fs-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                    </h3>
+                                                    
+                                                </div>
+                                                <div *ngIf="detalles.length >= 1" class="table-responsive" style="max-height: 500px !important;">
+                                                    <table class="table align-middle table-row-dashed fs-6 gy-3 dataTable no-footer" style="margin-bottom: 0px !important;">
+                                                        <tbody>
+                                                            <tr *ngFor="let item of detalles; let idx_detalle = index">
+                                                                <td style="padding-left: 2rem;">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <a class="symbol symbol-50px">
+                                                                            <span class="symbol-label" style="width: 25px;height: 25px;" [ngStyle]="{'background': item.hxd}"></span>
+                                                                        </a>
+                                                                        <div class="d-flex justify-content-start flex-column ms-5">
+                                                                            <a class="text-gray-800 fw-bold text-hover-primaryfs-6">
+                                                                                {{item.producto_title}}
+                                                                            </a>
+                                                                            <span class="text-gray-400 fw-semibold d-block fs-7">{{item.rollo}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                    <span>{{item.variante}}</span>
+                                                                    <br>
+                                                                    <b>{{item.precio|currency:'MXN'}}</b>
+                                                                </td>
+                                                                <td>
+                                                                    <span>
+                                                                        {{item.cantidad_yrds}} 
+                                                                        <small>Yrds</small>
+                                                                    </span> <br>
+                                                                    <small class="text-muted" *ngIf="item.convert">({{item.cantidad}} Mtrs)</small>
+                                                                </td>
+                                                                <td class="text-end"  style="padding-right: 2rem;">
+                                                                    <b>{{item.cantidad_yrds*item.precio|currency:'MXN'}}</b>
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+                                                <div *ngIf="detalles.length == 0" class="card-body" style="max-height: 500px !important;display: flex;
+                                                align-items: center;">
+                                                    <div class="text-center mb-5" style="width: 100% !important;">
+                                                        <!--begin::Title-->
+                                                        <img src="assets/icons/babero.gif" alt="" style="width: 80px;">
+                                                        <h3 class="fs-2hx text-dark mb-5">Productos</h3>
+                                                        <!--end::Title-->
+                                                        <!--begin::Text-->
+                                                        <div class="fs-5 text-muted fw-semibold">
+                                                            La venta aun no tiene productos agregados en el detalle
+                                                        </div>
+                                                        <!--end::Text-->
+                                                    </div>
+                                                </div>
+
+                                                <div *ngIf="resumen_ventas.length >= 1" class="table-responsive">
+                                                    <table class="table table-hover table-rounded table-striped border" style="margin-bottom: 0px !important;">
+                                                        <tfoot >
+                                                            <tr *ngFor="let item of resumen_ventas; let idx_detalle = index" style="background: #242424;">
+                                                                <td colspan="2">
+                                                                    <div class="d-flex align-items-center">
+                                                                            <a class="symbol symbol-50px">
+                                                                                <span class="symbol-label" style="width: 25px;height: 25px;" [ngStyle]="{'background': item.hxd}"></span>
+                                                                            </a>
+                                                                            <div class="d-flex justify-content-start flex-column ms-5">
+                                                                                <a class="text-white fw-bold text-white fs-6">
+                                                                                    {{item.producto}}
+                                                                                </a>
+                                                                                <span class="text-white fw-semibold d-block fs-7">{{item.variante}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-white fs-6">
+                                                                        <b>{{item.rollos}} rollos</b>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-white fs-6">
+                                                                        <b>
+                                                                            {{item.total_yrds}} <small>Yrds</small>
+                                                                        </b>
+                                                                    </span>
+                                                                </td>
+                                                                <td>
+                                                                    <span class="text-white fs-6">
+                                                                        <b>{{item.total_monto|currency:'MXN'}}</b>
+                                                                    </span>
+                                                                </td>
+                                                            
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between" style="border-top: 1px solid #efefef !important;background: #f3f7f9 !important">
+                                                <div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                                {{yrds}}
+                                                            </span>
+                                                        </div>
+                                                        <small>Yrds</small>
+                                                </div>
+                                                <div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">{{total|currency:'MXN'}}</span>
+                                                        </div>
+                                                        <small>Total</small>    
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                    
+                                        
+                                        </div>
+
+                                        <!--begin::Actions-->
+                                        <div class="d-flex flex-stack mt-10">
+                                            <!--begin::Wrapper-->
+                                            <button (click)="next_step(1)" type="button" class="btn btn-danger" style="margin-right: 1rem;">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                    <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Regresar
+                                            </button>
+                                            <button (click)="next_step(3)" type="button" class="btn btn-dark">
+                                                Continuar
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <!--end::Wrapper-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                    <!--begin::Form-->
+                                    <div *ngIf="option_menu == 3">
+                                        <!--begin::Heading-->
+                                        <div class="pb-10 pb-lg-15" >
+                                            <!--begin::Title-->
+                                            <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                Pagos
+                                            </h1>
+                                            <!--end::Title-->
+                                            <!--begin::Notice-->
+                                            <div class="text-muted fw-semibold fs-6 text-center">
+                                                Configuración del pago y envío.
+                                            </div>
+                                            <!--end::Notice-->
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--begin::Group-->
+                                        <div class="mb-5">
+                                            <!--begin::Step 1-->
+                                            <div class="flex-column">
+                                                <!--begin::Input group-->
+                                                <div class="row mb-10">
+                                                    <div class="col">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Tipo de pago</label>
+                                                        <!--end::Label-->
+                                    
+                                                        <!--begin::Input-->
+                                                        <select class="form-select form-select-solid mb-2" name="tipo_pago" [(ngModel)]="venta.tipo_pago" (change)="setTipoPago()">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <ng-container *ngFor="let item of pagos">
+                                                                <ng-container *ngIf="!credito.limit_credito && !credito.limit_days">
+                                                                    <option *ngIf="item.metodo != 'Credito'" value="{{item.metodo}}">{{item.metodo}}</option>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="credito.limit_credito && credito.limit_days">
+                                                                    <option value="{{item.metodo}}">{{item.metodo}}</option>
+                                                                </ng-container>
+                                                            </ng-container>
+                                                        </select>
+                                                        <!--end::Input-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fs-7">Tipo de medio de transporte.</div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                
+                                                </div>
+                                                <!--end::Input group-->
+                                                <ng-container *ngIf="venta.tipo_pago == 'Credito'">
+                                                    <div class="d-flex justify-content-between">
+                                                        <!--begin::Stat-->
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" style="width: 100%;">
+                                                            <!--begin::Number-->
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="fs-2 fw-bold counted">
+                                                                    {{credito.disponible|currency:'MXN'}}
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Number-->
+                                                            <!--begin::Label-->
+                                                            <div class="fw-semibold fs-6 text-gray-400">Saldo disponible</div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Stat-->
+                                                        <!--begin::Stat-->
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3" style="width: 100%;">
+                                                            <!--begin::Number-->
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="fs-2 fw-bold counted">{{total|currency:'MXN'}}</div>
+                                                            </div>
+                                                            <!--end::Number-->
+                                                            <!--begin::Label-->
+                                                            <div class="fw-semibold fs-6 text-gray-400">Total a pagar</div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Stat-->
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mb-5" >
+                                                        <!--begin::Stat-->
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3" style="width: 100%;">
+                                                            <!--begin::Number-->
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="fs-2 fw-bold counted">
+                                                                    {{credito.disponible-total|currency:'MXN'}}
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Number-->
+                                                            <!--begin::Label-->
+                                                            <div class="fw-semibold fs-6 text-gray-400">Saldo restante</div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Stat-->
+                                                        <!--begin::Stat-->
+                                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3" style="width: 100%;">
+                                                            <!--begin::Number-->
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="fs-2 fw-bold counted">
+                                                                    <span class="fw-bold me-1 text-success" *ngIf="(credito.disponible-total)>=1" style="font-size: 1.3rem;">
+                                                                        Aplicado
+                                                                    </span>
+                                                                    <span class="fw-bold me-1 text-danger" *ngIf="(credito.disponible-total)<=0" style="font-size: 1.3rem;">
+                                                                        Insuficiente
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Number-->
+                                                            <!--begin::Label-->
+                                                            <div class="fw-semibold fs-6 text-gray-400">Resutlado</div>
+                                                            <!--end::Label-->
+                                                        </div>
+                                                        <!--end::Stat-->
+                                                    </div>
+                                                    
+                                                    <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6" *ngIf="(credito.disponible-total)<1">
+                                                        <!--begin::Icon-->
+                                                    <!--begin::Svg Icon | path: icons/duotune/art/art006.svg-->
+                                                        <span class="svg-icon svg-icon-2tx svg-icon-primary me-4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M22 19V17C22 16.4 21.6 16 21 16H8V3C8 2.4 7.6 2 7 2H5C4.4 2 4 2.4 4 3V19C4 19.6 4.4 20 5 20H21C21.6 20 22 19.6 22 19Z" fill="currentColor"></path>
+                                                        <path d="M20 5V21C20 21.6 19.6 22 19 22H17C16.4 22 16 21.6 16 21V8H8V4H19C19.6 4 20 4.4 20 5ZM3 8H4V4H3C2.4 4 2 4.4 2 5V7C2 7.6 2.4 8 3 8Z" fill="currentColor"></path>
+                                                        </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->        <!--end::Icon-->
+                                                            
+                                                            <!--begin::Wrapper-->
+                                                            <div class="d-flex flex-stack flex-grow-1 ">
+                                                                            <!--begin::Content-->
+                                                                <div class=" fw-semibold">
+                                                                    <div class="fs-6 text-gray-700 ">
+                                                                        Se aplicó la apertura de una solicitud de ampliación de crédito por el monto de 
+                                                                        <span class="fw-bold">{{-(credito.disponible-total)|currency:'MXN'}}</span>
+                                                                    </div>
+                                                                </div>
+                                                                    <!--end::Content-->
+                                                                
+                                                            </div>
+                                                            <!--end::Wrapper-->  
+                                                    </div>
+                                                </ng-container>
+                                                <!--begin::Input group-->
+                                                <div class="row mb-10">
+                                                <div class="col">
+                                                        <label class="form-label">Costo de envio</label>
+                                                        <input type="number" placeholder="Costo envio" class="form-control form-control-solid mb-2"  name="tipo_envio" [(ngModel)]="venta.tipo_envio"/>
+                                                        <!--end::Input-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fs-7">Costo de envio.</div>
+                                                        <!--end::Description-->
+                                                        <!--end::Input-->
+                                                </div>
+                                                <div class="col">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Método envio</label>
+                                                        <!--end::Label-->
+                                    
+                                                        <!--begin::Input-->
+                                                        <select  class="form-select form-select-solid mb-2" name="metodo_envio" [(ngModel)]="venta.metodo_envio">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option [value]="item.envio" *ngFor="let item of envios">{{item.envio}}</option>
+                                                        </select>
+                                                        <!--end::Input-->
+                                                        <!--begin::Description-->
+                                                        <div class="text-muted fs-7">Método envio.</div>
+                                                        <!--end::Description-->
+                                                </div>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="row mb-10" *ngIf="venta.tipo_pago == 'Contado'">
+                                                    <div class="col">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Metodo</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <select class="form-select form-select-solid mb-2" name="metodo" [(ngModel)]="venta.metodo" (change)="set_metodo()">
+                                                            <option value="" disabled selected>Seleccionar</option>
+                                                            <option value="Transferencia">Transferencia</option>
+                                                            <option value="Efectivo">Efectivo</option>
+                                                            <option value="Deposito">Deposito</option>
+                                                            <option value="Cheque">Cheque</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Metodo con el que se realiza el pago.</div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <div class="col" *ngIf="venta.metodo != 'Efectivo'">
+                                                        <!--begin::Label-->
+                                                        <label class="form-label required">Entidad</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <select class="form-select form-select-solid mb-2" name="entidad" [(ngModel)]="venta.entidad">
+                                                            <option value="" disabled selected>Seleccionar</option>
+                                                            <option value="{{item.entidad}}" *ngFor="let item of entidades">{{item.entidad}}</option>
+                                                        </select>
+                                                        <div class="text-muted fs-7">Metodo con el que se realiza el pago.</div>
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+
+
+
+
+
+                                            
+                                                <!--end::Input group-->      
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label required">Entrega</label>
+                                                    <!--end::Label-->
+                                
+                                                    <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1"/>
+                                                    <small style="cursor: pointer;" class="text-muted" data-bs-toggle="modal" [attr.data-bs-target]="'#addCliente'">
+                                                        Estimación de entrega
+                                                    </small>
+                                                </div>
+                                                <!--end::Input group-->      
+                                            </div>
+                                            <!--begin::Step 1-->
+                                
+                                        
+                                        </div>
+                                        <!--end::Group-->
+                                        <!--begin::Actions-->
+                                        <!--begin::Actions-->
+                                        <div class="d-flex flex-stack mt-10">
+                                            <!--begin::Wrapper-->
+                                            <button (click)="next_step(2)" type="button" class="btn btn-danger" style="margin-right: 1rem;">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                    <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Regresar
+                                            </button>
+                                            <button (click)="next_step(4)" type="button" class="btn btn-dark">
+                                                Continuar
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                    <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <!--end::Wrapper-->
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                    <!--begin::Form-->
+                                    <div *ngIf="option_menu == 4">
+
+                                        <!--begin::Heading-->
+                                        <div class="pb-10 pb-lg-15" >
+                                            <!--begin::Title-->
+                                            <h1 class="fw-bold text-center text-gray-700 fw-700">
+                                                Resúmen
+                                            </h1>
+                                            <!--end::Title-->
+                                            <!--begin::Notice-->
+                                            <div class="text-muted fw-semibold fs-6 text-center">
+                                                Resúmen de la venta o programación.
+                                            </div>
+                                            <!--end::Notice-->
+                                        </div>
+                                        <!--end::Heading-->
+
+                                        <!--begin::Group-->
+                                        <div class="mb-5">
+                                            <div class="d-flex flex-column gap-7 gap-md-10 mb-7">
+                                                <!--begin::Message-->
+                                                <div class="fw-bold fs-2 no-print">
+                                                        <ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+                                                            {{empresa_selected.razon_social}}
+                                                        </ng-container>
+                                                        <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                            {{cliente_selected.nombres}} {{cliente_selected.apellidos}}
+                                                        </ng-container>
+                                                    <span class="fs-6">
+                                                        <ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+                                                            {{cliente_selected.email}}
+                                                        </ng-container>
+                                                        <ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+                                                            {{empresa_selected.empresa.razon_social}}
+                                                        </ng-container>
+                                                    </span>
+                                                    <br>
+                                                    <span class="text-muted fs-5 no-print">
+                                                        Aquí están los detalles de la venta, verifique los datos antes de seguir.
+                                                    </span>
+                                                    
+                                                </div>
+                                                <!--begin::Message-->
+                                                <!--begin::Separator-->
+                                                <div class="separator"></div>
+                                                <!--begin::Separator-->
+                                                <!--begin::Order details-->
+                                                <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
+                                                    <div class="flex-root d-flex flex-column">
+                                                        <span class="text-muted">Tipo usuario</span>
+                                                        <span class="fs-5">{{venta.tipo_usuario}}</span>
+                                                    </div>
+                                                    <div class="flex-root d-flex flex-column" style="text-align: center;">
+                                                        <span class="text-muted">Fecha</span>
+                                                        <span class="fs-5">{{today|date:'dd-MM-YYYY'}}</span>
+                                                    </div>
+                                                    <div class="flex-root d-flex flex-column" style="text-align: right;"> 
+                                                        <span class="text-muted">Colaborador</span>
+                                                        <span class="fs-5">{{user.nombres}} {{user.apellidos}}</span>
+                                                    </div>
+                                                </div>
+                                                <!--end::Order details-->
+                                                <!--begin::Billing & shipping-->
+                                                <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold">
+                                                    <div class="flex-root d-flex flex-column">
+                                                        <span class="text-muted">Pago</span>
+                                                        <span class="fs-6">{{venta.tipo_pago}},
+                                                            <ng-container *ngIf="venta.tipo_pago == 'Contado'">
+                                                                <br>{{venta.metodo}},
+                                                                <br>{{venta.entidad}}
+                                                            </ng-container>
+                                                            <ng-container *ngIf="venta.tipo_pago == 'Credito'">
+                                                                <br>{{venta.limit_days}} días de credito
+                                                            </ng-container>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-root d-flex flex-column" style="    text-align: right !important;">
+                                                        <span class="text-muted">Envío</span>
+                                                        <span class="fs-6">{{venta.metodo_envio}},
+                                                            <br>{{ubicacion_selected.direccion}},
+                                                            <br>{{ubicacion_selected.pais}},
+                                                            <br>{{ubicacion_selected.estado}}, {{ubicacion_selected.cuidad}}
+                                                        
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <!--end::Billing & shipping-->
+                                            </div>
+                                            <div class="d-flex flex-wrap d-grid gap-5 mb-5">
+                                                <!--begin::Item-->
+                                                <div class="me-md-2">
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex mb-2">
+                                                        <span class="fs-4 fw-semibold text-gray-400 me-1">$</span>
+                                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                            {{venta.total|currency:'MXN'}}
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                    <!--begin::Description-->
+                                                    <span class="fs-6 fw-semibold text-gray-400">Total</span>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Item-->
+                                                <div class="border-start-dashed border-end-dashed border-1 border-gray-300 px-5 ps-md-10 pe-md-7 me-md-5">
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex mb-2">
+                                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">{{resumen_metraje}}</span>
+                                                        <span class="fs-4 fw-semibold text-gray-400 me-1">yrds</span>
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                    <!--begin::Description-->
+                                                    <span class="fs-6 fw-semibold text-gray-400">Metraje</span>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Item-->
+                                                <!--begin::Item-->
+                                                <div class="m-0">
+                                                    <!--begin::Statistics-->
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1 ls-n2">
+                                                            <ng-container>{{detalles.length}}</ng-container>
+                                                        </span>
+                                                        <!--end::Value-->
+                                                        <!--end::Label-->
+                                                    </div>
+                                                    <!--end::Statistics-->
+                                                    <!--begin::Description-->
+                                                    <span class="fs-6 fw-semibold text-gray-400">
+                                                        <ng-container>Rollos</ng-container>
+                                                    </span>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Item-->
+                                            </div>
+                                        </div>
+                                        <!--end::Group-->
+                                        
+                                
+                                        <!--begin::Actions-->
+                                        <div class="d-flex flex-stack mt-10">
+                                            <ng-container *ngIf="venta.tipo_pago == 'Credito' || !venta.tipo_pago">
+                                                <button (click)="next_step(3)" type="button" class="btn btn-danger" style="margin-right: 1rem;">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Regresar
+                                                </button>
+
+                                                <button *ngIf="(credito.disponible-total)>=1" (click)="create('Procesado')" type="button" class="btn btn-dark">
+                                                    Crear venta
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"/>
+                                                        <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                                <button *ngIf="(credito.disponible-total)<=0" (click)="create('Pendiente')" type="button" class="btn btn-dark">
+                                                    Abrir solicitud
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"/>
+                                                        <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </ng-container>
+                                            <ng-container *ngIf="venta.tipo_pago == 'Contado'">
+                                                <button (click)="next_step(3)" type="button" class="btn btn-danger" style="margin-right: 1rem;">
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.5" x="6" y="11" width="13" height="2" rx="1" fill="currentColor"/>
+                                                        <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Regresar
+                                                </button>
+
+                                                <button type="button" class="btn btn-dark" (click)="create('Procesado')">
+                                                    Crear venta
+                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"/>
+                                                        <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </ng-container>
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Content container-->
+                </div>
+                <!--end::Content-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

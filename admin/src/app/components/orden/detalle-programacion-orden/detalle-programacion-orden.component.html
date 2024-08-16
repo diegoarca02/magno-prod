@@ -1,0 +1,289 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar class="no-print"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar class="no-print"></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar no-print" id="kt_toolbar" >
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Manufactura
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/ventas']"  class="pe-3">
+                                            Ordenes
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Detalle de programación</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-10" id="toPDFs">
+                                            <!-- begin::Body-->
+                                            <div class="card-body py-20">
+                                                <!-- begin::Wrapper-->
+                                                <div class="mw-lg-950px mx-auto w-100">
+                                                    <!-- begin::Header-->
+                                                    <div class="d-flex justify-content-between flex-column flex-sm-row mb-7">
+                                                        <h4 class="fw-bolder text-gray-800 fs-2qx pe-5 pb-7">Orden de venta #{{venta.year}}-{{venta.serie.toString().padStart(6,'000000')}}
+                                                            <span *ngIf="venta.estado == 'Procesado'" class="badge py-3 px-4 fs-7 badge-light-primary">
+                                                                {{venta.estado}}
+                                                            </span>
+                                                            <span *ngIf="venta.estado == 'Confirmado'" class="badge py-3 px-4 fs-7 badge-light-success">
+                                                                {{venta.estado}}
+                                                            </span>
+                                                            
+                                                            <span *ngIf="venta.estado == 'Cancelado'" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                                {{venta.estado}}
+                                                            </span>
+                                                            <span *ngIf="venta.estado == 'Enviado'" class="badge py-3 px-4 fs-7 badge-light-warning">
+                                                                {{venta.estado}}
+                                                            </span>
+                                                        </h4>
+                                                       
+                                                    </div>
+                                                    <!--end::Header-->
+                                                    <!--begin::Body-->
+                                                    <div class="">
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex flex-column gap-7 gap-md-10">
+                                                            <!--begin::Message-->
+                                                            <div class="fw-bold fs-2">
+																<ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+																	{{venta.empresa_rs.razon_social}}
+																</ng-container>
+																<ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+																	{{venta.cliente.nombres}} {{venta.cliente.apellidos}}
+																</ng-container>
+                                                            <span class="fs-6">
+																<ng-container *ngIf="venta.tipo_usuario == 'Cliente natural'">
+																	{{venta.cliente.email}}
+                                                                    <small class="text-primary">Cliente</small>
+																</ng-container>
+																<ng-container *ngIf="venta.tipo_usuario == 'Empresa'">
+																	{{venta.empresa_rs.empresa.razon_social}}
+                                                                    <small class="text-primary">Empresa</small>
+																</ng-container>
+															</span>
+                                                            <br>
+                                                            <span class="text-muted fs-5 no-print">Aquí están los detalles de su pedido. Le agradecemos su compra.</span></div>
+                                                            <!--begin::Message-->
+                                                            <div class="row no-print">
+                                                                <div class="col">
+                                                                    
+                                                                    <ng-container *ngIf="venta.estado == 'Procesado'">
+                                                                        <a style="cursor: pointer;" class="btn btn-light-success mb-3" style="margin-right: 1rem;" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmacion'">
+                                                                            Confirmar pedido
+                                                                        </a>
+																		<br>
+																		<small class="text-muted">A la espera de la confirmación del pedido para la actualización en almacen.</small>
+                                                                    </ng-container>
+                                                                    <ng-container *ngIf="venta.estado == 'Confirmado'">
+                                                                        <a style="cursor: pointer;" class="btn btn-light-info mb-3" style="margin-right: 1rem;" data-bs-toggle="modal" [attr.data-bs-target]="'#confirmacion'">
+                                                                            Confirmar envío
+                                                                        </a>
+
+																		<br>
+																		<small class="text-muted">A la espera de la confirmación del envio a paquetería del pedido.</small>
+                                                                    </ng-container>
+                                                                </div>
+                                                            </div>
+                                                            <!--begin::Separator-->
+                                                            <div class="separator"></div>
+                                                            <!--begin::Separator-->
+                                                            <!--begin::Order details-->
+                                                            <div class="d-flex flex-column flex-sm-row gap-7 gap-md-10 fw-bold" >
+                                                                <div class="flex-root d-flex flex-column">
+                                                                    <span class="text-muted">Orden ID</span>
+                                                                    <span class="fs-5">#{{venta._id}}</span>
+                                                                </div>
+                                                                <div class="flex-root d-flex flex-column">
+                                                                    <span class="text-muted">Fecha</span>
+                                                                    <span class="fs-5">{{venta.createdAt|date:'dd-MM-YYYY'}}</span>
+                                                                </div>
+                                                                
+																<div class="flex-root d-flex flex-column no-print">
+                                                                    <span class="text-muted">Colaborador</span>
+                                                                    <span class="fs-5">{{venta.colaborador.nombres}} {{venta.colaborador.apellidos}}</span>
+                                                                </div>
+                                                                <div class="flex-root d-flex flex-column no-print">
+                                                                    <span class="text-muted">Envío</span>
+                                                                    <span class="fs-5">{{venta.tipo_envio|currency:'MXN'}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <!--end::Order details-->
+
+                                                            <!--begin:Order summary-->
+                                                            <ng-container>
+                                                            
+                                                                <div class="d-flex justify-content-between flex-column">
+                                                                    <!--begin::Table-->
+                                                                    <div class="border-bottom mb-9">
+                                                                        <h3>Programaciones</h3>
+                                                                        
+                                                                        <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                                                            <thead>
+                                                                                <tr class="border-bottom fs-6 fw-bold text-muted">
+                                                                                    <th class="min-w-150px pb-2">Producto</th>
+                                                                                    <th class="min-w-70px text-end pb-2">Color</th>
+                                                                                    <th class="min-w-70px text-end pb-2">Cantidad</th>
+                                                                                    <th class="min-w-70px text-end pb-2">Estado</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody class="fw-semibold text-gray-600">
+                                                                                <!--begin::Products-->
+                                                                                <tr *ngFor="let item of programaciones; let idx_detalle = index">
+                                                                                    <!--begin::Product-->
+                                                                                    <td>
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <!--begin::Thumbnail-->
+                                                                                            <a  class="symbol symbol-50px no-print">
+                                                                                                <span class="symbol-label" style="width: 25px;height: 25px;border: 1px dashed #ccc" [ngStyle]="{'background': item.producto_color.hxd}"></span>
+                                                                                            </a>
+                                                                                            <!--end::Thumbnail-->
+                                                                                            <!--begin::Title-->
+                                                                                            <div class="ms-5">
+                                                                                                <div class="fw-bold">
+                                                                                                    <a [routerLink]="['/manufactura/productos/edit',item.producto._id]">
+                                                                                                        {{item.producto.titulo}} 
+                                                                                                    </a>
+                                                                                                    <br>
+                                                                                                    
+                                                                                                </div>
+                                                                                                
+                                                                                            </div>
+                                                                                            <!--end::Title-->
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <!--end::Product-->
+                                                                                    <td class="text-end">{{item.producto_color.variante}}</td>
+                                                                                    <td class="text-end">{{item.cantidad}} {{item.unidad}}</td>
+                                                                                    <td class="text-end">
+                                                                                        <span *ngIf="item.estado == 'Pendiente'" class="badge py-3 px-4 fs-7 badge-light-danger">
+                                                                                            {{item.estado}}
+                                                                                        </span>
+                                
+                                                                                        <span *ngIf="item.estado == 'Realizado'" class="badge py-3 px-4 fs-7 badge-light-info">
+                                                                                            {{item.estado}}
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <!--end::Table-->
+                                                                </div>
+                                                            </ng-container>
+                                                            <!--end:Order summary-->
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </div>
+                                                    <!--end::Body-->
+                                                    <!-- begin::Footer-->
+                                                    
+                                                    <!-- end::Footer-->
+                                                </div>
+                                                <!-- end::Wrapper-->
+                                            </div>
+                                            <!-- end::Body-->
+                                            <div class="card-footer no-print">
+                                                <a style="cursor: pointer;" class="text-success" (click)="downloadExcelProgramacion()">
+                                                    Exportar programaciones XLS
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-stack flex-wrap mt-lg-7 pt-7 no-print" >
+                                            <!-- begin::Actions-->
+                                            <div class="my-1 me-5">
+                                                <!-- begin::Pint-->
+                                                <button type="button" class="btn btn-success my-1 me-12" onclick="window.print();">Imprimir</button>
+                                                <!-- end::Pint-->
+                                                <!-- begin::Download-->
+                                                <button type="button" class="btn btn-light-success my-1" (click)="download()">Descargar orden</button>
+                                                <!-- end::Download-->
+                                            </div>
+                                            <!-- end::Actions-->
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                                <ng-container *ngIf="load_data">
+                                    <div class="card">
+                                        <div class="card-body pt-6">
+                                            <div class="py-20 text-center">
+                                                <img src="assets/icons/reloj.gif" style="width: 100px;" class="theme-light-show" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+

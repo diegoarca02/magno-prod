@@ -1,0 +1,5 @@
+{
+    "tela" : ["Desconocido","Afelpado","Batista","Gamuza","Napa","Poliéster","Terciopelo","Spandex"],
+    "acero" : ["Desconocido","Madera","Acero","Hierro","Concreto"],
+    "ropa" : []
+}

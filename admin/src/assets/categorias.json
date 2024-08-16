@@ -1,0 +1,68 @@
+{
+    "tela" : {
+        "categorias" : [
+            {
+                "titulo" : "Naturales",
+                "subcategorias" : [
+                    "Sub categoria 1",
+                    "Sub categoria 2",
+                    "Sub categoria 3"
+                ]
+            },
+            {
+                "titulo" : "Sintéticas",
+                "subcategorias" : [
+                    "Sub categoria 4",
+                    "Sub categoria 5",
+                    "Sub categoria 6"
+                ]
+            },
+            {
+                "titulo" : "Punto elástico",
+                "subcategorias" : [
+                    "Sub categoria 7",
+                    "Sub categoria 8",
+                    "Sub categoria 9"
+                ]
+            }
+        ]
+    },
+    "acero" : {
+        "categorias" : [
+            {
+                "titulo" : "Vigas",
+                "subcategorias" : [
+                    "IPR",
+                    "IPS "
+                ]
+            },
+            {
+                "titulo" : "Barillas",
+                "subcategorias" : [
+                    "Corrugada",
+                    "Lisa"
+                ]
+            }
+        ]
+    },
+    "ropa" : {
+        "categorias" : [
+            {
+                "titulo" : "Prendas superiores",
+                "subcategorias" : [
+                    "Sub categoria 1",
+                    "Sub categoria 2",
+                    "Sub categoria 3"
+                ]
+            },
+            {
+                "titulo" : "Prendas inferiores",
+                "subcategorias" : [
+                    "Sub categoria 4",
+                    "Sub categoria 5",
+                    "Sub categoria 6"
+                ]
+            }
+        ]
+    }
+}

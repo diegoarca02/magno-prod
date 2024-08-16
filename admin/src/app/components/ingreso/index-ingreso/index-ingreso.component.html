@@ -1,0 +1,473 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ingresos
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Ingreso</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <div class="card mb-10">
+                            <!--begin::Card header-->
+                            <div class="card-header border-0 py-7">
+                                <!--begin::Tabs-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">
+                                        Ingresos
+                                        ({{ingresos.length}}/{{todos}})
+                                    </span>
+                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                </h3>
+                                <div class="card-toolbar">
+                                    <a class="btn btn-dark me-3" data-bs-toggle="modal" [attr.data-bs-target]="'#modalEnvios'" *ngIf="permisos.includes('7002')">
+                                      
+                                        <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20 8H16C15.4 8 15 8.4 15 9V16H10V17C10 17.6 10.4 18 11 18H16C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18H21C21.6 18 22 17.6 22 17V13L20 8Z" fill="currentColor"/>
+                                            <path opacity="0.3" d="M20 18C20 19.1 19.1 20 18 20C16.9 20 16 19.1 16 18C16 16.9 16.9 16 18 16C19.1 16 20 16.9 20 18ZM15 4C15 3.4 14.6 3 14 3H3C2.4 3 2 3.4 2 4V13C2 13.6 2.4 14 3 14H15V4ZM6 16C4.9 16 4 16.9 4 18C4 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16Z" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                        Envios
+                                        <span class="badge badge-circle badge-success ms-2" [ngClass]="{'badge-success': envios.length >= 1,
+                                    'badge-danger': envios.length == 0}">
+                                            {{envios.length}}
+                                        </span>
+                                    </a>
+
+                                    <a class="btn btn-dark" data-bs-toggle="modal" [attr.data-bs-target]="'#nuevoIngreso'" *ngIf="permisos.includes('7001')">
+                                        <span class="svg-icon svg-icon-muted svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor"/>
+                                            <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor"/>
+                                            </svg>
+                                        </span>
+                                        Nuevo ingreso
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <ng-container *ngIf="!load_data">
+                            <ng-container  *ngIf="ingresos.length >= 1">
+                                <div class="card mb-5" *ngFor="let item of ingresos;let idx = index">
+                                    <div class="card-body pb-5">
+                                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                                            <!--begin::User-->
+                                            <div class="d-flex flex-column">
+                                                <!--begin::Name-->
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <a class="text-gray-900 text-hover-primary fs-2 fw-bold me-1 fw-600">
+                                                        #IN{{item.createdAt|date:'YYYY'}}-{{item.serie.toString().padStart(6,'000000')}}
+                                                    </a>
+                                                    <a>
+                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
+                                                        <span class="svg-icon svg-icon-1 svg-icon-primary">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                                <path d="M10.0813 3.7242C10.8849 2.16438 13.1151 2.16438 13.9187 3.7242V3.7242C14.4016 4.66147 15.4909 5.1127 16.4951 4.79139V4.79139C18.1663 4.25668 19.7433 5.83365 19.2086 7.50485V7.50485C18.8873 8.50905 19.3385 9.59842 20.2758 10.0813V10.0813C21.8356 10.8849 21.8356 13.1151 20.2758 13.9187V13.9187C19.3385 14.4016 18.8873 15.491 19.2086 16.4951V16.4951C19.7433 18.1663 18.1663 19.7433 16.4951 19.2086V19.2086C15.491 18.8873 14.4016 19.3385 13.9187 20.2758V20.2758C13.1151 21.8356 10.8849 21.8356 10.0813 20.2758V20.2758C9.59842 19.3385 8.50905 18.8873 7.50485 19.2086V19.2086C5.83365 19.7433 4.25668 18.1663 4.79139 16.4951V16.4951C5.1127 15.491 4.66147 14.4016 3.7242 13.9187V13.9187C2.16438 13.1151 2.16438 10.8849 3.7242 10.0813V10.0813C4.66147 9.59842 5.1127 8.50905 4.79139 7.50485V7.50485C4.25668 5.83365 5.83365 4.25668 7.50485 4.79139V4.79139C8.50905 5.1127 9.59842 4.66147 10.0813 3.7242V3.7242Z" fill="currentColor"></path>
+                                                                <path class="check-span" d="M14.8563 9.1903C15.0606 8.94984 15.3771 8.9385 15.6175 9.14289C15.858 9.34728 15.8229 9.66433 15.6185 9.9048L11.863 14.6558C11.6554 14.9001 11.2876 14.9258 11.048 14.7128L8.47656 12.4271C8.24068 12.2174 8.21944 11.8563 8.42911 11.6204C8.63877 11.3845 8.99996 11.3633 9.23583 11.5729L11.3706 13.4705L14.8563 9.1903Z" fill="white"></path>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
+                                                    </a>
+                                                    <a class="btn btn-sm fw-bold ms-2 fs-8 py-1 px-3" 
+                                                    [ngClass]="{'btn-primary': item.tipo == 'Tela',
+                                                    'btn-info': item.tipo == 'Ropa',
+                                                    'btn-success': item.tipo == 'Acero'}">{{item.tipo}}</a>
+                                                </div>
+                                                <!--end::Name-->
+                                                <!--begin::Info-->
+                                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-2 pe-2">
+                                                    <div class="" style="margin-right: 1.5rem !important;">
+                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Conteo</span>
+                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                            {{item.cantidad.toFixed(2)}} {{item.umedida_cantidad}}
+                                                            {{item.unidad}}
+                                                        </a>
+                                                    </div>
+                                                    <div class="" style="margin-right: 1.5rem !important;">
+                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Solicitado</span>
+                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                            <ng-container *ngIf="item.pedido_detalle">
+                                                                {{item.pedido_detalle.cantidad.toFixed(2)}} {{item.pedido_detalle.unidad}}
+                                                                {{item.unidad}}
+                                                            </ng-container>
+                                                            <ng-container *ngIf="!item.pedido_detalle">
+                                                                {{item.cantidad.toFixed(2)}} {{item.umedida_cantidad}}
+                                                                {{item.unidad}}
+                                                            </ng-container>
+                                                        </a>
+                                                    </div>
+                                                    <div class="" style="margin-right: 1.5rem !important;">
+                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Unidades</span>
+                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                            {{item.unidades}}
+                                                        </a>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12 mb-2" style="text-align: right;">
+                                                    
+                                                    <ng-container>
+                                                        <code>
+                                                            <a [routerLink]="['/ingresos/detail',item._id]" class="cursor-pointer">Detalles</a>
+                                                        </code>
+                                                    </ng-container>
+                                                    <div class="mt-7 text-end">
+                                                        <div class="d-flex">
+                                                             <span class="fs-2hx fw-bold lh-1 ls-n2 text-gray-700" style="font-size: 2rem!important;">
+                                                                 {{item.almacen}}
+                                                             </span>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+                                       
+                                    </div>
+                                </div>
+
+                                <ng-container *ngIf="tipo_option == 'Todos'">
+                                    <div class="text-center" *ngIf="todos != ingresos.length">
+                                        <code class="cursor-pointer" (click)="click_matriculas()">
+                                            Cargar más
+                                        </code>
+                                    </div>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container  *ngIf="ingresos.length == 0">
+                                <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                    <!--begin::Logo-->
+                                    <a  class="pt-lg-20">
+                                        <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                    </a> 
+                                    <!--begin::Message-->
+                                    <div class="fw-semibold fs-6 text-muted mb-15">
+                                        Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                    </div>      
+                     
+                            
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                  </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="nuevoIngreso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-1000px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Title-->
+                <h3 class="fw-700">Nuevo ingreso</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y m-5">
+                <div class="mx-auto mw-700px w-100 py-10 fv-plugins-bootstrap5 fv-plugins-framework">
+                    <div class="w-100">
+                        <!--begin::Heading-->
+                        <div class="pb-10 pb-lg-15">
+                           <!--begin::Title-->
+                           <h3 class="fw-bold d-flex align-items-center text-dark fw-600">
+                              Selecciona el tipo de pedido
+                           </h3>
+                           <!--end::Title-->
+                           <!--begin::Notice-->
+                           <div class="text-muted fw-semibold fs-6">
+                              Pedido para ingreso de nuevo stock al inventario
+                           </div>
+                           <!--end::Notice-->
+                        </div>
+                        <!--end::Heading-->
+                        <!--begin::Input group-->
+                        <div class="fv-row fv-plugins-icon-container">
+                           <!--begin::Row-->
+                           <div class="row">
+                              <!--begin::Col-->
+                              <div class="col-lg-6">
+                                 <!--begin::Option-->
+                                 <a (click)="redirect('ingresos/proveedor')" class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-10">
+                                    <img src="assets/images/caja.png" alt="" style="    width: 45px;
+                                    margin-right: 1rem;">
+                                    <!--begin::Info-->
+                                    <span class="d-block fw-semibold text-start">                            
+                                    <span class="text-dark fw-bold d-block fs-4 mb-2">
+                                        Proveedor
+                                    </span>
+                                    <span class="text-muted fw-semibold fs-6">Pedido realizados con proveedor.</span>
+                                    </span>
+                                    <!--end::Info-->
+                                </a>
+                                 <!--end::Option-->
+                                 <div class="fv-plugins-message-container invalid-feedback"></div>
+                              </div>
+                              <!--end::Col-->
+                              <!--begin::Col-->
+                              <div class="col-lg-6">
+                                 <!--begin::Option-->
+                                 <a (click)="redirect('ingresos/manual')" class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center">
+                                    <img src="assets/images/abrir-caja.png" alt="" style="    width: 45px;
+                                    margin-right: 1rem;">
+                                    <!--begin::Info-->
+                                    <span class="d-block fw-semibold text-start">                              
+                                    <span class="text-dark fw-bold d-block fs-4 mb-2">
+                                        Directo
+                                    </span>
+                                    <span class="text-muted fw-semibold fs-6">
+                                        Pedido ingresado directamente.</span>
+                                    </span>           
+                                    <!--end::Info-->               
+                                </a>
+                                 <!--end::Option-->   
+                              </div>
+                              <!--end::Col-->
+                           </div>
+                           <!--end::Row-->        
+                        </div>
+                        <!--end::Input group-->    
+                    </div>
+                </div>
+                
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+
+<div class="modal fade" id="nuevoIngreso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-1000px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Title-->
+                <h3 class="fw-700">Envios</h3>
+
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y m-5">
+                
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>
+
+<div class="modal fade" id="modalEnvios" tabindex="-1" style="display: none;" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header pb-0 border-0 justify-content-end">
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-muted svg-icon-2x">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>              
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--begin::Modal header-->
+
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                <!--begin::Heading-->
+                <div class="text-center mb-13">
+                    <!--begin::Title-->
+                    <h1 class="mb-3">Envios</h1>
+                    <!--end::Title-->
+
+                    <!--begin::Description-->
+                    <div class="text-muted fs-6">
+                        Si quieres registrar directamente el ingreso  
+                        <a class="link-primary" [routerLink]="['/ingresos/proveedor']" >accede aquí</a>.
+                    </div>
+                    <!--end::Description-->
+                </div>
+                <!--end::Heading-->
+
+                <!--begin::Users-->
+                <div class="mb-15">
+                    <!--begin::List-->
+                    <div class="mh-375px scroll-y me-n7 pe-7">
+                        <!--begin::User-->
+                        <ng-container  *ngIf="envios.length >= 1">
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed"  
+                            *ngFor="let item of envios">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#" class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">
+                                            #ENV{{item.envio.createdAt|date:'YYYY'}}
+                                            -
+                                            {{item.envio.serie.toString().padStart(6,'000000')}}
+                                        </a>
+                                        <!--end::Name-->
+    
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">
+                                            Finalizados: ({{item.finalizados}}/{{item.total}})
+                                        </div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+    
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <a (click)="redirect_envio(item.envio._id)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                                            <span class="svg-icon svg-icon-muted svg-icon-3 text-primary"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1" transform="rotate(-180 18 13)" fill="currentColor"/>
+                                                <path d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z" fill="currentColor"/>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                        </ng-container>
+                        
+                        <!--end::User-->
+
+                        <div class="" *ngIf="envios.length == 0">
+                            <div class="text-center" style="margin-top: 2rem !important;height: 100% !important;" >
+                                <a style="font-weight: 700;
+                                    font-size: 2rem;" class="app-sidebar-logo-default text-dark">
+                                        <span class="text-yellow">OO</span>neunion
+                                </a>
+                                <div class="font-size-h4 mb-8 text-muted">No se pudieron encontrar cliente con los datos ingresados.</div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::List-->
+                </div>
+                <!--end::Users-->
+
+                <!--begin::Notice-->
+                <div class="d-flex justify-content-between">
+                    <!--begin::Label-->                        
+                    <div class="fw-semibold">
+                        <label class="fs-6">Adding Users by Team Members</label>
+
+                        <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+                    </div>
+                    <!--end::Label-->   
+                </div>
+                <!--end::Notice-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+</div>

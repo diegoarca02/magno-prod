@@ -1,0 +1,7 @@
+canvas{
+    width: 100% !important;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 7px; /* Cambiar el alto del scrollbar */
+}

@@ -1,0 +1,22 @@
+.dropdown-toggle::after{
+    margin-left: 0px !important;
+    display: none !important;
+}
+
+.dropdown button{
+    padding: calc(0.65rem + 1px) calc(1.25rem + 1px) !important;
+}
+
+.check-span{
+    fill: #fff !important;
+}
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}

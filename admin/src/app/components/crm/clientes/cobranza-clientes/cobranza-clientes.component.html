@@ -1,0 +1,243 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">CRM
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/clientes']"  class="pe-3">Clientes</a></li>
+                                <li class="breadcrumb-item pe-3">Cobranza cliente</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold fs-3 mb-1">Cobranza por cliente</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                </h3>
+                                            </div>
+                                            <!--begin::Card header-->
+                                            <!--begin::Content-->
+                                            <div id="kt_account_settings_profile_details" class="collapse show">
+                                                <div class="card-body p-9">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Periodo</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center flex-wrap gap-3 gap-xl-9 mb-15">
+                                                        <div class="form-group">
+                                                            <input type="date" name="inicio" [(ngModel)]="inicio" class="form-control form-control-lg form-control-solid"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="date" name="hasta" [(ngModel)]="hasta" class="form-control form-control-lg form-control-solid"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button *ngIf="!load_btn" class="btn btn-dark" (click)="init_data()">Buscar</button>
+                                                            <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                                Procensando...
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <ng-container *ngIf="!load_btn">
+                                                        <div class="row" *ngIf="arr_data.length >= 1">
+
+                                                            <div class="col-12 mb-7">
+                                                                <h3 class="card-title align-items-start flex-column">
+                                                                    <span class="card-label fw-bold text-gray-800">General</span>
+                                                                    <br>
+                                                                    <span class="text-gray-400 mt-1 fw-semibold fs-6">Muestra el rendimiento de los meses consultados</span>
+                                                                </h3>
+
+                                                                <div id="content_apexcharts_general">
+                                                                    <div id="kt_apexcharts_general" style="height: 300px;"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <ng-container *ngFor="let item of arr_data; let idx = index">
+                                                                <div class="col-6 mb-1">
+                                                                    <h3 class="card-title align-items-start flex-column" style="margin-bottom: 2rem;">
+                                                                        <span class="card-label fw-bold text-gray-800">{{item.mes_str}} {{item.year}}</span>
+                                                                        <br>
+                                                                        <span class="text-gray-400 mt-1 fw-semibold fs-6">Año {{item.year}}</span>
+                                                                    </h3>
+        
+                                                                    <table class="table table-row-dashed table-row-gray-300">
+                                                                        <tr>
+                                                                            <td>Semana 1</td>
+                                                                            <td style="min-width: 150px;">{{item.sem_uno|currency:'MXN'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Semana 2</td>
+                                                                            <td style="min-width: 150px;">{{item.sem_dos|currency:'MXN'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Semana 3</td>
+                                                                            <td style="min-width: 150px;">{{item.sem_tres|currency:'MXN'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Semana 4</td>
+                                                                            <td style="min-width: 150px;">{{item.sem_cuatro|currency:'MXN'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Total</b></td>
+                                                                            <td>{{item.subtotal|currency:'MXN'}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Subtotal</b></td>
+                                                                            <td>
+                                                                                <span style="padding-left: 0px !important;" *ngIf="item.subtotal > 0">
+                                                                                    {{item.op_divi}}
+                                                                                    <span class="text-muted" style="padding-left: 0px !important;">
+                                                                                        (1000000/{{item.subtotal}})
+                                                                                    </span>
+                                                                                </span>
+                                                                                <span  class="text-muted" style="padding-left: 0px !important;" *ngIf="item.subtotal <= 0">
+                                                                                    Sin datos
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><b style="padding-left: 0px !important;">Indice</b></td>
+                                                                            <td>
+                                                                                <span style="padding-left: 0px !important;" *ngIf="item.subtotal > 0">
+                                                                                    {{item.op_mult}}
+                                                                                    <span class="text-muted" style="padding-left: 0px !important;">
+                                                                                        ({{item.op_divi}}*{{item.dias_mes}})
+                                                                                    </span>
+                                                                                </span>
+                                                                                <span  class="text-muted" style="padding-left: 0px !important;" *ngIf="item.subtotal <= 0">
+                                                                                    Sin datos
+                                                                                </span>
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-6 mb-1">
+                                                                    <div id="content_apexcharts_{{idx+1}}">
+                                                                        <div id="kt_apexcharts_{{idx+1}}" style="height: 280px;"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </ng-container>
+                                                        </div>
+                                                        <div class="row" *ngIf="arr_data.length == 0" >
+                                                            <div class="col-12 mt-10 text-center" >
+                                                                <!--begin::Title-->
+                                                                <h1 class="fw-semibold text-gray-800 lh-lg">
+                                                                    «Nunca veo el fracaso como un fracaso, 
+                                                                    <br>
+                                                                    <span class="fw-bolder">sino solo como el juego que debo jugar y ganar.»</span>
+                                                                </h1>
+                                                                <!--end::Title-->
+                                                                <small class="text-muted">— Tom Hopkins</small>
+                                                                <!--begin::Illustration-->
+                                                                <div class="py-10 text-center">
+                                                                    <img src="assets/images/1.svg" class="theme-light-show w-200px" alt="">
+                                                                </div>
+                                                                <!--end::Illustration-->
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="load_btn">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="py-10 text-center">
+                                                                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                                        <span class="sr-only">Loading...</span>
+                                                                      </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+
+                                                </div>
+                                            </div>
+                                            <!--end::Content-->
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

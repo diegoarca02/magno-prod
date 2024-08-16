@@ -1,0 +1,182 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Dashboard
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start ms-3 mx-2"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <small class="text-muted fs-7 fw-bold my-1 ms-1">#XRS-45670</small>
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">
+                                    {{currentTime|date:'medium'}}
+                                </span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gx-5 gx-xl-10">
+                            <div class="col-xxl-6 mb-5 mb-xl-10">
+                                <div class="card card-flush h-xl-100">
+                                    <div class="card-header pt-5">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">            
+                                            <span class="card-label fw-700 text-gray-900">Mi Cuenta</span>
+                                            <small class="text-gray-500 mt-1 fw-semibold">Users from all channels</small>
+                                        </h3>
+                                        <!--end::Title-->
+                                
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar">
+                                            <a [routerLink]="['/profile']" class="btn btn-sm btn-light">Mi Cuenta</a>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <div class="card-body pt-7">
+                                        <div class="d-flex flex-wrap flex-sm-nowrap">
+                                            <!--begin: Pic-->
+                                            <div class="me-7 mb-4">
+                                                <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+                                                    <img [src]="str_portada" alt="image">
+                                                    <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+                                                </div>
+                                            </div>
+                                            <!--end::Pic-->
+                                
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1">
+                                                <!--begin::Title-->
+                                                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                                                    <!--begin::User-->
+                                                    <div class="d-flex flex-column">
+                                                        <!--begin::Name-->
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <a class="text-gray-900 text-hover-primary fs-2 fw-600 me-1">
+                                                                {{user.nombres}} {{user.apellidos}}
+                                                            </a>
+                                                        </div>
+                                                        <!--end::Name-->
+                                
+                                                        <!--begin::Info-->                        
+                                                        <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                                                            <small class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                                                {{user.email}}
+                                                            </small>
+                                                            <small class="d-flex align-items-center text-gray-500 text-hover-primary me-5 mb-2">
+                                                                {{user.prefijo}} {{user.telefono}}
+                                                            </small>
+                                                        </div>
+                                                        <!--end::Info-->
+                                                    </div>
+                                                    <!--end::User-->
+                                
+                                                    <!--begin::Actions-->
+                                                    <div>
+                                                        <span>{{user.rol}}</span>
+                                                        <br>
+                                                        <span>{{user.pais}}</span>
+                                                        <br>
+                                                        <span>{{user.direccion}}</span>
+                                                    </div>
+                                                    <!--end::Actions-->
+                                                </div>
+                                                <!--end::Title-->
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 mb-5 mb-xl-10">
+                                <div class="card card-flush h-xl-100">
+                                    <div class="card-header pt-5">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">            
+                                            <span class="card-label fw-700 text-gray-900">Mis actividades</span>
+                                            <small class="text-gray-500 mt-1 fw-semibold">Users from all channels</small>
+                                        </h3>
+                                        <!--end::Title-->
+                                
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar">
+                                            <a [routerLink]="['/tasks']" class="btn btn-sm btn-light">Gestión</a>
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <div class="card-body pt-7">
+                                        <div class="table-responsive" style="height: 170px !important;">
+                                            <table class="table align-middle table-row-dashed gy-3 dataTable">
+                                                <tbody class="text-gray-600">
+                                                    <tr *ngFor="let item of tareas">
+                                                        <td>
+                                                            <div class="m-0">                            
+                                                                <span class="fw-semibold text-gray-500 d-block fs-8">
+                                                                    {{item.date_realizar|date}}
+                                                                </span>
+                                                                <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                    {{item.date_realizar|date:'hh:mm a'}}
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                        <td class="text-start">
+                                                            <small>{{item.descripcion.substring(0,20)}}...</small>                           
+                                                        </td>
+                                                        
+                                                        <td class="text-end">
+                                                            <span class="badge bg-warning text-dark">
+                                                                Pendiente
+                                                            </span>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                           </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Modals-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+ 
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

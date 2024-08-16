@@ -1,0 +1,116 @@
+<main class="page-wrapper">
+    <app-navbar></app-navbar>
+
+        <!-- Hero -->
+        <section class="dark-mode position-relative pt-5" style="background-color: #151922;">
+
+        <!-- Content -->
+        <div class="container position-relative zindex-2 pt-5 pb-2 pb-md-0">
+
+  
+          
+          <div class="row justify-content-center pt-3 mt-3">
+            <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10 text-center">
+              <h1 class="mb-4">Ponerse en contacto</h1>
+              <p class="fs-lg pb-3 mb-3">¿Tienes un proyecto en mente? Para solicitar una cotización contáctenos directamente o complete el formulario y háganos saber cómo podemos ayudarlo.</p>
+              <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-icon btn-secondary btn-facebook rounded-circle mx-2">
+                  <i class="bx bxl-facebook"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-secondary btn-instagram rounded-circle mx-2">
+                  <i class="bx bxl-instagram"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-secondary btn-google rounded-circle mx-2">
+                  <i class="bx bxl-google"></i>
+                </a>
+                <a href="#" class="btn btn-icon btn-secondary btn-twitter rounded-circle mx-2">
+                  <i class="bx bxl-twitter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom shape -->
+        <div class="d-flex position-absolute top-100 start-0 w-100 overflow-hidden mt-n5" style="color: #151922;">
+          <div class="position-relative start-50 translate-middle-x flex-shrink-0 mt-n5 mt-md-n3 mt-lg-n1" style="width: 3788px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="3788" height="144" viewBox="0 0 3788 144"><path fill="currentColor" d="M0,0h3788.7c-525,90.2-1181.7,143.9-1894.3,143.9S525,90.2,0,0z"/></svg>
+          </div>
+        </div>
+        </section>
+
+        
+        <!-- Email + Phone -->
+        <section class="container py-5 my-md-2 my-lg-4 my-xl-5">
+            <div class="row justify-content-center pt-5 pb-1 pb-sm-2 pb-md-3">
+              <div class="col-xxl-8 col-xl-9 col-lg-10 pt-sm-2 pt-md-5">
+                  <div class="d-sm-flex justify-content-center">
+                    <div class="d-flex flex-column w-sm-50 border-0 bg-transparent text-center px-sm-1 px-md-5 pb-3 pb-sm-0 mb-4 mb-sm-0">
+                        <div class="card-body p-0">
+                        <div class="d-inline-block bg-secondary text-primary rounded-circle fs-3 lh-1 p-3 mb-3">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+                        <p class="pb-2 pb-sm-3 mb-3">No dude en escribirnos. Responderemos lo antes posible.</p>
+                        </div>
+                        <div class="card-footer border-0 p-0">
+                        <a href="mailto:email@example.com" class="btn btn-lg btn-dark">
+                          Escribenos
+                        </a>
+                        </div>
+                    </div>
+               
+                  </div>
+              </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row" style="margin-bottom: 7rem;">
+                <div class="col-lg-6 col-sm-12 mx-auto">
+                    <h2 class="card-title text-center pb-3 mb-4">
+                      Obtenga consulta en línea
+                    </h2>
+                    <form class="row g-4 needs-validation" novalidate="">
+                      <div class="col-12" bis_skin_checked="1">
+                        <label for="fn" class="form-label fs-base">Full name</label>
+                        <input type="text" class="form-control form-control-lg" id="fn" required="">
+                        <div class="invalid-feedback" bis_skin_checked="1">Please enter your full name!</div>
+                      </div>
+                      <div class="col-12" bis_skin_checked="1">
+                        <label for="email" class="form-label fs-base">Email address</label>
+                        <input type="email" class="form-control form-control-lg" id="email" required="">
+                        <div class="invalid-feedback" bis_skin_checked="1">Please provid a valid email address!</div>
+                      </div>
+                      <div class="col-12" bis_skin_checked="1">
+                        <label for="specialist" class="form-label fs-base">Specialist</label>
+                        <select class="form-select form-select-lg" id="specialist" required="">
+                          <option value="" selected="" disabled="">Choose a specialist</option>
+                          <option value="Therapist">Therapist</option>
+                          <option value="Dentist">Dentist</option>
+                          <option value="Cardiologist">Cardiologist</option>
+                          <option value="Pediatrician">Pediatrician</option>
+                          <option value="Gynecologist">Gynecologist</option>
+                          <option value="Surgeon">Surgeon</option>
+                        </select>
+                        <div class="invalid-feedback" bis_skin_checked="1">Choose a specialist from the list!</div>
+                      </div>
+                      <div class="col-sm-6" bis_skin_checked="1">
+                        <label for="date" class="form-label fs-base">Date</label>
+                        <input type="text" class="form-control form-control-lg" id="date" data-format="{&quot;date&quot;: true, &quot;datePattern&quot;: [&quot;m&quot;, &quot;d&quot;]}" placeholder="mm/dd" required="">
+                        <div class="invalid-feedback" bis_skin_checked="1">Enter a date!</div>
+                      </div>
+                      <div class="col-sm-6" bis_skin_checked="1">
+                        <label for="time" class="form-label fs-base">Time</label>
+                        <input type="text" class="form-control form-control-lg" id="time" data-format="{&quot;time&quot;: true, &quot;timePattern&quot;: [&quot;h&quot;, &quot;m&quot;]}" placeholder="hh:mm" required="">
+                        <div class="invalid-feedback" bis_skin_checked="1">Enter a time!</div>
+                      </div>
+                      <div class="col-12 pt-2 pt-sm-3 text-center" bis_skin_checked="1">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto">Make an appointment</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <app-footer></app-footer>
+</main>

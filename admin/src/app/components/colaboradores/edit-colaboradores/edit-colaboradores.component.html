@@ -1,0 +1,489 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Colaboradores
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3 text-muted"><a [routerLink]="['/seguridad/colaboradores']"  class="pe-3">Usuarios</a></li>
+                                <li class="breadcrumb-item pe-3">Editar usuarios</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="data">
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Editar colaborador</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                </h3>
+                                            </div>
+                                            <!--begin::Card header-->
+                                           <!--begin::Card body-->
+                                           <div class="card-body pt-3">
+                                                     
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nombres y apellidos</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8">
+                                                        <!--begin::Row-->
+                                                        <div class="row">
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-6 fv-row">
+                                                                <input type="text" name="nombres" [(ngModel)]="colaborador.nombres" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="Nombres" />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                            <!--begin::Col-->
+                                                            <div class="col-lg-6 fv-row">
+                                                                <input type="text" name="apellidos" [(ngModel)]="colaborador.apellidos" class="form-control form-control-lg form-control-solid" placeholder="Apellidos"  />
+                                                            </div>
+                                                            <!--end::Col-->
+                                                        </div>
+                                                        <!--end::Row-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Correo electrónico</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" name="email" [(ngModel)]="colaborador.email" class="form-control form-control-lg form-control-solid" placeholder="john.doe@domain.cpm" />
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                                        <span class="">Telefono</span>
+                                                        
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <select class="form-select" name="prefijo" [(ngModel)]="colaborador.prefijo">
+                                                                    <option value="" selected disabled>Seleccionar</option>
+                                                                    <option value="{{item.code}}" *ngFor="let item of codes">
+                                                                        {{item.name}} ({{item.code}})
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col">
+                                                                <input type="tel" name="telefono" [(ngModel)]="colaborador.telefono" class="form-control form-control-lg form-control-solid" placeholder="Telefono" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">INE</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" name="ine" [(ngModel)]="colaborador.ine" class="form-control form-control-lg form-control-solid" placeholder="Documento nacional"/>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Nacimiento</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <!--begin::Input-->
+                                                        <input type="date" name="nacimiento" [(ngModel)]="colaborador.nacimiento" class="form-control form-control-lg form-control-solid"/>
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">País</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <select id="kt_docs_select2_country" aria-label="Select a Country" data-control="select2" data-placeholder="Seleccionar país" class="form-select form-select-solid form-select-lg fw-semibold" data-allow-clear="true">
+                                                            <option value="">Select a Country...</option>
+                                                        
+
+                                                            <option data-kt-select2-country="assets/media/flags/argentina.svg" value="Argentina">Argentina</option>
+                                                            <option data-kt-select2-country="assets/media/flags/bolivia.svg" value="Bolivia">Bolivia</option>
+                                                            <option data-kt-select2-country="assets/media/flags/brazil.svg" value="Brazil">Brazil</option>
+                                                            <option data-kt-select2-country="assets/media/flags/chile.svg" value="Chile">Chile</option>
+                                                            <option data-kt-select2-country="assets/media/flags/colombia.svg" value="Colombia">Colombia</option>
+                                                            <option data-kt-select2-country="assets/media/flags/costa rica.svg" value="Costa Ric">Costa Rica</option>
+                                                            <option data-kt-select2-country="assets/media/flags/cuba.svg" value="Cuba">Cuba</option>
+                                                            <option data-kt-select2-country="assets/media/flags/dominican republic.svg" value="Dominican Republic">Dominican Republic</option>
+                                                            <option data-kt-select2-country="assets/media/flags/ecuador.svg" value="Ecuador">Ecuador</option>
+                                                            <option data-kt-select2-country="assets/media/flags/el salvador.svg" value="El Salvador">El Salvador</option>
+                                                            <option data-kt-select2-country="assets/media/flags/guatemala.svg" value="Guatemala">Guatemala</option>
+                                                            <option data-kt-select2-country="assets/media/flags/mexico.svg" value="Mexico">Mexico</option>
+                                                            <option data-kt-select2-country="assets/media/flags/nicaragua.svg" value="Nicaragua">Nicaragua</option>
+                                                            <option data-kt-select2-country="assets/media/flags/panama.svg" value="Panama">Panama</option>
+                                                            <option data-kt-select2-country="assets/media/flags/paraguay.svg" value="Paraguay">Paraguay</option>
+                                                            <option data-kt-select2-country="assets/media/flags/peru.svg" value="Peru">Peru</option>
+                                                            <option data-kt-select2-country="assets/media/flags/portugal.svg" value="Portugal">Portugal</option>
+                                                            <option data-kt-select2-country="assets/media/flags/puerto rico.svg" value="Puerto Rico">Puerto Rico</option>
+                                                            <option data-kt-select2-country="assets/media/flags/spain.svg" value="Spain">Spain</option>
+                                                            <option data-kt-select2-country="assets/media/flags/united states.svg" value="United States">United States</option>
+                                                            <option data-kt-select2-country="assets/media/flags/uruguay.svg" value="Uruguay">Uruguay</option>
+                                                            <option data-kt-select2-country="assets/media/flags/venezuela.svg" value="Venezuela">Venezuela</option>
+                                            
+                                                        </select>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Dirección</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-8 fv-row">
+                                                        <input type="text" name="direccion" [(ngModel)]="colaborador.direccion" name="website" class="form-control form-control-lg form-control-solid" placeholder="Dirección"/>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            
+                                                <!--begin::Input group-->
+                                                <div class="row mb-6">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Rol</label>
+                                                    <!--begin::Label-->
+                                                    <!--begin::Label-->
+                                                    <div class="col-lg-8 d-flex align-items-center">
+                                                        <select name="rol" [(ngModel)]="colaborador.rol" class="form-select form-select-lg form-select-solid">
+                                                            <option value="" selected disabled>Seleccionar</option>
+                                                            <option value="En espera">En espera</option>
+                                                            <option value="{{item.rol}}" *ngFor="let item of roles">{{item.rol}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <!--begin::Label-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="row mb-0" *ngIf="colaborador.rol == 'Almacenista'">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Almacenes</label>
+                                                    <!--begin::Label-->
+                                                    <!--begin::Label-->
+                                                    <div class="col-lg-8 d-flex align-items-center">
+                                                        <input type="text" class="form-control form-control-solid mb-2" id="kt_tagify" placeholder="Almacenes"/>
+                                                    </div>
+                                                    <!--begin::Label-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end::Card body-->
+                                            <!--begin::Actions-->
+                                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                                <button *ngIf="!load_btn" type="button" class="btn btn-dark" (click)="actualizar()">
+                                                    <span class="svg-icon svg-icon-3 me-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Guardar cambios
+                                                </button>
+                                                <button *ngIf="load_btn" class="btn btn-dark" type="button" disabled>
+                                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                    Procensando...
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                        </div>
+                                        
+                                        <div class="card mb-5 mb-xl-10">
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Contrato</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                </h3>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Content-->
+                                            <!--begin::Card body-->
+                                            <div class="card-body p-9">
+                                                    
+                                                <!--begin::Items-->
+                                                <div class="py-2">
+                                                    <!--begin::Item-->
+                                                    <div class="d-flex flex-stack">
+                                                        <div class="d-flex">
+                                                            <div class="d-flex flex-column">
+                                                                <a class="fs-5 text-dark text-hover-primary fw-bold">Remuneración</a>
+                                                                <div class="fw-semibold text-gray-600">Monto de salario mensual</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end">
+                                                            <input type="number" class="form-control" name="remuneracion" [(ngModel)]="colaborador.remuneracion" style="    max-width: 100px !important;">
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Item-->
+                                                    <!-- <div class="separator separator-dashed my-5"></div> -->
+                                                   
+                                                </div>
+                                                <!--end::Items-->
+                                            </div>
+                                            <!--end::Card body-->
+                                            <!--begin::Card footer-->
+                                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                                <button *ngIf="!load_remuneracion" class="btn btn-dark" (click)="update_remuneracion()">
+                                                    <span class="svg-icon svg-icon-3 me-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Guardar cambios
+                                                </button>
+                                                <button *ngIf="load_remuneracion" class="btn btn-dark" type="button" disabled>
+                                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                    Procensando...
+                                                </button>
+                                            </div>
+                                            <!--end::Card footer-->
+                                        </div>
+
+                                        <div class="card mb-5 mb-xl-10" >
+                                            <!--begin::Card header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Accesibilidad</span>
+                                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                                </h3>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Content-->
+                                            <div class="card-body p-9">
+
+                                                <div class="d-flex flex-wrap align-items-center">
+                                                    <!--begin::Label-->
+                                                    <div id="kt_signin_email">
+                                                        <div class="fs-6 fw-bold mb-1">Horarios</div>
+                                                        <div class="fw-semibold text-gray-600 d-none d-sm-block">
+                                                            Acceso de entrada y salida a la plataformna (24horas)
+                                                        </div>
+                                                    </div>
+                                                    <!--end::Label-->
+                                    
+                                                    
+                                    
+                                                    <!--begin::Action-->
+                                                    <div class="d-flex ms-auto">
+                                                        <div class="input-group">
+                                                            <input type="time" id="input-h-1" class="form-control icon-input" style="max-width: 150px;" name="acceso_entrada" [(ngModel)]="colaborador.acceso_entrada" placeholder="24" >
+                                                        </div>
+                                                          
+                                                        &nbsp;
+                                                        <div class="input-group">
+                                                            <input type="time" id="input-h-2" class="form-control icon-input" style="max-width: 150px;" name="acceso_salida" [(ngModel)]="colaborador.acceso_salida" placeholder="24">
+                                                        </div>
+                                                      
+                                                    </div>
+                                                    <!--end::Action-->
+                                                </div>
+
+                                                <div class="separator separator-dashed my-6"></div>
+
+                                                <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed p-6">
+                                                    <span class="svg-icon svg-icon-2tx svg-icon-primary me-4 d-none d-sm-block"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="currentColor"/>
+                                                        <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                        <!--end::Svg Icon-->
+                                                    <!--begin::Wrapper-->
+                                                    <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
+                                                        <!--begin::Content-->
+                                                        <div class="mb-3 mb-md-0 fw-semibold">
+                                                            <h4 class="text-gray-900 fw-bold">Restablecer contraseña</h4>
+                                                            <div class="fs-6 text-gray-700 pe-7">Se asignara la clave por defecto <b>magno</b></div>
+                                                        </div>
+                                                        <!--end::Content-->
+                                                        <!--begin::Action-->
+                                                        <a style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#reset-password'" class="btn btn-secondary px-6 align-self-center text-nowrap">
+                                                            <span class="svg-icon svg-icon-3 me-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="currentColor"/>
+                                                                <path d="M14.854 11.321C14.7568 11.2282 14.6388 11.1818 14.4998 11.1818H14.3333V10.2272C14.3333 9.61741 14.1041 9.09378 13.6458 8.65628C13.1875 8.21876 12.639 8 12 8C11.361 8 10.8124 8.21876 10.3541 8.65626C9.89574 9.09378 9.66663 9.61739 9.66663 10.2272V11.1818H9.49999C9.36115 11.1818 9.24306 11.2282 9.14583 11.321C9.0486 11.4138 9 11.5265 9 11.6591V14.5227C9 14.6553 9.04862 14.768 9.14583 14.8609C9.24306 14.9536 9.36115 15 9.49999 15H14.5C14.6389 15 14.7569 14.9536 14.8542 14.8609C14.9513 14.768 15 14.6553 15 14.5227V11.6591C15.0001 11.5265 14.9513 11.4138 14.854 11.321ZM13.3333 11.1818H10.6666V10.2272C10.6666 9.87594 10.7969 9.57597 11.0573 9.32743C11.3177 9.07886 11.6319 8.9546 12 8.9546C12.3681 8.9546 12.6823 9.07884 12.9427 9.32743C13.2031 9.57595 13.3333 9.87594 13.3333 10.2272V11.1818Z" fill="currentColor"/>
+                                                                </svg>
+                                                            </span>
+                                                                <!--end::Svg Icon-->
+                                                            Restablecer
+                                                        </a>
+                                                        <!--end::Action-->
+                                                    </div>
+                                                    <!--end::Wrapper-->
+                                                </div>
+                                            </div>
+                                            <!--end::Content-->
+                                            <!--begin::Card footer-->
+                                            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                                <button *ngIf="!load_acceso" class="btn btn-dark" (click)="update_acceso()">
+                                                    <span class="svg-icon svg-icon-3 me-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                        </svg>
+                                                    </span>
+                                                    Guardar cambios
+                                                </button>
+                                                <button *ngIf="load_acceso" class="btn btn-dark" type="button" disabled>
+                                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                    Procensando...
+                                                </button>
+                                            </div>
+                                            <!--end::Card footer-->
+                                        </div>
+        
+                                       
+                                    </ng-container>
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+
+<div class="modal fade" id="reset-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Restablecer contraseña</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                        </svg>
+                    </span>
+                        <!--end::Svg Icon-->
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Confirmación para restablecer contraseña de cuenta.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger font-weight-bold" data-bs-dismiss="modal">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                        <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                        </svg>
+                        </span>
+                    Cerrar
+                </button>
+                <button *ngIf="!load_password" type="button" class="btn btn-dark font-weight-bold" (click)="reset_password()">
+                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    Confirmar
+                </button>
+
+                <button *ngIf="load_password" class="btn btn-dark" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Procesando...
+                </button>
+
+
+            </div>
+        </div>
+    </div>
+</div> 

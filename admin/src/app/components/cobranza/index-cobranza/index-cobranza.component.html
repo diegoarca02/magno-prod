@@ -1,0 +1,481 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cobranza
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Cobranza</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-7">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Control de Pagos</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">
+                                                Pagos realizados en la plataforma
+                                            </span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                        <div class="card-toolbar" *ngIf="permisos.includes('14001')">
+                                            <a [routerLink]="['/cobranzas/create']" class="btn btn-dark fw-bold " >
+                                                <span class="svg-icon svg-icon-3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M22 7H2V11H22V7Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Nuevo pago
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                
+                                    <!--end::Card body-->
+                                </div>
+                                <div class="card card-flush mb-10">
+                                      <!--begin::Card header-->
+                                      <div class="card-header pt-7 mb-7">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Pagos registrados</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Pagos realizados en la plataforma</span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                    </div>
+                                    <!--end::Card header-->
+                                    <div class="card-body pt-0">
+
+                                        <!--begin::Sort & Filter-->
+                                        <div class="d-flex flex-stack flex-wrap gap-4 mb-7">
+                                            <!--begin::Sort-->
+                                            <div class="d-flex align-items-center flex-wrap gap-3 gap-xl-9">
+                                                <!--begin::Type-->
+                                                <div class="d-flex align-items-center fw-bold">
+                                                    <!--begin::Label-->
+                                                    <div class="text-muted fs-7">Método</div>
+                                                    <!--end::Label-->
+                                                    <!--begin::Select-->
+                                                    <select class="form-select form-select-transparent text-dark fs-7 lh-1 fw-bold py-0 ps-3 w-auto" name="filtro_metodo" [(ngModel)]="filtro_metodo">
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="Transferencia">Transferencia</option>
+                                                        <option value="Efectivo">Efectivo</option>
+                                                        <option value="Deposito">Deposito</option>
+                                                        <option value="Cheque">Cheque</option>
+                                                    </select>
+                                                    <!--end::Select-->
+                                                </div>
+                                                <!--end::Type-->
+                                                <!--begin::Status-->
+                                                <div class="d-flex align-items-center fw-bold">
+                                                    <!--begin::Label-->
+                                                    <div class="text-muted fs-7 me-2">Estado</div>
+                                                    <!--end::Label-->
+                                                    <!--begin::Select-->
+                                                    <select class="form-select form-select-transparent text-dark fs-7 lh-1 fw-bold py-0 ps-3 w-auto"name="filtro_estado" [(ngModel)]="filtro_estado">
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="Pendiente">Pendiente</option>
+                                                        <option value="Aprobado">Aprobado</option>
+                                                    </select>
+                                                    <!--end::Select-->
+                                                </div>
+                                                <!--begin::Status-->
+                                                <!--begin::Status-->
+                                                <div class="d-flex align-items-center fw-bold">
+                                                    <!--begin::Label-->
+                                                    <div class="text-muted fs-7 me-2">Entidad</div>
+                                                    <!--end::Label-->
+                                                    <!--begin::Select-->
+                                                    <select class="form-select form-select-transparent text-dark fs-7 lh-1 fw-bold py-0 ps-3 w-auto"name="filtro_entidad" [(ngModel)]="filtro_entidad">
+                                                        <option value="Todos">Todos</option>
+                                                        <option value="{{item}}" *ngFor="let item of entidades">{{item}}</option>
+                                                    </select>
+                                                    <!--end::Select-->
+                                                </div>
+                                                <!--begin::Status-->
+                                                
+
+                                                <a style="cursor: pointer;" class="text-primary" (click)="search()"><b>Buscar</b></a>
+                                            </div>
+                                            <!--end::Sort-->
+                                        
+                                        </div>
+                                        <!--end::Sort & Filter-->
+
+                                        <ng-container *ngIf="load_data">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                  </div>
+                                            </div>
+                                        </ng-container>
+
+                                        <div class="table-responsive" *ngIf="!load_data">
+                                            <table class="table align-middle table-row-dashed fs-6 gy-3 dataTable no-footer" style="margin-bottom: 0px;">
+                                                <tbody class="fw-bold text-gray-600" *ngIf="pagos.length >= 1">
+                                                    <ng-container *ngFor="let item of pagos;let idx = index; let lst = last">
+                                                        <tr class="odd" [ngClass]="{'border-none': item.pago.sat_uid}">
+                                                            <td>
+                                                                <div class="m-0"  *ngIf="item.pago.tipo_usuario == 'Cliente natural'">    
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8" *ngIf="item.pago.cliente.tipo == 'Socio'">
+                                                                        Socio
+                                                                    </span>
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8" *ngIf="item.pago.cliente.tipo == 'Prospecto'">
+                                                                        Prospecto
+                                                                    </span>
+                                                                    <a [routerLink]="['/clientes',item.pago.cliente._id]" routerLinkActive="router-link-active"  class="fw-bold text-primary fs-7">
+                                                                        {{item.pago.cliente.nombres.split(' ')[0]}} 
+                                                                        {{item.pago.cliente.apellidos.split(' ')[0]}}
+                                                                    </a>
+                                                                </div>
+                                                                <div class="m-0" *ngIf="item.pago.tipo_usuario == 'Empresa'">                            
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">Empresa</span>
+                                                                    <span class="fw-bold text-primary fs-7"> {{item.pago.empresa.razon_social}}</span>
+                                                                </div>
+                                                            </td>
+                                                            
+                                                            <td class="text-end">
+                                                                <div class="" >
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">{{item.pago.tipo_pago}}</span>
+                                                                    <a class="fw-boldtext-primary fs-7" *ngIf="item.pago.venta || item.pago.programacion;else elseBlock;">
+                                                                        <code *ngIf="item.pago.tipo_pago == 'Venta'">   
+                                                                            <a [routerLink]="['/ordenes/detail',item.pago.venta._id]">
+                                                                                #VEN{{item.pago.venta.year}}-{{item.pago.venta.serie.toString().padStart(6,'000000')}}
+                                                                            </a>
+                                                                        </code>
+                                                                        <code *ngIf="item.pago.tipo_pago == 'Programación' && item.pago.programacion">
+                                                                            <a [routerLink]="['/programaciones/detail',item.pago.programacion._id]">
+                                                                                #PROD{{item.pago.programacion.year}}-{{item.pago.programacion.serie.toString().padStart(6,'000000')}}
+                                                                            </a>
+                                                                        </code>
+                                                                    </a>
+                                                                    <ng-template #elseBlock>
+                                                                        <code class="text-muted">Pago Directo</code>
+                                                                    </ng-template>
+                                                                </div>            
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <span class="fw-semibold text-gray-400 d-block fs-8">Estado</span>
+                                                                <div class="" *ngIf="item.pago.venta">
+                                                                   
+                                                                    <small class="badge bg-danger" *ngIf="item.pago.venta.estado == 'Pendiente' ||item.pago.venta.estado == 'Procesado';else anotherelse">
+                                                                        Sin confirmar
+                                                                    </small>
+                                                                    <ng-template #anotherelse>
+                                                                        <small class="badge bg-primary">
+                                                                            {{item.pago.venta.estado}}
+                                                                        </small>
+                                                                    </ng-template>
+                                                                </div>       
+                                                                <div class="" *ngIf="!item.pago.venta">
+                                                                    <small class="badge bg-success">
+                                                                        Directo
+                                                                    </small>
+                                                                </div>     
+                                                            </td>
+                                                            <td class="text-end">
+                                                                <div class="" >
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">Monto</span>
+                                                                    <span class="fw-bold text-gray-800 fs-7">{{item.pago.monto|currency:'MXN'}}</span>
+                                                                </div>            
+                                                            </td>
+                                                            
+                                                         
+                                                            <td class="text-end">
+                                                                <div class="">
+                                                                    <span class="fw-semibold text-gray-400 d-block fs-8">Fecha</span>
+                                                                    <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                        {{item.pago.createdAt|date}}
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            
+                                                            <td class="text-end">
+                                                                <span *ngIf="item.pago.estado == 'Aprobado'" class="badge badge-success">{{item.pago.estado}}</span>
+                                                                <span *ngIf="item.pago.estado == 'Pendiente'" class="badge badge-warning">{{item.pago.estado}}</span>
+                                                                <span *ngIf="item.pago.estado == 'Cancelado'" class="badge badge-danger">{{item.pago.estado}}</span>
+                                                            </td>
+                                                         
+                                                            <td class="text-end">
+                                                                <div class="d-flex justify-content-end">
+                                                                    <ng-container *ngIf="item.pago.comprobante">
+                                                                        <a href="{{item.pago.comprobante}}" class="btn btn-sm btn-icon btn-bg-light w-30px h-30px me-3">
+                                                                            <span class="svg-icon svg-icon-muted icon-size-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="M21 22H3C2.4 22 2 21.6 2 21C2 20.4 2.4 20 3 20H21C21.6 20 22 20.4 22 21C22 21.6 21.6 22 21 22ZM13 13.4V3C13 2.4 12.6 2 12 2C11.4 2 11 2.4 11 3V13.4H13Z" fill="currentColor"/>
+                                                                                <path opacity="0.3" d="M7 13.4H17L12.7 17.7C12.3 18.1 11.7 18.1 11.3 17.7L7 13.4Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>  
+                                                                        </a>
+                                                                    </ng-container>
+    
+                                                                    <div class="dropdown">
+                                                                        <button class="btn btn-sm btn-icon btn-bg-light w-30px h-30px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                            <span class="svg-icon svg-icon-muted icon-size-2" style="margin-right: 0px !important;">
+                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M22.1 11.5V12.6C22.1 13.2 21.7 13.6 21.2 13.7L19.9 13.9C19.7 14.7 19.4 15.5 18.9 16.2L19.7 17.2999C20 17.6999 20 18.3999 19.6 18.7999L18.8 19.6C18.4 20 17.8 20 17.3 19.7L16.2 18.9C15.5 19.3 14.7 19.7 13.9 19.9L13.7 21.2C13.6 21.7 13.1 22.1 12.6 22.1H11.5C10.9 22.1 10.5 21.7 10.4 21.2L10.2 19.9C9.4 19.7 8.6 19.4 7.9 18.9L6.8 19.7C6.4 20 5.7 20 5.3 19.6L4.5 18.7999C4.1 18.3999 4.1 17.7999 4.4 17.2999L5.2 16.2C4.8 15.5 4.4 14.7 4.2 13.9L2.9 13.7C2.4 13.6 2 13.1 2 12.6V11.5C2 10.9 2.4 10.5 2.9 10.4L4.2 10.2C4.4 9.39995 4.7 8.60002 5.2 7.90002L4.4 6.79993C4.1 6.39993 4.1 5.69993 4.5 5.29993L5.3 4.5C5.7 4.1 6.3 4.10002 6.8 4.40002L7.9 5.19995C8.6 4.79995 9.4 4.39995 10.2 4.19995L10.4 2.90002C10.5 2.40002 11 2 11.5 2H12.6C13.2 2 13.6 2.40002 13.7 2.90002L13.9 4.19995C14.7 4.39995 15.5 4.69995 16.2 5.19995L17.3 4.40002C17.7 4.10002 18.4 4.1 18.8 4.5L19.6 5.29993C20 5.69993 20 6.29993 19.7 6.79993L18.9 7.90002C19.3 8.60002 19.7 9.39995 19.9 10.2L21.2 10.4C21.7 10.5 22.1 11 22.1 11.5ZM12.1 8.59998C10.2 8.59998 8.6 10.2 8.6 12.1C8.6 14 10.2 15.6 12.1 15.6C14 15.6 15.6 14 15.6 12.1C15.6 10.2 14 8.59998 12.1 8.59998Z" fill="currentColor"/>
+                                                                                <path d="M17.1 12.1C17.1 14.9 14.9 17.1 12.1 17.1C9.30001 17.1 7.10001 14.9 7.10001 12.1C7.10001 9.29998 9.30001 7.09998 12.1 7.09998C14.9 7.09998 17.1 9.29998 17.1 12.1ZM12.1 10.1C11 10.1 10.1 11 10.1 12.1C10.1 13.2 11 14.1 12.1 14.1C13.2 14.1 14.1 13.2 14.1 12.1C14.1 11 13.2 10.1 12.1 10.1Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>   
+                                                                        </button>
+                                                                        <ul class="dropdown-menu">
+                                                                            <ng-container *ngIf="permisos.includes('14002')">
+                                                                                <li *ngIf="item.pago.estado == 'Pendiente'">
+                                                                                    <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#aprobarPago-'+item.pago._id">
+                                                                                        Aprobar
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ng-container>
+                                                                            
+                                                                            <ng-container *ngIf="permisos.includes('14003')">
+                                                                                <li *ngIf="item.pago.estado == 'Pendiente'">
+                                                                                    <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" [attr.data-bs-target]="'#cancelarPago-'+item.pago._id">
+                                                                                        Cancelar
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ng-container>
+                                                                            <li *ngIf="permisos.includes('14004')">
+                                                                                <a class="dropdown-item cursor-pointer" [routerLink]="['/cobranzas/pago/detail',item.pago._id]">
+                                                                                    Detalles
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="modal fade" id="aprobarPago-{{item.pago._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h3 class="modal-title">Aprobar pago</h3>
+                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                        <!--end::Svg Icon-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <p class="mb-3" style="margin-bottom: 0px;">
+                                                                                    Al confirmar el pago, se procesara el monto para la cancelaciòn de las ventas adjuntadas.
+                                                                                </p>
+                                                                                <div *ngIf="item.pago.tipo_de_comprobante == 'Factura'" class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5" style="margin-bottom: 0px !important;">
+                                                                                    <div class="d-flex flex-column ">
+                                                                                        <span> En la confirmación aprobada se generara el borrador para el comprobante electrónico y se adjuntaran las ventas con deudas al pago.</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                            
+                                                                                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                
+                                                                                    Descartar
+                                                                                </button>
+                                                                
+                                                                                <button *ngIf="!load_pago" type="button" class="btn btn-dark" (click)="aprobar_pago(item.pago._id)">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                    Confirmar
+                                                                                </button>
+                                                                                <button *ngIf="load_pago" class="btn btn-dark" type="button" disabled>
+                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                    Procesando...
+                                                                                </button>
+                                            
+                                                                                
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="modal fade" id="cancelarPago-{{item.pago._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h3 class="modal-title">Cancelar pago</h3>
+                                                                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                    <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                    <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                        <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                        <!--end::Svg Icon-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <p class="mb-3" style="margin-bottom: 0px;">
+                                                                                    Al confirmar el la cancelación el pago será revocado.
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                            
+                                                                                <button type="button" id="kt_modal_new_card_cancel" class="btn btn-light me-3"  data-bs-dismiss="modal">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                
+                                                                                    Descartar
+                                                                                </button>
+                                                                
+                                                                                <button *ngIf="!load_cancelacion" type="button" class="btn btn-dark" (click)="cancelar_pago(item.pago._id)">
+                                                                                    <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                    Confirmar
+                                                                                </button>
+                                                                                <button *ngIf="load_cancelacion" class="btn btn-dark" type="button" disabled>
+                                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                    Procesando...
+                                                                                </button>
+                                            
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            </td>
+                                                        </tr>
+                                                        <tr *ngIf="item.pago.sat_uid" style="background: #f9f9f9;">
+                                                            <td colspan="2" style="padding-left: 1rem;"> 
+                                                                <span>
+                                                                    <b class="text-dark fs-7">
+                                                                        Cuenta: 
+                                                                    </b>
+                                                                    &nbsp;
+                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                        {{item.pago.sat_cliente_facturacion.nombres.split(' ')[0]}}
+                                                                        {{item.pago.sat_cliente_facturacion.apellidos.split(' ')[0]}}
+                                                                    </span>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-center" colspan="2">
+                                                                <span>
+                                                                    <b class="text-dark fs-7">
+                                                                        ID: 
+                                                                    </b>
+                                                                    &nbsp;
+                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                        {{item.pago.sat_serie}}-{{item.pago.sat_folio.toString().padStart(6,'000000')}}
+                                                                    </span>
+                                                                </span>
+                                                                
+                                                            </td>
+                                                            <td class="text-end" colspan="2" style="padding-right: 1rem;">
+                                                                <span>
+                                                                    <b class="text-dark fs-7">
+                                                                        Estado: 
+                                                                    </b>
+                                                                    &nbsp;
+                                                                    <span class="fw-bold text-gray-800 fs-7">
+                                                                        {{item.pago.sat_estado}}
+                                                                    </span>
+                                                                </span>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </ng-container>
+                                                </tbody>
+                                                <!--end::Table body-->
+                                                <tbody class="fw-bold text-gray-600" *ngIf="pagos.length == 0">
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                                <!--begin::Logo-->
+                                                                <a  class="pt-lg-20">
+                                                                    <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                                </a> 
+                                                                <!--begin::Message-->
+                                                                <div class="fw-semibold fs-6 text-muted mb-15">
+                                                                    Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="text-center" *ngIf="todos != pagos.length">
+                                            <code class="cursor-pointer" (click)="click_matriculas()">
+                                                Cargar más
+                                            </code>
+                                        </div>
+                                        
+                                    </div>
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

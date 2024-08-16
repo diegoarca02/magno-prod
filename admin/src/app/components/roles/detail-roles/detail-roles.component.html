@@ -1,0 +1,167 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Roles
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/seguridad/roles']"  class="pe-3">
+                                            Roles
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Detalles de rol</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        
+                        <ng-container *ngIf="!load_data">
+                            <!--begin::Layout-->
+                            <div class="d-flex flex-column flex-lg-row" *ngIf="data">
+                               
+                                <!--begin::Content-->
+                                <div class="flex-lg-row-fluid ms-lg-10">
+                                    <!--begin::Card-->
+                                    <div class="card card-flush mb-6 mb-xl-9">
+                                        <!--begin::Card header-->
+                                        <div class="card-header pt-5">
+                                            <!--begin::Card title-->
+                                            <div class="card-title">
+                                                <h2 class="d-flex align-items-center fw-700">Usuarios asignados
+                                                <span class="text-gray-600 fs-6 ms-1">({{colaboradores.length}})</span></h2>
+                                            </div>
+                                            <!--end::Card title-->
+                                            <!--begin::Card toolbar-->
+                                            
+                                            <!--end::Card toolbar-->
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body pt-0">
+                                            <!--begin::Table-->
+                                            <div class="table-responsive">
+                                                <table *ngIf="colaboradores.length >= 1" class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_roles_view_table">
+                                                    <!--begin::Table body-->
+                                                    <tbody class="fw-semibold text-gray-600">
+                                                        <tr *ngFor="let item of colaboradores">
+                                                            <!--begin::Checkbox-->
+                                                    
+                                                            <!--begin::User=-->
+                                                            <td class="d-flex align-items-center">
+                                                                <!--begin:: Avatar -->
+                                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                                    <span class="symbol-label fw-bold" [ngClass]="{
+                                                                        'bg-light-danger text-danger': item.nombres.charAt(0) >='A' && item.nombres.charAt(0) <= 'H',
+                                                                        'bg-light-primary text-primary': item.nombres.charAt(0) >='I' && item.nombres.charAt(0) <= 'O',
+                                                                        'bg-light-info text-info': item.nombres.charAt(0) >='P' && item.nombres.charAt(0) <= 'U',
+                                                                        'bg-light-success text-success': item.nombres.charAt(0) >='V' && item.nombres.charAt(0) <= 'Z'}">
+                                                                        {{item.nombres.charAt(0)}}
+                                                                    </span>
+                                                                </div>
+                                                                <!--end::Avatar-->
+                                                                <!--begin::User details-->
+                                                                <div class="d-flex flex-column">
+                                                                    <a class="text-hover-primary mb-1 fw-600">
+                                                                        {{item.nombres}} {{item.apellidos}}
+                                                                    </a>
+                                                                    <span>{{item.email}}</span>
+                                                                </div>
+                                                                <!--begin::User details-->
+                                                            </td>
+                                                            <!--end::user=-->
+                                                            <!--begin::Joined date=-->
+                                                            <td class="text-end min-w-200px">{{item.createdAt|date:'dd-MM-YYYY'}}</td>
+                                                            <!--end::Joined date=-->
+                                                        </tr>
+                                                    </tbody>
+                                                    <!--end::Table body-->
+                                                </table>
+                                            </div>
+                                            <!--end::Table-->
+                                            <div class="text-center mt-20 mb-15" *ngIf="colaboradores.length == 0">
+                                                <!--begin::Title-->
+                                                <img src="assets/icons/idea.gif" alt="" style="width: 80px;">
+                                                <h3 class="fs-2hx text-dark mb-5">Colaboradores</h3>
+                                                <!--end::Title-->
+                                                <!--begin::Text-->
+                                                <div class="fs-5 text-muted fw-semibold">Within the last 10 years, we have sold over 100,000 admin theme copies that have been 
+                                                <br>successfully deployed by small businesses to global enterprises</div>
+                                                <!--end::Text-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                    <!--end::Card-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Layout-->
+                            <div class="card mb-5 mb-xl-8" *ngIf="!data">
+                                <ng-container>
+                                    <div class="card-body pt-15">
+                                        <div class="text-center mt-20 mb-15">
+                                            <!--begin::Title-->
+                                            <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                            <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                            <!--end::Title-->
+                                            <!--begin::Text-->
+                                            <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                            <!--end::Text-->
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </ng-container>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

@@ -1,0 +1,168 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Productos
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3">
+                                    <a [routerLink]="['/manufactura/productos/ropas']"  class="pe-3">
+                                        Productos
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item pe-3">Importación</li>
+                            </ol>
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+                        <!--begin::Table Widget 3-->
+                        <div class="card h-xl-100">
+                            <!--begin::Card header-->
+                            <div class="card-header py-7">
+                                <!--begin::Tabs-->
+                                <h3 class="card-title align-items-start flex-column">
+                                    <span class="card-label fw-bold fs-3 mb-1 fw-700">Reporte de pedidos</span>
+                                    <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                                </h3>
+                                <!--end::Tabs-->
+
+                                <!--begin::Create campaign button-->
+                                <div class="card-toolbar d-none d-sm-block">
+                                    
+                                </div>
+                                <!--end::Create campaign button-->
+                            </div>
+                            <div class="card-body pt-5">
+
+                                <ng-container *ngFor="let item of data;let lst = last">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <a class="symbol symbol-50px"  style="cursor: pointer;border: 1px dashed #ccc;">
+                                                <span class="symbol-label" [ngStyle]="{'background': item.color.hxd}"></span>
+                                            </a>
+                                            <div class="d-flex justify-content-start flex-column ms-5">
+                                                <a class="text-gray-800 fw-700 text-hover-primary fs-4">
+                                                    {{item.color.variante}}
+                                                </a>
+                                                <code>{{item.color.sku}}</code>
+                                            </div>
+                                        </div>
+    
+                                        <div class="d-flex">
+                                            <div class="me-5 ">                            
+                                                <span class="fw-semibold text-gray-400 d-block fs-8" style="text-align: right;">
+                                                    OPEN TO SELL
+                                                </span>
+                                                <a class="fw-600 text-gray-800 text-hover-primary fs-5" style="text-align: right;">
+                                                    {{item.stock_free}}
+                                                </a>
+                                            </div>
+
+                                            <div class="m-0 ">                            
+                                                <span class="fw-semibold text-gray-400 d-block fs-8" style="text-align: right;">
+                                                    TOTAL STOCK
+                                                </span>
+                                                <a class="fw-600 text-gray-800 text-hover-primary fs-5" style="text-align: right;">
+                                                    {{item.stock_total}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive mt-7" [ngClass]="{'mb-10': !lst}">
+                                        <table class="table table-bordered mb-0">
+                                            <thead>
+                                                <tr class="fw-bold fs-6 text-gray-800">
+                                                    <th style="padding-left: 0.75rem !important;">Pedido</th>
+                                                    <th>Estado</th>
+                                                    <th>Metraje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="item.pedidos_color.length >= 1">
+                                                <tr *ngFor="let subitem of item.pedidos_color;let idx = index">
+                                                    <td style="padding-left: 0.75rem !important;" >
+                                                        <a [routerLink]="['/manufactura/pedidos/detail',subitem.pedido._id]">
+                                                            <code>#{{subitem.pedido.year}}-{{subitem.pedido.serie.toString().padStart(6,'000000')}}</code>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {{subitem.pedido.estado}}
+                                                    </td>
+                                                    <td>
+                                                        <span *ngIf="subitem.unidad == 'Yrd'">{{subitem.cantidad}} Yrd</span>
+                                                        <span *ngIf="subitem.unidad != 'Yrd'">{{subitem.cantidad*1.09361}} Yrd</span>
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                            <tbody *ngIf="item.pedidos_color.length == 0">
+                                                <tr>
+                                                    <td class="text-center" colspan="3">
+                                                        <span class="text-muted">
+                                                            No se encontraron pedidos del color.
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </ng-container>
+
+                                
+
+                        
+                            </div>
+                            <!--end::Card body-->
+                            <div class="card-footer" >
+                                
+                            </div>
+                        </div>
+                        <!--end::Table Widget 3-->
+
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

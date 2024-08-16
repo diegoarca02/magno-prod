@@ -1,0 +1,139 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Inventario
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Inventario</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush">
+                                    <!--begin::Card header-->
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Inventario</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block" >Inventario completo de los almacenes</span>
+                                        </h3>
+                                        <!--end::Title-->
+                                        <!--begin::Actions-->
+                                        <div class="card-toolbar">
+                                            
+                                        </div>
+                                        <!--end::Actions-->
+                                    </div>
+                                    
+
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-0">
+                                        <ng-container *ngIf="!load_data">
+                                            <div class="table-responsive">
+                                                <table class="table table-row-dashed table-bordered" style="border: 1px solid #efeded;">
+                                                    <tbody>
+                                                        <tr class="fw-bold fs-6 text-gray-800" *ngFor="let item of data" [ngClass]="{'bg_a': item.clasificacion == 'A','bg_b': item.clasificacion == 'B','bg_c': item.clasificacion == 'C'}">
+                                                            <td style="padding-left: 1rem;">{{item.producto}}</td>
+                                                            <td  [ngStyle]="{'background': item.hxd,'color': item.txt}">{{item.color}}</td>
+                                                            <td class="min-w-50px">{{item.cantidad}}</td>
+                                                            <td>{{item.porcent_cantidad}}%</td>
+                                                            <td>{{item.precio_venta|currency:'MXN'}}</td>
+                                                            <td>{{item.subtotal|currency:'MXN'}}</td>
+                                                            <td>{{item.porcent_subtotal}}%</td>
+                                                            <td>
+                                                                <span class="fs-3">{{item.clasificacion}}</span>
+                                                            </td>
+                                                            <td>{{item.porcent_total.toFixed(2)}}%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td style="padding-left: 1rem;">
+                                                                <span class="fw-bold">TOTALES</span>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <span class="fw-bold">{{totales.totales_cantidad}}</span>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <span class="fw-bold">{{totales.totales_subtotal|currency:'MXN'}}</span>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>
+                                                                <span class="fw-bold">{{100}}%</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tfoot>
+                                                    
+                                                </table>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="load_data">
+                                            <div class="py-20 text-center">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

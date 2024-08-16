@@ -1,0 +1,471 @@
+<div class="card mb-5 mb-xl-10">
+    <!--begin::Card header-->
+    <div class="card-header border-0 pt-5" >
+        <!--begin::Heading-->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold fs-3 mb-1 fw-700">Direcciones</span>
+            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        </h3>
+        <!--end::Heading-->
+        <!--begin::Toolbar-->
+        <div class="card-toolbar" >
+            <a *ngIf="!nueva_ubicacion" class="btn btn-dark btn-sm" (click)="openCreateUbicacion()">
+                <i class="bi bi-house"></i>
+                Nueva ubicación
+            </a>
+            <a *ngIf="nueva_ubicacion" class="btn btn-dark btn-sm" (click)="closeCreateUbicacion()">
+                <i class="bi bi-x-lg"></i>
+                Cancelar
+            </a>
+        </div>
+        <!--end::Toolbar-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body" [ngClass]="{'p-0 pt-5 pb-5': !nueva_ubicacion}">
+        <!--begin::Table wrapper-->
+        <ng-container *ngIf="!nueva_ubicacion">
+            <div class="d-none d-md-block">
+                <div class="table-responsive">
+                    <!--begin::Table-->
+                    <table class="table table-flush align-middle table-row-bordered table-row-solid gy-4 gs-9" style="margin-bottom: 0px !important;">
+                        <!--begin::Thead-->
+                        <tbody *ngIf="!load_direcciones">
+                            <ng-container *ngIf="ubicaciones.length >= 1">
+                                <ng-container *ngFor="let item of ubicaciones; let idx = index">
+                                    <tr>
+                                        <td style="min-width: 350px !important;">
+                                            <span class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6" *ngIf="item.encargado">
+                                                {{item.encargado}}</span>
+                                            <span class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6" *ngIf="!item.encargado">
+                                                Encargado no asignado</span>
+                                            <span>
+                                                {{item.place_name_es}}
+                                            </span>
+                                        </td>
+                                        <td class="text-end min-w-200px" >
+                                            <a class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                                {{item.prefijo}} {{item.telefono}}
+                                            </a>
+                                            <span class="text-muted fw-semibold text-muted d-block fs-7">Telefono</span>
+                                        </td>
+                                        <td class="text-center" style="min-width: 150px;">
+                                            <span class="badge badge-light-primary" *ngIf="item.status">Activo</span>
+                                            <span class="badge badge-light-danger" *ngIf="!item.status">Desactivado</span>
+                                        </td>
+                                        <td class="text-end min-w-100px">
+                                            <button *ngIf="item.hidden" (click)="get_ubicacion(item._id,idx)" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px cursor-pointe r me-3">
+                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"/>
+                                                    <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor"/>
+                                                    </svg>
+                                                    </span>
+                                                <!--end::Svg Icon-->                                
+                                            </button>
+            
+                                            <button style="cursor: pointer;" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#delete-'+item._id" 
+                                            class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px cursor-pointer">
+                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                <span class="svg-icon svg-icon-5 svg-icon-gray-700" style="margin-right: 0px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"/>
+                                                    <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"/>
+                                                    <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->                                
+                                            </button>
+        
+                                            <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title">Eliminación de ubicación</h3>
+                                                
+                                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>
+                                                                    <!--end::Svg Icon-->
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Confirmación para eliminación de ubicación.</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>
+                                                                Cerrar
+                                                            </button>
+                                                            <button *ngIf="!load_delete" type="button" class="btn btn-dark" (click)="delete_ubicacion(item._id)">
+                                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                    </svg>
+                                                                </span>
+                                                                Eliminar
+                                                            </button>
+                                            
+                                                            <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                Procesando...
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </td>
+                                        
+                                        
+        
+                                    </tr>
+                                    <tr *ngIf="!item.hidden">
+                                        <td colspan="4">
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6 mt-4">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-3 col-form-label fw-semibold fs-6" style="text-align: left !important;">
+                                                    Encargado
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-9 fv-row">
+                                                    <!--begin::Input-->
+                                                    <input type="text" placeholder="Nombres y apellidos" name="encargado" [(ngModel)]="ubicacion_edit.encargado" class="form-control form-control-lg form-control-solid"/>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-3 col-form-label fw-semibold fs-6 required ">Tipo dirección</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-9 fv-row">
+                                                    <!--begin::Input-->
+        
+                                                    <select name="tipo" [(ngModel)]="ubicacion_edit.tipo" class="form-select form-select-lg form-select-solid">
+                                                        <option value="" selected disabled>Seleccionar</option>
+                                                        <option value="Atención">Atención</option>
+                                                        <option value="Entrega">Entrega</option>
+                                                        <option value="Atención y Entrega">Atención y Entrega</option>
+                                                    </select>
+                                                    <!--end::Hint-->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label style="text-align: left !important;" class="col-lg-3 col-form-label required fw-semibold fs-6">
+                                                    Telefono
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-9 fv-row">
+                                                    <div class="row">
+                                                        <!--begin::Input-->
+                                                        <div class="col-6">
+                                                            <select class="form-select" id="select-phone-edit-{{item._id}}" data-control="select2" data-placeholder="Prefijo">
+                                                                <option></option>
+                                                                <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="text" placeholder="Telefono" name="telefono" [(ngModel)]="ubicacion_edit.telefono" class="form-control form-control-lg form-control-solid"/>
+                                                        </div>
+                                                    
+                                                        <!--end::Hint-->
+                                                    </div>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--begin::Input group-->
+                                            <div class="row mb-6">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-3 col-form-label fw-semibold fs-6">Dirección</label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-9 fv-row">
+                                                    <!--begin::Input-->
+                                                    <input *ngIf="data_geo != undefined" type="text" readonly placeholder="Dirección" value="{{data_geo.place_name_es}}" class="form-control form-control-lg form-control-solid"/>
+                                                    <!--end::Hint-->
+                                                    <input *ngIf="data_geo == undefined" type="text" readonly placeholder="Dirección" class="form-control form-control-lg form-control-solid"/>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <!--end::Input group-->
+                                            <div class="row mb-6">
+                                                <div class="col-12 mb-7">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div id="geocoder" #asGeoCoder class="geocoder"></div>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div id="mapid" style="height: 400px;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <button (click)="update_ubicacion(item._id)" class="btn btn-dark btn-sm me-3" *ngIf="!load_update">
+                                                        <i class="bi bi-check2"></i>
+                                                        Guardar cambios
+                                                    </button>
+                                                    <button class="btn btn-dark btn-sm me-3" type="button" disabled *ngIf="load_update">
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Procesando...
+                                                      </button>
+                                                    <button (click)="closeUbicacion(idx)" class="btn btn-dark btn-sm">
+                                                        <i class="bi bi-x-lg"></i>
+                                                        Cerrar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                            <tr  *ngIf="ubicaciones.length == 0">
+                                 <td>
+                                    <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-10">
+                                        <!--begin::Logo-->
+                                        <a  class="pt-lg-20">
+                                            <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                        </a> 
+                                        <!--end::Logo-->
+                                    
+                                        <!--begin::Message-->
+                                        <div class="fw-semibold fs-6 text-muted mb-15">
+                                            Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                        </div>      
+                         
+                                
+                                    </div>
+                                 </td>
+                            </tr>
+                           
+                        </tbody>
+                        <tbody class="fw-6 fw-semibold text-gray-600" *ngIf="load_direcciones">
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--end::Table-->
+                </div>
+            </div>
+            <div class="d-block d-md-none px-10">
+                <div *ngFor="let item of ubicaciones; let idx = index">
+
+                    <div class="d-flex flex-column">
+                        <div>
+                            <span class="text-dark fw-600 text-hover-primary d-block mb-1 fs-6" *ngIf="item.encargado">
+                                {{item.encargado}}</span>
+                            <span class="text-dark fw-600 text-hover-primary d-block mb-1 fs-6" *ngIf="!item.encargado">
+                                Encargado no asignado</span>
+                            <span>
+                                {{item.place_name_es}}
+                            </span>
+                        </div>
+                        <span class="mb-2"> {{item.prefijo}} {{item.telefono}}</span>
+                        <div class="d-flex">
+                            <button *ngIf="item.hidden" (click)="get_ubicacion(item._id,idx)" class="btn btn-sm btn-dark d-flex align-items-center cursor-pointe r me-3">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor"/>
+                                    <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->   
+                                Editar                             
+                            </button>
+        
+                            <button style="cursor: pointer;" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#deleteRS-'+item._id" 
+                            class="btn btn-sm btn-dark d-flex align-items-center cursor-pointer">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                <span class="svg-icon svg-icon-5 svg-icon-gray-700" style="margin-right: 0px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"/>
+                                    <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"/>
+                                    <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"/>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->   
+                                Eliminar                             
+                            </button>
+        
+                            <div class="modal fade" id="deleteRS-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Eliminación de ubicación</h3>
+                                
+                                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                    <!--end::Svg Icon-->
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Confirmación para eliminación de ubicación.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Cerrar
+                                            </button>
+                                            <button *ngIf="!load_delete" type="button" class="btn btn-dark" (click)="delete_ubicacion(item._id)">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Eliminar
+                                            </button>
+                            
+                                            <button *ngIf="load_delete" class="btn btn-dark" type="button" disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                Procesando...
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="separator separator-dashed my-3"></div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </ng-container>
+        
+        <!--end::Table wrapper-->
+        <ng-container *ngIf="nueva_ubicacion">
+            <!--begin::Input group-->
+            <div class="row mb-6">
+                <!--begin::Label-->
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">Encargado</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <!--begin::Input-->
+                    <input type="text" placeholder="Nombres y apellidos" name="encargado" [(ngModel)]="ubicacion.encargado" class="form-control form-control-lg form-control-solid"/>
+                    <!--end::Hint-->
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="row mb-6">
+                <!--begin::Label-->
+                <label class="col-lg-4 col-form-label fw-semibold fs-6 required">Tipo dirección</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <!--begin::Input-->
+
+                    <select name="tipo" [(ngModel)]="ubicacion.tipo" class="form-select form-select-lg form-select-solid">
+                        <option value="" selected disabled>Seleccionar</option>
+                        <option value="Atención">Atención</option>
+                        <option value="Entrega">Entrega</option>
+                        <option value="Atención y Entrega">Atención y Entrega</option>
+                    </select>
+                    <!--end::Hint-->
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="row mb-6">
+                <!--begin::Label-->
+                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Telefono</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <!--begin::Input-->
+                    <div class="row">
+                        <div class="col-6">
+                            <select class="form-select" id="select-phone-create" data-control="select2" data-placeholder="Prefijo">
+                                <option></option>
+                                <option value="{{item.code}}" *ngFor="let item of codes">{{item.name}} {{item.code}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Telefono" name="telefono" [(ngModel)]="ubicacion.telefono" class="form-control form-control-lg form-control-solid"/>
+                        </div>
+                    </div>
+                    
+                    <!--end::Hint-->
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--begin::Input group-->
+            <div class="row mb-6">
+                <!--begin::Label-->
+                <label class="col-lg-4 col-form-label fw-semibold fs-6">Dirección</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <!--begin::Input-->
+                    <input *ngIf="data_geo != undefined" type="text" readonly placeholder="Dirección" value="{{data_geo.place_name_es}}" class="form-control form-control-lg form-control-solid"/>
+                    <!--end::Hint-->
+                    <input *ngIf="data_geo == undefined" type="text" readonly placeholder="Dirección" class="form-control form-control-lg form-control-solid"/>
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+            <!--end::Input group-->
+            <div class="row mb-6">
+                <div class="col-lg-12" >
+                    <div id="mapid" style="height: 400px;"></div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <button (click)="create_ubicacion()" class="btn btn-dark btn-sm me-3" *ngIf="!load_save">
+                        <i class="bi bi-check2"></i>
+                        Guardar cambios
+                    </button>
+                    <button class="btn btn-dark btn-sm me-3" type="button" disabled *ngIf="load_save">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Procesando...
+                      </button>
+                    <button (click)="closeCreateUbicacion()" class="btn btn-dark btn-sm">
+                        <i class="bi bi-x-lg"></i>
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <!--end::Card body-->
+</div>
+

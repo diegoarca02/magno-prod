@@ -1,0 +1,234 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar (eventPermisos)="handlePermisos($event)"></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cuentas
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cuentas']"  class="pe-3">
+                                            Cuentas
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Editar Cuenta</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-7">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">
+                                               Editar Cuenta Bancaria
+                                            </span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">
+                                                Cuentas de Destino para los Pagos Realizados.
+                                            </span>
+                                        </h3>
+                                        <!--end::Title-->
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Estado</label>
+                                                <div class="text-muted fs-7">
+                                                    Destacar cuenta en documentos.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-check form-switch form-check-custom form-check-solid me-10 mt-3">
+                                                    <input class="form-check-input h-30px w-50px" name="destacado" type="checkbox" [(ngModel)]="cuenta.destacado" id="autotimezone">
+                                                    <label class="form-check-label" for="autotimezone">
+                                                       Destacar
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Titular</label>
+                                                <div class="text-muted fs-7">
+                                                    Nombres y apellidos del titular.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" placeholder="John Doe" name="titular" [(ngModel)]="cuenta.titular">
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Banco</label>
+                                                <div class="text-muted fs-7">
+                                                    Entidad Bancaria de la Cuenta.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select name="banco" [(ngModel)]="cuenta.banco" class="form-select">
+                                                    <option value="" selected disabled>Seleccionar</option>
+                                                    <option value="Banco Azteca">Banco Azteca</option>
+                                                    <option value="Santander">Santander</option>
+                                                    <option value="BBVA">BBVA</option>
+                                                    <option value="Banamex">Banamex</option>
+                                                    <option value="HSBC">HSBC</option>
+                                                    <option value="Intercam">Intercam</option>
+                                                    <option value="Otros">Otros</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">País</label>
+                                                <div class="text-muted fs-7">
+                                                    País de la Cuenta.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select id="kt_docs_select2_country" aria-label="Select a Country" data-control="select2" data-placeholder="Seleccionar país" class="form-select">
+                                                    <option value="">Select a Country...</option>
+                                          
+                                                    <option data-kt-select2-country="assets/media/flags/argentina.svg" value="Argentina">Argentina</option>
+                                                    <option data-kt-select2-country="assets/media/flags/bolivia.svg" value="Bolivia">Bolivia</option>
+                                                    <option data-kt-select2-country="assets/media/flags/brazil.svg" value="Brazil">Brazil</option>
+                                                    <option data-kt-select2-country="assets/media/flags/chile.svg" value="Chile">Chile</option>
+                                                    <option data-kt-select2-country="assets/media/flags/colombia.svg" value="Colombia">Colombia</option>
+                                                    <option data-kt-select2-country="assets/media/flags/costa rica.svg" value="Costa Ric">Costa Rica</option>
+                                                    <option data-kt-select2-country="assets/media/flags/cuba.svg" value="Cuba">Cuba</option>
+                                                    <option data-kt-select2-country="assets/media/flags/dominican republic.svg" value="Dominican Republic">Dominican Republic</option>
+                                                    <option data-kt-select2-country="assets/media/flags/ecuador.svg" value="Ecuador">Ecuador</option>
+                                                    <option data-kt-select2-country="assets/media/flags/el salvador.svg" value="El Salvador">El Salvador</option>
+                                                    <option data-kt-select2-country="assets/media/flags/guatemala.svg" value="Guatemala">Guatemala</option>
+                                                    <option data-kt-select2-country="assets/media/flags/mexico.svg" value="Mexico">Mexico</option>
+                                                    <option data-kt-select2-country="assets/media/flags/nicaragua.svg" value="Nicaragua">Nicaragua</option>
+                                                    <option data-kt-select2-country="assets/media/flags/panama.svg" value="Panama">Panama</option>
+                                                    <option data-kt-select2-country="assets/media/flags/paraguay.svg" value="Paraguay">Paraguay</option>
+                                                    <option data-kt-select2-country="assets/media/flags/peru.svg" value="Peru">Peru</option>
+                                                    <option data-kt-select2-country="assets/media/flags/portugal.svg" value="Portugal">Portugal</option>
+                                                    <option data-kt-select2-country="assets/media/flags/puerto rico.svg" value="Puerto Rico">Puerto Rico</option>
+                                                    <option data-kt-select2-country="assets/media/flags/spain.svg" value="Spain">Spain</option>
+                                                    <option data-kt-select2-country="assets/media/flags/united states.svg" value="United States">United States</option>
+                                                    <option data-kt-select2-country="assets/media/flags/uruguay.svg" value="Uruguay">Uruguay</option>
+                                                    <option data-kt-select2-country="assets/media/flags/venezuela.svg" value="Venezuela">Venezuela</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Número de Cuenta</label>
+                                                <div class="text-muted fs-7">
+                                                    Número de la Cuenta Bancaria.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input name="ncuenta" [(ngModel)]="cuenta.ncuenta" type="text" class="form-control" placeholder="98571332290892">
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Clave Interbancaria</label>
+                                                <div class="text-muted fs-7">
+                                                    Número de la Clave Interbancaria.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input name="cinter" [(ngModel)]="cuenta.cinter" type="text" class="form-control" placeholder="127416013322908920">
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row mb-15">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">Moneda</label>
+                                                <div class="text-muted fs-7">
+                                                    Moneda de Bancaria de la Cuenta.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select name="moneda" [(ngModel)]="cuenta.moneda" class="form-select">
+                                                    <option value="">Seleccionar</option>
+                                                    <option value="MXN">MXN</option>
+                                                    <option value="USD">USD</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="fv-row row">
+                                            <div class="col-md-3">
+                                                <label class="fs-6 fw-semibold mt-2">
+                                                    SWIFT
+                                                </label>
+                                                <div class="text-muted fs-7">
+                                                    Código SWIFT para transacciones.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <input name="swift" [(ngModel)]="cuenta.swift" type="text" class="form-control" placeholder="BINPPEPL">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button *ngIf="!load_btn" class="btn btn-dark" (click)="update()">
+                                            <i class="bi bi-check2"></i>
+                                            Actualizar Cuenta
+                                        </button>
+
+                                        <button *ngIf="load_btn" class="btn btn-primary" type="button" disabled>
+                                            <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                                            <span role="status">Procesando...</span>
+                                        </button>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

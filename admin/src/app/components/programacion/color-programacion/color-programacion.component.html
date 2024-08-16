@@ -1,0 +1,285 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Programaciones
+                            <!--begin::Separator-->
+                            <span class="h-20px border-gray-200 border-start mx-5"></span>
+                            <!--end::Separator-->
+                            <!--begin::Description-->
+                            <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                <li class="breadcrumb-item pe-3">
+                                    <a [routerLink]="['/programaciones']"  class="pe-3">
+                                        Programaciones
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item pe-3">Reporte</li>
+                            </ol>
+                            
+                  
+                            <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="app-content flex-column-fluid">
+                    <div class="app-container container-xxl">
+
+                        <ng-container *ngIf="load_data">
+                            <div class="py-20 text-center">
+                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="!load_data">
+                            <ng-container  *ngIf="data">
+                                <div class="card card-flush mb-10">
+                                    <!--begin::Card header-->
+                                    <div class="card-header py-7">
+                                        <!--begin::Tabs-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-dark fw-700">Reporte de programaciones</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, modi?.</span>
+                                        </h3>
+                                        <div class="card-toolbar">
+                                            <button class="btn btn-dark" style="background: #186627 !important" (click)="downloadExcel()">
+                                                <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.3" d="M14 10V20C14 20.6 13.6 21 13 21H10C9.4 21 9 20.6 9 20V10C9 9.4 9.4 9 10 9H13C13.6 9 14 9.4 14 10ZM20 9H17C16.4 9 16 9.4 16 10V20C16 20.6 16.4 21 17 21H20C20.6 21 21 20.6 21 20V10C21 9.4 20.6 9 20 9Z" fill="currentColor"/>
+                                                    <path d="M7 10V20C7 20.6 6.6 21 6 21H3C2.4 21 2 20.6 2 20V10C2 9.4 2.4 9 3 9H6C6.6 9 7 9.4 7 10ZM21 6V3C21 2.4 20.6 2 20 2H3C2.4 2 2 2.4 2 3V6C2 6.6 2.4 7 3 7H20C20.6 7 21 6.6 21 6Z" fill="currentColor"/>
+                                                    </svg>
+                                                </span>
+                                                Exportar XLS
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body pt-1">
+                                        <div class="d-flex flex-stack">  
+                                            <!--begin::Symbol-->
+                                            <div class="symbol symbol-circle symbol-60px me-4">
+                                                <div style="cursor: pointer;border: 1px dashed #ccc;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': color.hxd}" >
+                                                </div>  
+                                            </div>
+                                            <!--end::Symbol-->
+                            
+                                            <!--begin::Section-->
+                                            <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                                                <!--begin:Author-->                    
+                                                <div class="flex-grow-1 me-2">
+                                                    <a class="text-gray-800 text-hover-primary fs-5 fw-bolder">
+                                                        {{color.variante}}
+                                                    </a>
+                                                    
+                                                    <span class="text-gray-400 fw-semibold d-block fs-6">{{producto.titulo}}</span>
+                                                </div>
+                                                <!--end:Author-->
+                            
+                                                <!--begin::Follow--> 
+                                                <div>
+                                                    <div class="symbol-group symbol-hover flex-grow-1 min-w-100px pe-2">
+                                                        <div class="symbol symbol-circle symbol-25px" *ngFor="let subitem of colores">
+                                                            <div style="cursor: pointer;border: 1px dashed #ccc;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': subitem.hxd}"  placement="top" tooltipClass="bg_toolip" ngbTooltip="{{subitem.variante}}">
+                                                                </div>
+                                                        </div>
+                                                        <!--end::User-->
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <!--end::Section-->
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                    
+                                </div>
+        
+                                <div class="card card-flush">
+                                    <div class="card-header pt-7 pb-5">
+                                        <!--begin::Tabs-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-dark fw-700" *ngIf="option == 1">
+                                                Programaciones ({{programaciones.length}})
+                                            </span>
+                                            <span class="card-label fw-bold text-dark fw-700" *ngIf="option == 2">
+                                                Resúmen general
+                                            </span>
+                                            <span class="card-label fw-bold text-dark fw-700" *ngIf="option == 3">
+                                                Resúmen color
+                                            </span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, debitis..</span>
+                                        </h3>
+                                        <!--end::Tabs-->
+                                        <!--begin::Create campaign button-->
+                                        <div class="card-toolbar">
+                                            <ul class="nav nav-tabs nav-line-tabs nav-stretch border-transparent fs-5 fw-bold">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-active-primary cursor-pointer" [ngClass]="{'active': option == 1}" (click)="set_option(1)">
+                                                        Programaciones</a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link text-active-primary cursor-pointer"  [ngClass]="{'active': option == 2}" (click)="set_option(2)">
+                                                        Reporte
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!--end::Create campaign button-->
+                                        
+                                    </div>
+                                    <ng-container *ngIf="option == 1">
+                                        <div class="card-body pt-3 pb-0">
+                                            <div class="pt-20 pb-15 text-center" *ngIf="load_data">
+                                                <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                  </div>
+                                            </div>
+                                            <ng-container *ngIf="!load_data">
+                                                <div class="table-responsive" *ngIf="programaciones.length >= 1">
+                                                    <table id="kt_widget_table_3" class="table table-row-dashed align-middle fs-6 gy-4 my-0 pb-3 dataTable no-footer" data-kt-table-widget-3="all">
+                                                        <tbody>
+                                                            <tr class="odd" *ngFor="let item of programaciones| slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;let idx = index">
+                                                                <td class="min-w-175px">
+                                                                    <div class="position-relative ps-6 pe-3 py-2">
+                                                                        <div class="position-absolute start-0 top-0 w-4px h-100 rounded-2 bg-info"></div>
+                                                                        <a class="mb-1 text-dark text-hover-primary fw-600">
+                                                                            <span *ngIf="item.tipo_usuario == 'Cliente natural'">
+                                                                                {{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}
+                                                                            </span>
+                                                                            <span *ngIf="item.tipo_usuario == 'Empresa'">
+                                                                                {{item.empresa_rs.razon_social}}
+                                                                            </span>
+                                                                        </a>
+                                                                        <div class="fs-7 text-muted fw-bold">{{item.createdAt|date}}</div>
+                                                                    </div>
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    <span class="badge badge-light-success" *ngIf="item.estado == 'Finalizado'">{{item.estado}}</span>
+                                                                    <span class="badge badge-light-warning" *ngIf="item.estado == 'Pendiente'">{{item.estado}}</span>
+                                                                    <span class="badge badge-light-primary" *ngIf="item.estado == 'pendiente'">{{item.estado}}</span>
+                                                                </td>
+                                                                <td class="min-w-30px text-end">
+                                                                    <!--begin::Team members-->
+                                                                    <div class="symbol-group symbol-hover mb-1">
+                                                                        <div class="symbol symbol-circle symbol-25px">
+                                                                            <div style="cursor: pointer;border: 1px dashed #ccc;" class="symbol-label fs-8 fw-semibold text-inverse-primary" [ngStyle]="{'background-color': item.producto_color.hxd}" placement="top" tooltipClass="bg_toolip" ngbTooltip="{{item.producto_color.variante}}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-end">
+                                                                    <div class="m-0">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Cantidad</span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">
+                                                                            {{item.cantidad}} {{item.unidad}}
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-end">
+                                                                    <div class="m-0">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">P/UM</span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">{{item.precio_unidad|currency:'MXN'}}</a>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-end">
+                                                                    <div class="m-0">                            
+                                                                        <span class="fw-semibold text-gray-400 d-block fs-8">Subtotal</span>
+                                                                        <a class="fw-bold text-gray-800 text-hover-primary fs-7">{{item.cantidad*item.precio_unidad|currency:'MXN'}}</a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <ng-container  *ngIf="programaciones.length == 0">
+                                                    <div class="mt-10 text-center mb-5">
+                                                        <!--begin::Title-->
+                                                        <h1 class="fw-semibold text-gray-800 lh-lg">
+                                                            «Nunca veo el fracaso como un fracaso, 
+                                                            <br>
+                                                            <span class="fw-bolder">sino solo como el juego que debo jugar y ganar.»</span>
+                                                        </h1>
+                                                        <!--end::Title-->
+                                                        <small class="text-muted">— Tom Hopkins</small>
+                                                        <!--begin::Illustration-->
+                                                        <div class="py-10 text-center">
+                                                            <img src="assets/images/1.svg" class="theme-light-show w-200px" alt="">
+                                                        </div>
+                                                        <!--end::Illustration-->
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <div class="card-footer" *ngIf="programaciones.length >= 1">
+                                            <ngb-pagination
+                                                [(page)]="page"
+                                                [pageSize]="pageSize"
+                                                [maxSize]="10"
+                                                [rotate]="true" [boundaryLinks]="true"
+                                                [collectionSize]="programaciones.length"></ngb-pagination>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="option == 2">
+                                        <div class="card-body pt-3 pb-0">
+                                            <div id="kt_charts_widget_1"></div>      
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="!data">
+                                <div class="card">
+                                    <div class="card-body pt-15">
+                                        <div class="text-center mt-20 mb-15">
+                                            <!--begin::Title-->
+                                            <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                            <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                            <!--end::Title-->
+                                            <!--begin::Text-->
+                                            <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                            <!--end::Text-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+

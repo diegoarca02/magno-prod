@@ -1,0 +1,174 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ordenes
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">Ordenes</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card card-flush h-xl-100">
+                                    <!--begin::Card header-->
+                                    <div class="card-header pt-7 mb-3">
+                                        <!--begin::Title-->
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold text-gray-800 fw-700">Solicitudes de crédito</span>
+                                            <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, vitae.</span>
+                                        </h3>
+                                        <!--end::Title-->
+
+                                       
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <ng-container *ngIf="!load_data">
+                                        
+                                        <div class="table-responsive pt-3" *ngIf="solicitudes.length >= 1">
+                                            <table class="table table-hover table-rounded table-striped border gy-5 gs-7 mb-0">
+                                                <tbody>
+                                                    <ng-container *ngFor="let item of solicitudes;let idx = index">
+                                                        <tr>
+                                                            <td class="min-w-150px">
+                                                                <ng-container *ngIf="item.tipo_usuario == 'Empresa'">
+                                                                    <span class="fw-700">{{item.empresa_rs.razon_social}}</span>
+                                                                </ng-container>
+                                                                <ng-container *ngIf="item.tipo_usuario == 'Cliente natural'">
+                                                                    <span class="fw-700">{{item.cliente.nombres.split(' ')[0]}} {{item.cliente.apellidos.split(' ')[0]}}</span>
+                                                                </ng-container>
+                                                                <br>    
+                                                                <small class="text-muted">{{item.tipo_usuario}}</small>
+                                                            </td>
+                                                            <td class="min-w-100px">
+                                                                {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                <br>
+                                                                <small class="text-muted">
+                                                                   Apertura
+                                                                </small>
+                                                            </td>
+                                                            <td class="min-w-150px">
+                                                                <a [routerLink]="['/ordenes/detail',item.venta._id]" class="text-primary">
+                                                                    #{{item.venta.year}}-{{item.venta.serie.toString().padStart(6,'000000')}}
+                                                                </a>
+                                                                <br>
+                                                                <small class="text-muted">
+                                                                    Venta
+                                                                </small>
+                                                            </td>
+                                                            <td style="text-align: center; 
+                                                            vertical-align: middle;" class="min-w-100px">
+                                                                <span class="" >
+                                                                    {{item.monto|currency:'MXN'}}
+                                                                </span>
+                                                            </td>
+                                                            <td class="min-w-100px">
+                                                                <span class="badge py-3 px-4 fs-7 badge-light-danger" *ngIf="item.estado == 'Abierto'">
+                                                                    Abierto
+                                                                </span>
+                                                                <span class="badge py-3 px-4 fs-7 badge-light-success" *ngIf="item.estado == 'Aprobado'">
+                                                                    Aprobado
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-end min-w-100px">
+                                                                <a *ngIf="item.tipo_usuario == 'Cliente natural'" class="btn btn-sm btn-dark" [routerLink]="['/cobranzas/detail/cliente/'+item.cliente._id]">
+                                                                    Crédito
+                                                                </a>
+                                                                <a *ngIf="item.tipo_usuario == 'Empresa'" class="btn btn-sm btn-dark" [routerLink]="['/cobranzas/detail/empresa/'+item.empresa_rs._id]">
+                                                                    Crédito
+                                                                </a>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    </ng-container>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-body" *ngIf="solicitudes.length == 0">
+                                            <div class="d-flex flex-row-fluid flex-column flex-column-fluid text-center p-10 py-lg-20">
+                                                <!--begin::Logo-->
+                                                <a  class="pt-lg-20">
+                                                    <img alt="Logo" src="assets/images/logotipo.png" class="theme-light-show" style="height: 80px !important;">    
+                                                </a> 
+                                                <!--begin::Message-->
+                                                <div class="fw-semibold fs-6 text-muted mb-15">
+                                                    Lo sentimos, pero no se encontraron resultados para tu búsqueda.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </ng-container>
+                                    <div class="card-body pt-4" *ngIf="load_data">
+                                        <div class="py-20 text-center">
+                                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer"  *ngIf="solicitudes.length >= 1">
+                                        <ngb-pagination
+                                            [(page)]="page"
+                                            [pageSize]="pageSize"
+                                            [maxSize]="10"
+                                            [rotate]="true" [boundaryLinks]="true"
+                                            [collectionSize]="solicitudes.length"></ngb-pagination>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

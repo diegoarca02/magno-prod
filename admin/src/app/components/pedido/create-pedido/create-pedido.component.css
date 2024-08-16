@@ -1,0 +1,26 @@
+.bg_dark_table{
+    background: #181c32 !important;
+}
+
+.table_ tr td{
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.proveedor_selected{
+    background: #fffaec !important;
+}
+
+
+.producto_selected{
+    background: #fffaec !important;
+}
+
+.content-void{
+    min-height: 50px;
+    border: 1px dashed #ccc;
+}
+
+.programacion-selected{
+    background-color: #ebfff8;
+}

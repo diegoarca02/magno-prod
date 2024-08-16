@@ -1,0 +1,17 @@
+[
+    {
+        "_id": 1,
+        "permiso": "Colaboradores",
+        "descripcion": "Acceso al manejo completo del módulo de usuarios"
+    },
+    {
+        "_id": 2,
+        "permiso": "Clientes",
+        "descripcion": "Acceso al manejo completo del módulo de clientes"
+    },
+    {
+        "_id": 3,
+        "permiso": "Empresas",
+        "descripcion": "Acceso al manejo completo del módulo de empresas"
+    }
+]

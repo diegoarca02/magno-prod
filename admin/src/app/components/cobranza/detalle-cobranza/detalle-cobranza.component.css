@@ -1,0 +1,4 @@
+.nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
+    border-bottom: 4px solid #009ef7;
+}
+

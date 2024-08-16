@@ -1,0 +1,347 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Cupones
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3">
+                                        <a [routerLink]="['/cupones']"  class="pe-3">
+                                            Cupones
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item pe-3">Detalle de cupón</li>
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <ng-container *ngIf="!load_data">
+                                    <ng-container *ngIf="!data">
+                                        <div class="card">
+                                            <div class="card-body pt-15">
+                                                <div class="text-center mt-20 mb-15">
+                                                    <!--begin::Title-->
+                                                    <img src="assets/icons/advertencia.gif" alt="" style="width: 80px;">
+                                                    <h3 class="fs-2hx text-dark mb-5 mt-5">Parametro erroneo</h3>
+                                                    <!--end::Title-->
+                                                    <!--begin::Text-->
+                                                    <div class="fs-5 text-muted fw-semibold">Verifique los parametros o datos enviados mediante la ruta.</div>
+                                                    <!--end::Text-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="card card-flush h-xl-100" *ngIf="data">
+                                        <!--begin::Card header-->
+                                        <div class="card-header pt-7 mb-3">
+                                            <!--begin::Title-->
+                                            <h3 class="card-title align-items-start flex-column">
+                                                <span class="card-label fw-bold text-gray-800 fw-700 fw-700">Cupón {{cupon.codigo}}</span>
+                                                <span class="text-gray-400 mt-1 fw-semibold fs-6 d-none d-sm-block">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, laboriosam.</span>
+                                            </h3>
+                                            <!--end::Title-->
+    
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body">
+                                            <h5 class="mb-4 fw-600">Información del cupón</h5>
+    
+                                            <div class="d-flex flex-wrap">
+                                                <!--begin::Row-->
+                                                <div class="flex-equal me-5" style="width: 100% !important;">
+                                                    <!--begin::Details-->
+                                                    <div class="table-responsive">
+                                                        <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                                                            <!--begin::Row-->
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-gray-400 min-w-175px w-175px">Tipo:</td>
+                                                                    <td class="text-gray-800 min-w-200px">
+                                                                        <a class="text-gray-800 fw-600">{{cupon.tipo}}</a>
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                        
+                                                                <!--begin::Row-->
+                                                                <tr>
+                                                                    <td class="text-gray-400">Creación:</td>
+                                                                    <td class="text-gray-800">
+                                                                        {{cupon.createdAt|date:'dd-MM-YYYY'}}
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                        
+                                                                <!--begin::Row-->
+                                                                <tr>
+                                                                    <td class="text-gray-400">Descuento crédito:</td>
+                                                                    <td class="text-gray-800">
+                                                                        <span *ngIf="cupon.descuento_credito">Activo</span>
+                                                                        <span *ngIf="!cupon.descuento_credito">Inactivo</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--end::Details-->
+                                                </div>
+                                                <!--end::Row-->
+                                
+                                                <!--begin::Row-->
+                                                <div class="flex-equal" style="width: 100% !important;">
+                                                    <!--begin::Details-->
+                                                    <div class="table-responsive">
+                                                        <table class="table fs-6 fw-semibold gs-0 gy-2 gx-2 m-0">
+                                                            <!--begin::Row-->
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-gray-400 min-w-175px w-175px">Pago:</td>
+                                                                    <td class="text-gray-800 min-w-200px">
+                                                                        {{cupon.tipo_pago}}
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                        
+                                                                <!--begin::Row-->
+                                                                <tr>
+                                                                    <td class="text-gray-400">Colaborador:</td>
+                                                                    <td class="text-gray-800">
+                                                                        {{cupon.colaborador.nombres.split(' ')[0]}}
+                                                                        {{cupon.colaborador.apellidos.split(' ')[0]}}
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                        
+                                                                <!--begin::Row-->
+                                                                <tr>
+                                                                    <td class="text-gray-400">Estado:</td>
+                                                                    <td>
+                                                                        <span class="badge py-3 px-4 fs-7 badge-light-primary" *ngIf="cupon.estado">Disponible</span>
+                                                                        <span class="badge py-3 px-4 fs-7 badge-light-danger" *ngIf="!cupon.estado">No disponible</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <!--end::Row-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--end::Details-->
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                        </div>
+                                        <div class="card-body" style="background-color: #fffbfb;">
+                                            <div class="">
+                                                <h5 class="mb-4">Producto con descuento:</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle table-row-dashed fs-6 gy-3 dataTable no-footer">
+                                                        <tr *ngFor="let item of cupon.colores" style="border-bottom-color: #dddddd !important;">
+                                                            <td colspan="3" style="min-width: 250px !important;">
+                                                                <div class="d-flex align-items-center gap-3">
+                                                                    <a class="symbol symbol-50px bg-secondary bg-opacity-25 rounded">
+                                                                        <span class="symbol-label" style="width: 35px;height: 35px;border: 1px dashed #ccc;" [ngStyle]="{'background': item.hxd}"></span>
+                                                                    </a>
+                                                                    <div class="d-flex flex-column text-muted">
+                                                                        <a class="text-gray-800 text-hover-primary fw-bold">{{cupon.producto.titulo}}</a>
+                                                                        <div class="fs-7">{{item.variante}}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end" style="min-width: 100px !important;">
+                                                                <div class="text-gray-800 fs-7 pb-0">Precio venta</div>
+                                                                <div class="text-muted fs-7 fw-bold pt-1">
+                                                                    {{item.precio_venta|currency:'MXN'}}
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-end" style="min-width: 100px !important;">
+                                                                <div class="text-gray-800 fs-7 pb-0">Precio descuento</div>
+                                                                <div class="text-muted fs-7 fw-bold pt-1">
+                                                                    {{item.precio_ahora|currency:'MXN'}}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-0">
+                                                <h5 class="mb-4 fw-600">Clientes asignados:</h5>
+                                                <!--end::Title-->
+                                            
+                                                <!--begin::Product table-->
+                                                <div class="table-responsive">
+                                                    <!--begin::Table-->
+                                                    <div class="table-responsive">
+                                                        <table class="table align-middle table-row-dashed fs-6 gy-4 mb-0">
+                                                            <!--begin::Table body-->
+                                                            <tbody class="fw-semibold text-gray-800">
+                                                                <tr *ngFor="let item of compradores">
+                                                                    <td style="min-width: 200px !important;">
+                                                                        <label>
+                                                                            <span *ngIf="item.tipo_usuario == 'Empresa'">
+                                                                                {{item.empresa_rs.razon_social}}
+                                                                            </span>
+                                                                            <span *ngIf="item.tipo_usuario == 'Cliente natural'">
+                                                                                {{item.cliente.nombres.split(' ')[0]}}
+                                                                                {{item.cliente.apellidos.split(' ')[0]}}
+                                                                            </span>
+                                                                        </label>
+                                                                        <br>
+                                                                        <small class="fw-normal text-gray-600">
+                                                                            {{item.tipo_usuario}}
+                                                                        </small>
+                                                                    </td>
+                                                                   
+                                                                    <td style="min-width: 200px !important;">
+                                                                        <ng-container *ngIf="item.estado">
+                                                                            <span class="text-primary" >Venta no asignada</span>
+                                                                            <br>
+                                                                            <small>Venta</small>
+                                                                        </ng-container>
+                                                                        <ng-container *ngIf="!item.estado">
+                                                                            <span class="text-primary" *ngIf="!item.venta">Venta no asignada</span>
+                                                                            <a class="text-primary"  *ngIf="item.venta" [routerLink]="['/ventas/detail',item.venta._id]">
+                                                                                #{{item.venta.year}}-{{item.venta.serie.toString().padStart(6,'000000')}}
+                                                                            </a>
+                                                                            <br>
+                                                                            <small>Venta</small>
+                                                                        </ng-container>
+                                                                    </td>
+                                                                    <td  style="min-width: 100px !important;">
+                                                                        {{item.createdAt|date:'dd-MM-YYYY'}}
+                                                                    </td>
+                                                                    <td class="text-end"  style="min-width: 100px !important;">
+                                                                        <span class="badge py-3 px-4 fs-7 badge-light-primary" *ngIf="item.estado">
+                                                                            Disponible
+                                                                        </span>
+                                                                        <span class="badge py-3 px-4 fs-7 badge-light-danger" *ngIf="!item.estado">
+                                                                            No disponible
+                                                                        </span>
+                                                                    </td>
+                                                                    <td class="text-end" *ngIf="permisos.cupon_cuatro"  style="min-width: 100px !important;">
+                                                                        <a class="btn btn-sm btn-light-danger" *ngIf="item.estado " data-bs-toggle="modal" [attr.data-bs-target]="'#cancelar-'+item._id">
+                                                                            Cancelar
+                                                                        </a>
+                                                                        <button disabled class="btn btn-sm btn-light-danger" *ngIf="!item.estado">
+                                                                            Cancelar
+                                                                        </button>
+                                                                    </td>
+    
+                                                                    <div class="modal fade" id="cancelar-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h3 class="modal-title">Cancelar cupón</h3>
+                                                                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                        <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                            <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                            <!--end::Svg Icon-->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p>Confirmación para cancelar o remover al cliente del cupón.</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-danger font-weight-bold" data-bs-dismiss="modal">
+                                                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                            <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                            </span>
+                                                                                        Cerrar
+                                                                                    </button>
+                                                                                    <button *ngIf="!load_cancelar" type="button" class="btn btn-dark font-weight-bold" (click)="cancelar_cupon(item._id)">
+                                                                                        <span class="svg-icon svg-icon-3 ms-1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                            <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor"/>
+                                                                                            </svg>
+                                                                                        </span>
+                                                                                        Confirmar
+                                                                                    </button>
+    
+                                                                                    <button *ngIf="load_cancelar" class="btn btn-dark" type="button" disabled>
+                                                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                        Procesando...
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
+                                                                </tr>
+                                                                
+                                                            </tbody>
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                    <!--end::Table-->
+                                                </div>
+                                                <!--end::Product table-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="load_data">
+                                    <div class="py-20 text-center">
+                                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>

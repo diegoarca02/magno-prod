@@ -1,0 +1,31 @@
+table.variaciones-table thead, table.variaciones-table tbody,table.variaciones-table tfoot,table.variaciones-table tr,table.variaciones-table td,table.variaciones-table th {
+    border: 1px solid #e6e4e4 !important;
+}
+
+
+.nowrap {
+    white-space: nowrap !important;
+}
+  
+tbody tr td:nth-child(n+4) {
+    white-space: normal !important;
+}
+
+.scrollable-td {
+    width: 100%; /* Asegura que la celda con la tabla interna ocupe todo el ancho disponible */
+}
+
+.inner-table-wrapper {
+    overflow-x: auto; /* Agrega scroll horizontal al contenedor de la tabla interna */
+    width: 100%; /* Hace que el contenedor ocupe todo el ancho disponible */
+  }
+  
+  .inner-table {
+    width: auto; /* Por defecto, la tabla interna toma el ancho de su contenido */
+    border-collapse: collapse; /* Fusionar bordes de celdas */
+  }
+  
+  .inner-table td {
+    border: 1px solid black; /* Borde para celdas de la tabla interna */
+    padding: 8px; /* Espaciado interno de las celdas */
+  }

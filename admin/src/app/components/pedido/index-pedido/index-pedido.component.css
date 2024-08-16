@@ -1,0 +1,23 @@
+
+.bg_active{
+    background: #ef305e  !important;
+}
+
+.color_active{
+    color: #ef305e  !important;
+    font-weight: 600;
+}
+
+.check-span{
+    fill: #fff !important;
+}
+
+.btn-dark-outline{
+    border-radius: 0px;
+    text-transform: uppercase;
+    background-color: white;
+    color: #181c32;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid #181c32 !important;
+}

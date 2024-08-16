@@ -1,0 +1,744 @@
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <app-side-bar></app-side-bar>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <app-top-bar></app-top-bar>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Toolbar-->
+                <div class="toolbar" id="kt_toolbar">
+                    <!--begin::Container-->
+                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                        <!--begin::Page title-->
+                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                            <!--begin::Title-->
+                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Configuraciones
+                                <!--begin::Separator-->
+                                <span class="h-20px border-gray-200 border-start mx-5"></span>
+                                <!--end::Separator-->
+                                <!--begin::Description-->
+                                <ol class="breadcrumb text-muted fs-6 fw-semibold">
+                                    <li class="breadcrumb-item pe-3 active">Configuraciones</li>
+                                    
+                                </ol>
+                      
+                                <!--end::Description--></h1>
+                            <!--end::Title-->
+                        </div>
+                        <!--end::Page title-->
+                        <!--begin::Actions-->
+                        <div class="d-flex align-items-center py-1">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-muted fw-bold fs-7">Panel Administrador</span>
+                            </h3>
+                        </div>
+                        <!--end::Actions-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Toolbar-->
+                <!--begin::Post-->
+                <div class="post d-flex flex-column-fluid" id="kt_post">
+                    <!--begin::Container-->
+                    <div id="kt_content_container" class="container-xxl">
+                        <!--begin::Row-->
+                        <div class="row gy-5 g-xl-8">
+                            <div class="col-12">
+                                <div class="card mb-5 mb-xl-8">
+                                    <!--begin::Header-->
+                                    <div class="card-header border-0 pt-5">
+                                        <h3 class="card-title align-items-start flex-column">
+                                            <span class="card-label fw-bold fs-3 mb-1 fw-700">Configuraciones</span>
+                                            <span class="text-muted mt-1 fw-semibold fs-7 d-none d-sm-block">Variables de entorno para las configuraciones de toda la plataforma.</span>
+                                        </h3>
+                                    </div>
+                                    <!--end::Header-->
+                                    <div class="card-body mt-3" style="background: aliceblue !important;padding-top: 10px !important;
+                                    padding-bottom: 10px !important;">
+                                        <div class="menu">
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Almacenes')" style="padding-left: 0px;">
+                                                    <span class="menu-title">Almacenes</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Composiciones')">
+                                                    <span class="menu-title">Composiciones</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        
+
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Tallas')">
+                                                    <span class="menu-title">Tallas</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Transportes')">
+                                                    <span class="menu-title">Transportes</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Entidades bancarias')">
+                                                    <span class="menu-title">Entidades bancarias</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+
+                                            <!--begin::Menu item-->
+                                            <div class="menu-item">
+                                                <a class="menu-link cursor-pointer" (click)="set_active('Envio')">
+                                                    <span class="menu-title">Envio</span>
+                                                </a>
+                                            </div>
+                                            <!--end::Menu item-->
+                                        </div>
+                                        <!--end::Menu-->
+                                    </div>
+                                    <!--begin::Body-->
+                                    <div class="card-body p-9">
+                                      
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Almacenes'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Almacenes</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Nuevo almacén" name="almacen" [(ngModel)]="almacen.almacen">
+                                                        <button class="btn btn-dark" (click)="crear_almacen()">Crear</button>
+                                                    </div>
+
+                                                    <div class="table-responsive" *ngIf="almacenes.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_almacenes">
+                                                                <tr *ngFor="let item of almacenes;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.almacen}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a *ngIf="!item.estado" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#delete-'+item._id" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <a *ngIf="item.estado" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-secondary w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_almacen" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_almacen(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_almacen" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_almacenes">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Composiciones'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Composiciones</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Nuevo composición" name="composicion" [(ngModel)]="composicion.composicion">
+                                                        <button class="btn btn-dark" (click)="crear_composicion()">Crear</button>
+                                                    </div>
+                                                    <div class="table-responsive" *ngIf="composiciones.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_composiciones">
+                                                                <tr *ngFor="let item of composiciones;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.composicion}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a *ngIf="!item.estado" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#delete3-'+item._id" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <a *ngIf="item.estado" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-secondary w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <div class="modal fade" id="delete3-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_categoria" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_composicion(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_categoria" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_almacenes">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Tallas'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Tallas</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Nueva talla" name="talla" [(ngModel)]="talla.talla">
+                                                        <button class="btn btn-dark" (click)="crear_tallas()">Crear</button>
+                                                    </div>
+
+                                                    <div class="table-responsive" *ngIf="tallas.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_tallas">
+                                                                <tr *ngFor="let item of tallas;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.talla}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a *ngIf="!item.estado" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#deleteTalla-'+item._id" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <a *ngIf="item.estado" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-secondary w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <div class="modal fade" id="deleteTalla-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_categoria" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_talla(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_categoria" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_tallas">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Transportes'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Transportes</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Nuevo transporte"  name="transporte" [(ngModel)]="transporte.transporte">
+                                                        <button class="btn btn-dark" (click)="crear_transporte()">Crear</button>
+                                                    </div>
+
+                                                    <div class="table-responsive" *ngIf="transportes.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_transportes">
+                                                                <tr *ngFor="let item of transportes;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.transporte}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a *ngIf="!item.estado" style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#delete5-'+item._id" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <a *ngIf="item.estado" style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-secondary w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <div class="modal fade" id="delete5-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_categoria" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_transporte(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_categoria" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_transportes">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Entidades bancarias'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Entidades bancarias</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Ejem: Interbank, BBVA, etc"  name="entidad" [(ngModel)]="entidad.entidad">
+                                                        <button class="btn btn-dark" (click)="crear_peso()">Crear</button>
+                                                    </div>
+
+                                                    <div class="table-responsive" *ngIf="entidades.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_entidades">
+                                                                <tr *ngFor="let item of entidades;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.entidad}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <a style="cursor: pointer;" class="btn btn-sm btn-icon btn-bg-secondary w-30px h-30px">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                            <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </a>
+                                                                        <div class="modal fade" id="delete6-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_categoria" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_entidad(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_categoria" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_entidades">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                           
+                                        <!--begin::Input group-->
+                                        <div class="row" *ngIf="active == 'Envio'">
+                                            <!--begin::Label-->
+                                            <label class="col-lg-4 col-form-label required fw-semibold fs-6 fw-600">Metodos de envió</label>
+                                            <!--end::Label-->
+                                            <!--begin::Col-->
+                                            <div class="col-lg-8">
+                                                <!--begin::Row-->
+                                                <div class="row">
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Nuevo envío" name="envio" [(ngModel)]="envio.envio">
+                                                        <button class="btn btn-dark" (click)="crear_envio()">Crear</button>
+                                                    </div>
+
+                                                    <div class="table-responsive" *ngIf="envios.length >= 1" style="max-height: 300px !important;">
+                                                        <!--begin::Table-->
+                                                        <table class="table table-row-dashed align-middle gs-0 gy-3 my-0">
+                                                          
+                                                            <!--begin::Table body-->
+                                                            <tbody *ngIf="!load_envios">
+                                                                <tr *ngFor="let item of envios;let idx = index">
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            
+                                                                            <div class="d-flex justify-content-start flex-column">
+                                                                                <a class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">
+                                                                                    {{item.envio}}
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-end">
+                                                                        <ng-container>
+                                                                            <a style="cursor: pointer;" data-bs-toggle="modal" [attr.data-bs-target]="'#delete9-'+item._id" class="btn btn-sm btn-icon btn-bg-danger w-30px h-30px">
+                                                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                                                                            
+                                                                                <span class="svg-icon svg-icon-5 svg-icon-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path opacity="0.3" d="M6 19.7C5.7 19.7 5.5 19.6 5.3 19.4C4.9 19 4.9 18.4 5.3 18L18 5.3C18.4 4.9 19 4.9 19.4 5.3C19.8 5.7 19.8 6.29999 19.4 6.69999L6.7 19.4C6.5 19.6 6.3 19.7 6 19.7Z" fill="currentColor"/>
+                                                                                    <path d="M18.8 19.7C18.5 19.7 18.3 19.6 18.1 19.4L5.40001 6.69999C5.00001 6.29999 5.00001 5.7 5.40001 5.3C5.80001 4.9 6.40001 4.9 6.80001 5.3L19.5 18C19.9 18.4 19.9 19 19.5 19.4C19.3 19.6 19 19.7 18.8 19.7Z" fill="currentColor"/>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <!--end::Svg Icon-->
+                                                                            </a>
+                                                                        </ng-container>
+                                                                        <div class="modal fade" id="delete9-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h3 class="modal-title">Eliminación</h3>
+                                                                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                                                                            <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/metronic/releases/2022-07-14-092914/core/html/src/media/icons/duotune/arrows/arr088.svg-->
+                                                                                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"/>
+                                                                                                <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"/>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                                <!--end::Svg Icon-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <p>Confirmación para la eliminación del registro.</p>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-danger font-weight-bold btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                                                                                        <button *ngIf="!load_btn_almacen" type="button" class="btn btn-dark font-weight-bold btn-sm" (click)="remove_envio(item._id)">Confirmar</button>
+                                                                        
+                                                                                        <button *ngIf="load_btn_almacen" class="btn btn-dark btn-sm" type="button" disabled>
+                                                                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                                                            Procesando...
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div> 
+                                                                    </td>
+                                                                </tr>
+                                                               
+                                                            </tbody>
+                                                            <tbody *ngIf="load_envios">
+                                                                <tr>
+                                                                    <td colspan="2" class="text-center">
+                                                                        <div class="spinner-border" role="status">
+                                                                            <span class="sr-only">Loading...</span>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>    
+                                                            <!--end::Table body-->
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--end::Row-->
+                                            </div>
+                                            <!--end::Col-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <!--begin::Body-->
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Post-->
+            </div>
+           
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
